@@ -18,6 +18,7 @@ public class PizzaService {
 		return em.createQuery("select p from Pizza p", Pizza.class).getResultList();
 	}
 
+
 	public void update(Integer id, Pizza pizza) {
 
 		Pizza pizzaMod = em.createQuery("select piz from Pizza piz where piz.id=:idP", Pizza.class)
@@ -41,6 +42,7 @@ public class PizzaService {
 		em.persist(pizza);
 
 	}
+
 	
 	
 	public Pizza findById(Integer id) {
@@ -62,3 +64,4 @@ public class PizzaService {
 	
 
 }
+
