@@ -11,6 +11,7 @@
     <module>pizzeria-model</module>
     <module>pizzeria-admin-web</module>
     <module>pizzeria-web-api</module>
+    <module>pizzeria-website</module>
   </modules>
 
   <properties>
