@@ -1,15 +1,19 @@
 package fr.pizzeria.model;
 
+<<<<<<< HEAD
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 
+=======
+>>>>>>> #3 USA003 - Utilisateurs - premier jet
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+<<<<<<< HEAD
 import fr.pizzeria.exception.UtilisateurRuntimeException;
 
 /**
@@ -36,6 +40,8 @@ import fr.pizzeria.exception.UtilisateurRuntimeException;
  * @author Quelqun
  *
  */
+=======
+>>>>>>> #3 USA003 - Utilisateurs - premier jet
 @Entity
 public class Utilisateur {
 
@@ -47,19 +53,27 @@ public class Utilisateur {
 	private String email;
 	private String motDePasse;
 	private String adresse;
+<<<<<<< HEAD
 	private LocalDateTime dateCreation;
+=======
+>>>>>>> #3 USA003 - Utilisateurs - premier jet
 
 	public Utilisateur() {
 
 	}
 
+<<<<<<< HEAD
 	public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, String adresse,
 			LocalDateTime dateCreation) {
+=======
+	public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, String adresse) {
+>>>>>>> #3 USA003 - Utilisateurs - premier jet
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+<<<<<<< HEAD
 
 		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 
@@ -69,10 +83,18 @@ public class Utilisateur {
 
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse,
 			LocalDateTime dateCreation) {
+=======
+		this.motDePasse = motDePasse;
+		this.adresse = adresse;
+	}
+
+	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse) {
+>>>>>>> #3 USA003 - Utilisateurs - premier jet
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+<<<<<<< HEAD
 
 		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 
@@ -135,6 +157,10 @@ public class Utilisateur {
 
 	public void setDateCreation(LocalDateTime dateCreation) {
 		this.dateCreation = dateCreation;
+=======
+		this.motDePasse = motDePasse;
+		this.adresse = adresse;
+>>>>>>> #3 USA003 - Utilisateurs - premier jet
 	}
 
 	public Integer getId() {
