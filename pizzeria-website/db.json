@@ -1,0 +1,16 @@
+{
+  "pizzas": [
+    {
+      "recipe": "Saumonette"
+    },
+    {
+      "recipe": "3 fromages"
+    },
+    {
+      "recipe": "Pepperoni"
+    },
+    {
+      "recipe": "Regina"
+    }
+  ]
+}
