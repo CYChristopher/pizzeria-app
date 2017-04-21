@@ -1,11 +1,13 @@
 import template from './listePizzas.html';
-import {PizzaService} from '../shared/service/pizza.service'
 
 class controller{
-	
-	$onInit(){
-		this.pizzas=PizzaService.getPizzas()
-        
+	constructor(PizzaService){
+		this.PizzaService=PizzaService
+	}
+	$onInit(){		
+		this.PizzaService.getPizzas().then(pizzas=>
+			this.pizzas=pizzas
+		)        
     }
 	
 }

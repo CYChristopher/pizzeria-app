@@ -3,10 +3,10 @@ import ngRoute from 'angular-route'
 import home from './home'
 
 import {routes} from './routes'
+import {PizzaService} from './shared/service/pizza.service'
 import {PizzaComponent} from './pizza.component'
 import {ListePizzasComponent} from './listePizzas.component'
 
-import {PizzaService} from './shared/service/pizza.service'
 
 
 angular.module('pizzeria', [ngRoute, home])
@@ -15,7 +15,6 @@ angular.module('pizzeria', [ngRoute, home])
         $locationProvider.html5Mode(true);
     })
 
+.service('PizzaService',PizzaService)
 .component('pizza',PizzaComponent)
 .component('listePizzas',ListePizzasComponent)
-
-.service('PizzaService',PizzaService)
