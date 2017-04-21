@@ -32,6 +32,16 @@ public class UtilisateursService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Utilisateur find(Integer id) {
+
+		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
+				Utilisateur.class);
+
+		return query.getResultList().get(0);
+
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void saveNew(Utilisateur utilisateur) {
 
 		em.persist(utilisateur);
@@ -39,29 +49,29 @@ public class UtilisateursService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(String code, Utilisateur utilisateur) {
+	public void update(Integer id, Utilisateur utilisateur) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where p.id='" + code + "'",
+		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
 				Utilisateur.class);
-		Utilisateur p = (Utilisateur) query.getResultList().get(0);
+		Utilisateur u = (Utilisateur) query.getResultList().get(0);
 
-		if (p != null) {
+		if (u != null) {
 
-			int id = p.getId();
+			Integer idUpdate = u.getId();
 
-			p = utilisateur;
+			u = utilisateur;
 
-			p.setId(id);
+			u.setId(idUpdate);
 
-			em.merge(p);
+			em.merge(u);
 		}
 
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(String id) {
+	public void delete(Integer id) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where p.id='" + id + "'",
+		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
 				Utilisateur.class);
 		Utilisateur p = (Utilisateur) query.getResultList().get(0);
 
