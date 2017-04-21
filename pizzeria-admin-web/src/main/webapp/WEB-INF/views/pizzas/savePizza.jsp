@@ -9,19 +9,24 @@
 
 <body class="container">
 	<h1>Nouvelle Pizza</h1>
+	<c:if test="${msg != null}">
+		<div class="alert alert-danger" role="alert">${msg}</div>
+	</c:if>
 	
 	<form method="post">
-			<label for="newcode">Code :</label> <input class="form-control"
-				id="newcode" name="newcode" type="text" placeholder="Code">
+			<label for="newcode">Code :</label> <input style="border-color:${erreur[0]}" class="form-control"
+				id="newcode" name="newcode" type="text" placeholder="Code" value="${newcode}">
 
-			<label for="ref">Nom :</label> <input class="form-control" id="ref"
-				name="ref" type="text" placeholder="Nom"> <label for="prix">Prix
-				: </label> <input step="0.01" class="form-control" id="prix" name="prix"
-				type="number" placeholder="prix">
+			<label for="ref">Nom :</label> <input style="border-color:${erreur[1]}" class="form-control" id="ref"
+				name="ref" type="text" placeholder="Nom" value="${ref}"> 
+				
+				<label for="prix">Prix
+				: </label> <input style="border-color:${erreur[2]}" step="0.01" class="form-control" id="prix" name="prix"
+				type="number" placeholder="prix" value="${prix}">
 
 			<div class="form-group">
 				<label for="categorie">Categorie : </label> 
-				<select id="categorie"	class="form-control" name="categorie">
+				<select id="categorie"	class="form-control alert" name="categorie">
 					<option>VIANDE</option>
 					<option>POISSON</option>
 					<option>SANS_VIANDE</option>

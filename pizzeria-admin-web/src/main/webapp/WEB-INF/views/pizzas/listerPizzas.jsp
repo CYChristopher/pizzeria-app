@@ -32,7 +32,7 @@
 						<br> <b>${pizza.nom}</b><br>${pizza.prix}
 						€<br>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6" >
 						<a href="<c:url value="/pizzas/edit?code=${pizza.code}"/>" class="btn btn-primary">Editer</a>
 						<br>
 						<form method="POST">

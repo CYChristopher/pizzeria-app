@@ -41,19 +41,51 @@ public class SavePizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+	  if(!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty() && !request.getParameter("prix").isEmpty())
+	  {
 		String newcode = request.getParameter("newcode");
 		String ref = request.getParameter("ref");
 		String prix = request.getParameter("prix");
 		String categorie = request.getParameter("categorie");
 
-		System.out.println("coucou " +newcode+" "+ ref+" "+ prix+" " + categorie + " "+ CategoriePizza.valueOf("VIANDE"));
-		
 		Pizza pizza = new Pizza(newcode,ref, BigDecimal.valueOf(Double.valueOf(prix)), CategoriePizza.valueOf(categorie));
 		
 		pizzaService.save(pizza);
+		
 		response.sendRedirect(request.getContextPath() + "/pizzas/list");
 		
-		
+	  }else
+	  {
+		  String erreur[]=  {"","",""};
+		  if(request.getParameter("newcode").isEmpty())
+		  {
+			  erreur[0]="red";			  
+		  }else
+		  {
+			  request.setAttribute("newcode",request.getParameter("newcode"));
+		  }
+		  
+		  if(request.getParameter("ref").isEmpty())
+		  {
+			  erreur[1]="red";			  
+		  }else
+		  {
+			  request.setAttribute("ref",request.getParameter("ref"));
+		  }
+		  
+		  if(request.getParameter("prix").isEmpty())
+		  {
+			  erreur[2]="red";			  
+		  }else
+		  {
+			  request.setAttribute("prix",request.getParameter("prix"));
+		  }
+		 
+		  
+		  request.setAttribute("erreur",erreur);
+		  request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
+		  doGet(request, response);
+	  }
 
 	}
   
