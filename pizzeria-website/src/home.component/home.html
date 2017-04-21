@@ -5,39 +5,51 @@
 </div>
 
 
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="thumbnail">
-        <a href="javascript:chargeHTML('Pizza_4fromages')" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza 4 fromages">
-            <img class="derniere-pizza" src="https://www.tutti-pizza.com/images/350x270/produit/_/tutti-supreme-hot_tsupremehot.jpg" alt="nom de la pizza" title="nom de la pizza">
+        <a href="/pizzas" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza 4 fromages">
+            <img class="derniere-pizza" 
+                src="{{ $ctrl.last3[0].urlImage }}" 
+                alt="{{ $ctrl.last3[0].nom }}" 
+                title="{{ $ctrl.last3[0].nom }}">
         </a>
         <div class="caption">
-            <h3>Pizza 4 fromages</h3>
-            <p> prix
-                <a href="/pizzas" class="btn btn-info pull-right" role="button">En savoir plus...</a></p>
+            <h3> {{ $ctrl.last3[0].nom }} </h3>
+            <p> {{ $ctrl.last3[0].prix }} € 
+                <a href="$ctrl.ajouterAuPanier()" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a>
+            </p>
         </div>
     </div>
 </div>
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="thumbnail">
-        <a href="#" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza Reine">
-            <img class="derniere-pizza" src="https://www.tutti-pizza.com/images/350x270/produit/_/basquaise_basquaise-halal.jpg" alt="nom de la pizza" title="nom de la pizza">
+        <a href="/pizzas" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza Reine">
+            <img class="derniere-pizza" 
+                src="{{ $ctrl.last3[1].urlImage }}" 
+                alt="{{ $ctrl.last3[1].nom }}" 
+                title="{{ $ctrl.last3[1].nom }}">
         </a>
         <div class="caption">
-            <h3>Pizza Reine</h3>
-            <p> prix
-                <a href="#" class="btn btn-info pull-right">En savoir plus...</a></p>
+            <h3> {{ $ctrl.last3[1].nom }} </h3>
+            <p> {{ $ctrl.last3[1].prix }} € 
+                <a href="$ctrl.ajouterAuPanier()" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a>
+            </p>
         </div>
     </div>
 </div>
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="thumbnail">
-        <a href="#" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza Reine">
-            <img class="derniere-pizza" src="https://www.tutti-pizza.com/images/350x270/produit/_/basquaise_basquaise-halal.jpg" alt="nom de la pizza" title="nom de la pizza">
+        <a href="/pizzas" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza Reine">
+            <img class="derniere-pizza" 
+                src="{{ $ctrl.last3[2].urlImage }}" 
+                alt="{{ $ctrl.last3[2].nom }}" 
+                title="{{ $ctrl.last3[2].nom }}">
         </a>
         <div class="caption">
-            <h3>Pizza Reine</h3>
-            <p> prix
-                <a href="#" class="btn btn-info pull-right" role="button">En savoir plus...</a> </p>
+            <h3> {{ $ctrl.last3[2].nom }} </h3>
+            <p> {{ $ctrl.last3[2].prix }} € 
+                <a href="$ctrl.ajouterAuPanier()" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a>
+            </p>
         </div>
     </div>
 </div>

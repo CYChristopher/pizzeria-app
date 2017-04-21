@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "webpack-dev-server --content-base public --hot --inline --history-api-fallback",
-        "api": "json-server data.json"
+        "api": "json-server data.json --port 3000"
     },
     "author": "",
     "license": "ISC",
