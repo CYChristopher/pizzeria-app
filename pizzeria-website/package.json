@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "angular": "^1.6.1",
-    "angular-local-storage": "^0.5.2",
     "angular-route": "^1.6.1"
   }
 }
