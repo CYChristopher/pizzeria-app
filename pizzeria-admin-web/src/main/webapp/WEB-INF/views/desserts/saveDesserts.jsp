@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <jsp:include page="../layout/entete.jsp">
 	<jsp:param name="title" value="Nouveau Dessert" />
 </jsp:include>
@@ -11,6 +12,7 @@
 	<div class="jumbotron">
 		<div class="container">
 		
+
 	<h1>Nouveau Dessert</h1>
 	<c:if test="${msg != null}">
 		<div class="alert alert-danger" role="alert">${msg}</div>
