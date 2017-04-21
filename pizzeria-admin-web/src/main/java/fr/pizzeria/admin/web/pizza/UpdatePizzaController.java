@@ -58,13 +58,19 @@ public class UpdatePizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String newcode = request.getParameter("newcode");
-		String ref = request.getParameter("ref");
-		String prix = request.getParameter("prix");
-		String categorie = request.getParameter("categorie");
-
-		Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-				CategoriePizza.valueOf(categorie));
+		Pizza oldPizza = pizzaService.findbycode(this.code);
+		
+		String newcode ;
+		String ref  ;
+		BigDecimal prix  ;
+		String categorie ;
+		
+		newcode = request.getParameter("newcode").isEmpty()?(oldPizza.getCode()):request.getParameter("newcode");
+		ref = request.getParameter("ref").isEmpty()?oldPizza.getNom():request.getParameter("ref");
+		prix = request.getParameter("prix").isEmpty()?oldPizza.getPrix():BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
+		categorie = request.getParameter("categorie").isEmpty()?oldPizza.getNom():request.getParameter("categorie");
+		
+		Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie));
 
 		pizzaService.update(this.code, pizza);
 
