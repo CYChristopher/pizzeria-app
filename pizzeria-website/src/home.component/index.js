@@ -1,10 +1,11 @@
 import template from "./home.html"
-import css from "./home.css"
+
 
 class controller {
-    constructor() {
-
+    constructor(PizzaService) {
+        this.PizzaService = PizzaService;
     }
+
 }
 
 export const HomeComponent = {
