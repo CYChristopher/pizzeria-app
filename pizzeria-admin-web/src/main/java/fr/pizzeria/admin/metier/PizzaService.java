@@ -39,5 +39,14 @@ public class PizzaService {
 		em.persist(pizza);
 
 	}
+	
+	
+	public Pizza findbycode(String code) {
+
+		return  em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class)
+				.setParameter("codP", code).getSingleResult();
+
+	}
+	
 
 }
