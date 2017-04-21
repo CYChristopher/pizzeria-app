@@ -52,8 +52,20 @@
 							</c:if>
 						</div>
 					</div>
+
+					<div class="col-md-6">
+						<a href="<c:url value="/pizzas/edit?code=${pizza.code}"/>"
+							class="btn btn-primary">Editer</a> <br>
+						<form method="POST">
+							<input type="hidden" name="code" value="${pizza.code}"> <input
+								type="hidden" name="action" value="supprimer">
+							<button type="submit" class="btn btn-danger">Supprimer</button>
+						</form>
+					</div>
+					
 				</td>
 			</tr>
+
 		</c:forEach>
 
 

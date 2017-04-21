@@ -53,6 +53,7 @@ public class ListerRecentePizzaController extends HttpServlet {
 		
 		pizzaService.update(id,editerPizza);
 
+
 		response.sendRedirect(request.getContextPath() + "/pizzas/list");
 
 	}
