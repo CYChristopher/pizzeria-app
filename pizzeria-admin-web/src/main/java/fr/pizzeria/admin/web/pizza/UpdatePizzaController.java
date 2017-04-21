@@ -72,6 +72,7 @@ public class UpdatePizzaController extends HttpServlet {
 		
 		Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie));
 
+
 		pizzaService.update(this.code, pizza);
 
 		response.sendRedirect(request.getContextPath() + "/pizzas/list");
