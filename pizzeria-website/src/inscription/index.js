@@ -1,3 +1,4 @@
+<<<<<<< Upstream, based on branch 'develop' of git@github.com:DTAFormation/pizzeria-app.git
 import template from './inscription.html';
 
 class controller {
@@ -28,4 +29,29 @@ class controller {
 export const InscriptionComponent = {
     controller,
     template,
+=======
+import template from './inscription.html';
+
+class controller {
+
+    constructor(UserService) {
+        this.UserService = UserService;
+        this.user = {
+            email : '',
+            mdp : '',
+            nom : '',
+            prenom : '',
+        }
+        this.confMdp = '';
+    }
+
+    validerForm(){
+        console.log(this.UserService);
+    }
+}
+
+export const InscriptionComponent = {
+    controller,
+    template,
+>>>>>>> d09eecd Création de l'ihm d'inscription
 }
