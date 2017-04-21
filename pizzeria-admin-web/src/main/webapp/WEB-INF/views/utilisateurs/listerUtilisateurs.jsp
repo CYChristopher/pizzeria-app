@@ -12,6 +12,11 @@
 
 <h1> Utilisateurs</h1>
 
+
+<a href=<c:url value='/utilisateur/nouveau'></c:url>>
+   <input type="button" value="Ajouter"  class ='btn btn-success'/>
+</a>	
+
 <table class="table">
   <thead>
     <tr>
@@ -22,20 +27,37 @@
     </tr>
   </thead>
   <tbody>
-<c:forEach var="pizza" items="${listeUtilisateurs}">
+<c:forEach var="utilisateur" items="${listeUtilisateurs}">
 		<tr>
 			<td>
-				${pizza.nom}   
+				${utilisateur.nom}   
 			</td>
 			<td>
-			${pizza.prenom}
+				${utilisateur.prenom}
 			</td>
 			<td>
-			${pizza.email}
+				${utilisateur.email}
 			</td>
 			<td>
-			${pizza.adresse} 
+				${utilisateur.adresse} 
 			</td>
+			<td>
+				${utilisateur.motDePasse} 
+			</td>	
+			<td>
+
+			
+				<a href=<c:url value='/utilisateur/editer?id=${utilisateur.id}'></c:url>><button class='btn btn-warning'>
+					Editer
+				</button></a>
+			</td>		
+			<td>
+				 <form action="<c:url value='/utilisateur/supprimer?id=${utilisateur.id}'></c:url>" method="post">
+				 	<input class='btn btn-danger' type='submit' value='supprimer !!!!'>
+				 </form>
+			</td>
+			
+			
 		</tr>
 		</c:forEach>
 	</tbody>
