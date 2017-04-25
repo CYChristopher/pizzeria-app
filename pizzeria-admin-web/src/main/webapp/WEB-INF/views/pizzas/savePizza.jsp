@@ -30,6 +30,7 @@
 		<div class="form-group">
 			<label for="categorie">Categorie : </label> <select id="categorie"
 				class="form-control" name="categorie">
+
 				<c:forEach var="current" items="${categoriePizza}">
 					<option value="${current}">${current.name()}</option>
 				</c:forEach>
@@ -54,6 +55,7 @@
 
 
 
+
 		<input class="btn btn-success" type="submit" value="Valider">
 		<a href=<c:url value='/pizzas/list'/>><button type="button"
 				class="btn btn-primary">Retour</button></a>
@@ -62,5 +64,6 @@
 
 <script type="text/javascript"
 	src='<c:url value="/static/JS/gestionIngredient.js"/>'></script>
+
 
 <jsp:include page="../layout/footer.html" />

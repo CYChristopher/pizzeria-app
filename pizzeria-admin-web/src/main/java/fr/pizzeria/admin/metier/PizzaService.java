@@ -1,7 +1,6 @@
 package fr.pizzeria.admin.metier;
 
 import java.util.List;
-import java.util.TreeSet;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,7 +17,6 @@ public class PizzaService {
 	public List<Pizza> findAll() {
 		return em.createQuery("select p from Pizza p", Pizza.class).getResultList();
 	}
-
 
 	public void update(Integer id, Pizza pizza) {
 
@@ -46,18 +44,7 @@ public class PizzaService {
 	
 	
 	
-	public Pizza findByName(String name) {
 
-		return  em.createQuery("select piz from Pizza piz where piz.name=:nameP and piz.able=:val", Pizza.class)
-				.setParameter("nameP", name).setParameter("val", true).getSingleResult();
-
-	}
-	
-
-	
-	
-
-	
 	
 	public Pizza findById(Integer id) {
 
@@ -67,6 +54,7 @@ public class PizzaService {
 	}
 	
 	
+
 	
 	// Trouve les versions de pizza actifs, renvoit cette liste
 	public List<Pizza> findNewestPizzaByName()

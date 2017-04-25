@@ -20,6 +20,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Pizza {
 
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -177,9 +178,18 @@ public class Pizza {
 		this.type = type;
 	}
 
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).append(code).toHashCode();
+	}
+
+	public Boolean getActif() {
+		return actif;
+	}
+
+	public void setActif(Boolean actif) {
+		this.actif = actif;
 	}
 
 	@Override

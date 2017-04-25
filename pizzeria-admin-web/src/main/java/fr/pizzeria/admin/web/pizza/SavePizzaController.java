@@ -49,6 +49,7 @@ public class SavePizzaController extends HttpServlet {
 			setCategorie.add(current);
 		}
 		req.setAttribute("listeIngredients", this.ingredientService.findAll());
+
 		req.setAttribute("categoriePizza", setCategorie);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_PIZZA);
 		dispatcher.forward(req, resp);
@@ -67,6 +68,7 @@ public class SavePizzaController extends HttpServlet {
 				String prix = request.getParameter("prix");
 				String categorie = request.getParameter("categorie");
 				String[] ingredients = request.getParameterValues("ingredientSelectione");
+
 
 				List<Ingredient> listIngredient = new ArrayList<>();
 
