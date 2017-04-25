@@ -45,6 +45,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
+<<<<<<< Upstream, based on branch 'develop' of git@github.com:DTAFormation/pizzeria-app.git
     </dependency>
     <dependency>
     <groupId>org.mariadb.jdbc</groupId>
@@ -55,6 +56,9 @@
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			</dependency>
+=======
+    </dependency>  
+>>>>>>> 9448abd Fonctionnalité s'inscrire terminée
   </dependencies>
 
 </project>
