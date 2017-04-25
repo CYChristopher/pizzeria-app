@@ -6,7 +6,7 @@
 }
 
 .navbar-toggle {
-    background: orangered ;
+    background: orangered;
 }
 
 .navbar {
@@ -15,7 +15,7 @@
 }
 
 span.icon-bar {
-    background-color: white ;
+    background-color: white;
 }
 
 nav {
@@ -46,6 +46,14 @@ a:hover {
     text-decoration: none;
 }
 
+a.dernieres-pizzas {
+    background: orangered;
+    color: white;
+}
+
+
+/*cadre des dernières pizzas*/
+
 .thumbnail {
     margin: 25px;
     border: 1px solid lightgrey;
@@ -59,9 +67,4 @@ a:hover {
 
 h1 {
     color: brown;
-}
-
-a.dernieres-pizzas {
-    background: orangered ;
-    color: white ;
 }
