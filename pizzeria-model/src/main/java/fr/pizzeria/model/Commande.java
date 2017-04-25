@@ -32,11 +32,8 @@ public class Commande {
 	private Livreur livreur;
 	@ManyToOne
 	private Client client;
-	
 	@OneToMany
-	@JoinTable(name = "commande_pizza", 
-	joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), 
-	inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
+	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
 	private List<Pizza> pizzas = new ArrayList<>();
 
 	public Integer getId() {
@@ -90,7 +87,7 @@ public class Commande {
 	public List<Pizza> getPizzas() {
 		return new ArrayList<>(pizzas);
 	}
-	
+
 	public void addPizza(Pizza pizza) {
 		pizzas.add(pizza);
 	}
@@ -103,6 +100,5 @@ public class Commande {
 	public String toString() {
 		return "Commande [id=" + id + ", numeroCommande=" + numeroCommande + "]";
 	}
-	
-	
+
 }
