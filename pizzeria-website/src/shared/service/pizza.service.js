@@ -5,6 +5,6 @@ export class PizzaService{
 	}
 	
 	getPizzas(){
-		return this.$http.get('http.localhost:8000/pizzas').then(r=>r.data)
+		return this.$http.get('http://localhost:8080/pizzas').then(r=>r.data)
 	}	
 } 
