@@ -34788,7 +34788,7 @@
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -34815,7 +34815,7 @@
 				var _this = this;
 	
 				if (!this.localStorageService.get('pizzas')) {
-					this.$http.get('http://localhost:8080/pizzas').then(function (r) {
+					this.$http.get(("http://app-b325c1a6-237a-4e11-bdde-39f93eee7f51.cleverapps.io") + '/pizzas').then(function (r) {
 						return _this.localStorageService.set('pizzas', r.data);
 					});
 				}
