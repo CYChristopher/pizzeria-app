@@ -19,8 +19,8 @@ public class LivreurService {
 		return em.createQuery("select l from Livreur l", Livreur.class).getResultList();
 	}
 
-	public Livreur find(String id) {
-		Query findQuery = em.createQuery("select l from Livreur l", Livreur.class);
+	public Livreur find(Integer id) {
+		Query findQuery = em.createQuery("select l from Livreur l where id=:id", Livreur.class).setParameter("id", id);
 		Livreur livreur = (Livreur) findQuery.getSingleResult();
 		return livreur;
 	}
@@ -30,15 +30,17 @@ public class LivreurService {
 		return livreur;
 	}
 
-	public boolean delete(String id) {
-		Livreur livreur = (Livreur) em.createQuery("select l from Livreur l", Livreur.class).getSingleResult();
+	public boolean delete(Integer id) {
+		Livreur livreur = (Livreur) em.createQuery("select l from Livreur l where id=:id", Livreur.class)
+				.setParameter("id", id).getSingleResult();
 		if (livreur != null)
 			em.remove(livreur);
 		return true;
 	}
 
-	public boolean update(String id, Livreur livreur) {
-		Livreur livreurToModify = (Livreur) em.createQuery("select l from Livreur l", Livreur.class).getSingleResult();
+	public boolean update(Integer id, Livreur livreur) {
+		Livreur livreurToModify = (Livreur) em.createQuery("select l from Livreur l where id=:id", Livreur.class)
+				.setParameter("id", id).getSingleResult();
 		if (livreurToModify != null) {
 			livreurToModify.setNom(livreur.getNom());
 			livreurToModify.setPrenom(livreur.getPrenom());

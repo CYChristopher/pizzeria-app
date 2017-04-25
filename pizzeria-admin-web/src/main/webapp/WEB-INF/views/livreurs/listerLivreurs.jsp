@@ -29,8 +29,8 @@
 				<td>${livreur.id}</td>
 				<td>${livreur.nom}</td>
 				<td>${livreur.prenom}</td>
-				<td><a href="<c:url value='/livreurs/edit?code=${livreur.id}'/>" role="button" class="btn btn-warning">Editer</a></td>
-				<td><a href="<c:url value='/livreurs/edit?code=${livreur.id}&del=true'/>" role="button" class="btn btn-danger">Supprimer</a></td>
+				<td><a href="<c:url value='/livreurs/edit?id=${livreur.id}'/>" role="button" class="btn btn-warning">Editer</a></td>
+				<td><a href="<c:url value='/livreurs/edit?id=${livreur.id}&del=true'/>" role="button" class="btn btn-danger">Supprimer</a></td>
 			</tr>
 			
 		</c:forEach>
