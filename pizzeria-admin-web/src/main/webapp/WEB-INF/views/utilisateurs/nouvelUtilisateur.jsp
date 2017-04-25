@@ -1,24 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8" isELIgnored="false"%>
-
-<%@page import="java.util.List"%>
-<%@page import="fr.pizzeria.model.Utilisateur"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-<!DOCTYPE html>
-<html>
-
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param value="Page Lister Users" name="title" />
+	<jsp:param name="title" value="Lister Pizza" />
 </jsp:include>
 
-<body class="container">
+<jsp:include page="../layout/navbar.jsp"/>
 
 
 
-
+<div class="container">
 
 	<h2>Utilisateur</h2>
 
@@ -52,14 +44,11 @@
 		</div>
 		<input type='submit' class='btn btn-success' value='VALIDER !!!!'>
 
-
-
 	</form>
 
 
+</div>
 
 
 
-
-</body>
-</html>
+<jsp:include page="../layout/footer.html"/>
