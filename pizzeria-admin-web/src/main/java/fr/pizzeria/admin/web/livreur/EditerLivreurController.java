@@ -22,7 +22,7 @@ public class EditerLivreurController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("livreur", this.livreurService.find((String) request.getParameter("id")));
+		request.setAttribute("livreur", this.livreurService.find(Integer.parseInt(request.getParameter("id"))));
 		if (request.getParameter("del") != null) {
 			deleteLivreur(request, response);
 		} else {
@@ -33,7 +33,7 @@ public class EditerLivreurController extends HttpServlet {
 	}
 
 	protected void deleteLivreur(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		this.livreurService.delete(request.getParameter("id"));
+		this.livreurService.delete(Integer.parseInt(request.getParameter("id")));
 		response.sendRedirect(request.getContextPath() + "/livreurs/list");
 	}
 
@@ -42,7 +42,7 @@ public class EditerLivreurController extends HttpServlet {
 		Livreur livreur = new Livreur();
 		livreur.setNom(request.getParameter("nom"));
 		livreur.setPrenom(request.getParameter("prenom"));
-		this.livreurService.update(request.getParameter("id"), livreur);
+		this.livreurService.update(Integer.parseInt(request.getParameter("id")), livreur);
 		response.sendRedirect(request.getContextPath() + "/livreurs/list");
 	}
 
