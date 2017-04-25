@@ -26,6 +26,7 @@ public class Pizza {
     private CategoriePizza categorie;
     private String urlImage;
     private LocalDateTime versionPizza;
+    private Boolean actif;
   
 	public Pizza() {
     }
@@ -56,7 +57,18 @@ public class Pizza {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat,LocalDateTime versionPizza,Boolean actif) {
+    	
+    	this.code = code;
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = cat;
+        this.versionPizza = versionPizza;
+        this.actif=actif;
+		
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -115,6 +127,14 @@ public class Pizza {
   	}
   	
  
+
+	public Boolean getActif() {
+		return actif;
+	}
+
+	public void setActif(Boolean actif) {
+		this.actif = actif;
+	}
 
 	@Override
     public int hashCode() {

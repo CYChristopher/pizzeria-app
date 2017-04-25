@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.pizza;
 
 import fr.pizzeria.admin.metier.PizzaService;
+import fr.pizzeria.model.Pizza;
 
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -15,12 +16,12 @@ import java.io.IOException;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/pizzas/list")
-public class ListerPizzaController extends HttpServlet {
+@WebServlet("/allPizzas/list")
+public class ListerActivePizzaController extends HttpServlet {
 
-  private static final Logger LOG = Logger.getLogger(ListerPizzaController.class.getName());
+  private static final Logger LOG = Logger.getLogger(ListerActivePizzaController.class.getName());
 
-  private static final String VUE_LISTER_PIZZAS = "/WEB-INF/views/pizzas/listerPizzas.jsp";
+  private static final String VUE_LISTER_PIZZAS = "/WEB-INF/views/pizzas/listerAllPizzas.jsp";
 
   @Inject private PizzaService pizzaService;
 
@@ -37,9 +38,15 @@ public class ListerPizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String code = request.getParameter("code");
+		Integer id = Integer.valueOf(request.getParameter("id"));
 
-		pizzaService.delete(code);
+		
+		
+		Pizza editerPizza = pizzaService.findById(id);
+		
+		editerPizza.setActif(!editerPizza.getActif());
+		
+		pizzaService.update(id,editerPizza);
 
 		response.sendRedirect(request.getContextPath() + "/pizzas/list");
 

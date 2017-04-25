@@ -3,6 +3,8 @@ package fr.pizzeria.admin.web.pizza;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -20,7 +22,7 @@ import fr.pizzeria.model.Pizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/pizzas/new")
+@WebServlet("/pizza/new")
 public class SavePizzaController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(SavePizzaController.class.getName());
@@ -33,6 +35,14 @@ public class SavePizzaController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		Set<Object> setCategorie = new TreeSet<>();
+
+		for (CategoriePizza current : CategoriePizza.values()) {
+			setCategorie.add(current);
+		}	
+		
+		
+		req.setAttribute("categoriePizza", setCategorie);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_PIZZA);
 		dispatcher.forward(req, resp);
 	}
@@ -49,7 +59,7 @@ public class SavePizzaController extends HttpServlet {
 			String categorie = request.getParameter("categorie");
 
 			Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-					CategoriePizza.valueOf(categorie), LocalDateTime.now());
+					CategoriePizza.valueOf(categorie), LocalDateTime.now(),true);
 			
 			pizzaService.save(pizza);
 

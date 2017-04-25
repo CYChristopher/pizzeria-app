@@ -9,10 +9,9 @@
 <jsp:include page="../layout/navbar.jsp" />
 
 <div class="container">
-	<h1>Liste des pizzas</h1>
+	<h1>Historique des pizzas</h1>
 	<a class="btn btn-primary" href="../pizza/new">Nouvelle Pizza</a> <a
-		class="btn btn-primary" href="../allPizzas/list">Historique Pizza</a>
-	<br>
+		class="btn btn-primary" href="../pizzas/list">Retour</a> <br>
 	<c:if test="${msg != null}">
 		<div class="alert alert-danger" role="alert">${msg}</div>
 	</c:if>

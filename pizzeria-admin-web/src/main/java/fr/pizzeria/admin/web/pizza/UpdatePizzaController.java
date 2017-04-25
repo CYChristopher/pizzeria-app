@@ -22,7 +22,7 @@ import fr.pizzeria.model.Pizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/pizzas/edit")
+@WebServlet("/pizza/edit")
 public class UpdatePizzaController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(UpdatePizzaController.class.getName());
