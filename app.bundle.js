@@ -56,14 +56,23 @@
 	
 	var _home = __webpack_require__(5);
 	
-	var _home2 = _interopRequireDefault(_home);
+	var _routes = __webpack_require__(7);
+	
+	var _pizza = __webpack_require__(8);
+	
+	var _pizza2 = __webpack_require__(9);
+	
+	var _listePizzas = __webpack_require__(11);
+	
+	var _ajouterPanier = __webpack_require__(13);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_angular2.default.module('pizzeria', [_angularRoute2.default, _home2.default]).config(function ($routeProvider, $locationProvider) {
+	_angular2.default.module('pizzeria', [_angularRoute2.default, 'LocalStorageModule']).config(_routes.routes).config(function ($routeProvider, $locationProvider) {
 	    $locationProvider.html5Mode(true);
-	    $routeProvider.otherwise('/');
-	});
+	}).config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+	    localStorageServiceProvider.setPrefix('pizzeriaLS');
+	}]).service('PizzaService', _pizza.PizzaService).component('pizza', _pizza2.PizzaComponent).component('listePizzas', _listePizzas.ListePizzasComponent).component('home', _home.HomeComponent).component('ajouterPanier', _ajouterPanier.AjouterPanierComponent);
 
 /***/ }),
 /* 1 */
@@ -34697,15 +34706,14 @@
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.HomeComponent = undefined;
 	
-	var _angular = __webpack_require__(1);
-	
-	var _angular2 = _interopRequireDefault(_angular);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _home = __webpack_require__(6);
 	
@@ -34713,39 +34721,270 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	exports.default = _angular2.default.module('pizzeria.home', []).config(function ($routeProvider) {
-	    $routeProvider.when('/', {
-	        template: __webpack_require__(7),
-	        controller: 'HomeController',
-	        controllerAs: 'ctrl'
-	    });
-	}).controller('HomeController', _home2.default).name;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var controller = function () {
+	    function controller(PizzaService) {
+	        _classCallCheck(this, controller);
+	
+	        this.PizzaService = PizzaService;
+	        this.pizzas = this.PizzaService.getPizzas();
+	        this.last3 = [];
+	        this.getLast3();
+	        this.test = "test";
+	    }
+	
+	    _createClass(controller, [{
+	        key: "getLast3",
+	        value: function getLast3() {
+	            var _this = this;
+	
+	            this.pizzas.then(function (pizza) {
+	                return _this.last3.push(pizza[pizza.length - 1]);
+	            });
+	            this.pizzas.then(function (pizza) {
+	                return _this.last3.push(pizza[pizza.length - 2]);
+	            });
+	            this.pizzas.then(function (pizza) {
+	                return _this.last3.push(pizza[pizza.length - 3]);
+	            });
+	        }
+	    }]);
+	
+	    return controller;
+	}();
+	
+	var HomeComponent = exports.HomeComponent = {
+	    bindings: {},
+	    template: _home2.default,
+	    controller: controller
+	};
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	var HomeController = function HomeController() {
-	    _classCallCheck(this, HomeController);
-	
-	    this.helloText = "Title Pizzeria";
-	};
-	
-	exports.default = HomeController;
+	module.exports = "<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n    <h1> Bienvenue à la pizzeria de DTA ! </h1>\n    <h2> Commande sur place, à emporter ou livraison à domicile ! </h2> <br><br>\n    <h1> Nos dernières pizzas :</h1>\n</div>\n\n\n<div class=\"col-lg-4 col-md-4 col-sm-6 col-xs-12\">\n    <div class=\"thumbnail\">\n        <a href=\"/pizzas\" class=\"link tooltip-link\" data-toggle=\"tooltip\" data-original-title=\"Pizza 4 fromages\">\n            <img class=\"derniere-pizza\" src=\"{{ $ctrl.last3[0].urlImage }}\" alt=\"{{ $ctrl.last3[0].nom }}\" title=\"{{ $ctrl.last3[0].nom }}\">\n        </a>\n        <div class=\"caption\">\n            <h3> {{ $ctrl.last3[0].nom }} </h3>\n            <p> {{ $ctrl.last3[0].prix }} €\n                <a href=\"$ctrl.ajouterAuPanier()\" class=\"btn pull-right dernieres-pizzas\" role=\"button\"> Ajouter au panier </a>\n            </p>\n        </div>\n    </div>\n</div>\n<div class=\"col-lg-4 col-md-4 col-sm-6 col-xs-12\">\n    <div class=\"thumbnail\">\n        <a href=\"/pizzas\" class=\"link tooltip-link\" data-toggle=\"tooltip\" data-original-title=\"Pizza Reine\">\n            <img class=\"derniere-pizza\" src=\"{{ $ctrl.last3[1].urlImage }}\" alt=\"{{ $ctrl.last3[1].nom }}\" title=\"{{ $ctrl.last3[1].nom }}\">\n        </a>\n        <div class=\"caption\">\n            <h3> {{ $ctrl.last3[1].nom }} </h3>\n            <p> {{ $ctrl.last3[1].prix }} €\n                <a href=\"$ctrl.ajouterAuPanier()\" class=\"btn pull-right dernieres-pizzas\" role=\"button\"> Ajouter au panier </a>\n            </p>\n        </div>\n    </div>\n</div>\n<div class=\"col-lg-4 col-md-4 col-sm-6 col-xs-12\">\n    <div class=\"thumbnail\">\n        <a href=\"/pizzas\" class=\"link tooltip-link\" data-toggle=\"tooltip\" data-original-title=\"Pizza Reine\">\n            <img class=\"derniere-pizza\" src=\"{{ $ctrl.last3[2].urlImage }}\" alt=\"{{ $ctrl.last3[2].nom }}\" title=\"{{ $ctrl.last3[2].nom }}\">\n        </a>\n        <div class=\"caption\">\n            <h3> {{ $ctrl.last3[2].nom }} </h3>\n            <p> {{ $ctrl.last3[2].prix }} €\n                <a href=\"$ctrl.ajouterAuPanier()\" class=\"btn pull-right dernieres-pizzas\" role=\"button\"> Ajouter au panier </a>\n            </p>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-	module.exports = "<div class='jumbotron'>\n  <h1>Bienvenue chez DTA Pizzeria</h1>\n</div>\n"
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.routes = routes;
+	function routes($routeProvider) {
+	    $routeProvider.when('/', {
+	        template: '<home></home>'
+	    }).when('/pizzas', {
+	        template: '<liste-pizzas></liste-pizzas>'
+	    }).otherwise({
+	        redirectTo: '/'
+	    });
+	}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var PizzaService = exports.PizzaService = function () {
+		function PizzaService($http, localStorageService, $q) {
+			_classCallCheck(this, PizzaService);
+	
+			this.localStorageService = localStorageService;
+			this.$http = $http;
+			this.$q = $q;
+		}
+	
+		_createClass(PizzaService, [{
+			key: 'getPizzas',
+			value: function getPizzas() {
+				var _this = this;
+	
+				if (!this.localStorageService.get('pizzas')) {
+					this.$http.get('http://localhost:8080/pizzas').then(function (r) {
+						return _this.localStorageService.set('pizzas', r.data);
+					});
+				}
+				return this.$q.resolve(this.localStorageService.get('pizzas'));
+			}
+		}]);
+
+		return PizzaService;
+	}();
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.PizzaComponent = undefined;
+	
+	var _pizza = __webpack_require__(10);
+	
+	var _pizza2 = _interopRequireDefault(_pizza);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var controller = function controller() {
+		_classCallCheck(this, controller);
+	};
+	
+	var PizzaComponent = exports.PizzaComponent = {
+		bindings: {
+			pizza: '<'
+		},
+		template: _pizza2.default,
+		controller: controller
+	};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+	module.exports = "<div class=\"col-sm-4 hidden-xs\">\n\t<img class=\"img-responsive\" src=\"{{$ctrl.pizza.urlImage}}\">\n</div>\n\n<div class=\"col-sm-8\">\n\t{{$ctrl.pizza.nom}}\n\t{{$ctrl.pizza.prix}} &euro;\n\t\n</div>"
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.ListePizzasComponent = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _listePizzas = __webpack_require__(12);
+	
+	var _listePizzas2 = _interopRequireDefault(_listePizzas);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var controller = function () {
+		function controller(PizzaService) {
+			_classCallCheck(this, controller);
+	
+			this.PizzaService = PizzaService;
+		}
+	
+		_createClass(controller, [{
+			key: '$onInit',
+			value: function $onInit() {
+				var _this = this;
+	
+				this.pizzas = this.PizzaService.getPizzas().then(function (pizzas) {
+					return _this.pizzas = pizzas;
+				});
+			}
+		}]);
+	
+		return controller;
+	}();
+	
+	var ListePizzasComponent = exports.ListePizzasComponent = {
+		bindings: {},
+		template: _listePizzas2.default,
+		controller: controller
+	};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+	module.exports = "<div class=\"panel\">\n\t<div class=\"panel-heading\">\n\t\t<h1>Liste des pizzas</h1>\t\n\t</div>\n\t<div class=\"panel-body\">\n\t\t<div class=\"list-group\">\t\n\t\t\t<div  class=\"list-group-item clearfix\"  ng-repeat=\"pizza in $ctrl.pizzas\">\t\t\n\t\t\t\t<pizza pizza=\"pizza\"></pizza>\t\n\t\t\t\t<ajouter-panier item=\"pizza\"></ajouter-panier>\t\t\t\t\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.AjouterPanierComponent = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _ajouterPanier = __webpack_require__(14);
+	
+	var _ajouterPanier2 = _interopRequireDefault(_ajouterPanier);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var controller = function () {
+	    function controller(localStorageService) {
+	        _classCallCheck(this, controller);
+	
+	        this.StockageService = localStorageService;
+	    }
+	
+	    _createClass(controller, [{
+	        key: 'ajouterAuStockageLocal',
+	        value: function ajouterAuStockageLocal() {
+	            var _this = this;
+	
+	            var contenuStockage = this.StockageService.get('panier');
+	            var itemPresent = false;
+	            if (contenuStockage === null) {
+	                contenuStockage = [];
+	            } else {
+	                contenuStockage.forEach(function (panierItem) {
+	                    if (_this.item.id === parseInt(panierItem.id)) {
+	                        panierItem.quantite++;
+	                        itemPresent = true;
+	                    }
+	                });
+	            }
+	            if (!itemPresent) {
+	                contenuStockage.push({ id: '' + this.item.id, quantite: 1 });
+	            }
+	            this.StockageService.set('panier', contenuStockage, 'localStorage');
+	        }
+	    }]);
+	
+	    return controller;
+	}();
+	
+	var AjouterPanierComponent = exports.AjouterPanierComponent = {
+	    bindings: {
+	        item: '<'
+	    },
+	    controller: controller,
+	    template: _ajouterPanier2.default
+	};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+	module.exports = "<button class=\"btn btn-primary\" ng-click=\"$ctrl.ajouterAuStockageLocal()\">Ajouter au panier</button>\n"
 
 /***/ })
 /******/ ]);
