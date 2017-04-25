@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param value="Page Lister Pizza" name="title" />
+	<jsp:param name="title" value="Lister Pizza" />
 </jsp:include>
 
-<body class="container">
+<jsp:include page="../layout/navbar.jsp"/>
+
+
 	<h1>Liste des pizzas</h1>
 	<a class="btn btn-primary" href="new">Nouvelle Pizza</a>
 	<br>
@@ -55,5 +56,6 @@
 	
 
 	</table>
-</body>
-</html>
+	
+<jsp:include page="../layout/footer.html"/>
+	
