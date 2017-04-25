@@ -30,7 +30,7 @@
         <li><a href="#">Boissons</a></li>
         <li><a href=<c:url value='/clients/list'/>>Clients</a></li>
         <li><a href="#">Commandes</a></li>
-        <li><a href="#">Livreurs</a></li>
+        <li><a href=<c:url value='/Livreurs/list'/>>Livreurs</a></li>
         <li><a href="#">Ingrédients</a></li>
         <li><a href="#">Statistiques</a></li>
         <li><a href="#">Promotions</a></li>
