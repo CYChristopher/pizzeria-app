@@ -9,12 +9,18 @@ import {ListePizzasComponent} from './listePizzas.component'
 
 
 
-angular.module('pizzeria', [ngRoute, home])
+angular.module('pizzeria', [ngRoute, home, 'LocalStorageModule'])
 	.config(routes)
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
     })
+    .config(['localStorageServiceProvider',function (localStorageServiceProvider){
+    	localStorageServiceProvider
+    		.setPrefix('pizzeriaLS')
+    }])
 
 .service('PizzaService',PizzaService)
 .component('pizza',PizzaComponent)
 .component('listePizzas',ListePizzasComponent)
+
+
