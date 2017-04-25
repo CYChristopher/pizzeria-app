@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <!-- Static navbar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -18,9 +22,9 @@
     <div id="navbar"
          class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="./">Accueil</a></li>
+        <li><a href=<c:url value='/.'/>>Accueil</a></li>
         <li><a href="#">Utilisateurs</a></li>
-        <li><a href="#">Pizzas</a></li>
+        <li><a href=<c:url value='/pizzas/list'/>>Pizzas</a></li>
         <li><a href="#">Menus</a></li>
         <li><a href="#">Desserts</a></li>
         <li><a href="#">Boissons</a></li>
