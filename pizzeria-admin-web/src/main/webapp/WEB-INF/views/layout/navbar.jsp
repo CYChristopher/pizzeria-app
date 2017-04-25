@@ -27,7 +27,7 @@
         <li><a href=<c:url value='/pizzas/list'/>>Pizzas</a></li>
         <li><a href="#">Menus</a></li>
         <li><a href=<c:url value='/desserts/list'/>>Desserts</a></li>
-        <li><a href="#">Boissons</a></li>
+        <li><a href=<c:url value='/boissons/list'/>>Boissons</a></li>
         <li><a href="#">Clients</a></li>
         <li><a href="#">Commandes</a></li>
         <li><a href="#">Livreurs</a></li>
