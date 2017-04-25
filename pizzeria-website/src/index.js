@@ -6,6 +6,7 @@ import {routes} from './routes'
 import {PizzaService} from './shared/service/pizza.service'
 import {PizzaComponent} from './pizza.component'
 import {ListePizzasComponent} from './listePizzas.component'
+import {AjouterPanierComponent} from './ajouterPanier.component'
 
 
 
@@ -23,5 +24,6 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
 .component('pizza',PizzaComponent)
 .component('listePizzas',ListePizzasComponent)
 .component('home', HomeComponent)
+.component('ajouterPanier', AjouterPanierComponent)
 
 

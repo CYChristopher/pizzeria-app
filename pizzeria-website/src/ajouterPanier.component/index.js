@@ -8,12 +8,11 @@ class controller {
         let contenuStockage = this.StockageService.get('panier');
         let itemPresent = false;
         if (contenuStockage === null) {
-            console.log('hello')
             contenuStockage = [];
         }
         else {
             contenuStockage.forEach(panierItem => {
-                if (this.item.id === panierItem.id) {
+                if (this.item.id === parseInt(panierItem.id)) {
                     panierItem.quantite++;
                     itemPresent = true;
                 }
@@ -23,7 +22,6 @@ class controller {
             contenuStockage.push({ id: `${this.item.id}`, quantite: 1 });
         }
         this.StockageService.set('panier', contenuStockage, 'localStorage');
-        console.log(this.StockageService.get('panier'));
     }
 }
 
