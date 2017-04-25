@@ -1,0 +1,34 @@
+{
+    "api-pizzas": [{ 
+        "id": 0,
+        "code": "REG",
+        "nom": "Regina",
+        "prix":12.00,
+        "categorie": "viande",
+        "urlImage": "https://www.tutti-pizza.com/images/350x270/produit/_/tutti-supreme-hot_tsupremehot.jpg"
+    },
+    {
+        "id": 1,
+        "code": "NAP",
+        "nom": "Napolitaine",
+        "prix":13.00,
+        "categorie": "Poisson",
+        "urlImage": "https://www.tutti-pizza.com/images/350x270/produit/_/basquaise_basquaise-halal.jpg"
+    },{
+        "id": 2,
+        "code": "FRO",
+        "nom": "3 Fromages",
+        "prix":11.00,
+        "categorie": "sans viande",
+        "urlImage": "https://www.tutti-pizza.com/images/350x270/produit/_/tutti-supreme-hot_tsupremehot.jpg"
+    },
+    {
+        "id": 3,
+        "code": "CAN",
+        "nom": "Cannibale",
+        "prix":15.00,
+        "categorie": "viande",
+        "urlImage": "https://www.tutti-pizza.com/images/350x270/produit/_/tutti-supreme-hot_tsupremehot.jpg"
+    }
+    ]
+}

@@ -9,8 +9,7 @@ import { HomeComponent } from './home.component'
 
 
 angular.module('pizzeria', [
-    ngRoute, 
-    'LocalStorageModule'
+    ngRoute
 ])
 .config(routes)
 .config(function ($locationProvider) {
