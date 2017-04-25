@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param value="Page ajouter livreur" name="title" />
+	<jsp:param name="title" value="Editer Livreurs" />
 </jsp:include>
 
-<body class="container">
+<jsp:include page="../layout/navbar.jsp"/>
+
+<div class="container">
 	<h1>Ajouter un livreur</h1>
 	<br>
 	<c:if test="${msg != null}">
@@ -27,5 +28,6 @@
 		<button type="submit" class="btn btn-warning">Mettre à jour</button>
 	</form>
 
-</body>
-</html>
+</div>
+
+<jsp:include page="../layout/footer.html"/>
