@@ -1,0 +1,10 @@
+pizzas=[
+			{	
+				id:0,
+				nom:'Regina'
+			},
+			{
+				id:1,
+				nom:'3 fromages'
+				
+			}

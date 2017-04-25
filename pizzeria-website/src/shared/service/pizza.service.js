@@ -1,16 +1,15 @@
 
-export class PizzaService {
-    constructor ($http) {
-        this.$http = $http ;
-        this.API_URL = "http://localhost:3000/api-pizzas";
-    }
-
-    getPizzas() {
-        return this.$http.get(this.API_URL)
-            .then(response => response.data);
-    }
-
-   
-
-
-}
+export class PizzaService{
+	
+	constructor($http, localStorageService){
+		this.localStorageService = localStorageService
+		this.$http=$http
+	}
+	
+	getPizzas(){
+		if(!this.localStorageService.get('pizzas')){
+			this.$http.get('http://localhost:8080/pizzas').then(r=>this.localStorageService.set('pizzas',r.data))
+		}
+		return this.localStorageService.get('pizzas')
+	}	
+} 
