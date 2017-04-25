@@ -8,8 +8,8 @@
     "war": [
       {
         "file": "pizzeria-web-api/target/pizzeria-web-api.war",
-        "context": "/pizzeria-web-api",
-        "checkMe": "/pizzeria-web-api/pizzas"
+        "context": "/api",
+        "checkMe": "/api/index.html"
       }
     ]
   }
