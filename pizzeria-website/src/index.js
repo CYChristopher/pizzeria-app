@@ -2,7 +2,7 @@ import angular from 'angular'
 import ngRoute from 'angular-route'
 import home from './home'
 
-import {routes} from './routes'
+import {routes} from './routes.component'
 import {PizzaService} from './shared/service/pizza.service'
 import {PizzaComponent} from './pizza.component'
 import {ListePizzasComponent} from './listePizzas.component'

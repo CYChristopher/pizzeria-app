@@ -1,0 +1,70 @@
+.logo {
+    width: 45px;
+    height: 45px;
+    margin: 2px;
+    padding: 2px;
+}
+
+.navbar-toggle {
+    background: orangered;
+}
+
+.navbar {
+    background: white;
+    border: 1px solid lightgrey;
+}
+
+span.icon-bar {
+    background-color: white;
+}
+
+nav {
+    margin: 0px;
+    padding: 0px;
+}
+
+img.derniere-pizza {
+    width: 300px;
+    height: 300px;
+}
+
+div.row {
+    font-family: Georgia;
+}
+
+body {
+    background: wheat;
+    margin-top: 70px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a.dernieres-pizzas {
+    background: orangered;
+    color: white;
+}
+
+
+/*cadre des dernières pizzas*/
+
+.thumbnail {
+    margin: 25px;
+    border: 1px solid lightgrey;
+}
+
+.footer {
+    border: 1px solid lightgrey;
+    background: white;
+    padding: 20px;
+}
+
+h1 {
+    color: brown;
+}
