@@ -2,12 +2,11 @@ import angular from 'angular'
 import ngRoute from 'angular-route'
 import { HomeComponent } from './home.component'
 
-import {routes} from './routes'
-import {PizzaService} from './shared/service/pizza.service'
-import {ClientService} from './shared/service/client.service'
-import {PizzaComponent} from './pizza.component'
-import {ListePizzasComponent} from './listePizzas.component'
-import {AjouterPanierComponent} from './ajouterPanier.component'
+import { routes } from './routes'
+import { PizzaService } from './shared/service/pizza.service'
+import { ClientService } from './shared/service/client.service'
+import { PizzaComponent } from './pizza.component'
+import { ListePizzasComponent } from './listePizzas.component'
 import { InscriptionComponent } from './inscription/index'
 
 
@@ -17,11 +16,10 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
     })
-    .config(['localStorageServiceProvider',function (localStorageServiceProvider){
-    	localStorageServiceProvider
-    		.setPrefix('pizzeriaLS')
+    .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+        localStorageServiceProvider
+            .setPrefix('pizzeriaLS')
     }])
-
 .service('PizzaService',PizzaService)
 .service('ClientService', ClientService)
 .component('pizza',PizzaComponent)
@@ -29,5 +27,3 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
 .component('home', HomeComponent)
 .component('ajouterPanier', AjouterPanierComponent)
 .component('inscriptionComponent', InscriptionComponent)
-
-
