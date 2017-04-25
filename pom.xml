@@ -212,6 +212,15 @@
         <jdbc.pass>pizzeriadb</jdbc.pass>
       </properties>
     </profile>
+    <profile>
+      <id>prod</id>
+      <properties>
+        <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+        <jdbc.url>jdbc:${env.MYSQL_ADDON_URI}</jdbc.url>
+        <jdbc.user>${env.MYSQL_ADDON_USER}</jdbc.user>
+        <jdbc.pass>${env.MYSQL_ADDON_PASSWORD}</jdbc.pass>
+      </properties>
+    </profile>
 
   </profiles>
 
