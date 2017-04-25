@@ -1,11 +1,6 @@
 package fr.pizzeria.admin.web.client;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -34,11 +29,6 @@ public class AjouterClientController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nom = request.getParameter("nom");
-		/*
-		Map<String, String> erreurs = new HashMap<>();
-		if(nom.isEmpty()){
-			erreurs.put("nom", "Veuillez saisir un nom");
-		}*/
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String motDePasse = request.getParameter("motDePasse");
