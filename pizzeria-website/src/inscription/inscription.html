@@ -1,31 +1,31 @@
 <div>
-    <form name="inscriptionForm" novalidate ng-submit="$ctrl.validerForm()">
+    <form name="formInscription" novalidate ng-submit="$ctrl.validerForm(formInscription)">
         <div name="divEmail" class="form-group">
-            <label for="userEmail">Email : </label>
-            <input id="userEmail" name="userEmail" ng-model="$ctrl.user.email" required type="email" placeholder="Votre email" class="form-control ">
-            <p class="text-danger" ng-if="inscriptionForm.userEmail.$error.required 
-            && inscriptionForm.userEmail.$touched">Veuillez rentrer un email !</p>
-            <p class="text-danger" ng-if="inscriptionForm.userEmail.$error.email 
-            && inscriptionForm.userEmail.$touched">Votre email est invalide !</p>
+            <label for="emailClient">Email : </label>
+            <input id="emailClient" name="emailClient" ng-model="$ctrl.client.email" required type="email" placeholder="Votre email" class="form-control ">
+            <p class="text-danger" ng-if="formInscription.emailClient.$error.required 
+            && formInscription.emailClient.$touched">Veuillez rentrer un email !</p>
+            <p class="text-danger" ng-if="formInscription.emailClient.$error.email 
+            && formInscription.emailClient.$touched">Votre email est invalide !</p>
         </div>
         <div name="divMdp" class="form-group">
-            <label for="userMdp">Mot de passe : </label>
-            <input id="userMdp" name="userMdp" ng-model="$ctrl.user.mdp" required type="password" placeholder="Votre mot de passe" class="form-control">
-            <p class="text-danger" ng-if="inscriptionForm.userMdp.$error.required 
-            && inscriptionForm.userMdp.$touched">Veuillez rentrer un mot de passe !</p>
-            <label for="userMdp">Confirmation du mot de passe : </label>
-            <input id="userConfMdp" name="userConfMdp" ng-model="$ctrl.confMdp" required type="password" placeholder="Votre mot de passe"
+            <label for="mdpClient">Mot de passe : </label>
+            <input id="mdpClient" name="mdpClient" ng-model="$ctrl.client.motDePasse" required type="password" placeholder="Votre mot de passe" class="form-control">
+            <p class="text-danger" ng-if="formInscription.mdpClient.$error.required 
+            && formInscription.mdpClient.$touched">Veuillez rentrer un mot de passe !</p>
+            <label for="confMdpClient">Confirmation du mot de passe : </label>
+            <input id="confMdpClient" name="confMdpClient" ng-model="$ctrl.confMdp" required type="password" placeholder="Votre mot de passe"
                 class="form-control">
-            <p class="text-danger" ng-if="$ctrl.user.mdp !== $ctrl.confMdp && inscriptionForm.userMdp.$touched && inscriptionForm.userConfMdp.$touched">Les mots de passe ne sont pas identiques !</p>
+            <p class="text-danger" ng-if="$ctrl.client.motDePasse !== $ctrl.confMdp && formInscription.mdpClient.$touched && formInscription.confMdpClient.$touched">Les mots de passe ne sont pas identiques !</p>
         </div>
         <div name="divNom" class="form-group">
-            <label for="userNom">Nom : </label>
-            <input id="userNom" name="userNom" ng-model="$ctrl.user.nom" type="text" placeholder="Votre nom" class="form-control">
+            <label for="nomClient">Nom : </label>
+            <input id="nomClient" name="nomClient" ng-model="$ctrl.client.nom" type="text" placeholder="Votre nom" class="form-control">
         </div>
         <div name="divPrenom" class="form-group">
-            <label for="userPrenom">Prenom : </label>
-            <input id="userPrenom" name="userPrenom" ng-model="$ctrl.user.prenom" type="text" placeholder="Votre prenom" class="form-control">
+            <label for="prenomClient">Prenom : </label>
+            <input id="prenomClient" name="prenomClient" ng-model="$ctrl.client.prenom" type="text" placeholder="Votre prenom" class="form-control">
         </div>
-        <button ng-disabled="inscriptionForm.$invalid" type="submit" class="btn btn-primary">Créer un compte</button>
+        <button ng-disabled="formInscription.$invalid" type="submit" class="btn btn-primary">Créer un compte</button>
     </form>
 </div>
