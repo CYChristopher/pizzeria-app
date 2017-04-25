@@ -29,6 +29,11 @@ public class IngredientService {
 		em.merge(ingredient);
 	}
 	
+	public void delete(Integer id){
+		Ingredient ingredient = findById(id);
+		em.remove(ingredient);
+	}
+	
 	public Ingredient findById(Integer id){
 		return em.createQuery("select i from Ingredient i where i.id=:id", Ingredient.class)
 					.setParameter("id", id).getSingleResult();
