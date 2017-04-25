@@ -33,7 +33,7 @@
         
 
         <li><a href="#">Commandes</a></li>
-        <li><a href="<c:url value='/livreurs/list'/>">Livreurs</a></li>
+        <li><a href=<c:url value='/Livreurs/list'/>>Livreurs</a></li>
         <li><a href="#">Ingrédients</a></li>
         <li><a href="#">Statistiques</a></li>
         <li><a href="#">Promotions</a></li>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Liste des Desserts" />
+	<jsp:param name="title" value="Liste des Clients" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
@@ -17,36 +17,38 @@
 	</c:if>
 
 	<table class="table">
-		<tr>
-			<td>Informations</td>
-			<td></td>
-			<td></td>
-		</tr>
-
-		<c:forEach var="client" items="${clients}">
+		<thead>
 			<tr>
-				<td>
-					<div class="row">
-						<div class="col-md-6">
-							Ref. ${client.id}<br>
-							Nom: ${client.nom}<br>
-							prenom: ${client.prenom}<br>
-							Email: ${client.email}<br>
-							Adresse: ${client.adresse}<br>
-							Mot de passe crypté: ${client.motDePasse}
-						</div>
-						<div class="col-md-6">
-							<a href="<c:url value="/clients/edit?id=${client.id}"/>"
-								class="btn btn-primary">Editer</a> <br>
-							<form method="POST"
-								action="<c:url value='/clients/delete?id=${client.id}'/>">
-								<button type="submit" class="btn btn-danger">Supprimer</button>
-							</form>
-						</div>
-					</div>
-				</td>
+				<th>Ref</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Adresse</th>
+				<th>Email</th>
+				<th>Hash du mot de passe</th>
+				<th></th>
+				<th></th>
 			</tr>
-		</c:forEach>
+		</thead>
+		<tbody>
+			<c:forEach var="client" items="${clients}">
+				<tr>
+					<td>${client.id}</td>
+					<td>${client.nom}</td>
+					<td>${client.prenom}</td>
+					<td>${client.adresse}</td>
+					<td>${client.email}</td>
+					<td>${client.motDePasse}</td>
+					<td><a href="<c:url value="/clients/edit?id=${client.id}"/>"
+						class="btn btn-warning">Editer</a></td>
+					<td>
+						<form method="POST"
+							action="<c:url value='/clients/delete?id=${client.id}'/>">
+							<button type="submit" class="btn btn-danger">Supprimer</button>
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 </div>
 
