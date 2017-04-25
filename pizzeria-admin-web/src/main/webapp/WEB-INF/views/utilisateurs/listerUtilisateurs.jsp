@@ -12,14 +12,10 @@
 
 <h1> Utilisateurs</h1>
 
-<<<<<<< HEAD
-
 <a href=<c:url value='/utilisateur/nouveau'></c:url>>
    <input type="button" value="Ajouter"  class ='btn btn-success'/>
 </a>	
 
-=======
->>>>>>> #3 USA003 - Utilisateurs - premier jet
 <table class="table">
   <thead>
     <tr>
@@ -30,7 +26,6 @@
     </tr>
   </thead>
   <tbody>
-<<<<<<< HEAD
 <c:forEach var="utilisateur" items="${listeUtilisateurs}">
 		<tr>
 			<td>
@@ -44,13 +39,8 @@
 			</td>
 			<td>
 				${utilisateur.adresse} 
-			</td>
-			<td>
-				${utilisateur.motDePasse} 
 			</td>	
-			<td>
-
-			
+			<td>			
 				<a href=<c:url value='/utilisateur/editer?id=${utilisateur.id}'></c:url>><button class='btn btn-warning'>
 					Editer
 				</button></a>
@@ -60,24 +50,7 @@
 				 	<input class='btn btn-danger' type='submit' value='supprimer !!!!'>
 				 </form>
 			</td>
-			
-			
-=======
-<c:forEach var="pizza" items="${listeUtilisateurs}">
-		<tr>
-			<td>
-				${pizza.nom}   
-			</td>
-			<td>
-			${pizza.prenom}
-			</td>
-			<td>
-			${pizza.email}
-			</td>
-			<td>
-			${pizza.adresse} 
-			</td>
->>>>>>> #3 USA003 - Utilisateurs - premier jet
+
 		</tr>
 		</c:forEach>
 	</tbody>
