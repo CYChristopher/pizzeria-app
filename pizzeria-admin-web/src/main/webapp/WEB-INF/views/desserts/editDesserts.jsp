@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
+
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param value="Page Lister Pizza" name="title" />
+	<jsp:param name="title" value="Editer Dessert ${editDessert.code} " />
 </jsp:include>
 
-<body class="container">
+<jsp:include page="../layout/navbar.jsp"/>
+	<div class="jumbotron">
+		<div class="container">
+
 	<h1>Editer Dessert ${editDessert.code} </h1>
 	
 	<c:if test="${msg != null}">
@@ -40,6 +42,8 @@
 				class="btn btn-primary">Retour</button></a>
 	</form>
 
+	</div>
 
-</body>
-</html>
+</div>
+
+<jsp:include page="../layout/footer.html"/>
