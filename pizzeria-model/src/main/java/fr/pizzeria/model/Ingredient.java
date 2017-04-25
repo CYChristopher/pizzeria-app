@@ -28,11 +28,11 @@ public class Ingredient {
 		this.prix = prix;
 	}
 
-	public Ingredient(Integer id, String nom, Integer quantite, Double prix) {
+	public Ingredient(Integer id, String nom, Integer qte, Double prix) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.quantite = quantite;
+		this.quantite = qte;
 		this.prix = prix;
 	}
 
@@ -70,7 +70,7 @@ public class Ingredient {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(nom).toHashCode();
+		return new HashCodeBuilder(17, 37).append(this.nom).toHashCode();
 	}
 
 	@Override
@@ -85,6 +85,6 @@ public class Ingredient {
             return false;
         }
         Ingredient rhs = (Ingredient) obj;
-        return new EqualsBuilder().append(nom, rhs.nom).isEquals();
+        return new EqualsBuilder().append(this.nom, rhs.nom).isEquals();
 	}
 }

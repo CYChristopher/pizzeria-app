@@ -49,8 +49,8 @@ public class AjouterIngredientController extends HttpServlet {
 			
 			Ingredient i = new Ingredient(
 					req.getParameter("nom").toString(), 
-					Integer.parseInt(req.getParameter("quantite").toString()), 
-					Double.parseDouble(req.getParameter("prix").toString())
+					Integer.valueOf(req.getParameter("quantite").toString()), 
+					Double.valueOf(req.getParameter("prix").toString())
 					);
 			
 			LOG.log(Level.INFO, "-------!!----- Ajout ingrédient :" + i.toString());

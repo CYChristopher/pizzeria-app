@@ -34,12 +34,12 @@
 				<c:forEach var="ingedient" items="${listeIngredients}">
 				<tr>
 					<td><b>${ ingedient.nom }</b></td>
-					<td>${ ingedient.quatite }</td>
+					<td>${ ingedient.quantite }</td>
 					<td>${ ingedient.prix } €</td>
 					<td>
-						<a href="<c:url value="/ingredients/edit?id=${ingedient.id}"/>" class="btn btn-primary">Editer</a>
+						<a href="<c:url value="/ingredient/edit?id=${ingedient.id}"/>" class="btn btn-primary">Editer</a>
 					</td>
-					<td>						
+					<td>
 						<form method="POST">
 							<input type="hidden" name="id" value="${ingedient.id}">
 							<input type="hidden" name="action" value="supprimer">
