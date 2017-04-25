@@ -39,10 +39,53 @@ public class AjouterIngredientController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Ingredient i = new Ingredient(req.getAttribute("nom").toString(), 
-				Integer.parseInt(req.getAttribute("qte").toString()), 
-				Double.parseDouble(req.getAttribute("prix").toString()));
-		LOG.log(Level.INFO, "-------!!----- Ajout ingrédient :" + i.toString());
+		if (!req.getParameter("nom").isEmpty() 
+				&& !req.getParameter("quantite").isEmpty() 
+				&& !req.getParameter("prix").isEmpty()) {
+			
+			LOG.log(Level.INFO, "------------- !!! -------------  nom :" + req.getParameter("nom"));
+			LOG.log(Level.INFO, "------------- !!! -------------  quantite :" + req.getParameter("quantite"));
+			LOG.log(Level.INFO, "------------- !!! -------------  prix :" + req.getParameter("prix"));
+			
+			Ingredient i = new Ingredient(
+					req.getParameter("nom").toString(), 
+					Integer.parseInt(req.getParameter("quantite").toString()), 
+					Double.parseDouble(req.getParameter("prix").toString())
+					);
+			
+			LOG.log(Level.INFO, "-------!!----- Ajout ingrédient :" + i.toString());
+			
+			ingredientService.save(i);
+			
+			resp.sendRedirect(req.getContextPath() + "/ingredients/list");
+		} else {
+			String erreur[] = { "", "", "" };
+			if (req.getParameter("nom").isEmpty()) {
+				erreur[0] = "red";
+			} else {
+				req.setAttribute("nom", req.getParameter("nom"));
+			}
+			
+			if(req.getParameter("quantite").isEmpty()){
+				erreur[1] = "red";
+			} else {
+				req.setAttribute("quantite", req.getParameter("quantite"));
+			}
+			
+			if(req.getParameter("prix").isEmpty()){
+				erreur[2] = "red";
+			} else {
+				req.setAttribute("prix", req.getParameter("prix"));
+			}
+			
+			req.setAttribute("erreur", erreur);
+			req.setAttribute("msg", "Veuillez saisir les champs en rouge : ");
+			doGet(req, resp);
+		}
+		
+		
+		
+		/*
 		// si un id est présent c'est un update si non c'est un create
 		if(req.getAttribute("id").toString().isEmpty() || req.getAttribute("id").toString().equals(null)){
 			ingredientService.save(i);
@@ -50,8 +93,6 @@ public class AjouterIngredientController extends HttpServlet {
 			i.setId(Integer.parseInt(req.getAttribute("id").toString()));
 			//ingredientService.update(i);
 		}
-		
-		// redirection vers la liste des ingredients
-		resp.sendRedirect(req.getContextPath() + "/ingredients/list");
+		*/
 	}
 }
