@@ -86,5 +86,6 @@ public class Ingredient {
         }
         Ingredient rhs = (Ingredient) obj;
         return new EqualsBuilder().append(this.nom, rhs.nom).isEquals();
+
 	}
 }
