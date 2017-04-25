@@ -21,5 +21,17 @@ public class IngredientService {
 	public void save(Ingredient ingredient) {
 		em.persist(ingredient);
 	}
+	
+	public void update(Integer id, Ingredient ingredient){
+		Ingredient old = findById(id);
+		
+		ingredient.setId(old.getId());
+		em.merge(ingredient);
+	}
+	
+	public Ingredient findById(Integer id){
+		return em.createQuery("select i from Ingredient i where i.id=:id", Ingredient.class)
+					.setParameter("id", id).getSingleResult();
+	}
 
 }
