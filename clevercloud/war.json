@@ -9,7 +9,7 @@
       {
         "file": "pizzeria-web-api/target/pizzeria-web-api.war",
         "context": "/pizzeria-web-api",
-        "checkMe": "pizzeria-web-api/pizzas"
+        "checkMe": "/pizzeria-web-api/pizzas"
       }
     ]
   }
