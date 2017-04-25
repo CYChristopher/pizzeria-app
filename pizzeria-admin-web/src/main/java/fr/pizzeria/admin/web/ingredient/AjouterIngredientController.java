@@ -83,17 +83,7 @@ public class AjouterIngredientController extends HttpServlet {
 			doGet(req, resp);
 		}
 		
-		
-		
-		/*
-		// si un id est présent c'est un update si non c'est un create
-		if(req.getAttribute("id").toString().isEmpty() || req.getAttribute("id").toString().equals(null)){
-			ingredientService.save(i);
-		}else {
-			i.setId(Integer.parseInt(req.getAttribute("id").toString()));
-			//ingredientService.update(i);
-		}
-		*/
+		// redirection vers la liste des ingredients
+		resp.sendRedirect(req.getContextPath() + "/ingredients/list");
 	}
-
 }
