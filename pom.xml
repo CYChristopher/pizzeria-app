@@ -210,15 +210,17 @@
         <jdbc.url>jdbc:mysql://localhost:3306/pizzeriadb</jdbc.url>
         <jdbc.user>pizzeriadb</jdbc.user>
         <jdbc.pass>pizzeriadb</jdbc.pass>
+        <jdbc.connections.max.active>5</jdbc.connections.max.active>
       </properties>
     </profile>
     <profile>
       <id>prod</id>
       <properties>
         <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-        <jdbc.url>jdbc:${env.MYSQL_ADDON_URI}</jdbc.url>
+        <jdbc.url>jdbc:mysql://${env.MYSQL_ADDON_HOST}:${env.MYSQL_ADDON_PORT}/${env.MYSQL_ADDON_DB}</jdbc.url>
         <jdbc.user>${env.MYSQL_ADDON_USER}</jdbc.user>
         <jdbc.pass>${env.MYSQL_ADDON_PASSWORD}</jdbc.pass>
+        <jdbc.connections.max.active>2</jdbc.connections.max.active>
       </properties>
     </profile>
 
