@@ -5,37 +5,33 @@
 	<jsp:param value="Editer Commandes" name="title" />
 </jsp:include>
 
-<jsp:include page="../layout/navbar.jsp"/>
+<jsp:include page="../layout/navbar.jsp" />
 
 <div class="container">
 
-<h1> Edition</h1>
+	<h1>Edition</h1>
 
-<form method="post">
+	<form method="post">
 
 		<div class="form-group">
-			<label for="newcode">Code :</label> <input id="newcode"
+			<label for="numCmd">Numero de Commande :</label> <input id="numCmd"
 				class="form-control" name="newcode" type="text"
-				value="${editDessert.code}">
+				value="${editCommande.numeroCommande}">
 		</div>
 
 		<div class="form-group">
-			<label for="ref">Nom :</label> <input id="ref" name="ref"
-				class="form-control" type="text" value="${editDessert.nom}">
+			<label for="statut">Statut :</label> <select class="form-control"
+				id="statut">
+				<c:forEach var="cmd" items="${editCommande.statut}">
+					<option>1</option>
+				</c:forEach>
+			</select>
 		</div>
-
-		<div class="form-group">
-			<label for="prix">Prix : </label> <input step="0.01" id="number"
-				name="prix" class="form-control" type="number"
-				value="${editDessert.prix}">
-		</div>
-
-
 
 		<input class="btn btn-success" type="submit" value="Valider">
-		<a href=<c:url value='/desserts/list'/>><button type="button"
+		<a href=<c:url value='/commandes/list'/>><button type="button"
 				class="btn btn-primary">Retour</button></a>
 	</form>
 
 </div>
-<jsp:include page="../layout/footer.html"/>
+<jsp:include page="../layout/footer.html" />
