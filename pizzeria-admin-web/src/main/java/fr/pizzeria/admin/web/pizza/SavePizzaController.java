@@ -2,6 +2,7 @@ package fr.pizzeria.admin.web.pizza;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -22,73 +23,63 @@ import fr.pizzeria.model.Pizza;
 @WebServlet("/pizzas/new")
 public class SavePizzaController extends HttpServlet {
 
-  private static final Logger LOG = Logger.getLogger(SavePizzaController.class.getName());
+	private static final Logger LOG = Logger.getLogger(SavePizzaController.class.getName());
 
-  private static final String VUE_SAVE_PIZZA = "/WEB-INF/views/pizzas/savePizza.jsp";
+	private static final String VUE_SAVE_PIZZA = "/WEB-INF/views/pizzas/savePizza.jsp";
 
-  @Inject private PizzaService pizzaService;
+	@Inject
+	private PizzaService pizzaService;
 
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
- 
-    RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_PIZZA);
-    dispatcher.forward(req, resp);
-  }
-  
-  
-  @Override
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_PIZZA);
+		dispatcher.forward(req, resp);
+	}
+
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-	  if(!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty() && !request.getParameter("prix").isEmpty())
-	  {
-		String newcode = request.getParameter("newcode");
-		String ref = request.getParameter("ref");
-		String prix = request.getParameter("prix");
-		String categorie = request.getParameter("categorie");
+		if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
+				&& !request.getParameter("prix").isEmpty()) {
+			String newcode = request.getParameter("newcode");
+			String ref = request.getParameter("ref");
+			String prix = request.getParameter("prix");
+			String categorie = request.getParameter("categorie");
 
-		Pizza pizza = new Pizza(newcode,ref, BigDecimal.valueOf(Double.valueOf(prix)), CategoriePizza.valueOf(categorie));
-		
-		pizzaService.save(pizza);
-		
-		response.sendRedirect(request.getContextPath() + "/pizzas/list");
-		
-	  }else
-	  {
-		  String erreur[]=  {"","",""};
-		  if(request.getParameter("newcode").isEmpty())
-		  {
-			  erreur[0]="red";			  
-		  }else
-		  {
-			  request.setAttribute("newcode",request.getParameter("newcode"));
-		  }
-		  
-		  if(request.getParameter("ref").isEmpty())
-		  {
-			  erreur[1]="red";			  
-		  }else
-		  {
-			  request.setAttribute("ref",request.getParameter("ref"));
-		  }
-		  
-		  if(request.getParameter("prix").isEmpty())
-		  {
-			  erreur[2]="red";			  
-		  }else
-		  {
-			  request.setAttribute("prix",request.getParameter("prix"));
-		  }
-		 
-		  
-		  request.setAttribute("erreur",erreur);
-		  request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
-		  doGet(request, response);
-	  }
+			Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
+					CategoriePizza.valueOf(categorie), LocalDateTime.now());
+			
+			pizzaService.save(pizza);
+
+			response.sendRedirect(request.getContextPath() + "/pizzas/list");
+
+		} else {
+			String erreur[] = { "", "", "" };
+			if (request.getParameter("newcode").isEmpty()) {
+				erreur[0] = "red";
+			} else {
+				request.setAttribute("newcode", request.getParameter("newcode"));
+			}
+
+			if (request.getParameter("ref").isEmpty()) {
+				erreur[1] = "red";
+			} else {
+				request.setAttribute("ref", request.getParameter("ref"));
+			}
+
+			if (request.getParameter("prix").isEmpty()) {
+				erreur[2] = "red";
+			} else {
+				request.setAttribute("prix", request.getParameter("prix"));
+			}
+
+			request.setAttribute("erreur", erreur);
+			request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
+			doGet(request, response);
+		}
 
 	}
-  
-  
 
 }

@@ -1,10 +1,17 @@
 package fr.pizzeria.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 public class Pizza {
@@ -18,8 +25,9 @@ public class Pizza {
     @Enumerated(EnumType.STRING)
     private CategoriePizza categorie;
     private String urlImage;
-
-    public Pizza() {
+    private LocalDateTime versionPizza;
+  
+	public Pizza() {
     }
 
     public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat) {
@@ -28,6 +36,15 @@ public class Pizza {
         this.nom = nom;
         this.prix = prix;
         this.categorie = cat;
+    }
+    
+    public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat,LocalDateTime versionPizza) {
+        this();
+        this.code = code;
+        this.nom = nom;
+        this.prix = prix;
+        this.categorie = cat;
+        this.versionPizza = versionPizza;
     }
 
     public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage) {
@@ -87,9 +104,19 @@ public class Pizza {
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
     }
+    
+    
+    public LocalDateTime getVersionPizza() {
+  		return versionPizza;
+  	}
 
+  	public void setVersionPizza(LocalDateTime versionPizza) {
+  		this.versionPizza = versionPizza;
+  	}
+  	
+ 
 
-    @Override
+	@Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(code).toHashCode();
     }
@@ -109,4 +136,7 @@ public class Pizza {
         return new EqualsBuilder().append(code, rhs.code).isEquals();
     }
 
+    
+    
+    
 }
