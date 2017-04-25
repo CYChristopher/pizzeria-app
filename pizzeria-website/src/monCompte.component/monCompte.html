@@ -1,0 +1,33 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h1> Informations personnelles </h1>
+    <p> email : {{$ctrl.user.email}}
+        <br> Mot de passe :
+        <br> Nom : {{$ctrl.user.nom}}
+        <br> Prénom : {{$ctrl.user.prenom}}
+        <br> Adresse : {{$ctrl.user.adresse}}
+    </p>
+</div>
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h1> Commandes </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Date </th>
+                <th class="hidden-xs"> N° de commande </th>
+                <th class="hidden-xs"> Statut </th>
+                <th class="hidden-xs"> Prix </th>
+                <th> Détails </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="commande from $ctrl.commandes">
+                <td> commande.dateCommande </td>
+                <td class="hidden-xs"> commande.numeroCommande </td>
+                <td class="hidden-xs"> commande.statut </td>
+                <td class="hidden-xs"> commande.prix </td>
+                <td> <a href="/details" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a> </td>
+            </tr>
+        </tbody>
+</div>
