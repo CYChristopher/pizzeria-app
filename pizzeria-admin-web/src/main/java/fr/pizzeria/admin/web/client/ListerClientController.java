@@ -19,7 +19,7 @@ public class ListerClientController extends HttpServlet {
 	@Inject private ClientService clientService;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("listeClients", clientService.findAll());
+		request.setAttribute("clients", clientService.findAll());
 		this.getServletContext().getRequestDispatcher(VUE_LISTER_CLIENTS).forward(request, response);
 	}
 
