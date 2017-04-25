@@ -5,6 +5,10 @@
         filename: 'app.bundle.js'
     },
 
+    devServer: {
+        port: 8000
+    },
+
     module: {
         loaders: [
             {

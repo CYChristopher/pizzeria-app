@@ -2,19 +2,26 @@ import template from './inscription.html';
 
 class controller {
 
-    constructor(UserService) {
-        this.UserService = UserService;
-        this.user = {
+    constructor(ClientService, $location) {
+        this.$location = $location;
+        this.ClientService = ClientService;
+        this.client = {
             email : '',
-            mdp : '',
+            motDePasse : '',
             nom : '',
             prenom : '',
         }
         this.confMdp = '';
     }
 
-    validerForm(){
-        console.log(this.UserService);
+    validerForm(userForm){
+        if(userForm.$valid){
+            this.ClientService.saveClient(this.client)
+                .then(response => {
+                    //Modifier la redirection
+                    this.$location.path('/');
+                });
+        }
     }
 }
 
