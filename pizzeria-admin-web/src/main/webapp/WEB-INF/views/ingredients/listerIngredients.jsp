@@ -11,51 +11,46 @@
 <div class="jumbotron">
 
 	<div class="container">
+	
 		<h1>Liste des ingredients</h1>
-		<a class="btn btn-primary" href="new">Nouvelle ingredient</a>
+		<a class="btn btn-primary" href="<c:url value="/ingredient/add"/>">Nouvelle ingredient</a>
 		<br>
 		<c:if test="${msg != null}">
 			<div class="alert alert-danger" role="alert">${msg}</div>
 		</c:if>
 	
 		<table class="table">
-			<tr>
-				<td>Image</td>
-				<td>Informations</td>
-				<td></td>
-			</tr>
-	
-			<c:forEach var="ingedient" items="${listeIngredients}">
-			<tr>
-				<td>
-					<div class="row">
-						<div class="col-md-6">
-							Ref. ${ingedient.id}
-							<br> <b>${ingedient.nom}</b><br>${ingedient.prix}
-							€<br>
-						</div>
-						<div class="col-md-6">
-							<a href="<c:url value="/ingredients/edit?id=${ingedient.id}"/>" class="btn btn-primary">Editer</a>
-							<br>
-							<form method="POST">
-								<input type="hidden" name="id" value="${ingedient.id}">
-								<input type="hidden" name="action" value="supprimer">
-								<button type="submit" class="btn btn-danger">Supprimer</button>
-							</form>
-							<form method="POST">
-								<input type="hidden" name="id" value="${ingedient.id}">
-								<input type="hidden" name="action" value="inconnu">
-								<button type="submit" class="btn btn-danger">Action
-									inconnue</button>
-							</form>
-						</div>
-					</div>
-				</td>
-			</tr>
-			</c:forEach>
-	
 		
-	
+			<thead>
+				<tr>
+					<td>Nom</td>
+					<td>Quantité</td>
+					<td>Prix</td>
+				</tr>
+			</thead>
+			
+			<tbody>
+			
+				<c:forEach var="ingedient" items="${listeIngredients}">
+				<tr>
+					<td><b>${ ingedient.nom }</b></td>
+					<td>${ ingedient.quatite }</td>
+					<td>${ ingedient.prix } €</td>
+					<td>
+						<a href="<c:url value="/ingredients/edit?id=${ingedient.id}"/>" class="btn btn-primary">Editer</a>
+					</td>
+					<td>						
+						<form method="POST">
+							<input type="hidden" name="id" value="${ingedient.id}">
+							<input type="hidden" name="action" value="supprimer">
+							<button type="submit" class="btn btn-danger">Supprimer</button>
+						</form>
+					</td>
+				</tr>
+				</c:forEach>
+				
+			</tbody>
+			
 		</table>
 	</div>
 </div>
