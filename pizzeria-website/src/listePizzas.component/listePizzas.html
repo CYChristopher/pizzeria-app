@@ -1,0 +1,14 @@
+<div class="panel">
+	<div class="panel-heading">
+		<h1>Liste des pizzas</h1>	
+	</div>
+	<div class="panel-body">
+		<div class="list-group">	
+			<div type="button" class="list-group-item clearfix"  ng-repeat="pizza in $ctrl.pizzas">		
+				<pizza pizza="pizza"></pizza>	
+				<ajouter-panier item="pizza"></ajouter-panier>				
+			</div>
+		</div>
+	</div>
+</div>
+
