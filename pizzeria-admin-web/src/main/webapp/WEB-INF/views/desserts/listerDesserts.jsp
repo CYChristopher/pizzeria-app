@@ -3,14 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Pizza" />
+	<jsp:param name="title" value="Liste des Desserts" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
+	<div class="jumbotron">
+		<div class="container">
 
-
-	<h1>Liste des pizzas</h1>
-	<a class="btn btn-primary" href="new">Nouvelle Pizza</a>
+	<h1>Liste des Desserts</h1>
+	<a class="btn btn-primary" href="new">Nouveau Dessert</a>
 	<br>
 	<c:if test="${msg != null}">
 		<div class="alert alert-danger" role="alert">${msg}</div>
@@ -23,29 +24,23 @@
 			<td></td>
 		</tr>
 
-		<c:forEach var="pizza" items="${listePizzas}">
+		<c:forEach var="dessert" items="${listeDesserts}">
 		<tr>
-			<td><img src="${pizza.urlImage}"></td>
+			<td><img src="${dessert.urlImage}"></td>
 			<td>
 				<div class="row">
 					<div class="col-md-6">
-						Ref. ${pizza.id}
-						<br> <b>${pizza.nom}</b><br>${pizza.prix}
+						Ref. ${dessert.id}
+						<br> <b>${dessert.nom}</b><br>${dessert.prix}
 						€<br>
 					</div>
-					<div class="col-md-6">
-						<a href="<c:url value="/pizzas/edit?code=${pizza.code}"/>" class="btn btn-primary">Editer</a>
+					<div class="col-md-6" >
+						<a href="<c:url value="/desserts/edit?code=${dessert.code}"/>" class="btn btn-primary">Editer</a>
 						<br>
 						<form method="POST">
-							<input type="hidden" name="code" value="${pizza.code}">
+							<input type="hidden" name="code" value="${dessert.code}">
 							<input type="hidden" name="action" value="supprimer">
 							<button type="submit" class="btn btn-danger">Supprimer</button>
-						</form>
-						<form method="POST">
-							<input type="hidden" name="id" value="${pizza.id}">
-							<input type="hidden" name="action" value="inconnu">
-							<button type="submit" class="btn btn-danger">Action
-								inconnue</button>
 						</form>
 					</div>
 				</div>
@@ -57,5 +52,9 @@
 
 	</table>
 	
-<jsp:include page="../layout/footer.html"/>
 	
+		</div>
+
+</div>
+
+<jsp:include page="../layout/footer.html"/>

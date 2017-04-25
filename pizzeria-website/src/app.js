@@ -1,10 +1,24 @@
 import angular from 'angular'
 import ngRoute from 'angular-route'
-import home from './home'
+
+import { routes } from './routes';
+
+import { PizzaService } from "./shared/service/pizza.service.js"
+
+import { HomeComponent } from './home.component'
 
 
-angular.module('pizzeria', [ngRoute, home])
-    .config(function ($routeProvider, $locationProvider) {
-        $locationProvider.html5Mode(true);
-        $routeProvider.otherwise('/')
-    });
+angular.module('pizzeria', [
+    ngRoute
+])
+.config(routes)
+.config(function ($locationProvider) {
+    $locationProvider.html5Mode(true);
+})
+   
+
+.component('home', HomeComponent)
+
+.service('PizzaService', PizzaService)
+
+;
