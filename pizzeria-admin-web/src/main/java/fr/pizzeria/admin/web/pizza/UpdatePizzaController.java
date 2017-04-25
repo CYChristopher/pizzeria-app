@@ -2,12 +2,9 @@ package fr.pizzeria.admin.web.pizza;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> #4 CRUD pizza: a reviewer
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.logging.Logger;
@@ -20,15 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Ingredient;
-=======
-import fr.pizzeria.admin.metier.PizzaService;
-import fr.pizzeria.model.CategoriePizza;
->>>>>>> #4 CRUD pizza: a reviewer
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -40,7 +32,6 @@ public class UpdatePizzaController extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(UpdatePizzaController.class.getName());
 
 	private static final String VUE_EDIT_PIZZA = "/WEB-INF/views/pizzas/editPizza.jsp";
-
 	private Integer id;
 
 
@@ -62,6 +53,7 @@ public class UpdatePizzaController extends HttpServlet {
 		for (CategoriePizza current : CategoriePizza.values()) {
 			setCategorie.add(current);
 		}
+
 		request.setAttribute("listeIngredients", this.ingredientService.findAll());
 		request.setAttribute("editPizza", pizzaService.findById(this.id));
 		request.setAttribute("categoriePizza", setCategorie);
@@ -78,7 +70,6 @@ public class UpdatePizzaController extends HttpServlet {
 			throws ServletException, IOException {
 
 		Pizza oldPizza = pizzaService.findById(this.id);
-
 		String newcode;
 		String ref;
 		BigDecimal prix;
@@ -113,6 +104,7 @@ public class UpdatePizzaController extends HttpServlet {
 			request.setAttribute("msg", "Liste des ingredients vide");
 			doGet(request, response);
 		}
+
 
 
 	}

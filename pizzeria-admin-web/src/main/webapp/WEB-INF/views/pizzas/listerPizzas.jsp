@@ -25,6 +25,7 @@
 		</tr>
 
 		<c:forEach var="pizza" items="${listePizzas}">
+
 			<tr>
 				<td><img src="${pizza.urlImage}"></td>
 				<td>
@@ -59,6 +60,7 @@
 						<form method="POST">
 							<input type="hidden" name="code" value="${pizza.code}"> <input
 								type="hidden" name="action" value="supprimer">
+
 							<button type="submit" class="btn btn-danger">Supprimer</button>
 						</form>
 					</div>

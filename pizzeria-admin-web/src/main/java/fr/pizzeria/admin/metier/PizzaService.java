@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.metier;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -44,12 +45,16 @@ public class PizzaService {
 	}
 	
 	
-	public Pizza findbycode(String code) {
+	
+	public Pizza findByName(String name) {
 
-		return  em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class)
-				.setParameter("codP", code).getSingleResult();
+		return  em.createQuery("select piz from Pizza piz where piz.name=:nameP and piz.able=:val", Pizza.class)
+				.setParameter("nameP", name).setParameter("val", true).getSingleResult();
 
 	}
+	
+
+	
 	
 
 	

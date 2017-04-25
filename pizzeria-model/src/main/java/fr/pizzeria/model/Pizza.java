@@ -19,6 +19,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 @Entity
 public class Pizza {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -198,4 +199,8 @@ public class Pizza {
 
 	
 
+
+    
+    
+    
 }
