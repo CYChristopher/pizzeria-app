@@ -22,6 +22,9 @@ public class ListerUtilisateurController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		
 
 		req.setAttribute("listeUtilisateurs", this.utilisateursService.findAll());
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_UTILISATEURS);

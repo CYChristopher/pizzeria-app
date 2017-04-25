@@ -57,6 +57,7 @@ public class EditerUtilisateurController extends HttpServlet {
 		Utilisateur utilisateur = utilisateursService.find(oldId);
 		Utilisateur utili = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
 
+		
 		if (utilisateur.getEmail().equals(email)) // check if the email is the
 													// same
 		{

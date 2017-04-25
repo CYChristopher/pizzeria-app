@@ -37,20 +37,19 @@ public class NouvelUtilisateurController extends HttpServlet {
 		String email = request.getParameter("email");
 		String motDePasse = request.getParameter("motDePasse");
 		String adresse = request.getParameter("adresse");
-
+	
 		LocalDateTime dateCreation = LocalDateTime.now();
-		Utilisateur util = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
+		Utilisateur utilisateur = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
 		
 		if (utilisateursService.findByEmail(email) == null) {	
 
 			
-
-			utilisateursService.saveNew(util);
+			utilisateursService.saveNew(utilisateur);
 			response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
 
 		} else {
 
-			request.setAttribute("donnees", util);
+			request.setAttribute("donnees", utilisateur);
 			request.setAttribute("msg", "Email déjà existant");
 			doGet(request, response);
 

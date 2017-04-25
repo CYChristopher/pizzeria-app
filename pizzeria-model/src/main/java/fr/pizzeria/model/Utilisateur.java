@@ -74,9 +74,16 @@ public class Utilisateur {
 
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse,
 			LocalDateTime dateCreation) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
 
-		this.motDePasse = motDePasse;
+		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
+
 		this.adresse = adresse;
+		this.dateCreation = dateCreation;
 	}
 
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse) {
