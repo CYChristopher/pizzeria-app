@@ -1,15 +1,16 @@
 import angular from 'angular'
 import ngRoute from 'angular-route'
-import home from './home'
+import { HomeComponent } from './home.component'
 
 import {routes} from './routes.component'
 import {PizzaService} from './shared/service/pizza.service'
 import {PizzaComponent} from './pizza.component'
 import {ListePizzasComponent} from './listePizzas.component'
+import {AjouterPanierComponent} from './ajouterPanier.component'
 
 
 
-angular.module('pizzeria', [ngRoute, home, 'LocalStorageModule'])
+angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
 	.config(routes)
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
@@ -22,5 +23,7 @@ angular.module('pizzeria', [ngRoute, home, 'LocalStorageModule'])
 .service('PizzaService',PizzaService)
 .component('pizza',PizzaComponent)
 .component('listePizzas',ListePizzasComponent)
+.component('home', HomeComponent)
+.component('ajouterPanier', AjouterPanierComponent)
 
 

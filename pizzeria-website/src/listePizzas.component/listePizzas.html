@@ -4,9 +4,10 @@
 	</div>
 	<div class="panel-body">
 		<div class="list-group">	
-			<button type="button" class="list-group-item clearfix"  ng-repeat="pizza in $ctrl.pizzas">		
-				<pizza pizza="pizza"></pizza>					
-			</button>
+			<div type="button" class="list-group-item clearfix"  ng-repeat="pizza in $ctrl.pizzas">		
+				<pizza pizza="pizza"></pizza>	
+				<ajouter-panier item="pizza"></ajouter-panier>				
+			</div>
 		</div>
 	</div>
 </div>
