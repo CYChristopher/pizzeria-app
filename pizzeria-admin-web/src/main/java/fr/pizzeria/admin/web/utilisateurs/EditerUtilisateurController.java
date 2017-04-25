@@ -54,10 +54,27 @@ public class EditerUtilisateurController extends HttpServlet {
 
 		LocalDateTime dateCreation = LocalDateTime.parse(stringDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
+		Utilisateur utilisateur = utilisateursService.find(oldId);
 		Utilisateur utili = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
 
-		utilisateursService.update(oldId, utili);
-		response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
+		if (utilisateur.getEmail().equals(email)) // check if the email is the
+													// same
+		{
+
+			utilisateursService.update(oldId, utili);
+			response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
+
+		} else // check if the new one is already exist
+		{
+
+			if (utilisateursService.findByEmail(email) == null) {
+				utilisateursService.update(oldId, utili);
+				response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
+			} else {
+				request.setAttribute("msg", "Email modifié: nouveau déjà existant");
+				doGet(request, response);
+			}
+		}
 
 	}
 

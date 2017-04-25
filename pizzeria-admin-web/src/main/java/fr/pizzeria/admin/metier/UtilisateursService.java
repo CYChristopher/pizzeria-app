@@ -32,7 +32,6 @@ public class UtilisateursService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-<<<<<<< HEAD
 	public Utilisateur find(Integer id) {
 
 		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
@@ -43,8 +42,6 @@ public class UtilisateursService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-=======
->>>>>>> #3 USA003 - Utilisateurs - premier jet
 	public void saveNew(Utilisateur utilisateur) {
 
 		em.persist(utilisateur);
@@ -52,7 +49,6 @@ public class UtilisateursService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-<<<<<<< HEAD
 	public void update(Integer id, Utilisateur utilisateur) {
 
 		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
@@ -68,37 +64,15 @@ public class UtilisateursService {
 			u.setId(idUpdate);
 
 			em.merge(u);
-=======
-	public void update(String code, Utilisateur utilisateur) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where p.id='" + code + "'",
-				Utilisateur.class);
-		Utilisateur p = (Utilisateur) query.getResultList().get(0);
-
-		if (p != null) {
-
-			int id = p.getId();
-
-			p = utilisateur;
-
-			p.setId(id);
-
-			em.merge(p);
->>>>>>> #3 USA003 - Utilisateurs - premier jet
 		}
 
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-<<<<<<< HEAD
 	public void delete(Integer id) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
-=======
-	public void delete(String id) {
-
 		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where p.id='" + id + "'",
->>>>>>> #3 USA003 - Utilisateurs - premier jet
 				Utilisateur.class);
 		Utilisateur p = (Utilisateur) query.getResultList().get(0);
 
@@ -107,5 +81,22 @@ public class UtilisateursService {
 		}
 
 	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Utilisateur findByEmail(String email) {
+
+		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.email='" + email + "'",
+				Utilisateur.class);
+
+		if(query.getResultList().isEmpty())
+		{
+			return null;			
+		}
+		
+		return query.getResultList().get(0);
+
+	}
+	
+	
 
 }
