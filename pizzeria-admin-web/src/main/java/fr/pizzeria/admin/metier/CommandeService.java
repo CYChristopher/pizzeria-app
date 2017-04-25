@@ -16,12 +16,21 @@ import fr.pizzeria.model.Commande;
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 public class CommandeService {
 
+	private static final String FIND_BY_ID = "select c from Commande c where c.id=:id";
+
 	@PersistenceContext(unitName = "pizzeria-admin-web")
 	private EntityManager em;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Commande> findAll() {
+
 		return em.createQuery("select c from Commande c", Commande.class).getResultList();
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Commande find(Integer id) {
+
+		return em.createQuery(FIND_BY_ID, Commande.class).setParameter("id", id).getSingleResult();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -33,9 +42,7 @@ public class CommandeService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void update(Integer id, Commande cmd) {
 
-		Commande majCommande = em.createQuery("select c from Commande c where c.id=:id", Commande.class)
-				.setParameter("id", id).getSingleResult();
-		cmd.setId(majCommande.getId());
+		cmd.setId(find(id).getId());
 
 		em.merge(cmd);
 	}
@@ -43,10 +50,7 @@ public class CommandeService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void delete(Integer id) {
 
-		Commande cmd = em.createQuery("select c from Commande c where c.id=:id", Commande.class).setParameter("id", id)
-				.getSingleResult();
-
-		em.remove(cmd);
+		em.remove(find(id));
 	}
 
 }

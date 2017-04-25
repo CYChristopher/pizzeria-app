@@ -1,7 +1,7 @@
 package fr.pizzeria.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Commande {
@@ -26,8 +24,7 @@ public class Commande {
 	private String numeroCommande;
 	@Enumerated(EnumType.STRING)
 	private StatutCommande statut;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateCommande;
+	private LocalDateTime dateCommande;
 	private String adresse;
 	@ManyToOne
 	private Livreur livreur;
@@ -36,6 +33,20 @@ public class Commande {
 	@OneToMany
 	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
 	private List<Pizza> pizzas = new ArrayList<>();
+
+	public Commande() {
+	}
+
+	public Commande(String numeroCommande, StatutCommande statut, String adresse, Livreur livreur, Client client,
+			List<Pizza> pizzas) {
+		this.numeroCommande = numeroCommande;
+		this.statut = statut;
+		this.dateCommande = LocalDateTime.now();
+		this.adresse = adresse;
+		this.livreur = livreur;
+		this.client = client;
+		this.pizzas = pizzas;
+	}
 
 	public Integer getId() {
 		return id;
@@ -61,11 +72,11 @@ public class Commande {
 		this.statut = statut;
 	}
 
-	public Calendar getDateCommande() {
+	public LocalDateTime getDateCommande() {
 		return dateCommande;
 	}
 
-	public void setDateCommande(Calendar dateCommande) {
+	public void setDateCommande(LocalDateTime dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 

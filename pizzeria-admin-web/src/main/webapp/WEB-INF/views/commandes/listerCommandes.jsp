@@ -21,6 +21,7 @@
 			<th>Livreur</th>
 			<th>Client</th>
 			<th>Pizzas</th>
+			<th></th>
     </tr>
   </thead>
   <tbody>
@@ -33,6 +34,15 @@
 			<td>${cmd.livreur}</td>
 			<td>${cmd.client}</td>
 			<td>${cmd.pizzas}</td>
+			<td>
+			<a href="<c:url value="/commandes/edit?code=${cmd.id}"/>" class="btn btn-primary">Editer</a>
+			<br>
+				<form method="POST">
+					<input type="hidden" name="id" value="${cmd.id}">
+					<input type="hidden" name="action" value="supprimer">
+					<button type="submit" class="btn btn-danger">Supprimer</button>
+				</form>
+			</td>
 		</tr>
 		</c:forEach>
 	</tbody>
