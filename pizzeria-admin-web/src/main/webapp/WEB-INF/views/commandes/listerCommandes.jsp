@@ -14,23 +14,25 @@
 <table class="table">
   <thead>
     <tr>
-			<th>Id</th>
 			<th>Numero</th>
      		<th>Statut</th>
 			<th>Date</th>
+			<th>Adresse</th>
 			<th>Livreur</th>
 			<th>Client</th>
+			<th>Pizzas</th>
     </tr>
   </thead>
   <tbody>
 <c:forEach var="cmd" items="${listeCommandes}">
 		<tr>
-			<td>${cmd.id}</td>
 			<td>${cmd.numeroCommande}</td>
 			<td>${cmd.statut}</td>
 			<td>${cmd.dateCommande}</td>
+			<td>${cmd.adresse}</td>
 			<td>${cmd.livreur}</td>
 			<td>${cmd.client}</td>
+			<td>${cmd.pizzas}</td>
 		</tr>
 		</c:forEach>
 	</tbody>

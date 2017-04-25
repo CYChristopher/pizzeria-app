@@ -28,6 +28,7 @@ public class Commande {
 	private StatutCommande statut;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateCommande;
+	private String adresse;
 	@ManyToOne
 	private Livreur livreur;
 	@ManyToOne
@@ -66,6 +67,14 @@ public class Commande {
 
 	public void setDateCommande(Calendar dateCommande) {
 		this.dateCommande = dateCommande;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 	public Livreur getLivreur() {
