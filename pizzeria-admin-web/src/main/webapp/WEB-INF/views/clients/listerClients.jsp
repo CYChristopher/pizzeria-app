@@ -22,28 +22,21 @@
 			<td></td>
 		</tr>
 
-		<c:forEach var="client" items="${listeClients}">
+		<c:forEach var="client" items="${clients}">
 		<tr>
 			<td>
 				<div class="row">
 					<div class="col-md-6">
 						Ref. ${client.id}
-						<br> <b>${client.nom}</b><br>${client.prenom}
-						€<br>
+						<br><b>${client.nom}</b> ${client.prenom}
+						<br>${client.email}
+						<br>${client.motDePasse}
 					</div>
 					<div class="col-md-6">
-						<a href="<c:url value="/pizzas/edit?code=${client.email}"/>" class="btn btn-primary">Editer</a>
+						<a href="<c:url value="/clients/edit?id=${client.id}"/>" class="btn btn-primary">Editer</a>
 						<br>
-						<form method="POST">
-							<input type="hidden" name="code" value="${client.email}">
-							<input type="hidden" name="action" value="supprimer">
+						<form method="POST" action="<c:url value='/clients/delete?id=${client.id}'/>">
 							<button type="submit" class="btn btn-danger">Supprimer</button>
-						</form>
-						<form method="POST">
-							<input type="hidden" name="id" value="${client.id}">
-							<input type="hidden" name="action" value="inconnu">
-							<button type="submit" class="btn btn-danger">Action
-								inconnue</button>
 						</form>
 					</div>
 				</div>

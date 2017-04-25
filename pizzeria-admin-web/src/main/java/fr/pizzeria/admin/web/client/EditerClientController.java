@@ -2,10 +2,7 @@ package fr.pizzeria.admin.web.client;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -17,33 +14,30 @@ import javax.servlet.http.HttpServletResponse;
 import fr.pizzeria.admin.metier.ClientService;
 import fr.pizzeria.model.Client;
 
-@WebServlet("/clients/new")
-public class AjouterClientController extends HttpServlet {
+@WebServlet("/clients/edit")
+public class EditerClientController extends HttpServlet {
 
-	private static final String VUE_AJOUTER_CLIENTS = "/WEB-INF/views/clients/ajouterClients.jsp";
+	private static final String VUE_EDITER_CLIENTS = "/WEB-INF/views/clients/editerClients.jsp";
 	private static final String VUE_LISTER_CLIENTS = "/clients/list";
-
+	
 	@Inject
 	private ClientService clientService;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher(VUE_AJOUTER_CLIENTS).forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Client client = clientService.getById(Integer.valueOf(request.getParameter("id")));
+		request.setAttribute("client", client);
+		this.getServletContext().getRequestDispatcher(VUE_EDITER_CLIENTS).forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Integer id = Integer.valueOf(request.getParameter("id"));
 		String nom = request.getParameter("nom");
-		/*
-		Map<String, String> erreurs = new HashMap<>();
-		if(nom.isEmpty()){
-			erreurs.put("nom", "Veuillez saisir un nom");
-		}*/
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String motDePasse = request.getParameter("motDePasse");
 		String adresse = request.getParameter("adresse");
-		clientService.save(new Client(nom, prenom, email, motDePasse, adresse));
+		Client client = new Client(nom, prenom, email, motDePasse, adresse);
+		clientService.update(id, client);
 		response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
 	}
 
