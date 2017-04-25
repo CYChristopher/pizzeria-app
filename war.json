@@ -1,0 +1,16 @@
+{
+  "build": {
+    "type": "maven",
+    "goal": "clean package"
+  },
+  "deploy": {
+    "container": "TOMCAT8",
+    "war": [
+      {
+        "file": "pizzeria-web-api/target/pizzeria-web-api.war",
+        "context": "/pizzeria-web-api",
+        "checkMe": "pizzeria-web-api/pizzas"
+      }
+    ]
+  }
+}
