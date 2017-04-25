@@ -42,7 +42,7 @@ public class ModifierIngredientController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		LOG.log(Level.INFO, "-------!!!!------- modification de l'ingredient n : " + this.id);
+		LOG.log(Level.INFO, "-------!!!------- modification de l'ingredient n : " + this.id);
 		
 		Ingredient old = ingredientService.findById(this.id);
 		
