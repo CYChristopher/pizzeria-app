@@ -28,11 +28,11 @@ public class AjouterClientController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
+		String nom = request.getParameter("nom").trim();
+		String prenom = request.getParameter("prenom").trim();
+		String email = request.getParameter("email").trim();
 		String motDePasse = request.getParameter("motDePasse");
-		String adresse = request.getParameter("adresse");
+		String adresse = request.getParameter("adresse").trim();
 		clientService.save(new Client(nom, prenom, email, motDePasse, adresse));
 		response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
 	}
