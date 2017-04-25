@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --content-base public --hot --inline --history-api-fallback",
+    "start": "webpack-dev-server --content-base public --hot --inline --history-api-fallback --port 8000",
     "api": "json-server data.json"
   },
   "author": "",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-local-storage": "^0.5.2",
     "angular-route": "^1.6.1"
   }
 }
