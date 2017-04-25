@@ -83,7 +83,5 @@ public class AjouterIngredientController extends HttpServlet {
 			doGet(req, resp);
 		}
 		
-		// redirection vers la liste des ingredients
-		resp.sendRedirect(req.getContextPath() + "/ingredients/list");
 	}
 }

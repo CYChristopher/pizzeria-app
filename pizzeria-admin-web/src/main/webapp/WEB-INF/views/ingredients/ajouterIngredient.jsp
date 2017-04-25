@@ -13,13 +13,13 @@
 	<div class="container">
 	
 		<h1>Nouvelle Ingredient</h1>
-
+		
 		<c:if test="${ msg != null }">
 			<div class="alert alert-danger" role="alert">${ msg }</div>
 		</c:if>
 		
 		<form method="post">
-
+		
 			<label for="nom">Nom :</label>
 			<input style="border-color:${ erreur [0] }" class="form-control" id="nom"
 				name="nom" type="text" placeholder=" ex : tomate..." value="${ nom }">
