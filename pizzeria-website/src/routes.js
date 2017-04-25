@@ -1,12 +1,12 @@
 export function routes($routeProvider) {
     $routeProvider
-    
+
     .when('/', {
-        template: '<home> </home>'
+        template: '<home></home>'
     })
 
     .when('/pizzas', {
-        template: 'test'
+        template: '<liste-pizzas></liste-pizzas>'
     })
 
     .otherwise({
