@@ -9,20 +9,20 @@ export class ClientService {
 
     getClient(id) {
         return (id !== undefined)
-            ? this.$http.get(`${this.API_URL}/${id}`)
+            ? this.$http.get(`${this.API_URL}/clients/${id}`)
                 .then(response => response.data)
             : Promise.resolve({});
     }
 
     saveClient(client) {
         return (client.id)
-            ? this.$http.put(`${this.API_URL}/client/${client.id}`, client)
-            : this.$http.post(`${this.API_URL}/client`, client)
+            ? this.$http.put(`${this.API_URL}/clients/${client.id}`, client)
+            : this.$http.post(`${this.API_URL}/clients`, client)
                 .then(response => response.data);
     }
 
     deleteClient(client) {
-        return this.$http.delete(`${this.API_URL}/${client.id}`)
+        return this.$http.delete(`${this.API_URL}/${clients.id}`)
             .then(response => response.data);
     }
 }

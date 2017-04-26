@@ -7,9 +7,12 @@ class controller{
 	$onInit(){		
 		this.CommandeService.getCommandes().then(commandes=>{
 			this.commandes=commandes	
-			console.log(this.commandes)	
 		})
-    }		
+    }
+	
+	setCommande(){
+		this.CommandeService.setCommande()
+	}
 	
 }
 

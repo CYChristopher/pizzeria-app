@@ -7,5 +7,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ICommandeRepository extends JpaRepository<Commande, Integer> {
 
-	Commande findById(String id);
 }

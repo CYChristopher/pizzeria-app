@@ -1,22 +1,19 @@
 import angular from 'angular'
 import ngRoute from 'angular-route'
 
-import {routes} from './routes'
-import {PizzaService} from './shared/service/pizza.service'
-import {CommandeService} from './shared/service/commande.service'
+import { routes } from './routes'
+import { LocalStorageModule } from 'angular-local-storage'
+
+import { PizzaService } from './shared/service/pizza.service'
+import { CommandeService } from './shared/service/commande.service'
 import { ClientService } from './shared/service/client.service'
+
 import { HomeComponent } from './home.component'
-import {PizzaComponent} from './pizza.component'
-import {ListePizzasComponent} from './listePizzas.component'
-import {AjouterPanierComponent} from './ajouterPanier.component'
-import {CommandeComponent} from './commande.component'
-import {LocalStorageModule} from 'angular-local-storage'
-import { InscriptionComponent } from './inscription/index'
+import { PizzaComponent } from './pizza.component'
+import { ListePizzasComponent } from './listePizzas.component'
+import { CommandeComponent } from './commande.component'
+import { InscriptionComponent } from './inscription.component'
 import { AjouterPanierComponent } from './ajouterPanier.component'
-
-
-
-
 
 angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .value('API_URL', 'http://localhost:8080')
@@ -37,5 +34,5 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
 .component('home', HomeComponent)
 .component('ajouterPanier', AjouterPanierComponent)
 .component('commande',CommandeComponent)
-.component('inscriptionComponent', InscriptionComponent)
+.component('inscription', InscriptionComponent)
 

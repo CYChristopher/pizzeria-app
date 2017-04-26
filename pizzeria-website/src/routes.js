@@ -6,7 +6,7 @@ export function routes($routeProvider) {
     })
     
     .when('/inscription', {
-            template: '<inscription-component></inscription-component>',
+            template: '<inscriptiont></inscription>',
     })
 
     .when('/pizzas', {
