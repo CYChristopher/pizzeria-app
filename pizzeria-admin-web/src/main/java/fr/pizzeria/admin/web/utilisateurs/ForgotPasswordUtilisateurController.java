@@ -22,65 +22,74 @@ import fr.pizzeria.model.Utilisateur;
 
 @WebServlet("/utilisateurs/password")
 public class ForgotPasswordUtilisateurController extends HttpServlet {
-	
+
 	private static final String CHAR_LIST = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	private static final String VUE_PASSWORD = "/WEB-INF/views/utilisateurs/forgotPassword.jsp";
 	private static final String VUE_LOGIN = "/utilisateurs/login";
-	
+
 	@Inject
 	private UtilisateursService utilisateurService;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Utilisateur utilisateur = utilisateurService.find(Integer.valueOf(request.getParameter("id")));
-		
-		
-		// Parameters
-		String host = "smtp.gmail.com";
-		String user = "dta201702pizzayolo@gmail.com";
-		String password = "dtapizza";
-		String to = utilisateur.getEmail();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		this.getServletContext().getRequestDispatcher(VUE_PASSWORD).forward(request, response);
+	}
 
-		// Get system properties
-		Properties props = new Properties();
-		
-		// Setup mail server
-		props.put("mail.smtp.host", host);
-		
-		// Disable the authentication
-		props.setProperty("mail.smtp.auth", "true");
-		
-		// Enable TSL
-		props.put("mail.smtp.starttls.enable", "true");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		// Get the default Session object.
-		Session session = Session.getDefaultInstance(props);
-		
-		StringBuilder mdp = new StringBuilder();
-		Random random = new Random();
-        for(int i=0; i<10; i++){
-            int number = (int)(random.nextInt(CHAR_LIST.length()));
-            mdp.append(CHAR_LIST.charAt(number));
-        }
+		Utilisateur utilisateur = utilisateurService.findByEmail(request.getParameter("email"));
+		if (utilisateur == null) {
+			this.getServletContext().getRequestDispatcher(VUE_PASSWORD).forward(request, response);
+		} else {
+			// Parameters
+			String host = "smtp.gmail.com";
+			String user = "dta201702pizzayolo@gmail.com";
+			String password = "dtapizza";
+			String to = utilisateur.getEmail();
 
-		try {
-			MimeMessage message = new MimeMessage(session);
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("Réinitialisation du mot de passe");
-			message.setText("Votre mot de passe temporaire est le suivant: " + mdp.toString() + "\n"
-					+ "Veuillez vous connecter et le changer au plus vite en cliquant sur le lien ci-dessous.\n"
-					+ request.getContextPath() + VUE_LOGIN);
-			Transport transport = session.getTransport("smtp");
-	        transport.connect(host, user, password);
-	        transport.sendMessage(message, message.getAllRecipients());
-	        transport.close();
-	        utilisateur.setMotDePasse(mdp.toString());
-	        utilisateurService.update(utilisateur.getId(), utilisateur);
-		} catch(MessagingException e) {
-			e.printStackTrace();
+			// Get system properties
+			Properties props = new Properties();
+
+			// Setup mail server
+			props.put("mail.smtp.host", host);
+
+			// Disable the authentication
+			props.setProperty("mail.smtp.auth", "true");
+
+			// Enable TSL
+			props.put("mail.smtp.starttls.enable", "true");
+
+			// Get the default Session object.
+			Session session = Session.getDefaultInstance(props);
+
+			StringBuilder mdp = new StringBuilder();
+			Random random = new Random();
+			for (int i = 0; i < 10; i++) {
+				int number = (int) (random.nextInt(CHAR_LIST.length()));
+				mdp.append(CHAR_LIST.charAt(number));
+			}
+
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+				message.setSubject("Réinitialisation du mot de passe");
+				message.setText("Votre mot de passe temporaire est le suivant: " + mdp.toString() + "\n"
+						+ "Veuillez vous connecter et le changer au plus vite en allant sur le lien ci-dessous.\n"
+						+ request.getContextPath() + VUE_LOGIN);
+				Transport transport = session.getTransport("smtp");
+				transport.connect(host, user, password);
+				transport.sendMessage(message, message.getAllRecipients());
+				transport.close();
+				utilisateur.setMotDePasse(mdp.toString());
+				utilisateurService.update(utilisateur.getId(), utilisateur);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+
+			response.sendRedirect(request.getContextPath() + VUE_LOGIN);
 		}
-		
-		response.sendRedirect(request.getContextPath() + VUE_LOGIN);
-		
+
 	}
 
 }
