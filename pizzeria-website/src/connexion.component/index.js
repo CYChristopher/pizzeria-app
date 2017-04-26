@@ -16,7 +16,13 @@ class controller {
             }
             else {
                 this.stockageService.set('utilisateur', resp, 'sessionStorage');
-                this.$location.path('/');// TODO : Redirection vers la derniere page visitée
+                let pagePrecedente = this.stockageService.get('pagePrecedente');
+                if (!pagePrecedente) {
+                    this.$location.path('/');
+                }
+                else {
+                    this.$location.path(pagePrecedente);
+                }
             }
         })
     }
