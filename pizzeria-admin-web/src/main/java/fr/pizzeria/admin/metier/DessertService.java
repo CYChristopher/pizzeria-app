@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Dessert;
 
@@ -18,12 +19,28 @@ public class DessertService {
 		return em.createQuery("select d from Dessert d", Dessert.class).getResultList();
 	}
 
-	public void update(String code, Dessert dessert) {
+	public void update(Integer id, Dessert dessert) {
 
-		Dessert dessertMod = em.createQuery("select des from Dessert des where des.code=:codP", Dessert.class)
-				.setParameter("codP", code).getSingleResult();
-		dessert.setId(dessertMod.getId());
-		em.merge(dessert);
+		TypedQuery<Dessert> query = em.createQuery("select des from Dessert des where des.id='" + id + "'",
+				Dessert.class);
+
+		Dessert dessertMod = (Dessert) query.getResultList().get(0);
+
+		if (dessertMod != null) {
+
+			dessert.setId(dessertMod.getId());
+			em.merge(dessert);
+
+		}
+
+	}
+
+	public Dessert find(Integer id) {
+
+		TypedQuery<Dessert> query = em.createQuery("select des from Dessert des where des.id='" + id + "'",
+				Dessert.class);
+
+		return query.getResultList().get(0);
 
 	}
 
@@ -41,14 +58,12 @@ public class DessertService {
 		em.persist(dessert);
 
 	}
-	
-	
+
 	public Dessert findbycode(String code) {
 
-		return  em.createQuery("select des from Dessert des where des.code=:codP", Dessert.class)
+		return em.createQuery("select des from Dessert des where des.code=:codP", Dessert.class)
 				.setParameter("codP", code).getSingleResult();
 
 	}
-	
 
 }
