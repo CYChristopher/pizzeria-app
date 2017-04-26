@@ -57,5 +57,5 @@
 
 	</table>
 	
-<jsp:include page="../layout/footer.html"/>
+<jsp:include page="../layout/footer.jsp"/>
 	
