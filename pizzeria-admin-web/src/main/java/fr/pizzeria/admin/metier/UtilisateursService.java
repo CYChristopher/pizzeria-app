@@ -17,43 +17,35 @@ import fr.pizzeria.model.Utilisateur;
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 public class UtilisateursService {
 
+	private static final String SELECT_BY_EMAIL = "select u from Utilisateur u where u.email=:email";
+	private static final String SELECT_BY_ID = "select u from Utilisateur u where u.id=:id";
+
 	@PersistenceContext(unitName = "pizzeria-admin-web")
 	private EntityManager em;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Utilisateur> findAll() {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u", Utilisateur.class);
-
-		List<Utilisateur> l = query.getResultList();
-
-		return l;
-
+		return em.createQuery("select u from Utilisateur u", Utilisateur.class).getResultList();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Utilisateur find(Integer id) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
-				Utilisateur.class);
-
-		return query.getResultList().get(0);
-
+		return em.createQuery(SELECT_BY_ID, Utilisateur.class).setParameter("id", id).getSingleResult();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void saveNew(Utilisateur utilisateur) {
 
 		em.persist(utilisateur);
-
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void update(Integer id, Utilisateur utilisateur) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.id='" + id + "'",
-				Utilisateur.class);
-		Utilisateur u = (Utilisateur) query.getResultList().get(0);
+		TypedQuery<Utilisateur> query = em.createQuery(SELECT_BY_ID, Utilisateur.class).setParameter("id", id);
+		Utilisateur u = query.getResultList().get(0);
 
 		if (u != null) {
 
@@ -64,39 +56,29 @@ public class UtilisateursService {
 			u.setId(idUpdate);
 
 			em.merge(u);
-
 		}
-
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void delete(Integer id) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where p.id='" + id + "'",
-				Utilisateur.class);
-		Utilisateur p = (Utilisateur) query.getResultList().get(0);
+		TypedQuery<Utilisateur> query = em.createQuery(SELECT_BY_ID, Utilisateur.class).setParameter("id", id);
+		Utilisateur p = query.getResultList().get(0);
 
 		if (p != null) {
 			em.remove(p);
 		}
-
 	}
-	
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Utilisateur findByEmail(String email) {
 
-		TypedQuery<Utilisateur> query = em.createQuery("select u from Utilisateur u where u.email='" + email + "'",
-				Utilisateur.class);
+		TypedQuery<Utilisateur> query = em.createQuery(SELECT_BY_EMAIL, Utilisateur.class).setParameter("email", email);
 
-		if(query.getResultList().isEmpty())
-		{
-			return null;			
+		if (query.getResultList().isEmpty()) {
+			return null;
 		}
-		
-		return query.getResultList().get(0);
-
+		return query.getSingleResult();
 	}
-	
-	
 
 }
