@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.pizzeria.admin.exception.StockageException;
 import fr.pizzeria.admin.metier.IngredientService;
 
 /**
@@ -30,10 +31,15 @@ public class ListerIngredientController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.setAttribute("listeIngredients", this.ingredientService.findAll());
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_INGREDIENTS);
-		dispatcher.forward(req, resp);
-		
+		try {
+			req.setAttribute("listeIngredients", this.ingredientService.findAll());
+		} catch (StockageException e) {
+			LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
+			req.setAttribute("msg", "Erreur du serveur, merci de contacter le support de l'application ");
+		} finally {
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_INGREDIENTS);
+			dispatcher.forward(req, resp);			
+		}
 	}
 
 	@Override
@@ -41,10 +47,13 @@ public class ListerIngredientController extends HttpServlet {
 		
 		Integer id = Integer.valueOf(req.getParameter("id").toString());
 		LOG.log(Level.INFO, "-------!!!------- suppression de l'ingredient n : " + id);
-		ingredientService.delete(id);
-		
-		resp.sendRedirect(req.getContextPath() + "/ingredients/list");
+		try {
+			ingredientService.delete(id);
+		} catch (StockageException e) {
+			LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
+			req.setAttribute("msg", "Erreur du serveur, merci de contacter le support de l'application ");
+		} finally {
+			resp.sendRedirect(req.getContextPath() + "/ingredients/list");			
+		}
 	}
-	
-	
 }

@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import fr.pizzeria.admin.exception.StockageException;
 import fr.pizzeria.model.Ingredient;
 
 @Stateless
@@ -23,47 +24,62 @@ public class IngredientService {
 	private TypedQuery<Ingredient> query;
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public List<Ingredient> findAll(){
-		this.query = em.createQuery("select i from Ingredient i", Ingredient.class);
-		List<Ingredient> ingredients = query.getResultList();
-		//ingredients != null ? return ingredients : //todo exception
-		return ingredients;
-	}
-	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public Ingredient findById(Integer id){
-		
-		this.query = em.createQuery("select i from Ingredient i where i.id=:id", Ingredient.class);
-		this.query.setParameter("id", id);
-		
-		return query.getSingleResult();
-	}
-	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void save(Ingredient ingredient) {
-		em.persist(ingredient);
-	}
-	
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void update(Integer id, Ingredient ingredient){
-		
-		Ingredient old = findById(id);
-		
-		if(old != null){
-			ingredient.setId(old.getId());
-			em.merge(ingredient);			
+	public List<Ingredient> findAll() throws StockageException {
+		try {
+			this.query = em.createQuery("select i from Ingredient i", Ingredient.class);
+			List<Ingredient> ingredients = query.getResultList();
+			return ingredients;
+		} catch (Exception e) {
+			throw new StockageException("Erreur de récupération des ingredients", e);
 		}
-		//todo else exception
-		
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public void delete(Integer id){
-		Ingredient ingredient = findById(id);
-		if(ingredient != null){
-			em.remove(ingredient);			
+	public Ingredient findById(Integer id) throws StockageException {
+		try {
+			this.query = em.createQuery("select i from Ingredient i where i.id=:id", Ingredient.class);
+			this.query.setParameter("id", id);
+			
+			return query.getSingleResult();
+			
+		} catch (Exception e) {
+			throw new StockageException("Erreur de récupération d'un ingredient", e);
 		}
-		//todo else exception
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void save(Ingredient ingredient) throws StockageException {
+		try {
+			em.persist(ingredient);
+		} catch (Exception e) {
+			throw new StockageException("Erreur à l'ajout d'un ingredient", e);
+		}
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void update(Integer id, Ingredient ingredient) throws StockageException {
+		try {
+			Ingredient old = findById(id);
+			
+			if(old != null){
+				ingredient.setId(old.getId());
+				em.merge(ingredient);			
+			}
+		} catch (Exception e) {
+			throw new StockageException("Erreur à l'update d'un ingredient", e);
+		}
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void delete(Integer id) throws StockageException {
+		try {
+			Ingredient ingredient = findById(id);
+			if(ingredient != null){
+				em.remove(ingredient);			
+			}
+		} catch (Exception e) {
+			throw new StockageException("Erreur à la suppression d'un ingredient", e);
+		}
 	}
 	
 }
