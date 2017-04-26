@@ -41,7 +41,7 @@ public class NouvelleCommandeController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		Pizza totoPizza = new Pizza("TOT", "toto" + Math.random(), BigDecimal.valueOf(12.0),
+		Pizza totoPizza = new Pizza("TOT", "totoo" + Math.random(), BigDecimal.valueOf(12.0),
 				CategoriePizza.SANS_VIANDE);
 		pizzaService.save(totoPizza);
 
