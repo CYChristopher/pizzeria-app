@@ -40,7 +40,6 @@
 						<a href="<c:url value="/ingredient/edit?id=${ingedient.id}"/>" class="btn btn-primary">Editer</a>
 					</td>
 					<td>
-
 						<form method="POST">
 							<input type="hidden" name="id" value="${ingedient.id}">
 							<input type="hidden" name="action" value="supprimer">

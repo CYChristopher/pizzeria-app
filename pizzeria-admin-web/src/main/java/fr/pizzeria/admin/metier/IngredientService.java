@@ -17,7 +17,12 @@ public class IngredientService {
 	public List<Ingredient> findAll(){
 		return em.createQuery("select i from Ingredient i", Ingredient.class).getResultList();
 	}
-
+	
+	public Ingredient findById(Integer id){
+		return em.createQuery("select i from Ingredient i where i.id=:id", Ingredient.class)
+				.setParameter("id", id).getSingleResult();
+	}
+	
 	public void save(Ingredient ingredient) {
 		em.persist(ingredient);
 	}
@@ -34,9 +39,4 @@ public class IngredientService {
 		em.remove(ingredient);
 	}
 	
-	public Ingredient findById(Integer id){
-		return em.createQuery("select i from Ingredient i where i.id=:id", Ingredient.class)
-					.setParameter("id", id).getSingleResult();
-	}
-
 }
