@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +26,8 @@ public class ModifierIngredientController extends HttpServlet {
 	private static final String VUE_EDIT_INGREDIENT = "/WEB-INF/views/ingredients/modifierIngredient.jsp";
 	private Integer id;
 	
-	@Inject private IngredientService ingredientService;
+	@EJB
+	private IngredientService ingredientService;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
