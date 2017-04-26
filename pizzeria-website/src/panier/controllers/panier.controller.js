@@ -4,6 +4,7 @@ export class PanierController {
         this.localStorageService = localStorageService;
         this.PizzaService = PizzaService;
 
+        this.localStorageService.setStorageType('localStorage');
         this.panier = this.localStorageService.get('panier');
         this.pizzas = [];
         this.prixTotal = 0;
