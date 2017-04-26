@@ -21,7 +21,7 @@ public class ConnexionFilter implements Filter {
 	
 	private static final String VUE_LOGIN = "/WEB-INF/views/utilisateurs/connexionUtilisateur.jsp";
 	
-	private static final List<String> ALLOWED_PATHS = Arrays.asList("/login", "/", "/index.jsp", "/static/*", "/utilisateurs/password", "/utilisateur/nouveau");
+	private static final List<String> ALLOWED_PATHS = Arrays.asList("/login", "/", "/index.jsp", "/static/*", "/utilisateurs/password");
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {
