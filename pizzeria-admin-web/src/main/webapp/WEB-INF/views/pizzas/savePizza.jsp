@@ -37,10 +37,8 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-6"> 
-			<ul id="ingredientSelectione" class='list-group' >
+			<div class="col-sm-6" id="ingredientSelectione" class='list-group'> 
 			
-			</ul>
 			</div>
 			<div class="col-sm-6"> 
 			<ul id="ingredients" class='list-group' >

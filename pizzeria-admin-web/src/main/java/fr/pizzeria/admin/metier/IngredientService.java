@@ -51,16 +51,6 @@ public class IngredientService {
 	}
 	
 	public Ingredient findByName(String name) {
-
-		System.out.println(em.createQuery("select ingr from Ingredient ingr where ingr.nom=:codP", Ingredient.class)
-				.setParameter("codP", name).getResultList());
-		
-		List<Ingredient> all = em.createQuery("select ingr from Ingredient ingr", Ingredient.class).getResultList();
-		System.out.println("name "+ name );
-		for(Ingredient i:all)
-		{
-			System.out.println(i.getNom());
-		}
 		
 		return  em.createQuery("select ingr from Ingredient ingr where ingr.nom=:codP", Ingredient.class)
 				.setParameter("codP", name).getSingleResult();

@@ -69,15 +69,12 @@ public class SavePizzaController extends HttpServlet {
 			
 			for(String ing : ingredients)
 			{
-				System.out.println(ing);
 				listIngredient.add(ingredientService.findByName(ing));
 			}
 			
 			Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
 					CategoriePizza.valueOf(categorie), LocalDateTime.now(),true,listIngredient);
 			
-			//Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-			//		CategoriePizza.valueOf(categorie), LocalDateTime.now(),true);
 			
 			pizzaService.save(pizza);
 

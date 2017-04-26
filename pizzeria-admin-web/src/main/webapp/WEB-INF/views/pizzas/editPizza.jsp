@@ -6,11 +6,11 @@
 	<jsp:param name="title" value="Lister Pizza" />
 </jsp:include>
 
-<jsp:include page="../layout/navbar.jsp"/>
+<jsp:include page="../layout/navbar.jsp" />
 
 <div class="container">
-	<h1>Editer Pizza ${editPizza.code} </h1>
-	
+	<h1>Editer Pizza ${editPizza.code}</h1>
+
 	<c:if test="${msg != null}">
 		<div class="alert alert-danger" role="alert">${msg}</div>
 	</c:if>
@@ -35,7 +35,7 @@
 		</div>
 
 
-		 <div class="form-group">
+		<div class="form-group">
 			<label for="categorie">Categorie : </label> <select id="categorie"
 				class="form-control" name="categorie">
 				<c:forEach var="current" items="${categoriePizza}">
@@ -53,12 +53,34 @@
 			</select>
 		</div>
 
+		<div class="row">
+			<div class="col-sm-6" id="ingredientSelectione" class='list-group'>
+				<c:forEach var="current" items="${editPizza.listeIngredients}">
+					<input id='${current.id}' class="list-group-item" name="ingredientSelectione" value='${current.nom}'>
+				</c:forEach>
+			</div>
+			<div class="col-sm-6">
+				<ul id="ingredients" class='list-group'>
+					<c:forEach var="current" items="${listeIngredients}">
+						<li id='${current.id}' class="list-group-item">${current.nom}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</div>
+
+
+
+
+
+
 		<input class="btn btn-success" type="submit" value="Valider">
 		<a href=<c:url value='/pizzas/list'/>><button type="button"
 				class="btn btn-primary">Retour</button></a>
 	</form>
 
 </div>
-	
-<jsp:include page="../layout/footer.html"/>
-	
+
+<script type="text/javascript"
+	src='<c:url value="/static/JS/gestionIngredient.js"/>'></script>
+
+<jsp:include page="../layout/footer.html" />
