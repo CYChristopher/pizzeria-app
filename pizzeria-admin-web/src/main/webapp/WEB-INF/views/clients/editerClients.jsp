@@ -8,7 +8,10 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
+
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 
 	<h1>Ajout d'un clients</h1>
 	<form class="form-horizontal" method="POST"
@@ -59,4 +62,4 @@
 
 </div>
 
-<jsp:include page="../layout/footer.html" />
+<jsp:include page="../layout/footer.jsp" />

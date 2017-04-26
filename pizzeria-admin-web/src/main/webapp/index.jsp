@@ -10,6 +10,8 @@
 <div class="container">
 
 	<!-- Main component for a primary marketing message or call to action -->
+	<div class="row">
+		<div class="col-md-9">
 	<div class="jumbotron">
 		<div class="container">
 			<h1>Pizzeria Administration</h1>
@@ -23,4 +25,4 @@
 </div>
 <!-- /container -->
 
-<jsp:include page="WEB-INF/views/layout/footer.html"/>
+<jsp:include page="WEB-INF/views/layout/footer.jsp"/>
