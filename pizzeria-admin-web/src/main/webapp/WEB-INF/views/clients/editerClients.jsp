@@ -9,7 +9,9 @@
 <jsp:include page="../layout/navbar.jsp" />
 
 <div class="container">
-
+	<c:if test="${msg != null}">
+		<div class="alert alert-danger" role="alert">${msg}</div>
+	</c:if>
 	<h1>Ajout d'un clients</h1>
 	<form class="form-horizontal" method="POST"
 		action="<c:url value='/clients/edit?id=${client.id}'/>">

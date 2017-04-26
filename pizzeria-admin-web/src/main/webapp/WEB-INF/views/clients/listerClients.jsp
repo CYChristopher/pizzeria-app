@@ -12,9 +12,6 @@
 
 	<h1>Liste des clients</h1>
 	<a class="btn btn-primary" href="new">Nouveau client</a> <br>
-	<c:if test="${msg != null}">
-		<div class="alert alert-danger" role="alert">${msg}</div>
-	</c:if>
 
 	<table class="table">
 		<thead>

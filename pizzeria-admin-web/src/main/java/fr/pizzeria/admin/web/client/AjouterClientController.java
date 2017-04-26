@@ -33,8 +33,13 @@ public class AjouterClientController extends HttpServlet {
 		String email = request.getParameter("email").trim();
 		String motDePasse = request.getParameter("motDePasse");
 		String adresse = request.getParameter("adresse").trim();
-		clientService.save(new Client(nom, prenom, email, motDePasse, adresse));
-		response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
+		if(clientService.getByEmail(email) == null){
+			clientService.save(new Client(nom, prenom, email, motDePasse, adresse));
+			response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
+		} else {
+			request.setAttribute("msg", "L'email est déjà utilisé par un autre client.");
+			this.getServletContext().getRequestDispatcher(VUE_AJOUTER_CLIENTS).forward(request, response);
+		}
 	}
 
 }

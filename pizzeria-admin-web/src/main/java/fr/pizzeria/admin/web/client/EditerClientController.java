@@ -36,9 +36,16 @@ public class EditerClientController extends HttpServlet {
 		String email = request.getParameter("email").trim();
 		String motDePasse = request.getParameter("motDePasse");
 		String adresse = request.getParameter("adresse").trim();
-		Client client = new Client(nom, prenom, email, motDePasse, adresse);
-		clientService.update(id, client);
-		response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
+		Client client = clientService.getByEmail(email);
+		if(client == null || client.getId() == id){
+			client = new Client(nom, prenom, email, motDePasse, adresse);
+			clientService.update(id, client);
+			response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
+		} else {
+			request.setAttribute("msg", "L'email est déjà utilisé par un autre client.");
+			request.setAttribute("client", clientService.getById(id));
+			this.getServletContext().getRequestDispatcher(VUE_EDITER_CLIENTS).forward(request, response);
+		}
 	}
 
 }
