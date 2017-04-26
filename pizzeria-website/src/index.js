@@ -9,9 +9,10 @@ import { PizzaComponent } from './pizza.component'
 import { ListePizzasComponent } from './listePizzas.component'
 import { InscriptionComponent } from './inscription/index'
 import { AjouterPanierComponent } from './ajouterPanier.component'
+import { PanierModule } from './panier'
 
 
-angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
+angular.module('pizzeria', [ngRoute, 'LocalStorageModule', PanierModule])
     .value('API_URL', 'http://localhost:8080')
     .config(routes)
     .config(function ($routeProvider, $locationProvider) {

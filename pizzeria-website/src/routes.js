@@ -13,6 +13,12 @@ export function routes($routeProvider) {
         template: '<liste-pizzas></liste-pizzas>'
     })
 
+    .when('/panier', {
+            templateUrl: 'templates/panier.html',
+            controller: 'PanierController',
+            controllerAs: 'ctrl'
+        })
+
     .otherwise({
         redirectTo: '/'
     })
