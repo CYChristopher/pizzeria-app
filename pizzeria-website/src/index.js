@@ -8,7 +8,10 @@ import { PizzaService } from './shared/service/pizza.service'
 import { ClientService } from './shared/service/client.service'
 import { PizzaComponent } from './pizza.component'
 import { ListePizzasComponent } from './listePizzas.component'
+<<<<<<< HEAD
 import { InscriptionComponent } from './inscription/index'
+=======
+>>>>>>> #23 usw008 mon compte
 import { AjouterPanierComponent } from './ajouterPanier.component'
 import { MonCompteComponent } from './monCompte.component'
 
@@ -24,6 +27,7 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
         localStorageServiceProvider
             .setPrefix('pizzeriaLS')
     }])
+<<<<<<< HEAD
     .service('PizzaService', PizzaService)
     .service('ClientService', ClientService)
     .component('pizza', PizzaComponent)
@@ -32,3 +36,12 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .component('ajouterPanier', AjouterPanierComponent)
     .component('inscriptionComponent', InscriptionComponent)
     .component('monCompte', MonCompteComponent)
+=======
+
+.service('PizzaService', PizzaService)
+
+.component('pizza', PizzaComponent)
+    .component('listePizzas', ListePizzasComponent)
+    .component('home', HomeComponent)
+    .component('ajouterPanier', AjouterPanierComponent)
+>>>>>>> #23 usw008 mon compte
