@@ -210,6 +210,7 @@
         <jdbc.url>jdbc:mysql://localhost:3306/pizzeriadb</jdbc.url>
         <jdbc.user>pizzeriadb</jdbc.user>
         <jdbc.pass>pizzeriadb</jdbc.pass>
+        <jpa.generate-ddl>true</jpa.generate-ddl>
         <jdbc.connections.max.active>5</jdbc.connections.max.active>
       </properties>
     </profile>
@@ -220,6 +221,7 @@
         <jdbc.url>jdbc:mysql://${env.MYSQL_ADDON_HOST}:${env.MYSQL_ADDON_PORT}/${env.MYSQL_ADDON_DB}?autoReconnect=true</jdbc.url>
         <jdbc.user>${env.MYSQL_ADDON_USER}</jdbc.user>
         <jdbc.pass>${env.MYSQL_ADDON_PASSWORD}</jdbc.pass>
+        <jpa.generate-ddl>false</jpa.generate-ddl>
         <jdbc.connections.max.active>2</jdbc.connections.max.active>
       </properties>
     </profile>
