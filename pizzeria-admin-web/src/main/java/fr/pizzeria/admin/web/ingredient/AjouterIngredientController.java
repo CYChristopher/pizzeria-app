@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +25,7 @@ public class AjouterIngredientController extends HttpServlet {
 	
 	private static final String VUE_LISTER_INGREDIENTS = "/WEB-INF/views/ingredients/ajouterIngredient.jsp";
 	
-	@Inject
+	@EJB
 	private IngredientService ingredientService;
 
 	@Override
@@ -42,9 +42,9 @@ public class AjouterIngredientController extends HttpServlet {
 				&& !req.getParameter("quantite").isEmpty() 
 				&& !req.getParameter("prix").isEmpty()) {
 			
-			LOG.log(Level.INFO, "------------- !!! -------------  nom :" + req.getParameter("nom"));
-			LOG.log(Level.INFO, "------------- !!! -------------  quantite :" + req.getParameter("quantite"));
-			LOG.log(Level.INFO, "------------- !!! -------------  prix :" + req.getParameter("prix"));
+			LOG.log(Level.INFO, "-------!!!-------  nom :" + req.getParameter("nom"));
+			LOG.log(Level.INFO, "-------!!!-------  quantite :" + req.getParameter("quantite"));
+			LOG.log(Level.INFO, "-------!!!-------  prix :" + req.getParameter("prix"));
 			
 			Ingredient i = new Ingredient(
 					req.getParameter("nom").toString(), 
@@ -52,7 +52,7 @@ public class AjouterIngredientController extends HttpServlet {
 					Double.valueOf(req.getParameter("prix").toString())
 					);
 			
-			LOG.log(Level.INFO, "-------!!----- Ajout ingrédient :" + i.toString());
+			LOG.log(Level.INFO, "-------!!!------- Ajout ingrédient :" + i.toString());
 			
 			ingredientService.save(i);
 			
@@ -81,6 +81,5 @@ public class AjouterIngredientController extends HttpServlet {
 			req.setAttribute("msg", "Veuillez saisir les champs en rouge : ");
 			doGet(req, resp);
 		}
-		
 	}
 }

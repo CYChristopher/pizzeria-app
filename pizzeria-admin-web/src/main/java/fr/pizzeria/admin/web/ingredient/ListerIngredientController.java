@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +24,7 @@ public class ListerIngredientController extends HttpServlet {
 	
 	private static final String VUE_LISTER_INGREDIENTS = "/WEB-INF/views/ingredients/listerIngredients.jsp";
 	
-	@Inject
+	@EJB
 	private IngredientService ingredientService;
 
 	@Override
