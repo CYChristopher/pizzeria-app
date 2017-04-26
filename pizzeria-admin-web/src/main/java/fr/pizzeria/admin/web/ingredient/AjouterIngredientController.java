@@ -47,16 +47,18 @@ public class AjouterIngredientController extends HttpServlet {
 			LOG.log(Level.INFO, "-------!!!-------  quantite :" + req.getParameter("quantite"));
 			LOG.log(Level.INFO, "-------!!!-------  prix :" + req.getParameter("prix"));
 			
-			Ingredient i = new Ingredient(
-					req.getParameter("nom").toString(), 
-					Integer.valueOf(req.getParameter("quantite").toString()), 
-					Double.valueOf(req.getParameter("prix").toString())
-					);
-			
-			LOG.log(Level.INFO, "-------!!!------- Ajout ingrédient :" + i.toString());
 			
 			try {
+				
+				Ingredient i = new Ingredient(
+						req.getParameter("nom").toString(), 
+						Integer.valueOf(req.getParameter("quantite").toString()), 
+						Double.valueOf(req.getParameter("prix").toString())
+						);
+				
+				LOG.log(Level.INFO, "-------!!!------- Ajout ingrédient :" + i.toString());
 				ingredientService.save(i);
+				
 			} catch (StockageException e) {
 				LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
 				req.setAttribute("msg", "Erreur du serveur, merci de contacter le support de l'application ");

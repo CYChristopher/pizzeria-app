@@ -35,13 +35,25 @@ public class IngredientService {
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Ingredient> findAllAviable() throws StockageException {
+		try {
+			this.query = em.createQuery("select i from Ingredient i where i.archive=:archive", Ingredient.class);
+			this.query.setParameter("archive", Boolean.FALSE);
+			
+			List<Ingredient> ingredients = query.getResultList();
+			return ingredients;
+		} catch (Exception e) {
+			throw new StockageException("Erreur de récupération des ingredients", e);
+		}
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Ingredient findById(Integer id) throws StockageException {
 		try {
 			this.query = em.createQuery("select i from Ingredient i where i.id=:id", Ingredient.class);
 			this.query.setParameter("id", id);
 			
 			return query.getSingleResult();
-			
 		} catch (Exception e) {
 			throw new StockageException("Erreur de récupération d'un ingredient", e);
 		}
@@ -70,12 +82,19 @@ public class IngredientService {
 		}
 	}
 	
+	/**
+	 * change le champ archive à true
+	 * @param id
+	 * @throws StockageException
+	 */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void delete(Integer id) throws StockageException {
 		try {
 			Ingredient ingredient = findById(id);
 			if(ingredient != null){
-				em.remove(ingredient);			
+				ingredient.setArchive(true);
+				//em.remove(ingredient);
+				em.merge(ingredient);
 			}
 		} catch (Exception e) {
 			throw new StockageException("Erreur à la suppression d'un ingredient", e);
