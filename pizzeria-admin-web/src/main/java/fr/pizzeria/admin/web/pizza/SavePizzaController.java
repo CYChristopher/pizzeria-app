@@ -35,8 +35,8 @@ public class SavePizzaController extends HttpServlet {
 
 	@Inject
 	private PizzaService pizzaService;
-	
-	@Inject 
+
+	@Inject
 	private IngredientService ingredientService;
 
 	@Override
@@ -46,8 +46,8 @@ public class SavePizzaController extends HttpServlet {
 
 		for (CategoriePizza current : CategoriePizza.values()) {
 			setCategorie.add(current);
-		}	
-		 req.setAttribute("listeIngredients", this.ingredientService.findAll());
+		}
+		req.setAttribute("listeIngredients", this.ingredientService.findAll());
 		req.setAttribute("categoriePizza", setCategorie);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_PIZZA);
 		dispatcher.forward(req, resp);
@@ -57,51 +57,56 @@ public class SavePizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
-				&& !request.getParameter("prix").isEmpty()) {
-			String newcode = request.getParameter("newcode");
-			String ref = request.getParameter("ref");
-			String prix = request.getParameter("prix");
-			String categorie = request.getParameter("categorie");
-			String[] ingredients = request.getParameterValues("ingredientSelectione");
-			
-			List<Ingredient> listIngredient = new ArrayList<>();
-			
-			for(String ing : ingredients)
-			{
-				listIngredient.add(ingredientService.findByName(ing));
-			}
-			
-			Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-					CategoriePizza.valueOf(categorie), LocalDateTime.now(),true,listIngredient);
-			
-			
-			pizzaService.save(pizza);
+		try {
 
-			response.sendRedirect(request.getContextPath() + "/pizzas/list");
+			if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
+					&& !request.getParameter("prix").isEmpty()) {
+				String newcode = request.getParameter("newcode");
+				String ref = request.getParameter("ref");
+				String prix = request.getParameter("prix");
+				String categorie = request.getParameter("categorie");
+				String[] ingredients = request.getParameterValues("ingredientSelectione");
 
-		} else {
-			String erreur[] = { "", "", "" };
-			if (request.getParameter("newcode").isEmpty()) {
-				erreur[0] = "red";
+				List<Ingredient> listIngredient = new ArrayList<>();
+
+				for (String ing : ingredients) {
+					listIngredient.add(ingredientService.findByName(ing));
+				}
+
+				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
+						CategoriePizza.valueOf(categorie), LocalDateTime.now(), true, listIngredient);
+
+				pizzaService.save(pizza);
+
+				response.sendRedirect(request.getContextPath() + "/pizzas/list");
+
 			} else {
-				request.setAttribute("newcode", request.getParameter("newcode"));
+				String erreur[] = { "", "", "" };
+				if (request.getParameter("newcode").isEmpty()) {
+					erreur[0] = "red";
+				} else {
+					request.setAttribute("newcode", request.getParameter("newcode"));
+				}
+
+				if (request.getParameter("ref").isEmpty()) {
+					erreur[1] = "red";
+				} else {
+					request.setAttribute("ref", request.getParameter("ref"));
+				}
+
+				if (request.getParameter("prix").isEmpty()) {
+					erreur[2] = "red";
+				} else {
+					request.setAttribute("prix", request.getParameter("prix"));
+				}
+
+				request.setAttribute("erreur", erreur);
+				request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
+				doGet(request, response);
 			}
 
-			if (request.getParameter("ref").isEmpty()) {
-				erreur[1] = "red";
-			} else {
-				request.setAttribute("ref", request.getParameter("ref"));
-			}
-
-			if (request.getParameter("prix").isEmpty()) {
-				erreur[2] = "red";
-			} else {
-				request.setAttribute("prix", request.getParameter("prix"));
-			}
-
-			request.setAttribute("erreur", erreur);
-			request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
+		} catch (NullPointerException e) {
+			request.setAttribute("msg", "Liste des ingredients vide");
 			doGet(request, response);
 		}
 

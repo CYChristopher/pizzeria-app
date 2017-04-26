@@ -73,26 +73,35 @@ public class UpdatePizzaController extends HttpServlet {
 		BigDecimal prix;
 		String categorie;
 
-		newcode = request.getParameter("newcode").isEmpty() ? (oldPizza.getCode()) : request.getParameter("newcode");
-		ref = request.getParameter("ref").isEmpty() ? oldPizza.getNom() : request.getParameter("ref");
-		prix = request.getParameter("prix").isEmpty() ? oldPizza.getPrix()
-				: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
-		categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getNom() : request.getParameter("categorie");
-		
-		String[] ingredients = request.getParameterValues("ingredientSelectione");		
-		List<Ingredient> listIngredient = new ArrayList<>();
-		
-		for(String ing : ingredients)
-		{
-			listIngredient.add(ingredientService.findByName(ing));
+		//getParameterValues envoie NullPointerException si la liste des ingredients selectionnées est vide
+		try {
+
+			newcode = request.getParameter("newcode").isEmpty() ? (oldPizza.getCode())
+					: request.getParameter("newcode");
+			ref = request.getParameter("ref").isEmpty() ? oldPizza.getNom() : request.getParameter("ref");
+			prix = request.getParameter("prix").isEmpty() ? oldPizza.getPrix()
+					: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
+			categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getNom()
+					: request.getParameter("categorie");
+
+			String[] ingredients = request.getParameterValues("ingredientSelectione");
+			List<Ingredient> listIngredient = new ArrayList<>();
+
+			for (String ing : ingredients) {
+				listIngredient.add(ingredientService.findByName(ing));
+			}
+
+			Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie), LocalDateTime.now(), true,
+					listIngredient);
+
+			pizzaService.save(pizza);
+
+			response.sendRedirect(request.getContextPath() + "/pizzas/list");
+
+		} catch (NullPointerException e) {
+			request.setAttribute("msg", "Liste des ingredients vide");
+			doGet(request, response);
 		}
-		
-
-		Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie), LocalDateTime.now(),true,listIngredient);
-
-		pizzaService.save(pizza);
-
-		response.sendRedirect(request.getContextPath() + "/pizzas/list");
 
 	}
 

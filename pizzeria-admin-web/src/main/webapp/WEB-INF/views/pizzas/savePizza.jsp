@@ -37,16 +37,19 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-6" id="ingredientSelectione" class='list-group'> 
-			
+			<div class="col-sm-6">
+				<h2>Ingredients sélectionné</h2>
+				<div id="ingredientSelectione" class='list-group'></div>
 			</div>
-			<div class="col-sm-6"> 
-			<ul id="ingredients" class='list-group' >
-			<c:forEach var="current" items="${listeIngredients}">
-				<li id='${current.id}' class="list-group-item">${current.nom}</li>
-			</c:forEach>
-			</ul>
+			<div class="col-sm-6">
+				<h2>Liste des ingredients</h2>
+				<ul id="ingredients" class='list-group'>
+					<c:forEach var="current" items="${listeIngredients}">
+						<li id='${current.id}' class="list-group-item">${current.nom}</li>
+					</c:forEach>
+				</ul>
 			</div>
+
 		</div>
 
 
