@@ -8,22 +8,13 @@ export class PanierController {
         this.pizzas = [];
         this.prixTotal = 0;
         this.PizzaService.getPizzas()
-<<<<<<< HEAD
             .then(pizzas => { this.pizzas = pizzas })
             .then(() => this.prixTotal = this.getPrixTotal());
-=======
-            .then(pizzas => { this.pizzas = pizzas; this.prixTotal = this.getPrixTotal })
-            .then(this.getPrixTotal());
->>>>>>> #19 Merging src/index.js
     }
 
     //retourne la pizza de 'pizzas' avec pizzaId
     getPizzabyId(pizzaId) {
-<<<<<<< HEAD
         return this.pizzas.find(pizza => pizza.id === parseInt(pizzaId));
-=======
-        return this.pizzas.find(()=>pizza.id === pizzaId);
->>>>>>> #19 Merging src/index.js
     }
 
 
