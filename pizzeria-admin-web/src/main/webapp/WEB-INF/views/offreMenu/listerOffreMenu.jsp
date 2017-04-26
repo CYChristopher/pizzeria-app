@@ -11,7 +11,7 @@
 <div class="container">
 
 	<h1>Liste des offres de menu</h1>
-	<a class="btn btn-primary" href="new">Nouvelle offre de menu</a> <br>
+	<a class="btn btn-primary" href="nouvelle">Nouvelle offre de menu</a> <br>
 
 	<table class="table">
 		<thead>
@@ -34,6 +34,9 @@
 					<td>${om.code}</td>
 					<td>${om.nom}</td>
 					<td>${om.prix}€</td>
+					<c:forEach var="piz" items="${om.pizzas}">
+				${piz.nom}<br>
+					</c:forEach>
 					<td>${om.pizzas}</td>
 					<td>${om.boissons}</td>
 					<td>${om.desserts}</td>
