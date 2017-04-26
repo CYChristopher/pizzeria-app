@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.pizzeria.admin.exception.StockageException;
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.model.Ingredient;
 
@@ -54,9 +55,15 @@ public class AjouterIngredientController extends HttpServlet {
 			
 			LOG.log(Level.INFO, "-------!!!------- Ajout ingrédient :" + i.toString());
 			
-			ingredientService.save(i);
+			try {
+				ingredientService.save(i);
+			} catch (StockageException e) {
+				LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
+				req.setAttribute("msg", "Erreur du serveur, merci de contacter le support de l'application ");
+			} finally {
+				resp.sendRedirect(req.getContextPath() + "/ingredients/list");				
+			}
 			
-			resp.sendRedirect(req.getContextPath() + "/ingredients/list");
 		} else {
 			String erreur[] = { "", "", "" };
 			if (req.getParameter("nom").isEmpty()) {
