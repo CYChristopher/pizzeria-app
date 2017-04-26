@@ -15,7 +15,6 @@ class controller {
         this.pizzas.then(pizza => this.last3.push(pizza[pizza.length - 2]));
         this.pizzas.then(pizza => this.last3.push(pizza[pizza.length - 3]));
     }
-
 }
 
 export const HomeComponent = {

@@ -1,11 +1,90 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <h1> Informations personnelles </h1>
-    <p> email : {{$ctrl.user.email}}
-        <br> Mot de passe :
-        <br> Nom : {{$ctrl.user.nom}}
-        <br> Prénom : {{$ctrl.user.prenom}}
-        <br> Adresse : {{$ctrl.user.adresse}}
-    </p>
+    <button class="btn pull-right bouton" ng-click=$ctrl.modifications() ng-if="!$ctrl.modif"> Modifier </button>
+
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        Nom :
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
+        {{$ctrl.user.nom}} Bobo
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
+        <form name="formMAJ">
+            <div name="divNom" class="form-group">
+                <input id="nomClient" name="nomClient" ng-model="$ctrl.client.nom" type="text" value="BOBO" class="form-control">
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        Prénom :
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
+        {{$ctrl.user.prenom}} Toto
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
+        <form name="formMAJ">
+            <div name="divPrenom" class="form-group">
+                <input id="prenomClient" name="prenomClient" ng-model="$ctrl.client.prenom" type="text" value="Votre prenom" class="form-control">
+            </div>
+        </form>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        Email :
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
+        {{$ctrl.user.email}} Toto.Bobo@gzejgzeofkjzeol.Fr
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
+        <form name="formMAJ">
+            <div name="divEmail" class="form-group">
+                <input id="emailClient" name="emailClient" ng-model="$ctrl.client.email" type="email" value="Votre email" class="form-control">
+                <p class="text-danger" ng-if="formMAJ.emailClient.$error.email 
+                    && formMAJ.emailClient.$touched">Votre email est invalide !</p>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        Mot de passe :
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
+        ******
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
+        <form name="formMAJ">
+            <div name="divEmail" class="form-group">
+                <input id="mdpClient" name="mdpClient" ng-model="$ctrl.client.motDePasse" type="password" value="Votre mot de passe" class="form-control">
+                <p class="text-danger" ng-if="formInscription.mdpClient.$error.required 
+                        && formInscription.mdpClient.$touched">Veuillez rentrer un mot de passe !</p>
+
+                <input id="confMdpClient" name="confMdpClient" ng-model="$ctrl.confMdp" type="password" value="Confirmez votre mot de passe" class="form-control">
+                <p class="text-danger" ng-if="$ctrl.client.motDePasse !== $ctrl.confMdp && formInscription.mdpClient.$touched && formInscription.confMdpClient.$touched">Les mots de passe ne sont pas identiques !</p>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        Adresse :
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
+        {{$ctrl.user.adresse}} 33 rue du pays de l'amour 45640 bisounoursland
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
+        <form name="formMAJ">
+            <div name="divAdresse" class="form-group">
+                <input id="adresseClient" name="adresseClient" ng-model="$ctrl.client.adresse" type="text" value="Votre adresse" class="form-control">
+            </div>
+        </form>
+        <button ng-disabled="formInscription.$invalid || $ctrl.client.motDePasse !== $ctrl.confMdp" type="submit" class="btn bouton" ng-click="$ctrl.modifications()">Modifier Informations</button>
+    </div>
+
+</div>
+
 </div>
 
 
@@ -22,12 +101,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="commande from $ctrl.commandes">
+            <!--<tr ng-repeat="commande from $ctrl.commandes">
                 <td> commande.dateCommande </td>
                 <td class="hidden-xs"> commande.numeroCommande </td>
                 <td class="hidden-xs"> commande.statut </td>
                 <td class="hidden-xs"> commande.prix </td>
                 <td> <a href="/details" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a> </td>
-            </tr>
+            </tr>-->
         </tbody>
 </div>

@@ -5,12 +5,12 @@
     padding: 2px;
 }
 
-.inscription{
-    margin-left: 35%; 
+.inscription {
+    margin-left: 35%;
     margin-right: 15%;
 }
 
-.titre-inscription{
+.titre-inscription {
     margin-left: 12%;
 }
 
@@ -59,7 +59,6 @@ a {
 a:hover {
     text-decoration: none;
 }
-
 
 .bouton:hover {
     color: black;

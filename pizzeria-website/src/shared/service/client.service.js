@@ -8,17 +8,17 @@ export class ClientService {
     }
 
     getClient(id) {
-        return (id !== undefined)
-            ? this.$http.get(`${this.API_URL}/${id}`)
-                .then(response => response.data)
-            : Promise.resolve({});
+        return (id !== undefined) ?
+            this.$http.get(`${this.API_URL}/${id}`)
+            .then(response => response.data) :
+            Promise.resolve({});
     }
 
     saveClient(client) {
-        return (client.id)
-            ? this.$http.put(`${this.API_URL}/client/${client.id}`, client)
-            : this.$http.post(`${this.API_URL}/client`, client)
-                .then(response => response.data);
+        return (client.id) ?
+            this.$http.put(`${this.API_URL}/client/${client.id}`, client) :
+            this.$http.post(`${this.API_URL}/client`, client)
+            .then(response => response.data);
     }
 
     deleteClient(client) {
