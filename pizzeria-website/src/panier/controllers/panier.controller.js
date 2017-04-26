@@ -8,13 +8,13 @@ export class PanierController {
         this.pizzas = [];
         this.prixTotal = 0;
         this.PizzaService.getPizzas()
-            .then(pizzas => { this.pizzas = pizzas; this.prixTotal = this.getPrixTotal })
-            .then(this.getPrixTotal());
+            .then(pizzas => { this.pizzas = pizzas })
+            .then(() => this.prixTotal = this.getPrixTotal());
     }
 
     //retourne la pizza de 'pizzas' avec pizzaId
     getPizzabyId(pizzaId) {
-        return this.pizzas.find(()=>pizza.id === pizzaId);
+        return this.pizzas.find(pizza => pizza.id === parseInt(pizzaId));
     }
 
 
@@ -42,14 +42,14 @@ export class PanierController {
 
     //repercute tout les changements du panier local sur le localStorage
     updatePanier() {
-        this.localStorageService.set('panier', 'this.panier');
+        this.localStorageService.set('panier', this.panier, 'localStorage');
         this.prixTotal = this.getPrixTotal();
     }
 
     getPrixTotal() {
-        if (!this.panier) return 0;
+        if (this.panier === null) return 0;
         return this.panier
-            .reduce(function (accumulateur, item) {
+            .reduce( (accumulateur, item) => {
                 return accumulateur + (this.getPizzabyId(item.id).prix * item.quantite);
             }, 0)
     }
