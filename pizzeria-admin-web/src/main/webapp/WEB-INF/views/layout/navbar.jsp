@@ -31,7 +31,7 @@
         <li><a href=<c:url value='/clients/list'/>>Clients</a></li>
         <li><a href="#">Commandes</a></li>
         <li><a href=<c:url value='/livreurs/list'/>>Livreurs</a></li>
-        <li><a href="#">Ingrédients</a></li>
+        <li><a href="<c:url value='/ingredients/list'/>">Ingrédients</a></li>
         <li><a href="#">Statistiques</a></li>
         <li><a href="#">Promotions</a></li>
         <!--

@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.ingredient;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -14,8 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.pizzeria.admin.metier.IngredientService;
 
 /**
- * @author collidorlionel
- * contrôleur de la page Liste des ingrédients.
+ * Servlet de la page Liste des ingrédients.
  */
 @WebServlet("/ingredients/list")
 public class ListerIngredientController extends HttpServlet {
@@ -34,6 +34,16 @@ public class ListerIngredientController extends HttpServlet {
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_INGREDIENTS);
 		dispatcher.forward(req, resp);
 		
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		Integer id = Integer.valueOf(req.getParameter("id").toString());
+		LOG.log(Level.INFO, "-------!!!------- suppression de l'ingredient n : " + id);
+		ingredientService.delete(id);
+		
+		resp.sendRedirect(req.getContextPath() + "/ingredients/list");
 	}
 	
 	

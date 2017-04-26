@@ -16,7 +16,6 @@ import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.model.Ingredient;
 
 /**
- * @author collidorlionel
  * Servlet de modification des ingredients.
  */
 @WebServlet("/ingredient/edit")

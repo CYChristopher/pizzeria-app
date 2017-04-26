@@ -16,8 +16,7 @@ import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.model.Ingredient;
 
 /**
- * @author collidorlionel
- * contrôleur de la page ajout d'un ingredient.
+ * Servlet de la page ajout d'un ingredient.
  */
 @WebServlet("/ingredient/add")
 public class AjouterIngredientController extends HttpServlet {
