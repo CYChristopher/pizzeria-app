@@ -37,8 +37,8 @@ public class UpdatePizzaController extends HttpServlet {
 
 	@Inject
 	private PizzaService pizzaService;
-
-	@Inject
+	
+	@Inject 
 	private IngredientService ingredientService;
 
 	@Override

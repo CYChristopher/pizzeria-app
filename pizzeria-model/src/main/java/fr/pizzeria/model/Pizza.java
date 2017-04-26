@@ -20,7 +20,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Pizza {
 
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -33,6 +32,7 @@ public class Pizza {
 	private LocalDateTime versionPizza;
 	private Boolean actif;
 	
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Ingredient> listeIngredients;
 
@@ -184,14 +184,6 @@ public class Pizza {
 		return new HashCodeBuilder(17, 37).append(code).toHashCode();
 	}
 
-	public Boolean getActif() {
-		return actif;
-	}
-
-	public void setActif(Boolean actif) {
-		this.actif = actif;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -208,9 +200,4 @@ public class Pizza {
 	}
 
 	
-
-
-    
-    
-    
 }

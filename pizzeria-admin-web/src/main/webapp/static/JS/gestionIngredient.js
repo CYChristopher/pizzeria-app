@@ -2,10 +2,12 @@
 let eventAjout = document.getElementById("ingredients").addEventListener("click",addIngredient);
 let ingredientSelectione = document.getElementById('ingredientSelectione');
 let eventIngredientSelectione = document.getElementById('ingredientSelectione').addEventListener("click",removeIngredient);
+
 let h = document.createElement.bind(document);
 
 function addIngredient(a){
 	
+
 	
 	let li = h('input');
     li.className = 'list-group-item';
@@ -17,7 +19,7 @@ function addIngredient(a){
 
 function removeIngredient(a){	
 	
-	console.log(a);
+	
    ingredientSelectione.removeChild(a.target);
 }
 

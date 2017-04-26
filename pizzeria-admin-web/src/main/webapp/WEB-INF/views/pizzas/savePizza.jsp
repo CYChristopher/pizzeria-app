@@ -38,6 +38,7 @@
 		</div>
 
 		<div class="row">
+
 			<div class="col-sm-6">
 				<h2>Ingredients sélectionné</h2>
 				<div id="ingredientSelectione" class='list-group'></div>
@@ -50,9 +51,7 @@
 					</c:forEach>
 				</ul>
 			</div>
-
 		</div>
-
 
 
 
@@ -64,6 +63,5 @@
 
 <script type="text/javascript"
 	src='<c:url value="/static/JS/gestionIngredient.js"/>'></script>
-
 
 <jsp:include page="../layout/footer.html" />

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
 
 
@@ -24,6 +25,9 @@ public class DeletePizzaController extends HttpServlet {
 	
 	@Inject
 	private PizzaService pizzaService;
+	
+	@Inject 
+	private IngredientService ingredientService;
 
 
 	@Override

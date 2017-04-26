@@ -35,10 +35,10 @@ public class SavePizzaController extends HttpServlet {
 
 	@Inject
 	private PizzaService pizzaService;
-
-
-	@Inject
+	
+	@Inject 
 	private IngredientService ingredientService;
+
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,9 +47,9 @@ public class SavePizzaController extends HttpServlet {
 
 		for (CategoriePizza current : CategoriePizza.values()) {
 			setCategorie.add(current);
+
 		}
 		req.setAttribute("listeIngredients", this.ingredientService.findAll());
-
 		req.setAttribute("categoriePizza", setCategorie);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_PIZZA);
 		dispatcher.forward(req, resp);
@@ -68,6 +68,7 @@ public class SavePizzaController extends HttpServlet {
 				String prix = request.getParameter("prix");
 				String categorie = request.getParameter("categorie");
 				String[] ingredients = request.getParameterValues("ingredientSelectione");
+
 
 
 				List<Ingredient> listIngredient = new ArrayList<>();
