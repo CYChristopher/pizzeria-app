@@ -7,11 +7,8 @@
 		<class>fr.pizzeria.model.Client</class>
 		<class>fr.pizzeria.model.Livreur</class>
 		<class>fr.pizzeria.model.Dessert</class>
-<<<<<<< Upstream, based on origin/develop
 		<class>fr.pizzeria.model.Boisson</class>
-=======
 		<class>fr.pizzeria.model.Ingredient</class>
->>>>>>> 570ddf7 usa011-ingredients-crud #11
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 		</properties>
