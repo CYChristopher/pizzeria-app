@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.pizzeria.admin.metier.UtilisateursService;
 import fr.pizzeria.model.Utilisateur;
 
-@WebServlet("/utilisateur/editer")
+@WebServlet("/utilisateurs/edit")
 public class EditerUtilisateurController extends HttpServlet {
 
 	@EJB
