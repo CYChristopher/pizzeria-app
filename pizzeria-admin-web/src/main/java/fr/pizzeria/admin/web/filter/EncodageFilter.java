@@ -24,13 +24,13 @@ public class EncodageFilter implements Filter {
 	}
 
 	@Override
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+	public void init(FilterConfig filterConfig) throws ServletException {
+
 	}
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
+
 	}
 
 }
