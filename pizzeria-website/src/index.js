@@ -12,7 +12,7 @@ import { AjouterPanierComponent } from './ajouterPanier.component'
 
 
 angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
-    .value('API_URL', 'http://localhost:8080')
+    .value('API_URL', BACKEND_API_URL)
     .config(routes)
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
