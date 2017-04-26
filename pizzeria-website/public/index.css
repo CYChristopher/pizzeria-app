@@ -46,9 +46,15 @@ a:hover {
     text-decoration: none;
 }
 
-a.dernieres-pizzas {
+
+.bouton:hover {
+    color: black;
+}
+
+.bouton {
     background: orangered;
     color: white;
+    border: none;
 }
 
 
