@@ -5,6 +5,20 @@
     padding: 2px;
 }
 
+.inscription{
+    margin-left: 35%; 
+    margin-right: 15%;
+}
+
+.titre-inscription{
+    margin-left: 12%;
+}
+
+.inscriptionBtn {
+    background: orangered;
+    color: white;
+}
+
 .navbar-toggle {
     background: orangered;
 }
@@ -46,9 +60,15 @@ a:hover {
     text-decoration: none;
 }
 
-a.dernieres-pizzas {
+
+.bouton:hover {
+    color: black;
+}
+
+.bouton {
     background: orangered;
     color: white;
+    border: none;
 }
 
 

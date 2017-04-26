@@ -206,10 +206,10 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <jdbc.driver>org.mariadb.jdbc.Driver</jdbc.driver>
-        <jdbc.url>jdbc:mariadb://localhost:3306/pizzeriadb</jdbc.url>
-        <jdbc.user>root</jdbc.user>
-        <jdbc.pass></jdbc.pass>
+        <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+        <jdbc.url>jdbc:mysql://localhost:3306/pizzeriadb</jdbc.url>
+        <jdbc.user>pizzeriadb</jdbc.user>
+        <jdbc.pass>pizzeriadb</jdbc.pass>
       </properties>
     </profile>
 

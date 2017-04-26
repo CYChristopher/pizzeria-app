@@ -1,4 +1,4 @@
- module.exports = {
+module.exports = {
      entry: './src/index.js',
      output: {
          path: './public',
@@ -19,5 +19,4 @@
      },
 
      devtool: 'source-map'
-
  };
