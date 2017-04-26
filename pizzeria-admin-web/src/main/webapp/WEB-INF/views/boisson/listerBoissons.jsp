@@ -6,60 +6,46 @@
 	<jsp:param name="title" value="Liste des Boissons" />
 </jsp:include>
 
-<jsp:include page="../layout/navbar.jsp"/>
-	<div class="jumbotron">
-		<div class="container">
+<jsp:include page="../layout/navbar.jsp" />
 
-	<h1>Liste des Boissons</h1>
-	<a class="btn btn-primary" href=<c:url value="/boisson/nouvelle"/>>Nouvelle Boisson</a>
-	<br>
-	<c:if test="${msg != null}">
-		<div class="alert alert-danger" role="alert">${msg}</div>
-	</c:if>
+	<div class="container">
 
+		<h1>Liste des Boissons</h1>
+		<a class="btn btn-primary" href=<c:url value="/boisson/nouvelle"/>>Nouvelle
+			Boisson</a> <br>
 
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Id</th>
+					<th>Code</th>
+					<th>Nom</th>
+					<th>Prix</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
 
+			<c:forEach var="boisson" items="${listeBoissons}">
+				<tr>
+					<td><img src="${boisson.urlImage}"></td>
+					<td>${boisson.id}</td>
+					<td>${boisson.code}</td>
+					<td>${boisson.nom}</td>
+					<td>${boisson.prix} €</td>
+					<td><a href="<c:url value="/boissons/edit?id=${boisson.id}"/>"
+						class="btn btn-primary">Editer</a></td>
+					<td><form
+							action="<c:url value='/boisson/supprimer?id=${boisson.id}'></c:url>"
+							method="post">
+							<input class='btn btn-danger' type='submit' value='Supprimer'>
+						</form></td>
+				</tr>
+			</c:forEach>
 
-
-
-	<table class="table">
-		<tr>
-			<td>Image</td>
-			<td>Informations</td>
-			<td></td>
-		</tr>
-
-		<c:forEach var="boisson" items="${listeBoissons}">
-		<tr>
-			<td><img src="${boisson.urlImage}"></td>
-			<td>
-				<div class="row">
-					<div class="col-md-6">
-					
-						id. ${boisson.id}<br>
-						code : <b>${boisson.code}</b><br>
-						${boisson.nom}<br>
-						${boisson.prix}€<br>
-					</div>
-					<div class="col-md-6" >
-						<a href="<c:url value="/boissons/edit?id=${boisson.id}"/>" class="btn btn-primary">Editer</a>
-						<br>
-				 		<form action="<c:url value='/boisson/supprimer?id=${boisson.id}'></c:url>" method="post">
-				 			<input class='btn btn-danger' type='submit' value='supprimer !!!!'>
-						</form>
-					</div>
-				</div>
-			</td>
-		</tr>
-		</c:forEach>
-
-	
-
-	</table>
-	
-	
-		</div>
+		</table>
 
 </div>
 
-<jsp:include page="../layout/footer.html"/>
+<jsp:include page="../layout/footer.html" />
