@@ -1,3 +1,5 @@
+import sha256 from 'js-sha256'
+
 export class ClientService {
 
     constructor($http, API_URL, $q) {
@@ -24,5 +26,10 @@ export class ClientService {
     deleteClient(client) {
         return this.$http.delete(`${this.API_URL}/${client.id}`)
             .then(response => response.data);
+    }
+    
+    verifierUtilisateur(email, motDePasse){
+        return this.$http.get(`${this.API_URL}/client?email=${email}&motDePasse=${sha256(motDePasse)}`)
+        .then(resp => resp.data);
     }
 }
