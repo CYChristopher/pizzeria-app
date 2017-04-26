@@ -10,6 +10,7 @@
 <div class="container">
 
 <h1> Commandes</h1>
+<a class="btn btn-primary" href="nouvelle">Nouvelle Commande</a>
 
 <table class="table">
   <thead>
@@ -31,15 +32,21 @@
 			<td>${cmd.statut}</td>
 			<td>${cmd.dateCommande}</td>
 			<td>${cmd.adresse}</td>
-			<td>${cmd.livreur}</td>
-			<td>${cmd.client}</td>
+			<td>${cmd.livreur.nom} ${cmd.livreur.prenom}</td>
+			<td>${cmd.client.nom} ${cmd.client.prenom}</td>
+			
+			
+			<c:forEach var="piz" items="${cmd.pizzas}">
+				${piz.nom}<br>
+
+			</c:forEach>
+			
 			<td>${cmd.pizzas}</td>
 			<td>
 			<a href="<c:url value="/commandes/edit?code=${cmd.id}"/>" class="btn btn-primary">Editer</a>
 			<br>
-				<form method="POST">
-					<input type="hidden" name="id" value="${cmd.id}">
-					<input type="hidden" name="action" value="supprimer">
+				<form method="POST"
+					action="<c:url value='/commandes/supprimer?id=${cmd.id}'/>">
 					<button type="submit" class="btn btn-danger">Supprimer</button>
 				</form>
 			</td>

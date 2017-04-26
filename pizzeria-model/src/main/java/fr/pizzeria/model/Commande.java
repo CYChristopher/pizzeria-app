@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,8 @@ public class Commande {
 	private Livreur livreur;
 	@ManyToOne
 	private Client client;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER) // permet de demander à JPA d'aller
+										// charger les pizzas en profondeurs.
 	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
 	private List<Pizza> pizzas = new ArrayList<>();
 
