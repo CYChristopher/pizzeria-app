@@ -19,7 +19,8 @@ public class CommandeResource {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Commande> listAllCommandes() {
-		return this.commandeDao.findAll();
+		List<Commande> list = this.commandeDao.findAll();
+		return list;
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)

@@ -4,10 +4,12 @@ import { HomeComponent } from './home.component'
 
 import {routes} from './routes'
 import {PizzaService} from './shared/service/pizza.service'
+import {CommandeService} from './shared/service/commande.service'
 import {PizzaComponent} from './pizza.component'
 import {ListePizzasComponent} from './listePizzas.component'
 import {AjouterPanierComponent} from './ajouterPanier.component'
-
+import {CommandeComponent} from './commande.component'
+import {LocalStorageModule} from 'angular-local-storage'
 
 
 angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
@@ -21,9 +23,11 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     }])
 
 .service('PizzaService',PizzaService)
+.service('CommandeService',CommandeService)
 .component('pizza',PizzaComponent)
 .component('listePizzas',ListePizzasComponent)
 .component('home', HomeComponent)
 .component('ajouterPanier', AjouterPanierComponent)
+.component('commande',CommandeComponent)
 
 

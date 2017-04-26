@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -26,21 +25,19 @@ public class Commande {
 	private String numeroCommande;
 	@Enumerated(EnumType.STRING)
 	private StatutCommande statut;
+	@Enumerated(EnumType.STRING) private TypeCommande type;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateCommande;
 	@ManyToOne
 	private Livreur livreur;
 	@ManyToOne
 	private Client client;
-	
-	@OneToMany
-	@JoinTable(name = "commande_pizza", 
-	joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), 
-	inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
-	private List<Pizza> pizzas = new ArrayList<>();
+
+	@OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+	private List<CommandePizza> commandesPizzas = new ArrayList<>();
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -48,7 +45,7 @@ public class Commande {
 	}
 
 	public String getNumeroCommande() {
-		return numeroCommande;
+		return this.numeroCommande;
 	}
 
 	public void setNumeroCommande(String numeroCommande) {
@@ -56,7 +53,7 @@ public class Commande {
 	}
 
 	public StatutCommande getStatut() {
-		return statut;
+		return this.statut;
 	}
 
 	public void setStatut(StatutCommande statut) {
@@ -64,7 +61,7 @@ public class Commande {
 	}
 
 	public Calendar getDateCommande() {
-		return dateCommande;
+		return this.dateCommande;
 	}
 
 	public void setDateCommande(Calendar dateCommande) {
@@ -72,7 +69,7 @@ public class Commande {
 	}
 
 	public Livreur getLivreur() {
-		return livreur;
+		return this.livreur;
 	}
 
 	public void setLivreur(Livreur livreur) {
@@ -80,29 +77,25 @@ public class Commande {
 	}
 
 	public Client getClient() {
-		return client;
+		return this.client;
 	}
 
 	public void setClient(Client client) {
 		this.client = client;
 	}
 
-	public List<Pizza> getPizzas() {
-		return new ArrayList<>(pizzas);
-	}
-	
-	public void addPizza(Pizza pizza) {
-		pizzas.add(pizza);
+	public List<CommandePizza> getCommandesPizzas() {
+		return this.commandesPizzas;
 	}
 
-	public void setPizzas(List<Pizza> pizzas) {
-		this.pizzas = pizzas;
+	public void setCommandesPizzas(List<CommandePizza> commandesPizzas) {
+		this.commandesPizzas = commandesPizzas;
 	}
 
 	@Override
 	public String toString() {
-		return "Commande [id=" + id + ", numeroCommande=" + numeroCommande + "]";
+		return "Commande [id=" + this.id + ", numeroCommande=" + this.numeroCommande + "]";
 	}
-	
-	
+
+
 }

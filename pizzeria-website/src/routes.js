@@ -9,6 +9,10 @@ export function routes($routeProvider) {
         template: '<liste-pizzas></liste-pizzas>'
     })
 
+    .when('/commande', {
+        template: '<commande></commande>'
+    })
+
     .otherwise({
         redirectTo: '/'
     })
