@@ -13,7 +13,7 @@ import { PanierModule } from './panier'
 
 
 angular.module('pizzeria', [ngRoute, 'LocalStorageModule', PanierModule])
-    .value('API_URL', 'http://localhost:8080')
+    .value('API_URL', BACKEND_API_URL)
     .config(routes)
     .config(function ($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
