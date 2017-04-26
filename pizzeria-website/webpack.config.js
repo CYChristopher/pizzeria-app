@@ -1,4 +1,4 @@
-const BACKEND_API_URL = process.env.NODE_ENV === 'production' ? 'http://app-b325c1a6-237a-4e11-bdde-39f93eee7f51.cleverapps.io' : 'http://localhost:8080';
+const BACKEND_API_URL = process.env.NODE_ENV === 'production' ? 'https://app-b325c1a6-237a-4e11-bdde-39f93eee7f51.cleverapps.io' : 'http://localhost:8080';
 const webpack = require('webpack');
 
 module.exports = {
