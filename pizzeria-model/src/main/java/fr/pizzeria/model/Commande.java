@@ -4,14 +4,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,11 +29,8 @@ public class Commande {
 	@ManyToOne
 	private Client client;
 	
-	@OneToMany
-	@JoinTable(name = "commande_pizza", 
-	joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), 
-	inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
-	private List<Pizza> pizzas = new ArrayList<>();
+	@OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+	private List<CommandePizza> commandesPizzas = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -84,16 +80,12 @@ public class Commande {
 		this.client = client;
 	}
 
-	public List<Pizza> getPizzas() {
-		return new ArrayList<>(pizzas);
-	}
-	
-	public void addPizza(Pizza pizza) {
-		pizzas.add(pizza);
+	public List<CommandePizza> getCommandesPizzas() {
+		return commandesPizzas;
 	}
 
-	public void setPizzas(List<Pizza> pizzas) {
-		this.pizzas = pizzas;
+	public void setCommandesPizzas(List<CommandePizza> commandesPizzas) {
+		this.commandesPizzas = commandesPizzas;
 	}
 
 	@Override

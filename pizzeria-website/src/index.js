@@ -2,7 +2,7 @@ import angular from 'angular'
 import ngRoute from 'angular-route'
 import home from './home'
 import { Routes } from './routes.js'
-import { CommandeComponent } from './commande/index.js'
+import { CommandeComponent } from './commande.component'
 import {CommandeService} from './shared/service/commande.service'
 
 angular.module('pizzeria', [ngRoute, home])
