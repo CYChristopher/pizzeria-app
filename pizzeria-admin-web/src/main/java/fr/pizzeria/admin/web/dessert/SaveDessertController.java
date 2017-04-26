@@ -16,7 +16,7 @@ import fr.pizzeria.admin.metier.DessertService;
 import fr.pizzeria.model.Dessert;
 
 /**
- * Contrôleur de la page Liste des pizzas.
+ * Contrôleur de la page Liste des desserts.
  */
 @WebServlet("/desserts/new")
 public class SaveDessertController extends HttpServlet {
