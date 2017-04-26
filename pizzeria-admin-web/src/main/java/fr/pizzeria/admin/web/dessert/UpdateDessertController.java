@@ -2,8 +2,6 @@ package fr.pizzeria.admin.web.dessert;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -18,7 +16,7 @@ import fr.pizzeria.admin.metier.DessertService;
 import fr.pizzeria.model.Dessert;
 
 /**
- * Contrôleur de la page Liste des pizzas.
+ * Contrôleur de la page Liste des desserts.
  */
 @WebServlet("/desserts/edit")
 public class UpdateDessertController extends HttpServlet {
@@ -26,7 +24,7 @@ public class UpdateDessertController extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(UpdateDessertController.class.getName());
 
 	private static final String VUE_EDIT_DESSERT = "/WEB-INF/views/desserts/editDesserts.jsp";
-	private String code;
+	private Integer id;
 
 	@Inject
 	private DessertService dessertService;
@@ -35,16 +33,11 @@ public class UpdateDessertController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		this.code = request.getParameter("code");
+		this.id = Integer.parseInt(request.getParameter("id"));
 
-		Set<Object> setCategorie = new TreeSet<>();
+		request.setAttribute("editDessert", dessertService.find(this.id));
 
-		
-		
-		request.setAttribute("editDessert", dessertService.findbycode(this.code));
-		
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher(VUE_EDIT_DESSERT);
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_DESSERT);
 
 		dispatcher.forward(request, response);
 
@@ -54,20 +47,20 @@ public class UpdateDessertController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Dessert oldPizza = dessertService.findbycode(this.code);
-		
-		String newcode ;
-		String ref  ;
-		BigDecimal prix  ;
-		
-		
-		newcode = request.getParameter("newcode").isEmpty()?(oldPizza.getCode()):request.getParameter("newcode");
-		ref = request.getParameter("ref").isEmpty()?oldPizza.getNom():request.getParameter("ref");
-		prix = request.getParameter("prix").isEmpty()?oldPizza.getPrix():BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
-			
+		Dessert oldDessert = dessertService.find(this.id);
+
+		String newcode;
+		String ref;
+		BigDecimal prix;
+
+		newcode = request.getParameter("newcode").isEmpty() ? (oldDessert.getCode()) : request.getParameter("newcode");
+		ref = request.getParameter("ref").isEmpty() ? oldDessert.getNom() : request.getParameter("ref");
+		prix = request.getParameter("prix").isEmpty() ? oldDessert.getPrix()
+				: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
+
 		Dessert dessert = new Dessert(newcode, ref, prix);
 
-		dessertService.update(this.code, dessert);
+		dessertService.update(this.id, dessert);
 
 		response.sendRedirect(request.getContextPath() + "/desserts/list");
 

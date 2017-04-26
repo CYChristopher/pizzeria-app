@@ -35,7 +35,7 @@
 						€<br>
 					</div>
 					<div class="col-md-6" >
-						<a href="<c:url value="/desserts/edit?code=${dessert.code}"/>" class="btn btn-primary">Editer</a>
+						<a href="<c:url value="/desserts/edit?id=${dessert.id}"/>" class="btn btn-primary">Editer</a>
 						<br>
 						<form method="POST">
 							<input type="hidden" name="code" value="${dessert.code}">
