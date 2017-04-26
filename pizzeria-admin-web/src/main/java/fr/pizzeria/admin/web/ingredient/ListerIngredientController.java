@@ -32,7 +32,7 @@ public class ListerIngredientController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-			req.setAttribute("listeIngredients", this.ingredientService.findAll());
+			req.setAttribute("listeIngredients", this.ingredientService.findAllAviable());
 		} catch (StockageException e) {
 			LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
 			req.setAttribute("msg", "Erreur du serveur, merci de contacter le support de l'application ");
@@ -41,12 +41,15 @@ public class ListerIngredientController extends HttpServlet {
 			dispatcher.forward(req, resp);			
 		}
 	}
-
+	
+	/**
+	 * méthode de suppression de l'ingredient
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		Integer id = Integer.valueOf(req.getParameter("id").toString());
-		LOG.log(Level.INFO, "-------!!!------- suppression de l'ingredient n : " + id);
+		LOG.log(Level.INFO, "-------!!!------- suppression/archivage de l'ingredient n : " + id);
 		try {
 			ingredientService.delete(id);
 		} catch (StockageException e) {
