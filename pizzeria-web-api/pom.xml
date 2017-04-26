@@ -48,7 +48,6 @@
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
-<<<<<<< HEAD
 			<version>1.5.9</version>
 		</dependency>
 		<dependency>
@@ -56,10 +55,4 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 	</dependencies>
-=======
-		</dependency>
-
-	</dependencies>
-
->>>>>>> #23 usw008 mon compte
 </project>
