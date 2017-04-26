@@ -6,19 +6,15 @@ class controller {
     }
     ajouterAuStockageLocal() {
         let contenuStockage = this.StockageService.get('panier');
-        let itemPresent = false;
         if (contenuStockage === null) {
             contenuStockage = [];
         }
-        else {
-            contenuStockage.forEach(panierItem => {
-                if (this.item.id === parseInt(panierItem.id)) {
-                    panierItem.quantite++;
-                    itemPresent = true;
-                }
-            });
+        
+        let index = contenuStockage.findIndex(panierItem => this.item.id === parseInt(panierItem.id));
+        if (index >= 0){
+            contenuStockage[index].quantite++;
         }
-        if (!itemPresent) {
+        else {
             contenuStockage.push({ id: `${this.item.id}`, quantite: 1 });
         }
         this.StockageService.set('panier', contenuStockage, 'localStorage');
