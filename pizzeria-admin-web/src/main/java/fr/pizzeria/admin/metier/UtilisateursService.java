@@ -63,10 +63,10 @@ public class UtilisateursService {
 	public void delete(Integer id) {
 
 		TypedQuery<Utilisateur> query = em.createQuery(SELECT_BY_ID, Utilisateur.class).setParameter("id", id);
-		Utilisateur p = query.getResultList().get(0);
+		Utilisateur u = query.getResultList().get(0);
 
-		if (p != null) {
-			em.remove(p);
+		if (u != null) {
+			em.remove(u);
 		}
 	}
 

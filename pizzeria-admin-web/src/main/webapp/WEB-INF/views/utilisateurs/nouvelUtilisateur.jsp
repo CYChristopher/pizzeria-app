@@ -18,7 +18,7 @@
 		<div class="alert alert-danger" role="alert">${msg}</div>
 	</c:if>
 
-	<form action="<c:url value='/utilisateur/nouveau'></c:url>"
+	<form action="<c:url value='/utilisateurs/new'></c:url>"
 		method="post">
 
 

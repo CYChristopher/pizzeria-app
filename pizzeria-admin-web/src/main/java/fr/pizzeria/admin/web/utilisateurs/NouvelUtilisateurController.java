@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.pizzeria.admin.metier.UtilisateursService;
 import fr.pizzeria.model.Utilisateur;
 
-@WebServlet("/utilisateur/nouveau")
+@WebServlet("/utilisateurs/new")
 public class NouvelUtilisateurController extends HttpServlet {
 
 	@EJB
