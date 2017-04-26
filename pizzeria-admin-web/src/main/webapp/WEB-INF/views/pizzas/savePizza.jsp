@@ -30,17 +30,36 @@
 		<div class="form-group">
 			<label for="categorie">Categorie : </label> <select id="categorie"
 				class="form-control" name="categorie">
-				<c:forEach var="current" items="${categoriePizza}">					
-							<option value="${current}">${current.name()}</option>						
+				<c:forEach var="current" items="${categoriePizza}">
+					<option value="${current}">${current.name()}</option>
 				</c:forEach>
 			</select>
 		</div>
-		
-		
+
+		<div class="row">
+			<div class="col-sm-6"> 
+			<ul id="ingredientSelectione" class='list-group' >
+			
+			</ul>
+			</div>
+			<div class="col-sm-6"> 
+			<ul id="ingredients" class='list-group' >
+			<c:forEach var="current" items="${listeIngredients}">
+				<li id='${current.id}' class="list-group-item">${current.nom}</li>
+			</c:forEach>
+			</ul>
+			</div>
+		</div>
+
+
+
 		<input class="btn btn-success" type="submit" value="Valider">
 		<a href=<c:url value='/pizzas/list'/>><button type="button"
 				class="btn btn-primary">Retour</button></a>
 	</form>
 </div>
+
+<script type="text/javascript"
+	src='<c:url value="/static/JS/gestionIngredient.js"/>'></script>
 
 <jsp:include page="../layout/footer.html" />

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -32,6 +33,9 @@ public class UpdatePizzaController extends HttpServlet {
 
 	@Inject
 	private PizzaService pizzaService;
+	
+	@Inject 
+	private IngredientService ingredientService;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
