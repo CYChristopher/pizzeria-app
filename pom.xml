@@ -198,9 +198,13 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>1.3.5.RELEASE</version>
 				</plugin>
+				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>1.1.0.Final</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
-
 	</build>
 
 	<profiles>
@@ -216,9 +220,21 @@
 				<jdbc.pass>pizzeriadb</jdbc.pass>
 				<jdbc.generate>true</jdbc.generate>
 				<jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
+				<jdbc.connections.max.active>5</jdbc.connections.max.active>
 			</properties>
 		</profile>
 
+		<profile>
+			<id>prod</id>
+			<properties>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.url>jdbc:mysql://${env.MYSQL_ADDON_HOST}:${env.MYSQL_ADDON_PORT}/${env.MYSQL_ADDON_DB}</jdbc.url>
+				<jdbc.user>${env.MYSQL_ADDON_USER}</jdbc.user>
+				<jdbc.pass>${env.MYSQL_ADDON_PASSWORD}</jdbc.pass>
+				<jpa.generate-ddl>false</jpa.generate-ddl>
+				<jdbc.connections.max.active>2</jdbc.connections.max.active>
+			</properties>
+		</profile>
 	</profiles>
 
 </project>

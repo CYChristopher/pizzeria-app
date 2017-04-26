@@ -1,54 +1,53 @@
 <div>
-    <h1>Commande n°{{$ctrl.commande.numeroCommande}}</h1>
+    <h1 class="titre-commande">Commande n°{{$ctrl.commande.numeroCommande}}</h1>
     <table class="table">
         <thead>
         </thead>
         <tbody>
             <tr>
-                <th scope="row">Statut</th>
-                <td>{{$ctrl.commande.statut}}</td>
+                <th scope="row" class="td-commande">Statut</th>
+                <td class="td-commande">{{$ctrl.commande.statut}}</td>
             </tr>
             <tr>
-                <th scope="row">Date</th>
-                <td>{{$ctrl.commande.dateCommande.dayOfMonth}}/{{$ctrl.commande.dateCommande.monthValue}}/{{$ctrl.commande.dateCommande.year}}
+                <th scope="row" class="td-commande">Date</th>
+                <td class="td-commande">{{$ctrl.commande.dateCommande.dayOfMonth}}/{{$ctrl.commande.dateCommande.monthValue}}/{{$ctrl.commande.dateCommande.year}}
                     à {{$ctrl.commande.dateCommande.hour}}:{{$ctrl.commande.dateCommande.minute}}:{{$ctrl.commande.dateCommande.second}}</td>
             </tr>
             <tr>
-                <th scope="row">Livreur</th>
-                <td>{{$ctrl.commande.livreur.nom}} {{$ctrl.commande.livreur.prenom}}</td>
+                <th scope="row" class="td-commande">Livreur</th>
+                <td class="td-commande">{{$ctrl.commande.livreur.nom}} {{$ctrl.commande.livreur.prenom}}</td>
             </tr>
             <tr>
-                <th scope="row">Pizzas commandées</th>
-                <td>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Désignation</th>
-                                <th>Quantité</th>
-                                <th>Prix Unitaire</th>
-                                <th>Montant</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="object in $ctrl.commande.commandesPizzas">
-                                <td>{{object.pizza.code}} - {{object.pizza.nom}}</td>
-                                <td>{{object.quantite}}</td>
-                                <td>{{object.pizza.prix}} €</td>
-                                <td>{{object.quantite * object.pizza.prix}} €</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>{{$ctrl.total}} €</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
+                <th scope="row" class="td-commande">Adresse de livraison</th>
+                <td class="td-commande">{{$ctrl.commande.client.adresse}}</td>
             </tr>
-
+        </tbody>
+    </table>
+    <table class="table">
+        <caption class="titre-tab-pizza">Pizzas commandées</caption>
+        <thead>
+            <tr>
+                <th class="td-commande col-sm-4 col-xs-4">Désignation</th>
+                <th class="td-commande col-sm-4 col-xs-4">Quantité</th>
+                <th class="td-commande col-sm-4 col-xs-4">Prix Unitaire</th>
+                <th class="td-commande col-sm-4 col-xs-4">Montant</th>
+                <th class="td-commande col-sm-4 col-xs-4">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="object in $ctrl.commande.commandesPizzas">
+                <td class="td-commande col-sm-4 col-xs-4">{{object.pizza.code}} - {{object.pizza.nom}}</td>
+                <td class="td-commande col-sm-4 col-xs-4">{{object.quantite}}</td>
+                <td class="td-commande col-sm-4 col-xs-4">{{object.pizza.prix}} €</td>
+                <td class="td-commande col-sm-4 col-xs-4">{{object.quantite * object.pizza.prix}} €</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="td-commande">{{$ctrl.total}} €</td>
+            </tr>
         </tbody>
     </table>
 </div>

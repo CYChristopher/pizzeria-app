@@ -1,11 +1,23 @@
-export function Routes($locationProvider, $routeProvider) {
-    $locationProvider.html5Mode(true);
+export function routes($routeProvider) {
     $routeProvider
-        .when('/', {
-            template: '',
-        })
-        .when('/commande/:id?', {
+
+    .when('/', {
+        template: '<home></home>'
+    })
+    
+    .when('/inscription', {
+            template: '<inscription-component></inscription-component>',
+    })
+    
+    .when('/commande/:id?', {
             template: `<commande-component></commande-component>`,
         })
-        .otherwise('/');
+
+    .when('/pizzas', {
+        template: '<liste-pizzas></liste-pizzas>'
+    })
+
+    .otherwise({
+        redirectTo: '/'
+    })
 }
