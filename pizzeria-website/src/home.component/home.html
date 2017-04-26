@@ -4,42 +4,15 @@
     <h1> Nos dernières pizzas :</h1>
 </div>
 
-
-<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="pizza in $ctrl.last3">
     <div class="thumbnail">
         <a href="/pizzas" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza 4 fromages">
-            <img class="derniere-pizza" src="{{ $ctrl.last3[0].urlImage }}" alt="{{ $ctrl.last3[0].nom }}" title="{{ $ctrl.last3[0].nom }}">
+            <img class="derniere-pizza" src="pizza.urlImage" alt="pizza.nom" title="pizza.nom">
         </a>
         <div class="caption">
-            <h3> {{ $ctrl.last3[0].nom }} </h3>
-            <p> {{ $ctrl.last3[0].prix }} €
-                <a href="$ctrl.ajouterAuPanier()" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a>
-            </p>
-        </div>
-    </div>
-</div>
-<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-    <div class="thumbnail">
-        <a href="/pizzas" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza Reine">
-            <img class="derniere-pizza" src="{{ $ctrl.last3[1].urlImage }}" alt="{{ $ctrl.last3[1].nom }}" title="{{ $ctrl.last3[1].nom }}">
-        </a>
-        <div class="caption">
-            <h3> {{ $ctrl.last3[1].nom }} </h3>
-            <p> {{ $ctrl.last3[1].prix }} €
-                <a href="$ctrl.ajouterAuPanier()" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a>
-            </p>
-        </div>
-    </div>
-</div>
-<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-    <div class="thumbnail">
-        <a href="/pizzas" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza Reine">
-            <img class="derniere-pizza" src="{{ $ctrl.last3[2].urlImage }}" alt="{{ $ctrl.last3[2].nom }}" title="{{ $ctrl.last3[2].nom }}">
-        </a>
-        <div class="caption">
-            <h3> {{ $ctrl.last3[2].nom }} </h3>
-            <p> {{ $ctrl.last3[2].prix }} €
-                <a href="$ctrl.ajouterAuPanier()" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a>
+            <h3> {{ pizza.nom }} </h3>
+            <p> {{ pizza.prix }} €
+                <ajouter-panier item="pizza" class="btn pull-right" ></ajouter-panier>
             </p>
         </div>
     </div>
