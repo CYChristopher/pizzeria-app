@@ -10,15 +10,16 @@ import { ListePizzasComponent } from './listePizzas.component'
 import { InscriptionComponent } from './inscription/index'
 import { ConnexionComponent } from './connexion.component'
 import { AjouterPanierComponent } from './ajouterPanier.component'
+import { NavbarComponent } from './navbar.component'
 
 
 angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .value('API_URL', BACKEND_API_URL)
     .config(routes)
-    .config(function ($routeProvider, $locationProvider) {
+    .config(function($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
     })
-    .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+    .config(['localStorageServiceProvider', function(localStorageServiceProvider) {
         localStorageServiceProvider
             .setPrefix('pizzeriaLS')
     }])
@@ -30,3 +31,4 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .component('ajouterPanier', AjouterPanierComponent)
     .component('inscriptionComponent', InscriptionComponent)
     .component('connexion', ConnexionComponent)
+    .component('navbar', NavbarComponent)

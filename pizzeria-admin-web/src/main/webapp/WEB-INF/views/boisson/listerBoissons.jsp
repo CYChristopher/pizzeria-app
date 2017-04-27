@@ -8,7 +8,10 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
-	<div class="container">
+	
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
 
 		<h1>Liste des Boissons</h1>
 		<a class="btn btn-primary" href=<c:url value="/boisson/nouvelle"/>>Nouvelle
@@ -45,7 +48,6 @@
 			</c:forEach>
 
 		</table>
+		</div>
 
-</div>
-
-<jsp:include page="../layout/footer.html" />
+<jsp:include page="../layout/footer.jsp" />
