@@ -80,7 +80,7 @@
                 <input id="adresseClient" name="adresseClient" ng-model="$ctrl.clientConnecte.adresse" type="text" value="Votre adresse" class="form-control">
             </div>
         </form>
-        <button ng-disabled="formInscription.$invalid || $ctrl.clientConnecte.motDePasse !== $ctrl.confMdp" type="submit" class="btn bouton" ng-click="$ctrl.modifications() && $ctrl.ClientService.saveClient($ctrl.client)">Modifier Informations</button>
+        <button ng-disabled="formInscription.$invalid || $ctrl.clientConnecte.motDePasse !== $ctrl.confMdp" type="submit" class="btn bouton" ng-click="$ctrl.soumissionFormulaire()">Modifier Informations</button>
     </div>
 
 </div>

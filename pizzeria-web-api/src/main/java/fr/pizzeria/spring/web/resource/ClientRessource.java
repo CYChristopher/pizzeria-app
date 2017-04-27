@@ -44,10 +44,16 @@ public class ClientRessource {
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
-	public void modifierClient(@RequestBody Client client) {
+	public void modifierClient(@PathVariable("id") Integer id, @RequestBody Client newClient) {
+		
+		Client oldClient = clientDao.findById(id) ;
+		newClient.setId(oldClient.getId()) ;
+		if(newClient.getMotDePasse() == "") {
+			newClient.setMotDePasse(oldClient.getMotDePasse()) ;
+		}
+	
 		//Hash du mot de passe
-		client.setMotDePasse(DigestUtils.sha256Hex(client.getMotDePasse()));
-		clientDao.save(client);
+		newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));
+		clientDao.save(newClient);
 	}
-
 }

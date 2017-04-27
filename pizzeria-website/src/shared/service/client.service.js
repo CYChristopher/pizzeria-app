@@ -18,7 +18,7 @@ export class ClientService {
 
     saveClient(client) {
         return (client.id) ?
-            this.$http.put(`${this.API_URL}/clients`, client) :
+            this.$http.put(`${this.API_URL}/clients/${client.id}`, client) :
             this.$http.post(`${this.API_URL}/clients`, client)
             .then(response => response.data);
     }

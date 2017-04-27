@@ -14,7 +14,10 @@ class controller {
         this.modif = !this.modif;
     }
 
-
+    soumissionFormulaire() {
+        this.modifications()
+        this.ClientService.saveClient(this.clientConnecte);
+    }
 
 
 }
