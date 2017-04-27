@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.UtilisateursService;
 
-@WebServlet("/utilisateur/supprimer")
+@WebServlet("/utilisateurs/delete")
 public class SupprimerUtilisateurController extends HttpServlet {
 
 	@EJB

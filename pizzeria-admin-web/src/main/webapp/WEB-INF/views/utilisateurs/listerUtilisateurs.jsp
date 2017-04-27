@@ -8,10 +8,13 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
+
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 	<h1>Utilisateurs</h1>
 
-	<a href=<c:url value='/utilisateur/nouveau'></c:url>> <input
+	<a href=<c:url value='/utilisateurs/new'></c:url>> <input
 		type="button" value="Ajouter" class='btn btn-success' />
 	</a>
 
@@ -32,11 +35,11 @@
 					<td>${utilisateur.email}</td>
 					<td>${utilisateur.adresse}</td>
 					<td><a
-						href=<c:url value='/utilisateur/editer?id=${utilisateur.id}'></c:url>><button
+						href=<c:url value='/utilisateurs/edit?id=${utilisateur.id}'></c:url>><button
 								class='btn btn-warning'>Editer</button></a></td>
 					<td>
 						<form
-							action="<c:url value='/utilisateur/supprimer?id=${utilisateur.id}'></c:url>"
+							action="<c:url value='/utilisateurs/delete?id=${utilisateur.id}'></c:url>"
 							method="post">
 							<input class='btn btn-danger' type='submit'
 								value='supprimer !!!!'>
@@ -50,6 +53,5 @@
 
 </div>
 
+<jsp:include page="../layout/footer.jsp"/>
 
-
-<jsp:include page="../layout/footer.html" />

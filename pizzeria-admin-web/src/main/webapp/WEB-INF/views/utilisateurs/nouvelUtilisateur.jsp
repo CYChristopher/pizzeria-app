@@ -9,8 +9,9 @@
 <jsp:include page="../layout/navbar.jsp"/>
 
 
-
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 
 	<h2>Utilisateur</h2>
 
@@ -18,7 +19,7 @@
 		<div class="alert alert-danger" role="alert">${msg}</div>
 	</c:if>
 
-	<form action="<c:url value='/utilisateur/nouveau'></c:url>"
+	<form action="<c:url value='/utilisateurs/new'></c:url>"
 		method="post">
 
 
@@ -50,5 +51,4 @@
 </div>
 
 
-
-<jsp:include page="../layout/footer.html"/>
+<jsp:include page="../layout/footer.jsp"/>
