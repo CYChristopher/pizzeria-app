@@ -31,5 +31,19 @@ public class ListerPizzaController extends HttpServlet {
     RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_PIZZAS);
     dispatcher.forward(req, resp);
   }
+  
+  
+  @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String code = request.getParameter("code");
+
+		pizzaService.delete(code);
+
+		response.sendRedirect(request.getContextPath() + "/pizzas/list");
+
+	}
+  
 
 }
