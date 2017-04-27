@@ -1,10 +1,12 @@
 package fr.pizzeria.admin.metier;
 
-import fr.pizzeria.model.Pizza;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import fr.pizzeria.model.Pizza;
 
 @Stateless
 public class PizzaService {
@@ -16,10 +18,10 @@ public class PizzaService {
 		return em.createQuery("select p from Pizza p", Pizza.class).getResultList();
 	}
 
-	public void update(String code, Pizza pizza) {
+	public void update(Integer id, Pizza pizza) {
 
-		Pizza pizzaMod = em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class)
-				.setParameter("codP", code).getSingleResult();
+		Pizza pizzaMod = em.createQuery("select piz from Pizza piz where piz.id=:idP", Pizza.class)
+				.setParameter("idP", id).getSingleResult();
 		pizza.setId(pizzaMod.getId());
 		em.merge(pizza);
 
@@ -39,14 +41,18 @@ public class PizzaService {
 		em.persist(pizza);
 
 	}
-	
-	
-	public Pizza findbycode(String code) {
 
-		return  em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class)
-				.setParameter("codP", code).getSingleResult();
+	public Pizza findById(Integer id) {
+
+		return em.createQuery("select piz from Pizza piz where piz.id=:codP", Pizza.class).setParameter("codP", id)
+				.getSingleResult();
 
 	}
-	
 
+	// Trouve les versions de pizza actifs, renvoit cette liste
+	public List<Pizza> findNewestPizzaByName() {
+		return em.createQuery("select piz from Pizza piz where piz.actif=:val", Pizza.class).setParameter("val", true)
+				.getResultList();
+
+	}
 }
