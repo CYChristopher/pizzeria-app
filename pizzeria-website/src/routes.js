@@ -14,7 +14,7 @@ export function routes($routeProvider) {
     })
 
     .when('/panier', {
-            template: '<panier-component></panier-component>'
+            template: '<panier></panier>'
         })
 
     .otherwise({

@@ -6,8 +6,7 @@ class controller {
         this.localStorageService = localStorageService;
         this.PizzaService = PizzaService;
 
-        this.localStorageService.setStorageType('localStorage');
-        this.panier = this.localStorageService.get('panier');
+        this.panier = this.localStorageService.get('panier','localStorage');
         this.pizzas = [];
         this.prixTotal = 0;
         this.PizzaService.getPizzas()
