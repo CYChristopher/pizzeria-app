@@ -1,5 +1,6 @@
 package fr.pizzeria.admin.metier;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -7,9 +8,13 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.pizzeria.admin.metier.Evenement.Action;
+import fr.pizzeria.admin.metier.Evenement.Type;
 import fr.pizzeria.model.Commande;
 
 @Stateless
@@ -20,6 +25,9 @@ public class CommandeService {
 
 	@PersistenceContext(unitName = "pizzeria-admin-web")
 	private EntityManager em;
+
+	@Inject
+	private Event<Evenement> event;
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Commande> findAll() {
@@ -35,13 +43,22 @@ public class CommandeService {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void create(Commande cmd) {
-
+		Evenement ev = new Evenement();
+		ev.setDate(LocalDateTime.now());
+		ev.setAction(Action.SAVE);
+		ev.setType(Type.COMMANDE);
+		event.fire(ev);
 		em.persist(cmd);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void update(Integer id, Commande cmd) {
 
+		Evenement ev = new Evenement();
+		ev.setDate(LocalDateTime.now());
+		ev.setAction(Action.UPDATE);
+		ev.setType(Type.COMMANDE);
+		event.fire(ev);
 		cmd.setId(find(id).getId());
 
 		em.merge(cmd);

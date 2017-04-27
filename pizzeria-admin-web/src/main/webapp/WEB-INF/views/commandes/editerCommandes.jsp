@@ -7,7 +7,10 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
+
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 
 	<h1>Edition</h1>
 

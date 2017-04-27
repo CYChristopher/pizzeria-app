@@ -8,8 +8,10 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
+
 <div class="container">
-	<h1>Liste des pizzas</h1>
+	<div class="row">
+		<div class="col-md-9">	<h1>Liste des pizzas</h1>
 	<a class="btn btn-primary" href="../pizza/new">Nouvelle Pizza</a> <a
 		class="btn btn-primary" href="../allPizzas/list">Historique Pizza</a>
 	<br>
