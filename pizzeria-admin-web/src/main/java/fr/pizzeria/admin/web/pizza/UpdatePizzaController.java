@@ -27,7 +27,7 @@ public class UpdatePizzaController extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(UpdatePizzaController.class.getName());
 
 	private static final String VUE_EDIT_PIZZA = "/WEB-INF/views/pizzas/editPizza.jsp";
-	private String code;
+	private Integer id;
 
 	@Inject
 	private PizzaService pizzaService;
@@ -36,19 +36,18 @@ public class UpdatePizzaController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		this.code = request.getParameter("code");
+		this.id = Integer.valueOf(request.getParameter("id"));
 
 		Set<Object> setCategorie = new TreeSet<>();
 
 		for (CategoriePizza current : CategoriePizza.values()) {
 			setCategorie.add(current);
 		}
-		
-		request.setAttribute("editPizza", pizzaService.findbycode(this.code));
+
+		request.setAttribute("editPizza", pizzaService.findById(this.id));
 		request.setAttribute("categoriePizza", setCategorie);
 
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher(VUE_EDIT_PIZZA);
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_PIZZA);
 
 		dispatcher.forward(request, response);
 
@@ -58,21 +57,22 @@ public class UpdatePizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Pizza oldPizza = pizzaService.findbycode(this.code);
-		
-		String newcode ;
-		String ref  ;
-		BigDecimal prix  ;
-		String categorie ;
-		
-		newcode = request.getParameter("newcode").isEmpty()?(oldPizza.getCode()):request.getParameter("newcode");
-		ref = request.getParameter("ref").isEmpty()?oldPizza.getNom():request.getParameter("ref");
-		prix = request.getParameter("prix").isEmpty()?oldPizza.getPrix():BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
-		categorie = request.getParameter("categorie").isEmpty()?oldPizza.getNom():request.getParameter("categorie");
-		
+		Pizza oldPizza = pizzaService.findById(this.id);
+
+		String newcode;
+		String ref;
+		BigDecimal prix;
+		String categorie;
+
+		newcode = request.getParameter("newcode").isEmpty() ? (oldPizza.getCode()) : request.getParameter("newcode");
+		ref = request.getParameter("ref").isEmpty() ? oldPizza.getNom() : request.getParameter("ref");
+		prix = request.getParameter("prix").isEmpty() ? oldPizza.getPrix()
+				: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
+		categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getNom() : request.getParameter("categorie");
+
 		Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie));
 
-		pizzaService.update(this.code, pizza);
+		pizzaService.update(this.id, pizza);
 
 		response.sendRedirect(request.getContextPath() + "/pizzas/list");
 
