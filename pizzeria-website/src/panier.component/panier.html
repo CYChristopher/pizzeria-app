@@ -1,0 +1,42 @@
+<h2>
+    Votre Panier
+</h2>
+<div class="table-responsive table-panier">
+    <table class="table">
+        <tr ng-repeat="itemPanier in $ctrl.panier" ng-init="pizza = $ctrl.getPizzabyId(itemPanier.id)">
+            <td class="vert-align">
+
+                <div class="tooltip-panier">
+                    <img class="img-panier" src="{{pizza.urlImage}}">
+                    <!-- ingredients à gérer dans le modèle
+                        <span class="tooltiptext-panier">
+                        <div ng-repeat="ingredient in pizza.ingredients">
+                            {{ingredient}}
+                        </div>
+                    </span>
+                    -->
+                </div>
+            </td>
+            <td class="vert-align">{{ pizza.nom }}
+                <span class="clickable-span glyphicon glyphicon-remove" ng-click="$ctrl.supprimer(itemPanier)"></span></td>
+            <td class="vert-align"> <b>{{ pizza.prix }} € </b></td>
+            <td class="vert-align"> <b>x{{ itemPanier.quantite }}</b>
+                <span class="clickable-span glyphicon glyphicon-plus" ng-click="$ctrl.plusNbPizza(itemPanier)"></span>
+                <span class="clickable-span glyphicon glyphicon-minus" ng-click="$ctrl.moinsNbPizza(itemPanier)"></span></td>
+        </tr>
+    </table>
+    <div class="container">
+        <div class="row pull-right">
+            <table class="table">
+                <tr>
+                    <td>Total :</td>
+                    <td>{{$ctrl.prixTotal}} €</td>
+                </tr>
+                <!--<tr><td>Promotion :</td><td>4€</td></tr>-->
+                <tr>
+                    <td rowspan="2"><button class="btn btn-success">Passer commande</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
