@@ -57,12 +57,12 @@
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
         <form name="formMAJ">
             <div name="divEmail" class="form-group">
-                <input id="mdpClient" name="mdpClient" ng-model="$ctrl.client.motDePasse" type="password" value="Votre mot de passe" class="form-control">
+                <input id="mdpClient" name="mdpClient" ng-model="$ctrl.clientConnecte.motDePasse" type="password" value="Votre mot de passe" class="form-control">
                 <p class="text-danger" ng-if="formInscription.mdpClient.$error.required 
                         && formInscription.mdpClient.$touched">Veuillez rentrer un mot de passe !</p>
 
                 <input id="confMdpClient" name="confMdpClient" ng-model="$ctrl.confMdp" type="password" value="Confirmez votre mot de passe" class="form-control">
-                <p class="text-danger" ng-if="$ctrl.client.motDePasse !== $ctrl.confMdp && formInscription.mdpClient.$touched && formInscription.confMdpClient.$touched">Les mots de passe ne sont pas identiques !</p>
+                <p class="text-danger" ng-if="$ctrl.clientConnecte.motDePasse !== $ctrl.confMdp && formInscription.mdpClient.$touched && formInscription.confMdpClient.$touched">Les mots de passe ne sont pas identiques !</p>
             </div>
         </form>
     </div>
@@ -80,7 +80,7 @@
                 <input id="adresseClient" name="adresseClient" ng-model="$ctrl.clientConnecte.adresse" type="text" value="Votre adresse" class="form-control">
             </div>
         </form>
-        <button ng-disabled="formInscription.$invalid || $ctrl.client.motDePasse !== $ctrl.confMdp" type="submit" class="btn bouton" ng-click="$ctrl.modifications() && $ctrl.ClientService.saveClient($ctrl.client)">Modifier Informations</button>
+        <button ng-disabled="formInscription.$invalid || $ctrl.clientConnecte.motDePasse !== $ctrl.confMdp" type="submit" class="btn bouton" ng-click="$ctrl.modifications() && $ctrl.ClientService.saveClient($ctrl.client)">Modifier Informations</button>
     </div>
 
 </div>

@@ -30,8 +30,8 @@ export class ClientService {
 
     // récupération du client connecté
     getConnectedClient() {
-        //let id = this.localStorageService.get('utilisateur');
-        return this.getClient(1);
+        let id = parseInt(this.localStorageService.get('utilisateur', "sessionStorage"));
+        return this.getClient(id);
     }
 
 }
