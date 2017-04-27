@@ -9,6 +9,7 @@ import { PizzaComponent } from './pizza.component'
 import { ListePizzasComponent } from './listePizzas.component'
 import { InscriptionComponent } from './inscription/index'
 import { AjouterPanierComponent } from './ajouterPanier.component'
+import { NavbarComponent } from './navbar.component'
 import { MonCompteComponent } from './monCompte.component'
 
 
@@ -29,4 +30,5 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .component('home', HomeComponent)
     .component('ajouterPanier', AjouterPanierComponent)
     .component('inscriptionComponent', InscriptionComponent)
+    .component('navbar', NavbarComponent)
     .component('monCompte', MonCompteComponent)

@@ -8,7 +8,10 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
+
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 
 	<h1>Liste des clients</h1>
 	<a class="btn btn-primary" href="new">Nouveau client</a> <br>
@@ -52,4 +55,4 @@
 	</table>
 </div>
 
-<jsp:include page="../layout/footer.html" />
+<jsp:include page="../layout/footer.jsp" />
