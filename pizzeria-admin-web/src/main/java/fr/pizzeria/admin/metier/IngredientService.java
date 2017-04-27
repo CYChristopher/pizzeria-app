@@ -62,7 +62,7 @@ public class IngredientService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Ingredient findByName(String name) {
 		try {
-			this.query = em.createQuery("select i from Ingredient i where i.name=:codP", Ingredient.class);
+			this.query = em.createQuery("select i from Ingredient i where i.nom=:codP", Ingredient.class);
 			this.query.setParameter("codP", name);
 			
 			return query.getSingleResult();
