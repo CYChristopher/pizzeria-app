@@ -40,7 +40,7 @@ public class DonneesListener implements ServletContextListener {
     	
     	/* Client */
     	Client client1 = new Client("Amiot", "Nicolas", "amiot-nicolas@orange.fr", "aaaaaa", "DTA Ingenierie");
-    	Client client2 = new Client("Giboulot", "Valentin", "valentin.giboulot@gmail.com", "123soleil", "Quelque part");
+    	Client client2 = new Client("Giboulot", "Valentin", "totot@gmail.com", "123soleil", "Quelque part");
     	clientService.save(client1);
     	clientService.save(client2);
     	
