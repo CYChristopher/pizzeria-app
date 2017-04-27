@@ -7,6 +7,10 @@
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
 	<div class="jumbotron">
 		<div class="container">
 
@@ -35,11 +39,7 @@
 						€<br>
 					</div>
 					<div class="col-md-6" >
-<<<<<<< HEAD
-						<a href="<c:url value="/desserts/edit?code=${dessert.code}"/>" class="btn btn-primary">Editer</a>
-=======
 						<a href="<c:url value="/desserts/edit?id=${dessert.id}"/>" class="btn btn-primary">Editer</a>
->>>>>>> refs/remotes/origin/develop
 						<br>
 						<form method="POST">
 							<input type="hidden" name="code" value="${dessert.code}">
@@ -60,5 +60,6 @@
 		</div>
 
 </div>
+</div>
 
-<jsp:include page="../layout/footer.html"/>
+<jsp:include page="../layout/footer.jsp"/>

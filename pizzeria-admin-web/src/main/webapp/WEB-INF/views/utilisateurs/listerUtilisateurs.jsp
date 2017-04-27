@@ -8,7 +8,10 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
+
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 	<h1>Utilisateurs</h1>
 
 	<a href=<c:url value='/utilisateurs/new'></c:url>> <input
@@ -50,6 +53,5 @@
 
 </div>
 
+<jsp:include page="../layout/footer.jsp"/>
 
-
-<jsp:include page="../layout/footer.html" />
