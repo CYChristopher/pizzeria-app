@@ -34,6 +34,7 @@
   </dependencies>
 
   <profiles>
+    <!-- Déploiement wildlfy en production -->
     <profile>
       <id>prod</id>
       <build>
@@ -51,10 +52,48 @@
             </executions>
           </plugin>
         </plugins>
-
       </build>
     </profile>
 
+    <!-- Déploiement wildlfy en développement via mvn wildfly:run -->
+    <profile>
+      <id>wildlfy-dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.wildfly.plugins</groupId>
+            <artifactId>wildfly-maven-plugin</artifactId>
+            <configuration>
+              <!-- Ajout d'un utilisateur admnistrateur du serveur -->
+              <add-user>
+                <users>
+                  <user>
+                    <username>admin</username>
+                    <password>admin.1234</password>
+                  </user>
+                </users>
+              </add-user>
+              <!-- Activation du mode Debug -->
+              <java-opts>
+                <java-opt>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</java-opt>
+              </java-opts>
+
+              <!-- Configuration de la source de données avant déploiement -->
+              <beforeDeployment>
+                <commands>
+                  <!-- Base de données H2 -->
+                  <command>data-source add --jndi-name=java:/jdbc/pizza-ds --name=PizzeriaDS --connection-url=jdbc:h2:mem:test;DB_CLOSE_DELAY=-1 --driver-name=h2 --user-name=sa --password=sa</command>
+                </commands>
+              </beforeDeployment>
+
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 
 </project>

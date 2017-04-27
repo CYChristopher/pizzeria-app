@@ -28,17 +28,26 @@ public class Ingredient {
 		this.nom = nom;
 		this.quantite = qte;
 		this.prix = prix;
-		this.archive=true;
 	}
 
 	public Ingredient(Integer id, String nom, Integer qte, Double prix) {
-		super();
+		this(nom, qte, prix);
 		this.id = id;
+	}
+
+	public Ingredient(String nom, Integer qte, Double prix, Boolean archi){
+		this();
 		this.nom = nom;
 		this.quantite = qte;
 		this.prix = prix;
+		this.archive = archi;
 	}
-
+	
+	public Ingredient(Integer id, String nom, Integer qte, Double prix, Boolean archi) {
+		this(nom, qte, prix, archi);
+		this.id = id;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -70,8 +79,6 @@ public class Ingredient {
 	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
-	
-	
 
 	public Boolean getArchive() {
 		return archive;

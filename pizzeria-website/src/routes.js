@@ -13,9 +13,14 @@ export function routes($routeProvider) {
         template: '<liste-pizzas></liste-pizzas>'
     })
 
+    .when('/panier', {
+        template: '<panier></panier>'
+    })
+
     .when('/compte', {
         template: '<mon-compte></mon-compte>'
     })
+
 
     .otherwise({
         redirectTo: '/'
