@@ -60,6 +60,18 @@ public class IngredientService {
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Ingredient findByName(String name) {
+		try {
+			this.query = em.createQuery("select i from Ingredient i where i.name=:codP", Ingredient.class);
+			this.query.setParameter("codP", name);
+			
+			return query.getSingleResult();
+		} catch (Exception e) {
+			throw new StockageException("Erreur de récupération d'un ingredient", e);
+		}
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void save(Ingredient ingredient) throws StockageException {
 		try {
 			em.persist(ingredient);
@@ -100,4 +112,5 @@ public class IngredientService {
 			throw new StockageException("Erreur à la suppression d'un ingredient", e);
 		}
 	}
+	
 }
