@@ -100,5 +100,4 @@ public class IngredientService {
 			throw new StockageException("Erreur à la suppression d'un ingredient", e);
 		}
 	}
-	
 }

@@ -7,6 +7,10 @@
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
 	<div class="jumbotron">
 		<div class="container">
 
@@ -44,5 +48,6 @@
 	</div>
 
 </div>
+</div>
 
-<jsp:include page="../layout/footer.html"/>
+<jsp:include page="../layout/footer.jsp"/>
