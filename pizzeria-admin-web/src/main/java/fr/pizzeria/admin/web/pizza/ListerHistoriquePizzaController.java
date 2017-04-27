@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
-import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
 
 /**
