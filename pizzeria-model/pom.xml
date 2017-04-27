@@ -8,6 +8,7 @@
 		<groupId>fr.pizzeria</groupId>
 		<artifactId>pizzeria-app</artifactId>
 		<version>0.0.1</version>
+		<relativePath>../</relativePath>
 	</parent>
 
 	<dependencies>
@@ -19,7 +20,19 @@
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss</groupId>
+					<artifactId>jboss-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
-
-
 </project>

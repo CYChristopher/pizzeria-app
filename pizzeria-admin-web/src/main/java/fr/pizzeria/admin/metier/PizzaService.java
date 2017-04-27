@@ -1,11 +1,16 @@
 package fr.pizzeria.admin.metier;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.pizzeria.admin.metier.Evenement.Action;
+import fr.pizzeria.admin.metier.Evenement.Type;
 import fr.pizzeria.model.Pizza;
 
 @Stateless
@@ -13,6 +18,9 @@ public class PizzaService {
 
 	@PersistenceContext
 	private EntityManager em;
+
+	@Inject
+	private Event<Evenement> event;
 
 	public List<Pizza> findAll() {
 		return em.createQuery("select p from Pizza p", Pizza.class).getResultList();
@@ -37,7 +45,11 @@ public class PizzaService {
 	}
 
 	public void save(Pizza pizza) {
-
+		Evenement ev = new Evenement();
+		ev.setDate(LocalDateTime.now());
+		ev.setAction(Action.SAVE);
+		ev.setType(Type.PIZZA);
+		event.fire(ev);
 		em.persist(pizza);
 
 	}
@@ -55,4 +67,5 @@ public class PizzaService {
 				.getResultList();
 
 	}
+
 }
