@@ -14,12 +14,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = { "/*" })
 public class ConnexionFilter implements Filter {
 	
-	private static final String VUE_LOGIN = "/WEB-INF/views/utilisateurs/connexionUtilisateur.jsp";
+	private static final String VUE_LOGIN = "/login";
 	
 	private static final List<String> ALLOWED_PATHS = Arrays.asList("/login", "/", "/index.jsp", "/static/*", "/utilisateurs/password");
 
@@ -31,6 +32,7 @@ public class ConnexionFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 		
 		/* REGEX pour les url autorisées */
@@ -58,7 +60,7 @@ public class ConnexionFilter implements Filter {
 		if (loggedIn || allowedPath) {
 			chain.doFilter(request, response);
 		} else {
-			req.getRequestDispatcher(VUE_LOGIN).forward(request, response);
+			res.sendRedirect(req.getContextPath()+VUE_LOGIN);
 		}
 	}
 
