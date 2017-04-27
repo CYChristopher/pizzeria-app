@@ -1,0 +1,9 @@
+swarm:
+  datasources:
+    data-sources:
+      PizzeriaDS:
+        driver-name: mysql
+        connection-url: ${jdbc.url}
+        user-name: ${jdbc.user}
+        password: ${jdbc.pass}
+        jndi-name: java:/jdbc/pizza-ds
