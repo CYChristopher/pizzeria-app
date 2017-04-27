@@ -26,7 +26,6 @@ public class AjouterPromotionController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String code = request.getParameter("code").trim();
 		// A FAIRE
 		response.sendRedirect(request.getContextPath()+VUE_LISTER_PROMOTIONS);
 	}
