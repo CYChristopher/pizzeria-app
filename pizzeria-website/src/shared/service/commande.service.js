@@ -21,11 +21,20 @@ export class CommandeService{
 				'statut':'NON_TRAITE',
 				'type':type,
 				'client':utilisateur,
-				'livreur':null				
+				'livreur':null	
+			}	
+
+			this.localStorageService.setStorageType('localStorage')
+			let commandePizza={
+				'quantite':1,
+				'pizza_id':1,
+				'commande_id':commande
 			}
-			this.$http.post(`${this.API_URL}/commandes`,commande).then(r=>r.data)
-		
-		})
-		
+			
+			console.log(commandePizza)
+			this.$http.post(`${this.API_URL}/commandes`,commande).then(r=>r.data)	
+			
+			this.$http.post(`${this.API_URL}/commandePizzas`,commandePizza).then(r=>r.data)	
+		})		
 	}	
 } 
