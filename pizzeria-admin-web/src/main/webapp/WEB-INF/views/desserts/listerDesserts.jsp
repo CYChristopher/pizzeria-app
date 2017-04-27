@@ -39,11 +39,7 @@
 						€<br>
 					</div>
 					<div class="col-md-6" >
-<<<<<<< HEAD
-						<a href="<c:url value="/desserts/edit?code=${dessert.code}"/>" class="btn btn-primary">Editer</a>
-=======
 						<a href="<c:url value="/desserts/edit?id=${dessert.id}"/>" class="btn btn-primary">Editer</a>
->>>>>>> refs/remotes/origin/develop
 						<br>
 						<form method="POST">
 							<input type="hidden" name="code" value="${dessert.code}">
