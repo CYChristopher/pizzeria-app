@@ -1,6 +1,6 @@
 package fr.pizzeria.admin.exception;
 
-public class StockageException extends Exception {
+public class StockageException extends RuntimeException {
 
 	public StockageException() {
 		super();
@@ -17,5 +17,11 @@ public class StockageException extends Exception {
 	public StockageException(Throwable cause) {
 		super(cause);
 	}
+
+	public StockageException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+	
+	
 	
 }
