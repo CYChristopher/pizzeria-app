@@ -26,11 +26,11 @@
 			
 			<label for="quantite">Quantité :</label>
 			<input style="border-color:${ erreur [1] }" class="form-control" id="quantite"
-				name="quantite" type="number" placeholder="ex : 3..." value="${ editIngredient.quantite }">
+				name="quantite" type="number" min="1" placeholder="ex : 3" value="${ editIngredient.quantite }">
 			
 			<label for="prix">Prix :</label>
 			<input style="border-color:${ erreur [2] }" class="form-control" id="prix"
-				name="prix" type="number" step="0.01" placeholder="ex : 0,35 ou 1,00" value="${ editIngredient.prix }">
+				name="prix" type="number" step="0.01" min="0.01" placeholder="ex : 0,35" value="${ editIngredient.prix }">
 			
 			
 			<button class="btn btn-success" type="submit">Valider</button>
