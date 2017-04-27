@@ -10,8 +10,8 @@ class controller{
 		})
     }
 	
-	setCommande(){
-		this.CommandeService.setCommande()
+	setCommande(type){
+		this.CommandeService.setCommande(type)
 	}
 	
 }

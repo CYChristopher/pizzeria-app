@@ -1,4 +1,3 @@
-
 export class CommandeService{
 	
 	constructor($http, API_URL, localStorageService, ClientService, $q){
@@ -13,19 +12,17 @@ export class CommandeService{
 		return this.$http.get(`${this.API_URL}/commandes`).then(r=>r.data)
 	}	
 	
-	setCommande(){
+	setCommande(type){
 		this.localStorageService.setStorageType('sessionStorage')
-		this.ClientService.getClient(this.localStorageService.get('utilisateur')).then(u=>{
+		this.ClientService.getClient(this.localStorageService.get('utilisateur')).then(utilisateur=>{
 			let commande={
-				'dateCommande':'1520',
-				'numeroCommande':123,
-				'statut':'LIVRE',
-				'type':'LIVRAISON',
-				'client':u[0],
+				'dateCommande':Date.now(),
+				'numeroCommande':'CMD'+utilisateur.id+Math.floor(Date.now()/60),
+				'statut':'NON_TRAITE',
+				'type':type,
+				'client':utilisateur,
 				'livreur':null				
 			}
-			
-			console.log(commande)
 			this.$http.post(`${this.API_URL}/commandes`,commande).then(r=>r.data)
 		
 		})
