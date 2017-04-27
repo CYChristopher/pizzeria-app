@@ -2,16 +2,17 @@ import template from './panier.html';
 
 class controller {
 
-    constructor(localStorageService, PizzaService) {
+    constructor(localStorageService, PizzaService, $location) {
         this.localStorageService = localStorageService;
         this.PizzaService = PizzaService;
 
-        this.panier = this.localStorageService.get('panier','localStorage');
+        this.panier = this.localStorageService.get('panier', 'localStorage');
         this.pizzas = [];
         this.prixTotal = 0;
         this.PizzaService.getPizzas()
             .then(pizzas => { this.pizzas = pizzas })
             .then(() => this.prixTotal = this.getPrixTotal());
+        this.$location = $location
     }
 
     //retourne la pizza de 'pizzas' avec pizzaId
@@ -51,15 +52,27 @@ class controller {
     getPrixTotal() {
         if (this.panier === null) return 0;
         return this.panier
-            .reduce( (accumulateur, item) => {
+            .reduce((accumulateur, item) => {
                 return accumulateur + (this.getPizzabyId(item.id).prix * item.quantite);
             }, 0)
+    }
+
+    passerCommande() {
+        let utilisateur = this.localStorageService.get('utilisateur', 'sessionStorage');
+        if (utilisateur) {
+            console.log('hello')
+            this.$location.path('/commande')
+        }
+        else {
+            this.localStorageService.set('pageRedirectionConnexion', this.$location.path(), 'sessionStorage');
+            this.$location.path('/connexion');
+        }
     }
 }
 
 
 export const PanierComponent = {
-	    bindings: {},
-	    template,
-	    controller
-	}
+    bindings: {},
+    template,
+    controller
+}
