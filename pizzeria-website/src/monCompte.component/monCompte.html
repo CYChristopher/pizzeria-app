@@ -7,12 +7,12 @@
         Nom :
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
-        {{$ctrl.user.nom}} Bobo
+        {{$ctrl.clientConnecte.nom}}
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
         <form name="formMAJ">
             <div name="divNom" class="form-group">
-                <input id="nomClient" name="nomClient" ng-model="$ctrl.client.nom" type="text" value="BOBO" class="form-control">
+                <input id="nomClient" name="nomClient" ng-model="$ctrl.clientConnecte.nom" type="text" value="JAIMERAIS QUE TU TAFFICHES" class="form-control">
             </div>
         </form>
     </div>
@@ -22,12 +22,12 @@
         Prénom :
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
-        {{$ctrl.user.prenom}} Toto
+        {{$ctrl.clientConnecte.prenom}}
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
         <form name="formMAJ">
             <div name="divPrenom" class="form-group">
-                <input id="prenomClient" name="prenomClient" ng-model="$ctrl.client.prenom" type="text" value="Votre prenom" class="form-control">
+                <input id="prenomClient" name="prenomClient" ng-model="$ctrl.clientConnecte.prenom" type="text" value="Votre prenom" class="form-control">
             </div>
         </form>
     </div>
@@ -36,12 +36,12 @@
         Email :
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
-        {{$ctrl.user.email}} Toto.Bobo@gzejgzeofkjzeol.Fr
+        {{$ctrl.clientConnecte.email}}
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
         <form name="formMAJ">
             <div name="divEmail" class="form-group">
-                <input id="emailClient" name="emailClient" ng-model="$ctrl.client.email" type="email" value="Votre email" class="form-control">
+                <input id="emailClient" name="emailClient" ng-model="$ctrl.clientConnecte.email" type="email" value="Votre email" class="form-control">
                 <p class="text-danger" ng-if="formMAJ.emailClient.$error.email 
                     && formMAJ.emailClient.$touched">Votre email est invalide !</p>
             </div>
@@ -72,15 +72,15 @@
         Adresse :
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " ng-if="!$ctrl.modif">
-        {{$ctrl.user.adresse}} 33 rue du pays de l'amour 45640 bisounoursland
+        {{$ctrl.clientConnecte.adresse}}
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" ng-if="$ctrl.modif">
         <form name="formMAJ">
             <div name="divAdresse" class="form-group">
-                <input id="adresseClient" name="adresseClient" ng-model="$ctrl.client.adresse" type="text" value="Votre adresse" class="form-control">
+                <input id="adresseClient" name="adresseClient" ng-model="$ctrl.clientConnecte.adresse" type="text" value="Votre adresse" class="form-control">
             </div>
         </form>
-        <button ng-disabled="formInscription.$invalid || $ctrl.client.motDePasse !== $ctrl.confMdp" type="submit" class="btn bouton" ng-click="$ctrl.modifications()">Modifier Informations</button>
+        <button ng-disabled="formInscription.$invalid || $ctrl.client.motDePasse !== $ctrl.confMdp" type="submit" class="btn bouton" ng-click="$ctrl.modifications() && $ctrl.ClientService.saveClient($ctrl.client)">Modifier Informations</button>
     </div>
 
 </div>
@@ -106,7 +106,7 @@
                 <td class="hidden-xs"> commande.numeroCommande </td>
                 <td class="hidden-xs"> commande.statut </td>
                 <td class="hidden-xs"> commande.prix </td>
-                <td> <a href="/details" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a> </td>
+                <td> <a href="/commande/{{commande.id}}" class="btn pull-right dernieres-pizzas" role="button"> Ajouter au panier </a> </td>x
             </tr>-->
         </tbody>
 </div>
