@@ -14,9 +14,7 @@ export function routes($routeProvider) {
     })
 
     .when('/panier', {
-            templateUrl: 'templates/panier.html',
-            controller: 'PanierController',
-            controllerAs: 'ctrl'
+            template: '<panier-component></panier-component>'
         })
 
     .otherwise({

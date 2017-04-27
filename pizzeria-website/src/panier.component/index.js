@@ -1,4 +1,6 @@
-export class PanierController {
+import template from './panier.html';
+
+class controller {
 
     constructor(localStorageService, PizzaService) {
         this.localStorageService = localStorageService;
@@ -55,3 +57,10 @@ export class PanierController {
             }, 0)
     }
 }
+
+
+export const PanierComponent = {
+	    bindings: {},
+	    template,
+	    controller
+	}

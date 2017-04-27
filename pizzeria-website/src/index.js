@@ -9,10 +9,10 @@ import { PizzaComponent } from './pizza.component'
 import { ListePizzasComponent } from './listePizzas.component'
 import { InscriptionComponent } from './inscription/index'
 import { AjouterPanierComponent } from './ajouterPanier.component'
-import { PanierModule } from './panier'
+import { PanierComponent } from './panier.component'
 
 
-angular.module('pizzeria', [ngRoute, 'LocalStorageModule', PanierModule])
+angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .value('API_URL', BACKEND_API_URL)
     .config(routes)
     .config(function ($routeProvider, $locationProvider) {
@@ -29,3 +29,4 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule', PanierModule])
     .component('home', HomeComponent)
     .component('ajouterPanier', AjouterPanierComponent)
     .component('inscriptionComponent', InscriptionComponent)
+    .component('panierComponent', PanierComponent)

@@ -3,7 +3,7 @@
 </h2>
 <div class="table-responsive table-panier">
     <table class="table">
-        <tr ng-repeat="itemPanier in ctrl.panier" ng-init="pizza = ctrl.getPizzabyId(itemPanier.id)">
+        <tr ng-repeat="itemPanier in $ctrl.panier" ng-init="pizza = $ctrl.getPizzabyId(itemPanier.id)">
             <td class="vert-align">
 
                 <div class="tooltip-panier">
@@ -18,11 +18,11 @@
                 </div>
             </td>
             <td class="vert-align">{{ pizza.nom }}
-                <span class="clickable-span glyphicon glyphicon-remove" ng-click="ctrl.supprimer(itemPanier)"></span></td>
+                <span class="clickable-span glyphicon glyphicon-remove" ng-click="$ctrl.supprimer(itemPanier)"></span></td>
             <td class="vert-align"> <b>{{ pizza.prix }} € </b></td>
             <td class="vert-align"> <b>x{{ itemPanier.quantite }}</b>
-                <span class="clickable-span glyphicon glyphicon-plus" ng-click="ctrl.plusNbPizza(itemPanier)"></span>
-                <span class="clickable-span glyphicon glyphicon-minus" ng-click="ctrl.moinsNbPizza(itemPanier)"></span></td>
+                <span class="clickable-span glyphicon glyphicon-plus" ng-click="$ctrl.plusNbPizza(itemPanier)"></span>
+                <span class="clickable-span glyphicon glyphicon-minus" ng-click="$ctrl.moinsNbPizza(itemPanier)"></span></td>
         </tr>
     </table>
     <div class="container">
@@ -30,7 +30,7 @@
             <table class="table">
                 <tr>
                     <td>Total :</td>
-                    <td>{{ctrl.prixTotal}} €</td>
+                    <td>{{$ctrl.prixTotal}} €</td>
                 </tr>
                 <!--<tr><td>Promotion :</td><td>4€</td></tr>-->
                 <tr>
