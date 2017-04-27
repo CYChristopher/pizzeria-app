@@ -1,0 +1,9 @@
+{
+  "build": {
+    "type": "maven",
+    "goal": "clean package -Pprod,prod-jar"
+  },
+  "deploy": {
+    "jarName": "pizzeria-admin-web/target/pizzeria-admin-web-swarm.jar"
+  }
+}
