@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -23,7 +24,7 @@
          class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href=<c:url value='/.'/>>Accueil</a></li>
-        <li><a href="#">Utilisateurs</a></li>
+        <li><a href="<c:url value='/utilisateurs/list'/>">Utilisateurs</a></li>
         <li><a href=<c:url value='/pizzas/list'/>>Pizzas</a></li>
         <li><a href="#">Menus</a></li>
         <li><a href=<c:url value='/desserts/list'/>>Desserts</a></li>
@@ -31,7 +32,7 @@
         <li><a href=<c:url value='/clients/list'/>>Clients</a></li>
         <li><a href="#">Commandes</a></li>
         <li><a href=<c:url value='/livreurs/list'/>>Livreurs</a></li>
-        <li><a href="#">Ingrédients</a></li>
+        <li><a href="<c:url value='/ingredients/list'/>">Ingrédients</a></li>
         <li><a href="#">Statistiques</a></li>
         <li><a href="#">Promotions</a></li>
         <!--

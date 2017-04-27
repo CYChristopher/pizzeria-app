@@ -8,7 +8,10 @@
 
 <jsp:include page="../layout/navbar.jsp"/>
 
+
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 	<h1>Ajouter un livreur</h1>
 	<br>
 	<c:if test="${msg != null}">
@@ -31,4 +34,4 @@
 
 </div>
 
-<jsp:include page="../layout/footer.html"/>
+<jsp:include page="../layout/footer.jsp"/>

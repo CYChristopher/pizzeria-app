@@ -8,6 +8,9 @@
 		<class>fr.pizzeria.model.Livreur</class>
 		<class>fr.pizzeria.model.Dessert</class>
 		<class>fr.pizzeria.model.Boisson</class>
+		<class>fr.pizzeria.model.Utilisateur</class>
+		<class>fr.pizzeria.model.Ingredient</class>
+		
 		<properties>
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 		</properties>
