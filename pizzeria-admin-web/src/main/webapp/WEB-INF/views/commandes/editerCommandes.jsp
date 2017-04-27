@@ -14,18 +14,63 @@
 	<form method="post">
 
 		<div class="form-group">
-			<label for="numCmd">Numero de Commande :</label> <input id="numCmd"
-				class="form-control" name="newcode" type="text"
-				value="${editCommande.numeroCommande}">
+			<label>Numero de Commande :</label> 
+			<input class="form-control" name="numCommande" type="text" value="${commande.numeroCommande}" required>
 		</div>
 
 		<div class="form-group">
-			<label for="statut">Statut :</label> <select class="form-control"
-				id="statut">
-				<c:forEach var="cmd" items="${editCommande.statut}">
-					<option>1</option>
+			<label>Statut :</label> 
+			<select class="form-control" name="statut" required>
+				<c:forEach var="cmd" items="${statusPossible}">
+					<option>${cmd}</option>
 				</c:forEach>
 			</select>
+		</div>
+		
+		<div class="form-group">
+			<label>Adresse :</label> 
+			<input class="form-control" name="adresse" type="text" value="${commande.adresse}" required>
+		</div>
+		
+		<div class="form-group">
+			<label>Livreur :</label> 
+			<select class="form-control" name="livreur" required>
+				<c:forEach var="liv" items="${listeLivreur}">
+					<option value="${liv.id}">${liv.nom} ${liv.prenom}</option>
+				</c:forEach>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label>Client :</label> 
+			<select class="form-control" name="client" required>
+				<c:forEach var="cli" items="${listeClient}">
+					<option value="${cli.id}">${cli.nom} ${cli.prenom}</option>
+				</c:forEach>
+			</select>
+		</div>
+		
+		
+		<div class="form-group">
+			<label>Pizzas :</label>
+			
+				<table class="table">
+				 <thead>
+				    <tr>
+						<th>Nom de la pizza</th>
+						<th>Commande</th>
+				   </tr>
+				</thead>
+					<tbody>
+					<c:forEach var="piz" items="${listePizza}" varStatus="status">
+						<tr>
+							<td><label>${piz.nom}</label> </td>
+							<!-- <td><input class="form-control" name="test" type="number"></td> Un jour on pourra commander plusieurs fois la même pizza, mais c'est pour la v2 -->
+							<td> <input type="checkbox" name="pizzaCommandeId" value="${piz.id}"></td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
 		</div>
 
 		<input class="btn btn-success" type="submit" value="Valider">

@@ -35,15 +35,15 @@
 			<td>${cmd.livreur.nom} ${cmd.livreur.prenom}</td>
 			<td>${cmd.client.nom} ${cmd.client.prenom}</td>
 			
-			
+			<td>
 			<c:forEach var="piz" items="${cmd.pizzas}">
 				${piz.nom}<br>
 
 			</c:forEach>
 			
-			<td>${cmd.pizzas}</td>
+			</td>
 			<td>
-			<a href="<c:url value="/commandes/edit?code=${cmd.id}"/>" class="btn btn-primary">Editer</a>
+			<a href="<c:url value="/commandes/edit?id=${cmd.id}"/>" class="btn btn-primary">Editer</a>
 			<br>
 				<form method="POST"
 					action="<c:url value='/commandes/supprimer?id=${cmd.id}'/>">

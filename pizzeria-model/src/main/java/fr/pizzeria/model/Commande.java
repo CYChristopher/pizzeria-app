@@ -13,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Commande {
@@ -31,8 +31,9 @@ public class Commande {
 	private Livreur livreur;
 	@ManyToOne
 	private Client client;
-	@OneToMany(fetch = FetchType.EAGER) // permet de demander à JPA d'aller
-										// charger les pizzas en profondeurs.
+	@ManyToMany(fetch = FetchType.EAGER) // permet de demander à JPA d'aller
+											// charger les pizzas en
+											// profondeurs.
 	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
 	private List<Pizza> pizzas = new ArrayList<>();
 

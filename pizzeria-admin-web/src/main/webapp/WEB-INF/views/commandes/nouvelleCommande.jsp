@@ -15,13 +15,13 @@
 
 		<div class="form-group">
 			<label>Numero de Commande :</label> 
-			<input class="form-control" name="numCommande" type="text">
+			<input class="form-control" name="numCommande" type="text" required>
 		</div>
 
 		<div class="form-group">
 			<label>Statut :</label> 
-			<select class="form-control" name="statut">
-				<c:forEach var="cmd" items="${statusPossible}">
+			<select class="form-control" name="statut" required>
+				<c:forEach var="cmd" items="${statusPossible}" >
 					<option>${cmd}</option>
 				</c:forEach>
 			</select>
@@ -29,23 +29,23 @@
 		
 		<div class="form-group">
 			<label>Adresse :</label> 
-			<input class="form-control" name="adresse" type="text">
+			<input class="form-control" name="adresse" type="text" required>
 		</div>
 		
 		<div class="form-group">
 			<label>Livreur :</label> 
-			<select class="form-control" name="statut">
+			<select class="form-control" name="livreur" required>
 				<c:forEach var="liv" items="${listeLivreur}">
-					<option>${liv.nom} ${liv.prenom}</option>
+					<option value="${liv.id}">${liv.nom} ${liv.prenom}</option>
 				</c:forEach>
 			</select>
 		</div>
 		
 		<div class="form-group">
 			<label>Client :</label> 
-			<select class="form-control" name="statut">
+			<select class="form-control" name="client" required>
 				<c:forEach var="cli" items="${listeClient}">
-					<option>${cli.nom} ${cli.prenom}</option>
+					<option value="${cli.id}">${cli.nom} ${cli.prenom}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -66,7 +66,7 @@
 						<tr>
 							<td><label>${piz.nom}</label> </td>
 							<!-- <td><input class="form-control" name="test" type="number"></td> Un jour on pourra commander plusieurs fois la même pizza, mais c'est pour la v2 -->
-							<td> <input type="checkbox" name="pizzaCommande" value="${piz.nom}"></td>
+							<td> <input type="checkbox" name="pizzaCommandeId" value="${piz.id}"></td>
 						</tr>
 					</c:forEach>
 					</tbody>
