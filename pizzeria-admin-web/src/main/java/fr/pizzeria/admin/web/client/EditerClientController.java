@@ -1,8 +1,6 @@
 package fr.pizzeria.admin.web.client;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
