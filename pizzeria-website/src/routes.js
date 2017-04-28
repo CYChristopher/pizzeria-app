@@ -8,6 +8,10 @@ export function routes($routeProvider) {
     .when('/inscription', {
             template: '<inscription-component></inscription-component>',
     })
+    
+    .when('/connexion', {
+            template: '<connexion></connexion>',
+    })
 
     .when('/pizzas', {
         template: '<liste-pizzas></liste-pizzas>'
