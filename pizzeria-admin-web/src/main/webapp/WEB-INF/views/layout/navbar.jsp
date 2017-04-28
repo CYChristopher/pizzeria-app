@@ -18,12 +18,11 @@
           class="icon-bar"></span>
       </button>
       <a class="navbar-brand"
-         href="#">Pizzeria Administration</a>
+         href=<c:url value='/.'/>>Pizzeria Administration</a>
     </div>
     <div id="navbar"
          class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href=<c:url value='/.'/>>Accueil</a></li>
         <li><a href="<c:url value='/utilisateurs/liste'/>">Utilisateurs</a></li>
         <li><a href=<c:url value='/pizzas/list'/>>Pizzas</a></li>
          <li><a href=<c:url value='/ouiches/list'/>>Ouiches</a></li>
