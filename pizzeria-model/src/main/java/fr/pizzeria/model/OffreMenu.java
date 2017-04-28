@@ -1,5 +1,7 @@
 package fr.pizzeria.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,20 +16,32 @@ public class OffreMenu {
 	private String code;
 	private String nom;
 	private Double prix;
-	private Pizza[] pizzas;
-	private Boisson[] boissons;
-	private Dessert[] desserts;
+	private Integer maxPizza;
+	private Integer maxBoisson;
+	private Integer maxDessert;
+	private List<Pizza> pizzas;
+	private List<Boisson> boissons;
+	private List<Dessert> desserts;
+	private Boolean archive;
 
 	public OffreMenu() {
+		this.archive = false;
 	}
-
-	public OffreMenu(String code, String nom, Double prix, Pizza[] pizzas, Boisson[] boissons, Dessert[] desserts) {
+	
+	public OffreMenu(String code, String nom, Double prix,
+			Integer maxP, Integer maxB, Integer maxD,
+			List<Pizza> pizzas, List<Boisson> boissons, List<Dessert> desserts, Boolean archive){
+		super();
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
+		this.maxPizza = maxP;
+		this.maxBoisson = maxB;
+		this.maxDessert = maxD;
 		this.pizzas = pizzas;
 		this.boissons = boissons;
 		this.desserts = desserts;
+		this.archive = archive;
 	}
 
 	public Integer getId() {
@@ -62,28 +76,93 @@ public class OffreMenu {
 		this.prix = prix;
 	}
 
-	public Pizza[] getPizzas() {
+	public Integer getMaxPizza() {
+		return maxPizza;
+	}
+
+	public void setMaxPizza(Integer maxPizza) {
+		this.maxPizza = maxPizza;
+	}
+
+	public Integer getMaxBoisson() {
+		return maxBoisson;
+	}
+
+	public void setMaxBoisson(Integer maxBoisson) {
+		this.maxBoisson = maxBoisson;
+	}
+
+	public Integer getMaxDessert() {
+		return maxDessert;
+	}
+
+	public void setMaxDessert(Integer maxDessert) {
+		this.maxDessert = maxDessert;
+	}
+
+	public List<Pizza> getPizzas() {
 		return pizzas;
 	}
 
-	public void setPizzas(Pizza[] pizzas) {
+	public void setPizzas(List<Pizza> pizzas) {
 		this.pizzas = pizzas;
 	}
 
-	public Boisson[] getBoissons() {
+	public List<Boisson> getBoissons() {
 		return boissons;
 	}
 
-	public void setBoissons(Boisson[] boissons) {
+	public void setBoissons(List<Boisson> boissons) {
 		this.boissons = boissons;
 	}
 
-	public Dessert[] getDesserts() {
+	public List<Dessert> getDesserts() {
 		return desserts;
 	}
 
-	public void setDesserts(Dessert[] desserts) {
+	public void setDesserts(List<Dessert> desserts) {
 		this.desserts = desserts;
+	}
+
+	public Boolean getArchive() {
+		return archive;
+	}
+
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj){
+			return true;
+		} else if(obj == null){
+			return false;
+		} else if (getClass() != obj.getClass()){
+			return false;
+		}
+		OffreMenu other = (OffreMenu) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		return true;
 	}
 
 }
