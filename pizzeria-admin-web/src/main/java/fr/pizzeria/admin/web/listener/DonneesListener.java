@@ -13,6 +13,7 @@ import fr.pizzeria.admin.metier.ClientService;
 import fr.pizzeria.admin.metier.DessertService;
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.LivreurService;
+import fr.pizzeria.admin.metier.OuicheService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.admin.metier.UtilisateursService;
 import fr.pizzeria.model.Boisson;
@@ -42,6 +43,8 @@ public class DonneesListener implements ServletContextListener {
 	private IngredientService is;
 	@Inject
 	private PizzaService ps;
+	@Inject
+	private OuicheService os;
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
@@ -64,7 +67,7 @@ public class DonneesListener implements ServletContextListener {
 				LocalDateTime.now(), true, is.findAll()));
 		ps.save(new Pizza("REI", "Reine", BigDecimal.valueOf(11.00), CategoriePizza.VIANDE, TypePizza.PIZZA,
 				LocalDateTime.now(), true, is.findAll()));
-		ps.save(new Pizza("4FR", "4 Fromages", BigDecimal.valueOf(12.00), CategoriePizza.SANS_VIANDE, TypePizza.OUICHE,
+		os.save(new Pizza("4FR", "4 Fromages", BigDecimal.valueOf(12.00), CategoriePizza.SANS_VIANDE, TypePizza.OUICHE,
 				LocalDateTime.now(), true, is.findAll()));
 
 		/* Client */

@@ -16,6 +16,7 @@
 			<c:forEach var="action" items="${activites }">
 				<tr>
 					<c:if test="${action.type == 'PIZZA'}"><td><a href=<c:url value='/pizza/edit?id=${action.id}'/>>${action.nom}</a></td></c:if>
+					<c:if test="${action.type == 'OUICHE'}"><td><a href=<c:url value='/ouiches/edit?id=${action.id}'/>>${action.nom}</a></td></c:if>
 					<c:if test="${action.type == 'COMMANDE'}"><td><a href=<c:url value='/commandes/edit?id=${action.id}'/>>${action.nom}</a></td></c:if>
 					<td>${action.action}</td>
 					<td>${action.date}</td>
