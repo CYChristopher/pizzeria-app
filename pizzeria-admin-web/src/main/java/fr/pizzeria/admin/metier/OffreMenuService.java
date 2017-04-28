@@ -3,48 +3,71 @@ package fr.pizzeria.admin.metier;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
+import fr.pizzeria.admin.exception.StockageException;
 import fr.pizzeria.model.OffreMenu;
 
 @Stateless
+@TransactionManagement(value = TransactionManagementType.CONTAINER)
 public class OffreMenuService {
-
-	private final static String SELECT = "select o from OffreMenu o";
-	private final static String _BY_ID = " where o.id=:id";
-
-	@PersistenceContext
+	
+	@PersistenceContext(unitName = "pizzeria-admin-web")
 	private EntityManager em;
+	
+	private TypedQuery<OffreMenu> query;
 
 	public List<OffreMenu> findAll() {
-		return em.createQuery(SELECT, OffreMenu.class).getResultList();
+		this.query = em.createQuery("select om from OffreMenu om", OffreMenu.class);
+		List<OffreMenu> menus = query.getResultList();
+		return menus;
+	}
+	
+	public OffreMenu findByCode(String code) throws NoResultException {
+		this.query = em.createQuery("SELECT om FROM OffreMenu om WHERE om.code=:codeM", OffreMenu.class)
+				.setParameter("codeM", code);
+		return query.getSingleResult();
 	}
 
-	public OffreMenu find(Integer id) throws NoResultException {
-		return em.createQuery(SELECT + _BY_ID, OffreMenu.class).setParameter("id", id).getSingleResult();
+	public OffreMenu findById(Integer id) throws NoResultException {
+		this.query = em.createQuery("SELECT om FROM OffreMenu om WHERE om.id=:idM", OffreMenu.class)
+				.setParameter("idM", id);
+		return query.getSingleResult();
 	}
 
 	public void create(OffreMenu offreMenu) {
 		em.persist(offreMenu);
 	}
 
-	public void update(Integer id, OffreMenu offreMenu) {
-		try {
-			offreMenu.setId(find(id).getId());
-			em.merge(offreMenu);
-		} catch (NoResultException e) {
-			System.out.println("id non trouvé pour modification, création à la place");
-			create(offreMenu);
-		}
+	public void update(Integer id, OffreMenu menu) throws NoResultException {
+		OffreMenu old = this.findById(id);
+		menu.setId(old.getId());
+		em.merge(menu);
+		
 	}
-
-	public void delete(Integer id) {
-		try {
-			em.remove(find(id));
-		} catch (NoResultException e) {
-			System.out.println("id non trouvé pour suppression");
-		}
+	
+	/**
+	 * archive le menu
+	 * @param id
+	 * @throws StockageException
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void archive(Integer id) throws NoResultException {
+		OffreMenu menu = this.findById(id);
+		menu.setArchive(true);
+		em.merge(menu);
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void delete(Integer id) throws NoResultException {
+		OffreMenu menu = this.findById(id);
+		em.remove(menu);
 	}
 }
