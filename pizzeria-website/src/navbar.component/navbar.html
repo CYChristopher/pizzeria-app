@@ -27,11 +27,14 @@
                     <a href="/compte"> Mon Compte</a>
                 </li>
                 <li><a href="/panier">Mon Panier</a></li>
-                <li style="background:gold">
+                <li style="background:gold" ng-if="!$ctrl.clientConnecte">
                     <a href="/login" class="login">Connexion</a>
                 </li>
-                <li style="background: gold">
+                <li style="background: gold" ng-if="!$ctrl.clientConnecte">
                     <a href="/inscription" class="login">Inscription</a>
+                </li>
+                <li style="background: gold" ng-if="$ctrl.clientConnecte">
+                    <a href="/inscription" class="login">Déconnexion</a>
                 </li>
             </ul>
         </div>
