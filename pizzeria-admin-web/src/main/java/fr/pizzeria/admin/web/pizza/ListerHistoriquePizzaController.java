@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
-import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
 
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/allPizzas/list")
+@WebServlet("/historiquePizzas/list")
 public class ListerHistoriquePizzaController extends HttpServlet {
 
   private static final Logger LOG = Logger.getLogger(ListerHistoriquePizzaController.class.getName());
@@ -31,22 +30,12 @@ public class ListerHistoriquePizzaController extends HttpServlet {
   @Inject 
 	private IngredientService ingredientService;	
   
-  private int test =0;
-
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 	  
 	  
-	  if(test==0)
-	  {
-		  test =1;
-		  System.out.println("SAVE INGREDIENT");
-		  ingredientService.save(new Ingredient("Tomate", 10, 0.5));
-		  ingredientService.save(new Ingredient("Champignon", 10, 0.5));
-		  ingredientService.save(new Ingredient("Fromage", 10, 0.5));
-		  
-	  }
+	
 	    
 	  
     req.setAttribute("listePizzas", this.pizzaService.findAll());
@@ -69,7 +58,7 @@ public class ListerHistoriquePizzaController extends HttpServlet {
 		
 		pizzaService.update(id,editerPizza);
 
-		response.sendRedirect(request.getContextPath() + "/allPizzas/list");
+		response.sendRedirect(request.getContextPath() + "/historiquePizzas/list");
 
 	}
   

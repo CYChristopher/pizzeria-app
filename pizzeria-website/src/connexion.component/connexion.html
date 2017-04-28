@@ -1,0 +1,27 @@
+<div class="inscription">
+    <h1>Identifiez-vous !</h1><br>
+    <form name="formConnexion" class="form-horizontal" ng-submit="$ctrl.connexion()">
+        <div class="form-group">
+            <label for="emailInput" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="emailInput" name="emailInput" placeholder="Veuillez saisir votre adresse email"
+                    ng-model="$ctrl.email" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="motDePasseInput" class="col-sm-2 control-label">Mot de passe</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="motDePasseInput" ng-model="$ctrl.motDePasse" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-3">
+                <button type="submit" class="btn inscriptionBtn" ng-disabled="formInscription.$invalid">Se connecter</button>
+            </div>
+        </div>
+    </form>
+    <div class="col-sm-offset-2 col-sm-3">
+        <a href="/inscription">S'inscrire</a>
+    </div>
+</div>

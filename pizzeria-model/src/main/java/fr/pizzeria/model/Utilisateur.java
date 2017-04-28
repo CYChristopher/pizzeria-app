@@ -1,11 +1,11 @@
 package fr.pizzeria.model;
 
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,33 +14,10 @@ import javax.persistence.Id;
 
 import fr.pizzeria.exception.UtilisateurRuntimeException;
 
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-
 @Entity
 public class Utilisateur {
+
+	private static final Logger LOG = Logger.getLogger(Utilisateur.class.getName());
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +33,6 @@ public class Utilisateur {
 
 	}
 
-
 	public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, String adresse,
 			LocalDateTime dateCreation) {
 		super();
@@ -64,7 +40,6 @@ public class Utilisateur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-
 
 		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 
@@ -75,23 +50,11 @@ public class Utilisateur {
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse,
 			LocalDateTime dateCreation) {
 		super();
-		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 
-		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
-
-		this.adresse = adresse;
-		this.dateCreation = dateCreation;
-	}
-
-	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-
+		LOG.log(Level.INFO, "date avant d'aller en base avec un toString()" + dateCreation.toString());
 
 		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 
@@ -111,7 +74,7 @@ public class Utilisateur {
 	 *            avec un toString()
 	 * @return
 	 */
-	private String hashSha1(String pass, String sel) {
+	public String hashSha1(String pass, String sel) {
 
 		String motDePasseHashe = "";
 		try {
@@ -150,13 +113,6 @@ public class Utilisateur {
 
 	public LocalDateTime getDateCreation() {
 		return dateCreation;
-	}
-
-	public void setDateCreation(LocalDateTime dateCreation) {
-		this.dateCreation = dateCreation;
-
-		this.motDePasse = motDePasse;
-		this.adresse = adresse;
 	}
 
 	public Integer getId() {

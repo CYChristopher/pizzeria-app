@@ -2,7 +2,6 @@ package fr.pizzeria.admin.web.pizza;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,7 @@ import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.TypePizza;
 
 /**
  * Contrôleur de la page Liste des pizzas.
@@ -76,7 +76,7 @@ public class SavePizzaController extends HttpServlet {
 				}
 
 				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-						CategoriePizza.valueOf(categorie), LocalDateTime.now(), true, listIngredient);
+						CategoriePizza.valueOf(categorie),TypePizza.PIZZA, LocalDateTime.now(), true, listIngredient);
 
 				pizzaService.save(pizza);
 

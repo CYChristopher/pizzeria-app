@@ -8,7 +8,10 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
+
 <div class="container">
+	<div class="row">
+		<div class="col-md-9">
 	<h1>Historique des pizzas</h1>
 	<a class="btn btn-primary" href="../pizza/new">Nouvelle Pizza</a> <a
 		class="btn btn-primary" href="../pizzas/list">Retour</a> <br>
@@ -61,4 +64,3 @@
 </div>
 
 <jsp:include page="../layout/footer.jsp" />
-

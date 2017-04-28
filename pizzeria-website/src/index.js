@@ -8,9 +8,11 @@ import { HomeComponent } from './home.component'
 import { PizzaComponent } from './pizza.component'
 import { ListePizzasComponent } from './listePizzas.component'
 import { InscriptionComponent } from './inscription/index'
+import { ConnexionComponent } from './connexion.component'
 import { AjouterPanierComponent } from './ajouterPanier.component'
 import { PanierComponent } from './panier.component'
 import { NavbarComponent } from './navbar.component'
+import { MonCompteComponent } from './monCompte.component'
 
 
 angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
@@ -30,5 +32,7 @@ angular.module('pizzeria', [ngRoute, 'LocalStorageModule'])
     .component('home', HomeComponent)
     .component('ajouterPanier', AjouterPanierComponent)
     .component('inscriptionComponent', InscriptionComponent)
+    .component('connexion', ConnexionComponent)
     .component('panier', PanierComponent)
     .component('navbar', NavbarComponent)
+    .component('monCompte', MonCompteComponent)

@@ -8,11 +8,12 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
-<div class="container">
 
-	<h1>Liste des pizzas</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">	<h1>Liste des pizzas</h1>
 	<a class="btn btn-primary" href="../pizza/new">Nouvelle Pizza</a> <a
-		class="btn btn-primary" href="../allPizzas/list">Historique Pizza</a>
+		class="btn btn-primary" href="../historiquePizzas/list">Historique Pizza</a>
 	<br>
 	<c:if test="${msg != null}">
 		<div class="alert alert-danger" role="alert">${msg}</div>
@@ -54,18 +55,6 @@
 							</c:if>
 						</div>
 					</div>
-
-					<div class="col-md-6">
-						<a href="<c:url value="/pizzas/edit?code=${pizza.code}"/>"
-							class="btn btn-primary">Editer</a> <br>
-
-						<form method="POST">
-							<input type="hidden" name="code" value="${pizza.code}"> <input
-								type="hidden" name="action" value="supprimer">
-
-							<button type="submit" class="btn btn-danger">Supprimer</button>
-						</form>
-					</div>
 					
 				</td>
 			</tr>
@@ -76,6 +65,6 @@
 
 
 	</table>
+</div>
 
-	
-<jsp:include page="../layout/footer.jsp"/>
+<jsp:include page="../layout/footer.jsp" />
