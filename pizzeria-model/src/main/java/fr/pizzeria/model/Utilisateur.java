@@ -68,7 +68,7 @@ public class Utilisateur {
 	 *            avec un toString()
 	 * @return
 	 */
-	private String hashSha1(String pass, String sel) {
+	public String hashSha1(String pass, String sel) {
 
 		String motDePasseHashe = "";
 		try {
