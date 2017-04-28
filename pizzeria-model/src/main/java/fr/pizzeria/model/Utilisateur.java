@@ -1,11 +1,9 @@
 package fr.pizzeria.model;
 
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
-
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,31 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import fr.pizzeria.exception.UtilisateurRuntimeException;
-
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
-/**
- * @author Quelqun
- *
- */
 
 @Entity
 public class Utilisateur {
@@ -56,7 +29,6 @@ public class Utilisateur {
 
 	}
 
-
 	public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, String adresse,
 			LocalDateTime dateCreation) {
 		super();
@@ -64,7 +36,6 @@ public class Utilisateur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-
 
 		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 
@@ -75,23 +46,9 @@ public class Utilisateur {
 	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse,
 			LocalDateTime dateCreation) {
 		super();
-		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
-
-		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
-
-		this.adresse = adresse;
-		this.dateCreation = dateCreation;
-	}
-
-	public Utilisateur(String nom, String prenom, String email, String motDePasse, String adresse) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-
 
 		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 
@@ -150,13 +107,6 @@ public class Utilisateur {
 
 	public LocalDateTime getDateCreation() {
 		return dateCreation;
-	}
-
-	public void setDateCreation(LocalDateTime dateCreation) {
-		this.dateCreation = dateCreation;
-
-		this.motDePasse = motDePasse;
-		this.adresse = adresse;
 	}
 
 	public Integer getId() {
