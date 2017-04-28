@@ -32,29 +32,27 @@ public class Pizza {
 	private LocalDateTime versionPizza;
 	private Boolean actif;
 	
+	@Enumerated(EnumType.STRING)	
+	private TypePizza typePizza;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Ingredient> listeIngredients;
 
-	@Enumerated(EnumType.STRING)
-	private Type type;
-
-	private enum Type {
-		OUICHE, PIZZA
-	}
+	
 
 	public Pizza() {
 	}
 	
 	
 
-	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie, LocalDateTime versionPizza,
+	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie,TypePizza typePizza, LocalDateTime versionPizza,
 			Boolean actif, List<Ingredient> listeIngredients) {
 		
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
 		this.categorie = categorie;
+		this.typePizza=typePizza;
 		this.versionPizza = versionPizza;
 		this.actif = actif;
 		this.listeIngredients = listeIngredients;
@@ -132,13 +130,19 @@ public class Pizza {
 		this.listeIngredients = listeIngredients;
 	}
 
-	public Type getType() {
-		return type;
+	
+
+
+	public TypePizza getTypePizza() {
+		return typePizza;
 	}
 
-	public void setType(Type type) {
-		this.type = type;
+
+
+	public void setTypePizza(TypePizza typePizza) {
+		this.typePizza = typePizza;
 	}
+
 
 
 	@Override

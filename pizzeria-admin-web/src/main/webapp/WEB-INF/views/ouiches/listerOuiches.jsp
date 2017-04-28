@@ -11,9 +11,9 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-9">	<h1>Liste des pizzas</h1>
-	<a class="btn btn-primary" href="../pizza/new">Nouvelle Pizza</a> <a
-		class="btn btn-primary" href="../historiquePizzas/list">Historique Pizza</a>
+		<div class="col-md-9">	<h1>Liste des ouiches</h1>
+	<a class="btn btn-primary" href="../ouiches/new">Nouvelle Ouiche</a> <a
+		class="btn btn-primary" href="../historiqueOuiches/list">Historique Ouiches</a>
 	<br>
 	<c:if test="${msg != null}">
 		<div class="alert alert-danger" role="alert">${msg}</div>
@@ -37,7 +37,7 @@
 							€<br> ${pizza.versionPizza} <br>
 						</div>
 						<div class="col-md-6">
-							<a href="<c:url value="/pizza/edit?id=${pizza.id}"/>"
+							<a href="<c:url value="/ouiches/edit?id=${pizza.id}"/>"
 								class="btn btn-primary">Editer</a> <br>
 							<c:if test="${!pizza.actif}">
 								<form method="POST">
