@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-@Entity(name="menu")
+@Entity
 public class OffreMenu {
 
 	@Id
@@ -24,18 +24,18 @@ public class OffreMenu {
 	private Integer maxDessert;
 	private Boolean archive;
 	@ManyToMany
-	@JoinTable(name="menu",
-		joinColumns=@JoinColumn(name="menu_id", referencedColumnName="id"),
+	@JoinTable(name="offremenu_pizza",
+		joinColumns=@JoinColumn(name="offremenu_id", referencedColumnName="id"),
 		inverseJoinColumns=@JoinColumn(name="pizza_id", referencedColumnName="id"))
 	private List<Pizza> pizzas;
 	@ManyToMany
-	@JoinTable(name="menu",
-		joinColumns=@JoinColumn(name="menu_id", referencedColumnName="id"),
+	@JoinTable(name="offremenu_boisson",
+		joinColumns=@JoinColumn(name="offremenu_id", referencedColumnName="id"),
 		inverseJoinColumns=@JoinColumn(name="boisson_id", referencedColumnName="id"))
 	private List<Boisson> boissons;
 	@ManyToMany
-	@JoinTable(name="menu",
-		joinColumns=@JoinColumn(name="menu_id", referencedColumnName="id"),
+	@JoinTable(name="offremenu_dessert",
+		joinColumns=@JoinColumn(name="offremenu_id", referencedColumnName="id"),
 		inverseJoinColumns=@JoinColumn(name="dessert_id", referencedColumnName="id"))
 	private List<Dessert> desserts;
 
@@ -44,9 +44,21 @@ public class OffreMenu {
 	}
 	
 	public OffreMenu(String code, String nom, Double prix,
+			Integer maxP, Integer maxB, Integer maxD, Boolean archive){
+		this();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.maxPizza = maxP;
+		this.maxBoisson = maxB;
+		this.maxDessert = maxD;
+		this.archive = archive;
+	}
+	
+	public OffreMenu(String code, String nom, Double prix,
 			Integer maxP, Integer maxB, Integer maxD,
 			List<Pizza> pizzas, List<Boisson> boissons, List<Dessert> desserts, Boolean archive){
-		super();
+		this();
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
