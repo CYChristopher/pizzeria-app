@@ -1,4 +1,4 @@
-package fr.pizzeria.admin.web.pizza;
+package fr.pizzeria.admin.web.ouiche;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.IngredientService;
-import fr.pizzeria.admin.metier.PizzaService;
+import fr.pizzeria.admin.metier.OuicheService;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
@@ -27,16 +27,16 @@ import fr.pizzeria.model.TypePizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/pizza/edit")
-public class UpdatePizzaController extends HttpServlet {
+@WebServlet("/ouiches/edit")
+public class UpdateOuicheController extends HttpServlet {
 
-	private static final Logger LOG = Logger.getLogger(UpdatePizzaController.class.getName());
+	private static final Logger LOG = Logger.getLogger(UpdateOuicheController.class.getName());
 
-	private static final String VUE_EDIT_PIZZA = "/WEB-INF/views/pizzas/editPizza.jsp";
+	private static final String VUE_EDIT_OUICHES = "/WEB-INF/views/ouiches/editOuiche.jsp";
 	private Integer id;
 
 	@Inject
-	private PizzaService pizzaService;
+	private OuicheService ouicheService;
 
 	@Inject
 	private IngredientService ingredientService;
@@ -54,10 +54,10 @@ public class UpdatePizzaController extends HttpServlet {
 		}
 
 		request.setAttribute("listeIngredients", this.ingredientService.findAll());
-		request.setAttribute("editPizza", pizzaService.findById(this.id));
+		request.setAttribute("editPizza", ouicheService.findById(this.id));
 		request.setAttribute("categoriePizza", setCategorie);
 
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_PIZZA);
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_OUICHES);
 
 		dispatcher.forward(request, response);
 
@@ -67,7 +67,7 @@ public class UpdatePizzaController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Pizza oldPizza = pizzaService.findById(this.id);
+		Pizza oldPizza = ouicheService.findById(this.id);
 		String newcode;
 		String ref;
 		BigDecimal prix;
@@ -92,12 +92,12 @@ public class UpdatePizzaController extends HttpServlet {
 				listIngredient.add(ingredientService.findByName(ing));
 			}
 
-			Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie),TypePizza.PIZZA, LocalDateTime.now(), true,
+			Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie),TypePizza.OUICHE, LocalDateTime.now(), true,
 					listIngredient);
 
-			pizzaService.save(pizza);
+			ouicheService.save(pizza);
 
-			response.sendRedirect(request.getContextPath() + "/pizzas/list");
+			response.sendRedirect(request.getContextPath() + "/ouiches/list");
 
 		} catch (NullPointerException e) {
 			request.setAttribute("msg", "Liste des ingredients vide");
