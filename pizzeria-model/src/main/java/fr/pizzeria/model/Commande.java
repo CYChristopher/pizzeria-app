@@ -32,18 +32,6 @@ public class Commande {
 	
 	@OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
 	private List<CommandePizza> commandesPizzas = new ArrayList<>();
-	
-	private List<Pizza> listPizzas = new ArrayList<>();
-
-	public Commande(String numCommande, StatutCommande valueOf, String adresse2, Livreur livreur2, Client client2,
-			List<Pizza> listePizza) {
-		this.numeroCommande = numCommande;
-		this.statut = valueOf;
-		this.adresse = adresse2;
-		this.livreur = livreur2;
-		this.client = client2;
-		this.setListPizzas(listePizza);
-	}
 
 	public Integer getId() {
 		return id;
@@ -107,14 +95,6 @@ public class Commande {
 
 	public void setCommandesPizzas(List<CommandePizza> commandesPizzas) {
 		this.commandesPizzas = commandesPizzas;
-	}
-
-	public List<Pizza> getListPizzas() {
-		return listPizzas;
-	}
-
-	public void setListPizzas(List<Pizza> listPizzas) {
-		this.listPizzas = listPizzas;
 	}
 
 	@Override
