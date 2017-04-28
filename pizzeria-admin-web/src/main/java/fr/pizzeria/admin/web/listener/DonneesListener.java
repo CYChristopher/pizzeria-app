@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.listener;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import fr.pizzeria.admin.metier.DessertService;
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.LivreurService;
 import fr.pizzeria.admin.metier.PizzaService;
+import fr.pizzeria.admin.metier.PromotionService;
 import fr.pizzeria.admin.metier.UtilisateursService;
 import fr.pizzeria.model.Boisson;
 import fr.pizzeria.model.CategoriePizza;
@@ -22,6 +24,7 @@ import fr.pizzeria.model.Dessert;
 import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.Promotion;
 import fr.pizzeria.model.Utilisateur;
 
 @WebListener
@@ -41,6 +44,8 @@ public class DonneesListener implements ServletContextListener {
 	private IngredientService is;
 	@Inject
 	private PizzaService ps;
+	@Inject
+	private PromotionService promotionService;
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
@@ -81,6 +86,9 @@ public class DonneesListener implements ServletContextListener {
 		/* Dessert */
 		Dessert dessert1 = new Dessert("COO", "Cookie", new BigDecimal(2));
 		dessertService.save(dessert1);
+		
+		/* Promotion */
+		promotionService.save(new Promotion("TEST", LocalDate.of(2018, 1, 1), 10, ps.findById(1)));
 	}
 
 	@Override
