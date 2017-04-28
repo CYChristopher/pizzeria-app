@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,8 @@ import fr.pizzeria.exception.UtilisateurRuntimeException;
 
 @Entity
 public class Utilisateur {
+
+	private static final Logger LOG = Logger.getLogger(Utilisateur.class.getName());
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +53,8 @@ public class Utilisateur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
+
+		LOG.log(Level.INFO, "date avant d'aller en base avec un toString()" + dateCreation.toString());
 
 		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 

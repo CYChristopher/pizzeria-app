@@ -44,6 +44,8 @@ public class ConnexionUtilisateurController extends HttpServlet {
 				"motDePasse hashé:" + utilisateur.hashSha1(motDePasse, utilisateur.getDateCreation().toString()));
 		LOG.log(Level.INFO, "hash en base:" + utilisateur.getMotDePasse());
 
+		LOG.log(Level.INFO, "date récupéré en base avec un toString()" + utilisateur.getDateCreation().toString());
+
 		if (utilisateur != null && utilisateur.motDePasseOk(motDePasse)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", utilisateur);
