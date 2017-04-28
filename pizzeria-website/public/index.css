@@ -88,3 +88,42 @@ a:hover {
 h1 {
     color: brown;
 }
+
+/* CSS du panier*/
+img.img-panier {
+    width:100%;
+    max-width:100px;
+}
+.table > tbody > tr > td.vert-align{
+    vertical-align: middle;
+}
+span.clickable-span{
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.tooltip-panier {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltiptext-panier {
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip-panier .tooltiptext-panier {
+    visibility: hidden;
+    background-color: #eeeeee;
+    color: black;
+    padding: 5px 0;
+    border-radius: 6px;
+    /* position du tooltip*/
+    top: -5px;
+    left: 105%; 
+}
+
+.tooltip-panier:hover .tooltiptext-panier {
+    visibility: visible;
+}
+/* Fin CSS du panier */

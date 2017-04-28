@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.pizzeria.model.Client;
@@ -28,5 +29,11 @@ public class ClientRessource {
 		client.setMotDePasse(DigestUtils.sha256Hex(client.getMotDePasse()));
 		clientDao.save(client);
 	}
-
+	
+	@RequestMapping(value = "/client", method = RequestMethod.GET)
+	public Integer recupererClient(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse) {
+		Client reponse = clientDao.findByEmailAndMotDePasse(email, motDePasse);
+		return reponse != null ? reponse.getId() : -1;
+	}
+	
 }

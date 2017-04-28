@@ -28,11 +28,11 @@
         <li><a href=<c:url value='/pizzas/list'/>>Pizzas</a></li>
         <li><a href="#">Menus</a></li>
         <li><a href=<c:url value='/desserts/list'/>>Desserts</a></li>
+        <li><a href=<c:url value='/commandes/list'/>>Commandes</a></li>
         <li><a href=<c:url value='/boissons/list'/>>Boissons</a></li>
         <li><a href=<c:url value='/clients/list'/>>Clients</a></li>
-        <li><a href="#">Commandes</a></li>
         <li><a href=<c:url value='/livreurs/list'/>>Livreurs</a></li>
-        <li><a href="#">Ingrédients</a></li>
+        <li><a href="<c:url value='/ingredients/list'/>">Ingrédients</a></li>
         <li><a href="#">Statistiques</a></li>
         <li><a href="#">Promotions</a></li>
         <!--

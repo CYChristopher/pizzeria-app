@@ -146,7 +146,7 @@ public class Utilisateur {
 	}
 
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
 	}
 
 	public String getAdresse() {

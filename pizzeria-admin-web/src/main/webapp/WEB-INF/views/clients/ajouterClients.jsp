@@ -8,8 +8,12 @@
 
 <jsp:include page="../layout/navbar.jsp" />
 
-<div class="container">
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+	<div class="row">
+		<div class="col-md-9">
 	<h1>Ajout d'un clients</h1>
 	<form class="form-horizontal" method="POST"
 		action="<c:url value='/clients/new'/>">
@@ -57,5 +61,7 @@
 	</form>
 
 </div>
+</div>
+</div>
 
-<jsp:include page="../layout/footer.html" />
+<jsp:include page="../layout/footer.jsp" />
