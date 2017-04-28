@@ -6,8 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
-@Entity
+@Entity(name="menu")
 public class OffreMenu {
 
 	@Id
@@ -19,10 +22,22 @@ public class OffreMenu {
 	private Integer maxPizza;
 	private Integer maxBoisson;
 	private Integer maxDessert;
-	private List<Pizza> pizzas;
-	private List<Boisson> boissons;
-	private List<Dessert> desserts;
 	private Boolean archive;
+	@ManyToMany
+	@JoinTable(name="menu",
+		joinColumns=@JoinColumn(name="menu_id", referencedColumnName="id"),
+		inverseJoinColumns=@JoinColumn(name="pizza_id", referencedColumnName="id"))
+	private List<Pizza> pizzas;
+	@ManyToMany
+	@JoinTable(name="menu",
+		joinColumns=@JoinColumn(name="menu_id", referencedColumnName="id"),
+		inverseJoinColumns=@JoinColumn(name="boisson_id", referencedColumnName="id"))
+	private List<Boisson> boissons;
+	@ManyToMany
+	@JoinTable(name="menu",
+		joinColumns=@JoinColumn(name="menu_id", referencedColumnName="id"),
+		inverseJoinColumns=@JoinColumn(name="dessert_id", referencedColumnName="id"))
+	private List<Dessert> desserts;
 
 	public OffreMenu() {
 		this.archive = false;
