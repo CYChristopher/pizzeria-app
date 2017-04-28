@@ -1,7 +1,6 @@
 package fr.pizzeria.admin.web.livreur;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -16,12 +15,10 @@ import fr.pizzeria.admin.metier.LivreurService;
 /**
  * Contrôleur de la page Liste des livreurs.
  */
-@WebServlet("/livreurs/list")
+@WebServlet("/livreurs/liste")
 public class ListerLivreurController extends HttpServlet {
 
-	private static final Logger LOG = Logger.getLogger(ListerLivreurController.class.getName());
-
-	private static final String VUE_LISTER_LIVREURS = "/WEB-INF/views/livreurs/listerLivreurs.jsp";
+	private static final String VUE_LISTER = "/WEB-INF/views/livreurs/listerLivreurs.jsp";
 
 	@Inject
 	private LivreurService livreurService;
@@ -29,7 +26,7 @@ public class ListerLivreurController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setAttribute("listeLivreurs", this.livreurService.findAll());
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_LIVREURS);
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER);
 		dispatcher.forward(req, resp);
 	}
 

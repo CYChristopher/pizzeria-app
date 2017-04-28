@@ -16,12 +16,13 @@ import fr.pizzeria.admin.metier.DessertService;
 /**
  * Contrôleur de la page Liste des desserts.
  */
-@WebServlet("/desserts/list")
+@WebServlet("/desserts/liste")
 public class ListerDessertController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(ListerDessertController.class.getName());
 
 	private static final String VUE_LISTER_DESSERTS = "/WEB-INF/views/desserts/listerDesserts.jsp";
+	private static final String URL_LISTE = "/desserts/liste";
 
 	@Inject
 	private DessertService dessertService;
@@ -41,7 +42,7 @@ public class ListerDessertController extends HttpServlet {
 
 		dessertService.delete(code);
 
-		response.sendRedirect(request.getContextPath() + "/desserts/list");
+		response.sendRedirect(request.getContextPath() + URL_LISTE);
 
 	}
 
