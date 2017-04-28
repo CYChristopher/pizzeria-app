@@ -81,6 +81,12 @@
         <scope>runtime</scope>
       </dependency>
       <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>${mariadb.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+      <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-collections4</artifactId>
         <version>${commons-collections.version}</version>
@@ -219,7 +225,6 @@
 					<jpa.generate-ddl>true</jpa.generate-ddl>
 					<jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
 					<jdbc.connections.max.active>5</jdbc.connections.max.active>
-
 				</properties>
 			</profile>
 
