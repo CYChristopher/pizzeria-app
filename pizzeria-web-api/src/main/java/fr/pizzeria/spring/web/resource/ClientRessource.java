@@ -1,7 +1,5 @@
 package fr.pizzeria.spring.web.resource;
 
-import java.util.List;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +40,7 @@ public class ClientRessource {
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
 	public void modifierClient(@PathVariable("id") Integer id, @RequestBody Client newClient) {
 		
-		Client oldClient = clientDao.findById(id) ;
+		Client oldClient = this.clientDao.findById(id) ;
 		newClient.setId(oldClient.getId()) ;
 		if(newClient.getMotDePasse() == "") {
 			newClient.setMotDePasse(oldClient.getMotDePasse()) ;
@@ -50,18 +48,12 @@ public class ClientRessource {
 	
 		//Hash du mot de passe
 		newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));
-		clientDao.save(newClient);
+		this.clientDao.save(newClient);
 	}
-
-
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Client> getClients() {
-		return this.clientDao.findAll();
-    }
 
 	@RequestMapping(method = RequestMethod.GET)
 	public Integer recupererClient(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse) {
-		Client reponse = clientDao.findByEmailAndMotDePasse(email, motDePasse);
+		Client reponse = this.clientDao.findByEmailAndMotDePasse(email, motDePasse);
 		return reponse != null ? reponse.getId() : -1;
 	}
 }
