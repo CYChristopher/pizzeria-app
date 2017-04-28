@@ -47,21 +47,23 @@ public class CommandeService {
 		ev.setDate(LocalDateTime.now());
 		ev.setAction(Action.SAVE);
 		ev.setType(Type.COMMANDE);
-		event.fire(ev);
+		ev.setNom(cmd.getNumeroCommande());
 		em.persist(cmd);
+		ev.setId(cmd.getId());
+		event.fire(ev);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void update(Integer id, Commande cmd) {
-
 		Evenement ev = new Evenement();
 		ev.setDate(LocalDateTime.now());
 		ev.setAction(Action.UPDATE);
 		ev.setType(Type.COMMANDE);
-		event.fire(ev);
 		cmd.setId(find(id).getId());
-
 		em.merge(cmd);
+		ev.setNom(cmd.getNumeroCommande());
+		ev.setId(cmd.getId());
+		event.fire(ev);
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

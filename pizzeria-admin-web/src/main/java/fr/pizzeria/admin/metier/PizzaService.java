@@ -49,8 +49,10 @@ public class PizzaService {
 		ev.setDate(LocalDateTime.now());
 		ev.setAction(Action.SAVE);
 		ev.setType(Type.PIZZA);
-		event.fire(ev);
+		ev.setNom(pizza.getNom());
 		em.persist(pizza);
+		ev.setId(pizza.getId());
+		event.fire(ev);
 
 	}
 
