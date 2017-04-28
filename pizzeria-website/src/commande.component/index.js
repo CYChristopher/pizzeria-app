@@ -8,10 +8,15 @@ class controller{
 		this.CommandeService.getCommandes().then(commandes=>{
 			this.commandes=commandes	
 		})
+		this.commandeType='A_EMPORTER'
     }
 	
-	setCommande(type){
-		this.CommandeService.setCommande(type)
+	setCommandeType(type){
+		this.commandeType = type
+	}
+	
+	setCommande(){
+		this.CommandeService.setCommande(this.commandeType)
 	}
 	
 }
