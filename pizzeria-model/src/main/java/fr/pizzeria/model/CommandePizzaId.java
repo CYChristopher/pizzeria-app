@@ -5,13 +5,18 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Embeddable
 public class CommandePizzaId implements Serializable {
 
-	@Column(name = "pizza_id")
+	@ManyToOne
+	@JoinColumn(name = "pizza_id", insertable = false, updatable = false)
 	private Pizza pizza;
 
-	@Column(name = "commande_id")
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "commande_id", insertable = false, updatable = false)
 	private Commande commande;
 
 	public CommandePizzaId() {
@@ -28,6 +33,14 @@ public class CommandePizzaId implements Serializable {
 
 	public Commande getCommande() {
 		return this.commande;
+	}
+
+	public void setPizza(Pizza pizza) {
+		this.pizza = pizza;
+	}
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
 	}
 
 	@Override

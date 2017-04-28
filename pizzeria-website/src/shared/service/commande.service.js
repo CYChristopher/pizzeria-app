@@ -13,28 +13,36 @@ export class CommandeService{
 	}	
 	
 	setCommande(type){
-		this.localStorageService.setStorageType('sessionStorage')
-		this.ClientService.getClient(this.localStorageService.get('utilisateur')).then(utilisateur=>{
-			let commande={
-				'dateCommande':Date.now(),
-				'numeroCommande':'CMD'+utilisateur.id+Math.floor(Date.now()/60),
-				'statut':'NON_TRAITE',
-				'type':type,
-				'client':utilisateur,
-				'livreur':null	
-			}	
-
-			this.localStorageService.setStorageType('localStorage')
-			let commandePizza={
-				'quantite':1,
-				'pizza_id':1,
-				'commande_id':commande
+			
+		this.ClientService.getClient(this.localStorageService.get('utilisateur','sessionStorage')).then(utilisateur=>{
+			let pizzas=this.localStorageService.get('pizzas','localStorage')
+			let panier = this.localStorageService.get('panier','localStorage')
+			
+			let commandeComplete={
+				'commande':{
+					'dateCommande':Date.now(),
+					'numeroCommande':'CMD'+utilisateur.id+Math.floor(Date.now()/60),
+					'statut':'NON_TRAITE',
+					'type':type,
+					'client':utilisateur
+				},
+				'commandesPizza':[]
 			}
 			
-			console.log(commandePizza)
-			this.$http.post(`${this.API_URL}/commandes`,commande).then(r=>r.data)	
+			panier.forEach(pizza=>{
+				commandeComplete.commandesPizza.push({
+					'quantite':pizza.quantite,
+					'id':{
+						'pizza':pizza,		
+						'commande':commandeComplete.commande	
+					}
+				}
+				)
+			})
 			
-			this.$http.post(`${this.API_URL}/commandePizzas`,commandePizza).then(r=>r.data)	
+			
+			console.log(commandeComplete)
+			this.$http.post(`${this.API_URL}/commandes`,commandeComplete).then(r=>r.data)	
 		})		
 	}	
 } 

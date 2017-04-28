@@ -33,7 +33,7 @@ public class Commande {
 	@ManyToOne
 	private Client client;
 
-	@OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "id.commande", cascade = CascadeType.ALL)
 	private List<CommandePizza> commandesPizzas = new ArrayList<>();
 
 	public Integer getId() {
