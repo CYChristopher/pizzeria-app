@@ -4,9 +4,13 @@ export function routes($routeProvider) {
     .when('/', {
         template: '<home></home>'
     })
-    
+
     .when('/inscription', {
-            template: '<inscriptiont></inscription>',
+            template: '<inscription></inscription>',
+    })
+    
+    .when('/connexion', {
+            template: '<connexion></connexion>',
     })
 
     .when('/pizzas', {
@@ -15,6 +19,14 @@ export function routes($routeProvider) {
 
     .when('/commande', {
         template: '<commande></commande>'
+    })
+
+    .when('/panier', {
+        template: '<panier></panier>'
+    })
+
+    .when('/compte', {
+        template: '<mon-compte></mon-compte>'
     })
 
     .otherwise({

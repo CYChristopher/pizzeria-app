@@ -97,17 +97,10 @@ public class Commande {
 		return "Commande [id=" + this.id + ", numeroCommande=" + this.numeroCommande + "]";
 	}
 
-	/**
-	 * @return the type
-	 */
 	public TypeCommande getType() {
 		return this.type;
 	}
 
-	/**
-	 * @param type
-	 *            the type to set
-	 */
 	public void setType(TypeCommande type) {
 		this.type = type;
 	}

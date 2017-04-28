@@ -3,47 +3,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Editer Dessert ${editDessert.code} " />
+	<jsp:param name="title" value="Editer Dessert ${editDessert.code} "/>
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
-	<div class="jumbotron">
-		<div class="container">
 
-	<h1>Editer Dessert ${editDessert.code} </h1>
-	
-	<c:if test="${msg != null}">
-		<div class="alert alert-danger" role="alert">${msg}</div>
-	</c:if>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
 
-	<form method="post">
+			<h1>Editer Dessert ${editDessert.code}</h1>
+			<br>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
 
-		<div class="form-group">
-			<label for="newcode">Code :</label> <input id="newcode"
-				class="form-control" name="newcode" type="text"
-				value="${editDessert.code}">
-		</div>
+			<form method="post">
 
-		<div class="form-group">
-			<label for="ref">Nom :</label> <input id="ref" name="ref"
-				class="form-control" type="text" value="${editDessert.nom}">
-		</div>
+				<div class="form-group">
+					<label for="newcode">Code :</label>
+					<input id="newcode" class="form-control" name="newcode" type="text" value="${editDessert.code}"></div>
 
-		<div class="form-group">
-			<label for="prix">Prix : </label> <input step="0.01" id="number"
-				name="prix" class="form-control" type="number"
-				value="${editDessert.prix}">
-		</div>
+					<div class="form-group">
+						<label for="ref">Nom :</label>
+						<input id="ref" name="ref" class="form-control" type="text" value="${editDessert.nom}"></div>
 
+						<div class="form-group">
+							<label for="prix">Prix :
+							</label>
+							<input step="0.01" id="number" name="prix" class="form-control" type="number" value="${editDessert.prix}"></div>
 
+							<br>
+								<button class="btn btn-success" type="submit">Valider</button>
 
-		<input class="btn btn-success" type="submit" value="Valider">
-		<a href=<c:url value='/desserts/list'/>><button type="button"
-				class="btn btn-primary">Retour</button></a>
-	</form>
+								<a href='./liste'>
+									<button type="button" class="btn btn-primary">Retour</button>
+								</a>
+							</form>
 
-	</div>
+						</div>
 
-</div>
-
-<jsp:include page="../layout/footer.html"/>
+						<jsp:include page="../layout/footer.jsp"/>

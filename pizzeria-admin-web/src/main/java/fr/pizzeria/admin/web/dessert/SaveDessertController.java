@@ -18,12 +18,13 @@ import fr.pizzeria.model.Dessert;
 /**
  * Contrôleur de la page Liste des desserts.
  */
-@WebServlet("/desserts/new")
+@WebServlet("/desserts/ajouter")
 public class SaveDessertController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(SaveDessertController.class.getName());
 
 	private static final String VUE_SAVE_DESSERT = "/WEB-INF/views/desserts/saveDesserts.jsp";
+	private static final String URL_LISTE = "/desserts/liste";
 
 	@Inject
 	private DessertService dessertService;
@@ -49,7 +50,7 @@ public class SaveDessertController extends HttpServlet {
 
 			dessertService.save(dessert);
 
-			response.sendRedirect(request.getContextPath() + "/desserts/list");
+			response.sendRedirect(request.getContextPath() + URL_LISTE);
 
 		} else {
 			String erreur[] = { "", "", "" };
