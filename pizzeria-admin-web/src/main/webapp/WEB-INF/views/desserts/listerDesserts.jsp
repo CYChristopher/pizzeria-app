@@ -13,6 +13,11 @@
 		<div class="col-md-9">
 
 			<h1>Liste des Desserts</h1>
+			<br>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
+
 			<a class="btn btn-primary" href="./ajouter">Nouveau Dessert</a>
 			<br>
 				<table class="table">

@@ -13,7 +13,11 @@
 		<div class="col-md-9">
 
 			<h1>Nouvel Ingredient</h1>
-
+			<br>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
+			
 			<form method="post">
 
 				<label for="nom">Nom :</label>

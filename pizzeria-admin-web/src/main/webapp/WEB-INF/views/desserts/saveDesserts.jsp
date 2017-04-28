@@ -13,7 +13,11 @@
 		<div class="col-md-9">
 
 			<h1>Nouveau Dessert</h1>
-
+			<br>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
+			
 			<form method="post">
 				<label for="newcode">Code :</label>
 				<input style="border-color:${erreur[0]}" class="form-control" id="newcode" name="newcode" type="text" placeholder="Code" value="${newcode}">

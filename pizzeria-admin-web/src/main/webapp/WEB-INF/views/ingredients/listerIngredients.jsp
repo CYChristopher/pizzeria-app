@@ -13,8 +13,12 @@
 		<div class="col-md-9">
 
 			<h1>Liste des ingredients</h1>
-			<a class="btn btn-primary" href="<c:url value="./ajouter"/>">Nouvel ingredient</a>
+			<a class="btn btn-primary" href="<c:url value=" ./ajouter"/>">Nouvel ingredient</a>
 			<br>
+				<c:if test="${msg != null}">
+					<div class="alert alert-danger" role="alert">${msg}</div>
+				</c:if>
+
 				<table class="table">
 
 					<thead>
@@ -41,7 +45,7 @@
 									<c:if test="${ingredient.archive == false}">Non</c:if>
 								</td>
 								<td>
-									<a href="<c:url value="./editer?id=${ingredient.id}"/>" class="btn btn-warning">Editer</a>
+									<a href="<c:url value=" ./editer?id=${ingredient.id}"/>" class="btn btn-warning">Editer</a>
 								</td>
 								<td>
 									<form method="POST">

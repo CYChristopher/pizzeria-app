@@ -12,8 +12,11 @@
 	<div class="row">
 		<div class="col-md-9">
 
-			<h1>Editer Dessert ${editDessert.code}
-			</h1>
+			<h1>Editer Dessert ${editDessert.code}</h1>
+			<br>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
 
 			<form method="post">
 
@@ -29,6 +32,7 @@
 							<label for="prix">Prix :
 							</label>
 							<input step="0.01" id="number" name="prix" class="form-control" type="number" value="${editDessert.prix}"></div>
+
 							<br>
 								<button class="btn btn-success" type="submit">Valider</button>
 
