@@ -9,7 +9,7 @@ public class Evenement {
 	}
 
 	public enum Type {
-		PIZZA, COMMANDE
+		PIZZA, COMMANDE,OUICHE
 	}
 
 	private LocalDateTime date;

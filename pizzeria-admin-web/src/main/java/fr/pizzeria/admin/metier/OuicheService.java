@@ -15,7 +15,7 @@ import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.TypePizza;
 
 @Stateless
-public class PizzaService {
+public class OuicheService {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -25,7 +25,7 @@ public class PizzaService {
 
 	public List<Pizza> findAll() {
 		return em.createQuery("select p from Pizza p where p.typePizza=:typeP", Pizza.class)
-				.setParameter("typeP", TypePizza.PIZZA)
+				.setParameter("typeP", TypePizza.OUICHE)
 				.getResultList();
 	}
 
@@ -51,7 +51,7 @@ public class PizzaService {
 		Evenement ev = new Evenement();
 		ev.setDate(LocalDateTime.now());
 		ev.setAction(Action.SAVE);
-		ev.setType(Type.PIZZA);
+		ev.setType(Type.OUICHE);
 		event.fire(ev);
 		em.persist(pizza);
 
@@ -68,7 +68,7 @@ public class PizzaService {
 	public List<Pizza> findNewestPizzaByName() {
 		return em.createQuery("select piz from Pizza piz where piz.actif=:val and piz.typePizza=:typeP", Pizza.class)
 				.setParameter("val", true)
-				.setParameter("typeP", TypePizza.PIZZA)
+				.setParameter("typeP", TypePizza.OUICHE)
 				.getResultList();
 
 	}

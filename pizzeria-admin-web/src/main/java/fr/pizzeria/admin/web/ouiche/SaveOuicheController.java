@@ -1,4 +1,4 @@
-package fr.pizzeria.admin.web.pizza;
+package fr.pizzeria.admin.web.ouiche;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.IngredientService;
-import fr.pizzeria.admin.metier.PizzaService;
+import fr.pizzeria.admin.metier.OuicheService;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Pizza;
@@ -27,15 +27,15 @@ import fr.pizzeria.model.TypePizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/pizza/new")
-public class SavePizzaController extends HttpServlet {
+@WebServlet("/ouiches/new")
+public class SaveOuicheController extends HttpServlet {
 
-	private static final Logger LOG = Logger.getLogger(SavePizzaController.class.getName());
+	private static final Logger LOG = Logger.getLogger(SaveOuicheController.class.getName());
 
-	private static final String VUE_SAVE_PIZZA = "/WEB-INF/views/pizzas/savePizza.jsp";
+	private static final String VUE_SAVE_OUICHES = "/WEB-INF/views/ouiches/saveOuiche.jsp";
 
 	@Inject
-	private PizzaService pizzaService;
+	private OuicheService ouicheService;
 
 	@Inject
 	private IngredientService ingredientService;
@@ -51,7 +51,7 @@ public class SavePizzaController extends HttpServlet {
 		}
 		req.setAttribute("listeIngredients", this.ingredientService.findAll());
 		req.setAttribute("categoriePizza", setCategorie);
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_PIZZA);
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_OUICHES);
 		dispatcher.forward(req, resp);
 	}
 
@@ -76,11 +76,11 @@ public class SavePizzaController extends HttpServlet {
 				}
 
 				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-						CategoriePizza.valueOf(categorie),TypePizza.PIZZA, LocalDateTime.now(), true, listIngredient);
+						CategoriePizza.valueOf(categorie),TypePizza.OUICHE, LocalDateTime.now(), true, listIngredient);
 
-				pizzaService.save(pizza);
+				ouicheService.save(pizza);
 
-				response.sendRedirect(request.getContextPath() + "/pizzas/list");
+				response.sendRedirect(request.getContextPath() + "/ouiches/list");
 
 			} else {
 				String erreur[] = { "", "", "" };
