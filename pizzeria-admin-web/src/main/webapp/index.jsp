@@ -17,7 +17,7 @@
 			<h1>Pizzeria Administration</h1>
 			<p>Site web pour administrer la pizzeria</p>
 			<p>
-				<a class="btn btn-lg btn-primary" href="/pizzeria-admin-web/login" role="button">S'identifier &raquo;</a>
+				<a class="btn btn-lg btn-primary" href="./login" role="button">S'identifier &raquo;</a>
 			</p>
 		</div>
 	</div>
