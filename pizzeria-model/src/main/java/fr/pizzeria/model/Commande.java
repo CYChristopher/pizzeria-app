@@ -1,7 +1,7 @@
 package fr.pizzeria.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Commande {
@@ -26,8 +24,7 @@ public class Commande {
 	private String numeroCommande;
 	@Enumerated(EnumType.STRING)
 	private StatutCommande statut;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateCommande;
+	private LocalDateTime dateCommande;
 	@ManyToOne
 	private Livreur livreur;
 	@ManyToOne
@@ -63,11 +60,11 @@ public class Commande {
 		this.statut = statut;
 	}
 
-	public Calendar getDateCommande() {
+	public LocalDateTime getDateCommande() {
 		return dateCommande;
 	}
 
-	public void setDateCommande(Calendar dateCommande) {
+	public void setDateCommande(LocalDateTime dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 
