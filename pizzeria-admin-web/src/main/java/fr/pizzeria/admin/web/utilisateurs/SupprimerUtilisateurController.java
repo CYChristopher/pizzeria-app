@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.UtilisateursService;
 
-@WebServlet("/utilisateurs/delete")
+@WebServlet("/utilisateurs/supprimer")
 public class SupprimerUtilisateurController extends HttpServlet {
+
+	private static final String URL_LISTE = "/utilisateurs/liste";
 
 	@EJB
 	private UtilisateursService utilisateursService;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -24,6 +27,6 @@ public class SupprimerUtilisateurController extends HttpServlet {
 
 		utilisateursService.delete(id);
 
-		response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
+		response.sendRedirect(request.getContextPath() + URL_LISTE);
 	}
 }

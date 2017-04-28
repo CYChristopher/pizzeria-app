@@ -14,21 +14,25 @@ import javax.servlet.http.HttpServletResponse;
 import fr.pizzeria.admin.metier.UtilisateursService;
 import fr.pizzeria.model.Utilisateur;
 
-@WebServlet("/utilisateurs/new")
+@WebServlet("/utilisateurs/ajouter")
 public class NouvelUtilisateurController extends HttpServlet {
+
+	private static final String VUE_AJOUTER = "/WEB-INF/views/utilisateurs/nouvelUtilisateur.jsp";
+	private static final String URL_LISTE = "/utilisateurs/liste";
 
 	@EJB
 	private UtilisateursService utilisateursService;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/utilisateurs/nouvelUtilisateur.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_AJOUTER);
 		dispatcher.forward(request, response);
 
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -37,15 +41,14 @@ public class NouvelUtilisateurController extends HttpServlet {
 		String email = request.getParameter("email");
 		String motDePasse = request.getParameter("motDePasse");
 		String adresse = request.getParameter("adresse");
-	
+
 		LocalDateTime dateCreation = LocalDateTime.now();
 		Utilisateur utilisateur = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
-		
-		if (utilisateursService.findByEmail(email) == null) {	
 
-			
+		if (utilisateursService.findByEmail(email) == null) {
+
 			utilisateursService.saveNew(utilisateur);
-			response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
+			response.sendRedirect(request.getContextPath() + URL_LISTE);
 
 		} else {
 
