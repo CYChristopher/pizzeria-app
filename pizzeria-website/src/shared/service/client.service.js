@@ -1,3 +1,5 @@
+import sha256 from 'js-sha256'
+
 export class ClientService {
 
     constructor($http, API_URL, $q, localStorageService) {
@@ -34,4 +36,10 @@ export class ClientService {
         return this.getClient(id);
     }
 
+
+
+    verifierUtilisateur(email, motDePasse) {
+        return this.$http.get(`${this.API_URL}/client?email=${email}&motDePasse=${sha256(motDePasse)}`)
+            .then(resp => resp.data);
+    }
 }

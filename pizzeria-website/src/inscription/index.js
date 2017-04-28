@@ -18,8 +18,7 @@ class controller {
         if (userForm.$valid) {
             this.ClientService.saveClient(this.client)
                 .then(response => {
-                    //Modifier la redirection
-                    this.$location.path('/');
+                    this.$location.path('/connexion');
                 });
         }
     }
