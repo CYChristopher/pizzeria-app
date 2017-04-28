@@ -58,6 +58,13 @@ public class Pizza {
 		this.listeIngredients = listeIngredients;
 	}
 
+	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie,
+			String string3) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
