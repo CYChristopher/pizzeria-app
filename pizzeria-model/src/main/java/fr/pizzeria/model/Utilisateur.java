@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +42,7 @@ public class Utilisateur {
 		this.prenom = prenom;
 		this.email = email;
 
-		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
+		this.motDePasse = hashSha1(motDePasse, dateCreation.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 
 		this.adresse = adresse;
 		this.dateCreation = dateCreation;
@@ -54,9 +55,10 @@ public class Utilisateur {
 		this.prenom = prenom;
 		this.email = email;
 
-		LOG.log(Level.INFO, "date avant d'aller en base avec un toString()" + dateCreation.toString());
+		LOG.log(Level.INFO, "date avant d'aller en base avec un toString()"
+				+ dateCreation.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 
-		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
+		this.motDePasse = hashSha1(motDePasse, dateCreation.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 
 		this.adresse = adresse;
 		this.dateCreation = dateCreation;
@@ -103,7 +105,8 @@ public class Utilisateur {
 	 */
 	public boolean motDePasseOk(String passAComparer) {
 
-		String motDePasseHashe = hashSha1(passAComparer, dateCreation.toString());
+		String motDePasseHashe = hashSha1(passAComparer,
+				dateCreation.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 
 		if (motDePasseHashe.equals(motDePasse))
 			return true;
@@ -111,8 +114,8 @@ public class Utilisateur {
 
 	}
 
-	public LocalDateTime getDateCreation() {
-		return dateCreation;
+	public String getDateCreation() {
+		return dateCreation.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 	}
 
 	public Integer getId() {
@@ -152,7 +155,7 @@ public class Utilisateur {
 	}
 
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = hashSha1(motDePasse, dateCreation.toString());
+		this.motDePasse = hashSha1(motDePasse, dateCreation.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 	}
 
 	public String getAdresse() {
