@@ -100,7 +100,5 @@ public class Commande {
 	@Override
 	public String toString() {
 		return "Commande [id=" + id + ", numeroCommande=" + numeroCommande + "]";
-	}
-	
-	
+	}	
 }

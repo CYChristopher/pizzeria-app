@@ -13,6 +13,12 @@ public class Livreur {
 	private Integer id;
 	private String nom;
 	private String prenom;
+	
+	public Livreur(String nom, String prenom) {
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

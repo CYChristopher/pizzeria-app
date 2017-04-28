@@ -1,5 +1,7 @@
 package fr.pizzeria.spring.web;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -30,6 +32,12 @@ public class PizzeriaApp {
 				registry.addMapping("/**").allowedOrigins("*").allowedMethods(HttpMethod.PUT.name(), HttpMethod.DELETE.name(), HttpMethod.POST.name(), HttpMethod.GET.name());
 			}
 		};
+	}
+	
+	@Bean
+	@PostConstruct
+	public DonneesClient donneesClient(){
+		return new DonneesClient();
 	}
 
 	/**
