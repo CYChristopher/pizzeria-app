@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.OffreMenuService;
 
-@WebServlet("/offre_menus/liste")
+@WebServlet("/offre_menu/liste")
 public class ListerOffreMenuController extends HttpServlet {
 	
 	private static final Logger LOG = Logger.getLogger(ListerOffreMenuController.class.getName());
 
-	private static final String VUE_LISTER_OFFRE_MENU = "/WEB-INF/views/offreMenus/listerOffreMenu.jsp";
+	private static final String VUE_LISTER_OFFRE_MENU = "/WEB-INF/views/offreMenu/listerOffreMenu.jsp";
 
 	@Inject
 	private OffreMenuService oms;
