@@ -5,7 +5,7 @@ class controller {
         this.StockageService = localStorageService;
     }
     ajouterAuStockageLocal() {
-        let contenuStockage = this.StockageService.get('panier');
+        let contenuStockage = this.StockageService.get('panier','localStorage');
         if (contenuStockage === null) {
             contenuStockage = [];
         }
