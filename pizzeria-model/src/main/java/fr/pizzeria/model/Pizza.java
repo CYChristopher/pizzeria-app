@@ -45,44 +45,6 @@ public class Pizza {
 
 	public Pizza() {
 	}
-
-	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat) {
-		this();
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
-		this.categorie = cat;
-	}
-
-	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat, LocalDateTime versionPizza) {
-		this();
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
-		this.categorie = cat;
-		this.versionPizza = versionPizza;
-	}
-
-	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage) {
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
-		this.categorie = categorie;
-		this.urlImage = urlImage;
-		this.id = id;
-	}
-
-	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat, LocalDateTime versionPizza,
-			Boolean actif) {
-
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
-		this.categorie = cat;
-		this.versionPizza = versionPizza;
-		this.actif = actif;
-
-	}
 	
 	
 
