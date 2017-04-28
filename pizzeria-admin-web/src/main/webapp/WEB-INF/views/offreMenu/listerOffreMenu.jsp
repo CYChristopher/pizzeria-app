@@ -16,30 +16,38 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Code</th>
 				<th>Nom</th>
 				<th>Prix</th>
 				<th>Pizzas</th>
 				<th>Boissons</th>
 				<th>Dessert</th>
-				<th></th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="om" items="${listeOffreMenu}">
 				<tr>
-					<td>${om.id}</td>
 					<td>${om.code}</td>
 					<td>${om.nom}</td>
-					<td>${om.prix}€</td>
-					<c:forEach var="piz" items="${om.pizzas}">
-				${piz.nom}<br>
-					</c:forEach>
-					<td>${om.pizzas}</td>
-					<td>${om.boissons}</td>
-					<td>${om.desserts}</td>
+					<td>${om.prix} €</td>
+					<td>
+						<c:forEach var="piz" items="${om.pizzas}">
+							<a href="<c:url value="/pizzas/editer?id=${piz.id}"/>">${piz.nom}</a>
+							<br>
+						</c:forEach>
+					</td>
+					<td>
+						<c:forEach var="boi" items="${om.boissons}">
+							<a href="<c:url value="/boissons/editer?id=${boi.id}"/>">${boi.nom}</a>
+							<br>
+						</c:forEach>
+					</td>
+					<td>
+						<c:forEach var="des" items="${om.desserts}">
+							<a href="<c:url value="/desserts/editer?id=${des.id}"/>">${des.nom}</a>
+							<br>
+						</c:forEach>
+					</td>
 					<td><a href="<c:url value="/offre_menu/editer?id=${om.id}"/>"
 						class="btn btn-warning">Editer</a></td>
 					<td>
@@ -54,4 +62,4 @@
 	</table>
 </div>
 
-<jsp:include page="../layout/footer.html" />
+<jsp:include page="../layout/footer.jsp" />

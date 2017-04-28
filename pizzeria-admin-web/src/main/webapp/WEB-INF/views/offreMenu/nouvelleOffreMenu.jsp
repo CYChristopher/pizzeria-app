@@ -27,7 +27,7 @@
 
 		<div class="form-group">
 			<label for="prix">Prix : </label> <input
-				style="border-color:${erreur[2]}" step="0.01" class="form-control"
+				style="border-color:${erreur[2]}" step="0.01" min="0,01" class="form-control"
 				name="prix" type="number" placeholder="prix" value="${prix}">
 		</div>
 
@@ -106,4 +106,4 @@
 
 </div>
 
-<jsp:include page="../layout/footer.html" />
+<jsp:include page="../layout/footer.jsp" />

@@ -27,12 +27,10 @@
 		</div>
 
 		<div class="form-group">
-			<label for="prix">Prix : </label> <input step="0.01" id="number"
+			<label for="prix">Prix : </label> <input step="0.01" min="0,01" id="number"
 				name="prix" class="form-control" type="number"
 				value="${editDessert.prix}">
 		</div>
-
-
 
 		<input class="btn btn-success" type="submit" value="Valider">
 		<a href=<c:url value='/desserts/list'/>><button type="button"
@@ -40,4 +38,4 @@
 	</form>
 
 </div>
-<jsp:include page="../layout/footer.html" />
+<jsp:include page="../layout/footer.jsp" />
