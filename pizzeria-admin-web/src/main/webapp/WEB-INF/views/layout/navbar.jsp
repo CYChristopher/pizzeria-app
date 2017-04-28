@@ -35,7 +35,7 @@
         <li><a href=<c:url value='/livreurs/list'/>>Livreurs</a></li>
         <li><a href="<c:url value='/ingredients/list'/>">Ingrédients</a></li>
         <li><a href="#">Statistiques</a></li>
-        <li><a href="#">Promotions</a></li>
+        <li><a href="<c:url value='/promotions/list'/>">Promotions</a></li>
         <!--
         <li class="dropdown">
           <a href="#"

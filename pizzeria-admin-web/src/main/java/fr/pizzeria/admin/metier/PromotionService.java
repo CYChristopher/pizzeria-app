@@ -2,12 +2,14 @@ package fr.pizzeria.admin.metier;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Promotion;
 
+@Stateless
 public class PromotionService {
 	
 	@PersistenceContext

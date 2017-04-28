@@ -1,24 +1,26 @@
 package fr.pizzeria.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Entity
 public class Promotion {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String code;
-    private LocalDateTime dateFinPromotion;
+    private LocalDate dateFinPromotion;
     private int reductionEnPourcentage;
     @OneToOne
     private Pizza pizza;
     
-	public Promotion(Integer id, String code, LocalDateTime dateFinPromotion, int reductionEnPourcentage, Pizza pizza) {
+	public Promotion(Integer id, String code, LocalDate dateFinPromotion, int reductionEnPourcentage, Pizza pizza) {
 		super();
 		this.id = id;
 		this.code = code;
@@ -27,7 +29,7 @@ public class Promotion {
 		this.pizza = pizza;
 	}
 
-	public Promotion(String code, LocalDateTime dateFinPromotion, int reductionEnPourcentage, Pizza pizza) {
+	public Promotion(String code, LocalDate dateFinPromotion, int reductionEnPourcentage, Pizza pizza) {
 		super();
 		this.code = code;
 		this.dateFinPromotion = dateFinPromotion;
@@ -51,10 +53,10 @@ public class Promotion {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public LocalDateTime getDateFinPromotion() {
+	public LocalDate getDateFinPromotion() {
 		return dateFinPromotion;
 	}
-	public void setDateFinPromotion(LocalDateTime dateFinPromotion) {
+	public void setDateFinPromotion(LocalDate dateFinPromotion) {
 		this.dateFinPromotion = dateFinPromotion;
 	}
 	public int getReductionEnPourcentage() {
