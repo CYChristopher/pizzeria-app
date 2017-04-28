@@ -15,6 +15,13 @@
     <base href="/">
     <link rel="stylesheet" href="index.css">
 
+    <script>
+        function clientConnecte() {
+            //TODO récupérer utilisateur dans cache pour pouvoir afficher le bouton "mon compte"
+            // return true quand user sinon false
+        }
+    </script>
+
 </head>
 
 <body ng-app="pizzeria" class="container-fluid">
@@ -22,6 +29,7 @@
 
     <div class="container">
         <navbar> </navbar>
+
 
         <div class="row">
             <div ng-view></div>

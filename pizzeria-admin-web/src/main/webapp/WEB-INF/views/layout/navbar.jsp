@@ -26,6 +26,7 @@
         <li><a href=<c:url value='/.'/>>Accueil</a></li>
         <li><a href="<c:url value='/utilisateurs/list'/>">Utilisateurs</a></li>
         <li><a href=<c:url value='/pizzas/list'/>>Pizzas</a></li>
+         <li><a href=<c:url value='/ouiches/list'/>>Ouiches</a></li>
         <li><a href="#">Menus</a></li>
         <li><a href=<c:url value='/desserts/list'/>>Desserts</a></li>
         <li><a href=<c:url value='/commandes/list'/>>Commandes</a></li>

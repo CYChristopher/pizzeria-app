@@ -23,15 +23,23 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/panier">Mon Panier</a></li>
-                <li>
-                    <a href="/user"> Mon Compte</a>
+                <li ng-if="$ctrl.getConnectedClient()">
+                    <a href="/compte"> Mon Compte</a>
                 </li>
-                <li style="background:gold">
+
+                <li><a href="/panier">Mon Panier</a></li>
+
+                <li style="background:gold" ng-if="!$ctrl.getConnectedClient()">
                     <a href ng-click="$ctrl.connecter()" class="login">Connexion</a>
                 </li>
-                <li style="background: gold">
+
+
+                <li style="background: gold" ng-if="!$ctrl.getConnectedClient()">
                     <a href="/inscription" class="login">Inscription</a>
+                </li>
+
+                <li style="background: gold" ng-if="$ctrl.getConnectedClient()">
+                    <a href="" class="login">Déconnexion</a>
                 </li>
             </ul>
         </div>

@@ -6,16 +6,16 @@ class controller {
         this.$location = $location;
         this.ClientService = ClientService;
         this.client = {
-            email : '',
-            motDePasse : '',
-            nom : '',
-            prenom : '',
+            email: '',
+            motDePasse: '',
+            nom: '',
+            prenom: '',
         }
         this.confMdp = '';
     }
 
-    validerForm(userForm){
-        if(userForm.$valid){
+    validerForm(userForm) {
+        if (userForm.$valid) {
             this.ClientService.saveClient(this.client)
                 .then(response => {
                     this.$location.path('/connexion');

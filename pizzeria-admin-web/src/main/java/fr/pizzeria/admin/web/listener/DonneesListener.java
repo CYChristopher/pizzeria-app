@@ -22,6 +22,7 @@ import fr.pizzeria.model.Dessert;
 import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.TypePizza;
 import fr.pizzeria.model.Utilisateur;
 
 @WebListener
@@ -50,17 +51,21 @@ public class DonneesListener implements ServletContextListener {
 		utilisateurService.saveNew(utilisateur1);
 		utilisateurService.saveNew(new Utilisateur("Admin", "Jean-Pierre", "a@a", "a", "Nantes", LocalDateTime.now()));
 
-		/* Pizza */
-		ps.save(new Pizza("PEP", "Peperoni", BigDecimal.valueOf(12.50), CategoriePizza.VIANDE));
-		ps.save(new Pizza("REI", "Reine", BigDecimal.valueOf(11.00), CategoriePizza.VIANDE));
-		ps.save(new Pizza("4FR", "4 Fromages", BigDecimal.valueOf(12.00), CategoriePizza.SANS_VIANDE));
+		
 
 		/* Ingrédient */
-		is.save(new Ingredient("Totomate", 100, 1.5));
+		 
+		is.save(new Ingredient("Totomate", 100, 1.5));		
 		is.save(new Ingredient("Maurizzella", 50, 3.5));
 		is.save(new Ingredient("Eclipserie", 250, 1.0));
 		is.save(new Ingredient("Chauve-sourizo", 50, 1.5));
 		is.save(new Ingredient("Anti-ananas", 150, 2.0));
+		
+		
+		/* Pizza */
+		ps.save(new Pizza("PEP", "Peperoni", BigDecimal.valueOf(12.50), CategoriePizza.VIANDE,TypePizza.PIZZA,LocalDateTime.now(),true,is.findAll()));
+		ps.save(new Pizza("REI", "Reine", BigDecimal.valueOf(11.00), CategoriePizza.VIANDE,TypePizza.PIZZA,LocalDateTime.now(),true,is.findAll()));
+		ps.save(new Pizza("4FR", "4 Fromages", BigDecimal.valueOf(12.00), CategoriePizza.SANS_VIANDE,TypePizza.OUICHE,LocalDateTime.now(),true,is.findAll()));
 
 		/* Client */
 		Client client1 = new Client("A", "Nicolas", "a@orange.fr", "aaaaaa", "DTA Ingenierie");
