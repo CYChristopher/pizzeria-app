@@ -4,17 +4,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Commande {
@@ -31,24 +29,20 @@ public class Commande {
 	private Livreur livreur;
 	@ManyToOne
 	private Client client;
-	@ManyToMany(fetch = FetchType.EAGER) // permet de demander à JPA d'aller
-											// charger les pizzas en
-											// profondeurs.
-	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
-	private List<Pizza> pizzas = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+	private List<CommandePizza> commandesPizzas = new ArrayList<>();
+	
+	private List<Pizza> listPizzas = new ArrayList<>();
 
-	public Commande() {
-	}
-
-	public Commande(String numeroCommande, StatutCommande statut, String adresse, Livreur livreur, Client client,
-			List<Pizza> pizzas) {
-		this.numeroCommande = numeroCommande;
-		this.statut = statut;
-		this.dateCommande = LocalDateTime.now();
-		this.adresse = adresse;
-		this.livreur = livreur;
-		this.client = client;
-		this.pizzas = pizzas;
+	public Commande(String numCommande, StatutCommande valueOf, String adresse2, Livreur livreur2, Client client2,
+			List<Pizza> listePizza) {
+		this.numeroCommande = numCommande;
+		this.statut = valueOf;
+		this.adresse = adresse2;
+		this.livreur = livreur2;
+		this.client = client2;
+		this.setListPizzas(listePizza);
 	}
 
 	public Integer getId() {
@@ -90,7 +84,7 @@ public class Commande {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-
+	
 	public Livreur getLivreur() {
 		return livreur;
 	}
@@ -107,21 +101,26 @@ public class Commande {
 		this.client = client;
 	}
 
-	public List<Pizza> getPizzas() {
-		return new ArrayList<>(pizzas);
+	public List<CommandePizza> getCommandesPizzas() {
+		return commandesPizzas;
 	}
 
-	public void addPizza(Pizza pizza) {
-		pizzas.add(pizza);
+	public void setCommandesPizzas(List<CommandePizza> commandesPizzas) {
+		this.commandesPizzas = commandesPizzas;
 	}
 
-	public void setPizzas(List<Pizza> pizzas) {
-		this.pizzas = pizzas;
+	public List<Pizza> getListPizzas() {
+		return listPizzas;
+	}
+
+	public void setListPizzas(List<Pizza> listPizzas) {
+		this.listPizzas = listPizzas;
 	}
 
 	@Override
 	public String toString() {
 		return "Commande [id=" + id + ", numeroCommande=" + numeroCommande + "]";
 	}
-
+	
+	
 }
