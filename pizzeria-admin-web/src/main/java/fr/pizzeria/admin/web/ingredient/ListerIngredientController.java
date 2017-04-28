@@ -24,6 +24,7 @@ public class ListerIngredientController extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(ListerIngredientController.class.getName());
 
 	private static final String VUE_LISTER_INGREDIENTS = "/WEB-INF/views/ingredients/listerIngredients.jsp";
+	private static final String URL_LISTE = "/ingredients/liste";
 
 	@EJB
 	private IngredientService ingredientService;
@@ -56,7 +57,7 @@ public class ListerIngredientController extends HttpServlet {
 			LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
 			req.setAttribute("msg", "Erreur du serveur, merci de contacter le support de l'application ");
 		} finally {
-			resp.sendRedirect(req.getContextPath() + "/ingredients/list");
+			resp.sendRedirect(req.getContextPath() + URL_LISTE);
 		}
 	}
 }

@@ -24,11 +24,14 @@
 
 						<label for="prix">Prix :</label>
 						<input style="border-color:${ erreur [2] }" class="form-control" id="prix" name="prix" type="number" step="0.01" min="0.01" placeholder="ex : 0,35" value="${ editIngredient.prix }">
+							<br>
+								<button class="btn btn-success" type="submit">Valider</button>
 
-							<button class="btn btn-success" type="submit">Valider</button>
+								<a href=<c:url value='./liste'/>>
+									<button type="button" class="btn btn-primary">Retour</button>
+								</a>
+							</form>
 
-						</form>
+						</div>
 
-					</div>
-
-					<jsp:include page="../layout/footer.jsp"/>
+						<jsp:include page="../layout/footer.jsp"/>
