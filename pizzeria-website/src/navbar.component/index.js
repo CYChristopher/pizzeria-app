@@ -12,7 +12,6 @@ class controller {
         this.stockageService.set('pageRedirectionConnexion', this.$location.path(), 'sessionStorage');
         this.$location.path('/connexion');
     }
-
 }
 
 export const NavbarComponent = {

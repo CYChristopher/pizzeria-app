@@ -30,8 +30,9 @@
                 <li><a href="/panier">Mon Panier</a></li>
 
                 <li style="background:gold" ng-if="!$ctrl.clientConnecte">
-                    <a href class="login" ng-click="$ctrl.connecter()">Connexion</a>
+                    <a href ng-click="$ctrl.connecter()" class="login">Connexion</a>
                 </li>
+
 
                 <li style="background: gold" ng-if="!$ctrl.clientConnecte">
                     <a href="/inscription" class="login">Inscription</a>

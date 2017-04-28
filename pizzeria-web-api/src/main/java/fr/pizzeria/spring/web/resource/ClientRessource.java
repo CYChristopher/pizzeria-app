@@ -27,10 +27,6 @@ public class ClientRessource {
 	@Autowired
 	private IClientRepository clientDao;
 
-	@RequestMapping(method = RequestMethod.GET)
-	  public List<Client> listAllPizzas() {
-	    return clientDao.findAll();
-	  }
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Client getClient(@PathVariable("id") Integer id) {
@@ -58,4 +54,10 @@ public class ClientRessource {
 		clientDao.save(newClient);
 	}
 
+
+	@RequestMapping(method = RequestMethod.GET)
+	public Integer recupererClient(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse) {
+		Client reponse = clientDao.findByEmailAndMotDePasse(email, motDePasse);
+		return reponse != null ? reponse.getId() : -1;
+	}
 }

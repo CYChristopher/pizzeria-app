@@ -11,7 +11,7 @@ export class ClientService {
     }
 
     getClient(id) {
-        return (id !== undefined) ?
+        return (id) ?
             this.$http.get(`${this.API_URL}/clients/${id}`)
             .then(response => response.data) :
             Promise.resolve({});
@@ -26,7 +26,7 @@ export class ClientService {
     }
 
     deleteClient(client) {
-        return this.$http.delete(`${this.API_URL}/${client.id}`)
+        return this.$http.delete(`${this.API_URL}/clients/${client.id}`)
             .then(response => response.data);
     }
 
@@ -37,9 +37,8 @@ export class ClientService {
     }
 
 
-
     verifierUtilisateur(email, motDePasse) {
-        return this.$http.get(`${this.API_URL}/client?email=${email}&motDePasse=${sha256(motDePasse)}`)
+        return this.$http.get(`${this.API_URL}/clients?email=${email}&motDePasse=${sha256(motDePasse)}`)
             .then(resp => resp.data);
     }
 }
