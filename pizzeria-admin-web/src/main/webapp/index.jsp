@@ -7,9 +7,7 @@
 </jsp:include>
 
 <jsp:include page="/WEB-INF/views/layout/navbar.jsp" />
-
 <div class="container">
-
 	<!-- Main component for a primary marketing message or call to action -->
 	<div class="row">
 		<div class="col-md-9">
