@@ -49,33 +49,10 @@ public class PizzeriaApp {
 		};
 	}
 
-	@Autowired
-	private IPizzaRepository ipizza;
-	@Autowired
-	private IIngredientRepository iIngredient;
-
+	@Bean
 	@PostConstruct
-	public void initApp() {
-		List<Ingredient> listIngredient = new ArrayList<>();
-		listIngredient.add(new Ingredient("Tomate", 20, 0.5));
-		listIngredient.add(new Ingredient("Jambon", 21, 0.6));
-		listIngredient.add(new Ingredient("Fromage", 22, 0.7));
-		iIngredient.save(listIngredient);
-		ipizza.save(new Pizza("PEP", "Peperroni", BigDecimal.valueOf(12), CategoriePizza.VIANDE,
-				"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg",
-				LocalDateTime.now(), true, TypePizza.PIZZA, listIngredient));
-		ipizza.save(new Pizza("REI", "Reine", BigDecimal.valueOf(12), CategoriePizza.VIANDE,
-				"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg",
-				LocalDateTime.now(), true, TypePizza.PIZZA, listIngredient));
-		ipizza.save(new Pizza("ROY", "Royal", BigDecimal.valueOf(12), CategoriePizza.SANS_VIANDE,
-				"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg",
-				LocalDateTime.now(), true, TypePizza.PIZZA, listIngredient));
-		ipizza.save(new Pizza("4FRO", "4 Fromages", BigDecimal.valueOf(12), CategoriePizza.SANS_VIANDE,
-				"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg",
-				LocalDateTime.now(), false, TypePizza.PIZZA, listIngredient));
-		ipizza.save(new Pizza("Lorr", "Lorraine", BigDecimal.valueOf(12), CategoriePizza.SANS_VIANDE,
-				"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg",
-				LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient));
+	public JeuxDonnees jeuxDonnees(){
+		return new JeuxDonnees();
 	}
 
 	/**
