@@ -39,7 +39,7 @@ public class PizzeriaApp {
 	@Autowired 
 	private IIngredientRepository iIngredient;
 	
-	
+	/*
 	@PostConstruct
 	public void initApp() {
 		List<Ingredient> listIngredient = new ArrayList<>();
@@ -52,7 +52,7 @@ public class PizzeriaApp {
 		ipizza.save(new Pizza("ROY", "Royal", BigDecimal.valueOf(12) , CategoriePizza.SANS_VIANDE,"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg", LocalDateTime.now(), true, TypePizza.PIZZA, listIngredient));
 		ipizza.save(new Pizza("4FRO", "4 Fromages", BigDecimal.valueOf(12) , CategoriePizza.SANS_VIANDE,"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg", LocalDateTime.now(), false, TypePizza.PIZZA, listIngredient));
 		ipizza.save(new Pizza("Lorr", "Lorraine", BigDecimal.valueOf(12) , CategoriePizza.SANS_VIANDE,"https://www.tutti-pizza.com/images/350x270/produit/_/marguerita-jambon_marguerita-jambon.jpg", LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient));
-	}
+	}*/
 	
 	/**
 	 * Activation de CORS pour tous les domaines.
