@@ -28,6 +28,12 @@
 			for="prix">Prix : </label> <input style="border-color:${erreur[2]}"
 			step="0.01" class="form-control" id="prix" name="prix" type="number"
 			placeholder="prix" value="${prix}">
+			
+		<div class="form-group">
+			<label for="urlImage">Image :</label>
+			<input id="image" name="urlImage"
+				class="form-control" type="text" placeholder="Lien vers image" value="${editPizza.urlImage}" required>
+		</div>
 
 		<div class="form-group">
 			<label for="categorie">Categorie : </label> <select id="categorie"

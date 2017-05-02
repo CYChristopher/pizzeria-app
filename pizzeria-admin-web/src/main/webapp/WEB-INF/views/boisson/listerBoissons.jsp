@@ -21,7 +21,6 @@
 			<thead>
 				<tr>
 					<th>Image</th>
-					<th>Id</th>
 					<th>Code</th>
 					<th>Nom</th>
 					<th>Prix</th>
@@ -32,8 +31,7 @@
 
 			<c:forEach var="boisson" items="${listeBoissons}">
 				<tr>
-					<td><img src="${boisson.urlImage}"></td>
-					<td>${boisson.id}</td>
+					<td><img src="${boisson.urlImage}" width="250px" height="200px"></td>
 					<td>${boisson.code}</td>
 					<td>${boisson.nom}</td>
 					<td>${boisson.prix} €</td>

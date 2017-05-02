@@ -36,6 +36,11 @@
 				name="prix" class="form-control" type="number"
 				value="${editPizza.prix}">
 		</div>
+		
+		<div class="form-group">
+			<label for="image"> Image :</label> <input id="urlImage" name="urlImage"
+				class="form-control" type="text" placeholder="Lien vers image" value="${editPizza.urlImage}" required> 
+		</div>
 
 
 		<div class="form-group">

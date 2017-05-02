@@ -67,6 +67,7 @@ public class SaveOuicheController extends HttpServlet {
 				String ref = request.getParameter("ref");
 				String prix = request.getParameter("prix");
 				String categorie = request.getParameter("categorie");
+				String urlImage = request.getParameter("urlImage");
 				String[] ingredients = request.getParameterValues("ingredientSelectione");
 
 				List<Ingredient> listIngredient = new ArrayList<>();
@@ -76,14 +77,15 @@ public class SaveOuicheController extends HttpServlet {
 				}
 
 				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-						CategoriePizza.valueOf(categorie),TypePizza.OUICHE, LocalDateTime.now(), true, listIngredient);
-
+						CategoriePizza.valueOf(categorie),  urlImage, 
+						 LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient);
+				
 				ouicheService.save(pizza);
 
 				response.sendRedirect(request.getContextPath() + "/ouiches/list");
 
 			} else {
-				String erreur[] = { "", "", "" };
+				String erreur[] = { "", "", "", "" };
 				if (request.getParameter("newcode").isEmpty()) {
 					erreur[0] = "red";
 				} else {
@@ -101,7 +103,7 @@ public class SaveOuicheController extends HttpServlet {
 				} else {
 					request.setAttribute("prix", request.getParameter("prix"));
 				}
-
+		
 				request.setAttribute("erreur", erreur);
 				request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
 				doGet(request, response);

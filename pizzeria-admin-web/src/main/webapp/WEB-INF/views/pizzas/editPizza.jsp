@@ -36,11 +36,16 @@
 				name="prix" class="form-control" type="number"
 				value="${editPizza.prix}">
 		</div>
+		
+		<div class="form-group">
+			<label for="image"> Image :</label> <input id="urlImage" name="urlImage"
+				class="form-control" type="text" placeholder="Lien vers image" value="${editPizza.urlImage}" required>
+		</div>
 
 
 		<div class="form-group">
 
-			<label for="categorie">Categorie : </label> <select id="categorie"
+			<label for="categorie">Catégorie : </label> <select id="categorie"
 				class="form-control" name="categorie">
 				<c:forEach var="current" items="${categoriePizza}">
 					<c:choose>
@@ -60,7 +65,7 @@
 
 		<div class="row">
 			<div class="col-sm-6">
-				<h2>Ingredients Sélectionné</h2>
+				<h2>Ingredients Sélectionnés</h2>
 				<div  id="ingredientSelectione" class='list-group'>
 				<c:forEach var="current" items="${editPizza.listeIngredients}">
 					<input id='${current.id}' class="list-group-item"
@@ -69,7 +74,7 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<h2>Liste des ingredients</h2>
+				<h2>Liste des ingrédients</h2>
 				<ul id="ingredients" class='list-group'>
 					<c:forEach var="current" items="${listeIngredients}">
 						<li id='${current.id}' class="list-group-item">${current.nom}</li>
