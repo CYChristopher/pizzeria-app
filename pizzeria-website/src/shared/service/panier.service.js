@@ -21,6 +21,29 @@ export class PanierService {
     return this.pizzas.find( pizza => pizza.id === parseInt( pizzaId ) );
   }
 
+  getPrixTotal() {
+    if ( !this.panier ) return 0;
+    return this.panier
+      .reduce( ( accumulateur, item ) => {
+        return accumulateur + ( this.getPizzabyId( item.id )
+          .prix * item.quantite );
+      }, 0 );
+  }
+
+  getQuantiteTotale() {
+    if ( !this.panier ) return 0;
+    return this.panier
+      .reduce( ( accumulateur, item ) => {
+        return ( accumulateur + item.quantite );
+      }, 0 );
+  }
+
+  //repercute tout les changements du panier local sur le localStorage
+  updatePanier() {
+    this.localStorageService.set( 'panier', this.panier, 'localStorage' );
+    this.prixTotal = this.getPrixTotal();
+  }
+
   supprimer( itemPanier ) {
     let index = this.panier.indexOf( itemPanier );
     if ( index > -1 ) {
@@ -43,26 +66,10 @@ export class PanierService {
     this.updatePanier();
   }
 
-  //repercute tout les changements du panier local sur le localStorage
-  updatePanier() {
-    this.localStorageService.set( 'panier', this.panier, 'localStorage' );
-    this.prixTotal = this.getPrixTotal();
-  }
-
-  getPrixTotal() {
-    if ( !this.panier ) return 0;
-    return this.panier
-      .reduce( ( accumulateur, item ) => {
-        return accumulateur + ( this.getPizzabyId( item.id )
-          .prix * item.quantite );
-      }, 0 )
-  }
-
   ajouterAuStockageLocal( item ) {
     if ( !this.panier ) {
       this.panier = [];
     }
-
     let index = this.panier.findIndex( panierItem => item.id ===
       parseInt( panierItem.id ) );
     if ( index >= 0 ) {
