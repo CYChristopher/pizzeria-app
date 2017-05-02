@@ -19,21 +19,6 @@
     color: white;
 }
 
-.titre-commande{
-    text-align: center;
-}
-
-.titre-tab-pizza{
-    text-align: center;
-    font: bold;
-    font-size: 25px;
-    color: brown;
-}
-
-.td-commande{
-    text-align: center;
-}
-
 .navbar-toggle {
     background: orangered;
 }
