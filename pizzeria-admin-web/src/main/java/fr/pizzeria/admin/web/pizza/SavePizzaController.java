@@ -111,6 +111,9 @@ public class SavePizzaController extends HttpServlet {
 
 		} catch (NullPointerException e) {
 			request.setAttribute("msg", "Liste des ingredients vide");
+			request.setAttribute("newcode", request.getParameter("newcode"));
+			request.setAttribute("ref", request.getParameter("ref"));
+			request.setAttribute("prix", request.getParameter("prix"));
 			doGet(request, response);
 		}
 

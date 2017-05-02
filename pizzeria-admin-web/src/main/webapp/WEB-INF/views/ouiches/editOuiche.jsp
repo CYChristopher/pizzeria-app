@@ -20,21 +20,21 @@
 
 	<form method="post">
 
-		<div class="form-group">
-			<label for="newcode">Code :</label> <input id="newcode"
-				class="form-control" name="newcode" type="text"
-				value="${editPizza.code}">
-		</div>
+				<div class="form-group">
+					<label for="newcode">Code :</label> <input id="newcode"
+						class="form-control" name="newcode" type="text"
+						value="${editPizza.code}" required>
+				</div>
 
-		<div class="form-group">
-			<label for="ref">Nom :</label> <input id="ref" name="ref"
-				class="form-control" type="text" value="${editPizza.nom}">
-		</div>
+				<div class="form-group">
+					<label for="ref">Nom :</label> <input id="ref" name="ref"
+						class="form-control" type="text" value="${editPizza.nom}" required>
+				</div>
 
 		<div class="form-group">
 			<label for="prix">Prix : </label> <input step="0.01" id="number"
 				name="prix" class="form-control" type="number"
-				value="${editPizza.prix}">
+				value="${editPizza.prix}" required>
 		</div>
 		
 		<div class="form-group">
@@ -87,10 +87,13 @@
 
 
 
-		<input class="btn btn-success" type="submit" value="Valider">
-		<a href=<c:url value='/ouiches/list'/>><button type="button"
-				class="btn btn-primary">Retour</button></a>
-	</form>
+				<input class="btn btn-success" type="submit" value="Valider">
+				<a href=<c:url value='/ouiches/list'/>><button type="button"
+						class="btn btn-primary">Retour</button></a> 
+				<a href=<c:url value=''/>>
+					<button type="button" class="btn btn-primary">Reset</button>
+				</a>
+			</form>
 
 
 </div>

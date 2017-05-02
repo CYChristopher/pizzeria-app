@@ -20,21 +20,21 @@
 
 	<form method="post">
 
-		<div class="form-group">
-			<label for="newcode">Code :</label> <input id="newcode"
-				class="form-control" name="newcode" type="text"
-				value="${editPizza.code}">
-		</div>
+				<div class="form-group">
+					<label for="newcode">Code :</label> <input id="newcode"
+						class="form-control" name="newcode" type="text"
+						value="${editPizza.code}" required>
+				</div>
 
-		<div class="form-group">
-			<label for="ref">Nom :</label> <input id="ref" name="ref"
-				class="form-control" type="text" value="${editPizza.nom}">
-		</div>
+				<div class="form-group">
+					<label for="ref">Nom :</label> <input id="ref" name="ref"
+						class="form-control" type="text" value="${editPizza.nom}" required>
+				</div>
 
 		<div class="form-group">
 			<label for="prix">Prix : </label> <input step="0.01" id="number"
 				name="prix" class="form-control" type="number"
-				value="${editPizza.prix}">
+				value="${editPizza.prix}" required>
 		</div>
 		
 		<div class="form-group">
@@ -45,7 +45,7 @@
 
 		<div class="form-group">
 
-			<label for="categorie">Catégorie : </label> <select id="categorie"
+			<label for="categorie">Categorie : </label> <select id="categorie"
 				class="form-control" name="categorie">
 				<c:forEach var="current" items="${categoriePizza}">
 					<c:choose>
@@ -65,7 +65,7 @@
 
 		<div class="row">
 			<div class="col-sm-6">
-				<h2>Ingredients Sélectionnés</h2>
+				<h2>Ingredients Sélectionné</h2>
 				<div  id="ingredientSelectione" class='list-group'>
 				<c:forEach var="current" items="${editPizza.listeIngredients}">
 					<input id='${current.id}' class="list-group-item"
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<h2>Liste des ingrédients</h2>
+				<h2>Liste des ingredients</h2>
 				<ul id="ingredients" class='list-group'>
 					<c:forEach var="current" items="${listeIngredients}">
 						<li id='${current.id}' class="list-group-item">${current.nom}</li>
@@ -87,10 +87,13 @@
 
 
 
-		<input class="btn btn-success" type="submit" value="Valider">
-		<a href=<c:url value='/pizzas/list'/>><button type="button"
-				class="btn btn-primary">Retour</button></a>
-	</form>
+				<input class="btn btn-success" type="submit" value="Valider">
+				<a href=<c:url value='/pizzas/list'/>><button type="button"
+						class="btn btn-primary">Retour</button></a> 
+				<a href=<c:url value=''/>>
+					<button type="button" class="btn btn-primary">Reset</button>
+				</a>
+			</form>
 
 
 </div>
