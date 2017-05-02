@@ -23,18 +23,18 @@
 				<div class="form-group">
 					<label for="newcode">Code :</label> <input id="newcode"
 						class="form-control" name="newcode" type="text"
-						value="${editDessert.code}">
+						value="${editDessert.code}" required>
 				</div>
 
 				<div class="form-group">
 					<label for="ref">Nom :</label> <input id="ref" name="ref"
-						class="form-control" type="text" value="${editDessert.nom}">
+						class="form-control" type="text" value="${editDessert.nom}" required>
 				</div>
 
 				<div class="form-group">
 					<label for="prix">Prix : </label> <input step="0.01" id="number"
 						name="prix" class="form-control" type="number"
-						value="${editDessert.prix}">
+						value="${editDessert.prix}" required>
 				</div>
 
 				<br>

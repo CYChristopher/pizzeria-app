@@ -22,13 +22,13 @@
 				<div class="form-group">
 					<label for="nom">Nom</label> <input type="text"
 						class="form-control" id="nom" name="nom"
-						placeholder="${livreur.nom}" value="${livreur.nom}">
+						placeholder="${livreur.nom}" value="${livreur.nom}" required>
 				</div>
 
 				<div class="form-group">
 					<label for="prix">Prenom</label> <input type="text"
 						class="form-control" id="prenom" name="prenom"
-						placeholder="${livreur.prenom}" value="${livreur.prenom}">
+						placeholder="${livreur.prenom}" value="${livreur.prenom}" required>
 				</div>
 
 				<br>
