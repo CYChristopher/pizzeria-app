@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.BoissonService;
 
-@WebServlet("/boissons/list")
+@WebServlet("/boissons/liste")
 public class ListerBoissonController extends HttpServlet {
 
 	private static final String VUE_LISTER_BOISSON = "/WEB-INF/views/boisson/listerBoissons.jsp";

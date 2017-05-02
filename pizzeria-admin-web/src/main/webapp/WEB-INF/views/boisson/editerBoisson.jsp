@@ -41,7 +41,7 @@
 
 
 		<input class="btn btn-success" type="submit" value="Valider">
-		<a href=<c:url value='/boissons/list'/>><button type="button"
+		<a href=<c:url value='/boissons/liste'/>><button type="button"
 				class="btn btn-primary">Retour</button></a>
 	</form>
 

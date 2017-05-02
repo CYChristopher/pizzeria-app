@@ -18,7 +18,7 @@ import fr.pizzeria.model.Pizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/historiqueOuiches/list")
+@WebServlet("/historiqueOuiches/liste")
 public class ListerHistoriqueOuicheController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(ListerHistoriqueOuicheController.class.getName());
@@ -58,7 +58,7 @@ public class ListerHistoriqueOuicheController extends HttpServlet {
 
 		this.ouicheService.update(id,editerPizza);
 
-		response.sendRedirect(request.getContextPath() + "/historiqueOuiches/list");
+		response.sendRedirect(request.getContextPath() + "/historiqueOuiches/liste");
 
 	}
 

@@ -33,19 +33,19 @@ public class NouvelleBoissonController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		if (!request.getParameter("code").isEmpty() && !request.getParameter("nom").isEmpty()
-				&& !request.getParameter("prix").isEmpty()) {
+						&& !request.getParameter("prix").isEmpty()) {
 			String code = request.getParameter("code");
 			String nom = request.getParameter("nom");
 			String prix = request.getParameter("prix");
 
 			Boisson dessert = new Boisson(code, nom, Double.valueOf(prix), "");
 
-			boissonService.saveNew(dessert);
+			this.boissonService.saveNew(dessert);
 
-			response.sendRedirect(request.getContextPath() + "/boissons/list");
+			response.sendRedirect(request.getContextPath() + "/boissons/liste");
 
 		} else {
 			String erreur[] = { "", "", "" };
@@ -69,7 +69,7 @@ public class NouvelleBoissonController extends HttpServlet {
 
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("msg", "Veuillez remplir les champs en rouge, sinon ...");
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}

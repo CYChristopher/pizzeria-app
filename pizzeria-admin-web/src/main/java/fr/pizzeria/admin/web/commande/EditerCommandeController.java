@@ -41,20 +41,20 @@ public class EditerCommandeController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		this.id = Integer.parseInt(req.getParameter("id"));
-		req.setAttribute("commande", this.commandeService.find(id));
+		req.setAttribute("commande", this.commandeService.find(this.id));
 
 		req.setAttribute("statusPossible", EnumSet.allOf(StatutCommande.class));
 
-		req.setAttribute("listeLivreur", livreurService.findAll());
-		req.setAttribute("listePizza", pizzaService.findAll());
-		req.setAttribute("listeClient", clientService.findAll());
+		req.setAttribute("listeLivreur", this.livreurService.findAll());
+		req.setAttribute("listePizza", this.pizzaService.findAll());
+		req.setAttribute("listeClient", this.clientService.findAll());
 
 		this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDES).forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		String[] pizzaCommandeId = request.getParameterValues("pizzaCommandeId");
 		String statut = request.getParameter("statut");
@@ -64,23 +64,23 @@ public class EditerCommandeController extends HttpServlet {
 		String idClient = request.getParameter("client");
 		String idLivreur = request.getParameter("livreur");
 
-		Livreur livreur = livreurService.find(Integer.parseInt(idLivreur));
-		Client client = clientService.getById(Integer.parseInt(idClient));
+		Livreur livreur = this.livreurService.find(Integer.parseInt(idLivreur));
+		Client client = this.clientService.getById(Integer.parseInt(idClient));
 
 		List<Pizza> listePizza = new ArrayList<>();
 
 		if (pizzaCommandeId != null) {
 			for (String idPizza : pizzaCommandeId) {
-				listePizza.add(pizzaService.findById(Integer.parseInt(idPizza)));
+				listePizza.add(this.pizzaService.findById(Integer.parseInt(idPizza)));
 			}
 		}
 
 		Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client,
-				listePizza);
+						listePizza);
 
-		commandeService.update(this.id, commande);
+		this.commandeService.update(this.id, commande);
 
-		response.sendRedirect(request.getContextPath() + "/commandes/list");
+		response.sendRedirect(request.getContextPath() + "/commandes/liste");
 
 	}
 
