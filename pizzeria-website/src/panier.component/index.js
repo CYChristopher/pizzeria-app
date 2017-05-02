@@ -10,6 +10,10 @@ class controller {
     this.$location = $location
   }
 
+  supprimer( itemPanier ) {
+    this.ps.supprimer( itemPanier );
+  }
+
   passerCommande() {
     let utilisateur = this.localStorageService.get( 'utilisateur',
       'sessionStorage' );

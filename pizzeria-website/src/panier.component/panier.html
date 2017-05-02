@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="itemPanier in $ctrl.panier"
+      <tr ng-repeat="itemPanier in $ctrl.ps.panier"
           ng-init="pizza = $ctrl.ps.getPizzabyId(itemPanier.id)">
         <td class="vert-align">
 
@@ -30,7 +30,7 @@
         </td>
         <td class="vert-align">{{ pizza.nom }}
           <span class="clickable-span glyphicon glyphicon-remove"
-                ng-click="$ctrl.ps.supprimer(itemPanier)"></span></td>
+                ng-click="$ctrl.supprimer(itemPanier)"></span></td>
         <td class="vert-align"> <b>{{ pizza.prix }} € </b></td>
         <td class="vert-align"> <b>x{{ itemPanier.quantite }}</b>
           <span class="clickable-span glyphicon glyphicon-plus"
@@ -46,7 +46,7 @@
         <tbody>
           <tr>
             <td>Total :</td>
-            <td>{{$ctrl.prixTotal}} €</td>
+            <td>{{$ctrl.ps.prixTotal}} €</td>
           </tr>
           <!--<tr><td>Promotion :</td><td>4€</td></tr>-->
           <tr>

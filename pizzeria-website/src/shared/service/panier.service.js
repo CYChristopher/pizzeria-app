@@ -1,7 +1,7 @@
 export class PanierService {
 
   constructor( $location, localStorageService, PizzaService ) {
-    this.localStorageService = localStorageService
+    this.localStorageService = localStorageService;
     this.PizzaService = PizzaService;
 
     this.panier = this.localStorageService.get( 'panier', 'localStorage' );
@@ -12,7 +12,7 @@ export class PanierService {
         this.pizzas = pizzas
       } )
       .then( () => this.prixTotal = this.getPrixTotal() );
-    this.$location = $location
+    this.$location = $location;
   }
 
   //retourne la pizza de 'pizzas' avec pizzaId
@@ -56,5 +56,23 @@ export class PanierService {
         return accumulateur + ( this.getPizzabyId( item.id )
           .prix * item.quantite );
       }, 0 )
+  }
+
+  ajouterAuStockageLocal( item ) {
+    if ( !this.panier ) {
+      this.panier = [];
+    }
+
+    let index = this.panier.findIndex( panierItem => item.id ===
+      parseInt( panierItem.id ) );
+    if ( index >= 0 ) {
+      this.panier[ index ].quantite++;
+    } else {
+      this.panier.push( {
+        id: `${item.id}`,
+        quantite: 1
+      } );
+    }
+    this.updatePanier();
   }
 }
