@@ -42,14 +42,13 @@
 						href=<c:url value='./editer?id=${utilisateur.id}'></c:url>><button
 								class='btn btn-warning'>Editer</button></a></td>
 					<td>
-						<form
-							action="<c:url value='./supprimer?id=${utilisateur.id}'></c:url>"
+						<c:if test="${utilisateur.id != utilisateurCourant.id}">
+							<form action="<c:url value='./supprimer?id=${utilisateur.id}'></c:url>"
 							method="post">
-							<input class='btn btn-danger' type='submit'
-								value='Supprimer'>
-						</form>
+							<input class='btn btn-danger' type='submit' value='Supprimer'>
+							</form>
+						</c:if>
 					</td>
-
 				</tr>
 			</c:forEach>
 		</tbody>
