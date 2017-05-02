@@ -8,9 +8,6 @@ public class CommandePizza {
 	@EmbeddedId
 	private CommandePizzaId id;
 
-	// private Commande commande;
-	// private Commande pizza;
-
 	@Column(name = "quantite", nullable = false)
 	private Integer quantite;
 
