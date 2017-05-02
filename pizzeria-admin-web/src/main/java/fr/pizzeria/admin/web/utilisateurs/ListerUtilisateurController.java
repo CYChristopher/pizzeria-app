@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.pizzeria.admin.metier.UtilisateursService;
 
@@ -22,8 +23,9 @@ public class ListerUtilisateurController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		HttpSession session = req.getSession();
 		req.setAttribute("listeUtilisateurs", this.utilisateursService.findAll());
+		req.setAttribute("utilisateurCourant", session.getAttribute("utilisateur"));
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER);
 		dispatcher.forward(req, resp);
 	}
