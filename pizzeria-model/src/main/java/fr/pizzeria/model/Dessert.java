@@ -20,6 +20,7 @@ public class Dessert {
 	private String nom;
 	private BigDecimal prix;
 	private String urlImage;
+	private Boolean archive;
 
 	public Dessert() {
 	}
@@ -40,7 +41,7 @@ public class Dessert {
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -48,7 +49,7 @@ public class Dessert {
 	}
 
 	public String getCode() {
-		return code;
+		return this.code;
 	}
 
 	public void setCode(String code) {
@@ -56,7 +57,7 @@ public class Dessert {
 	}
 
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
@@ -64,7 +65,7 @@ public class Dessert {
 	}
 
 	public BigDecimal getPrix() {
-		return prix;
+		return this.prix;
 	}
 
 	public void setPrix(BigDecimal prix) {
@@ -72,7 +73,7 @@ public class Dessert {
 	}
 
 	public String getUrlImage() {
-		return urlImage;
+		return this.urlImage;
 	}
 
 	public void setUrlImage(String urlImage) {
@@ -81,7 +82,7 @@ public class Dessert {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(code).toHashCode();
+		return new HashCodeBuilder(17, 37).append(this.code).toHashCode();
 	}
 
 	@Override
@@ -92,11 +93,19 @@ public class Dessert {
 		if (obj == this) {
 			return true;
 		}
-		if (obj.getClass() != getClass()) {
+		if (obj.getClass() != this.getClass()) {
 			return false;
 		}
 		Dessert rhs = (Dessert) obj;
-		return new EqualsBuilder().append(code, rhs.code).isEquals();
+		return new EqualsBuilder().append(this.code, rhs.code).isEquals();
+	}
+
+	public Boolean getArchive() {
+		return this.archive;
+	}
+
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
 	}
 
 }

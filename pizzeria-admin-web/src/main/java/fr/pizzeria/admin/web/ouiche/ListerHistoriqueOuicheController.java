@@ -21,46 +21,46 @@ import fr.pizzeria.model.Pizza;
 @WebServlet("/historiqueOuiches/list")
 public class ListerHistoriqueOuicheController extends HttpServlet {
 
-  private static final Logger LOG = Logger.getLogger(ListerHistoriqueOuicheController.class.getName());
+	private static final Logger LOG = Logger.getLogger(ListerHistoriqueOuicheController.class.getName());
 
-  private static final String VUE_LISTER_OUICHES = "/WEB-INF/views/ouiches/listerAllOuiches.jsp";
+	private static final String VUE_LISTER_OUICHES = "/WEB-INF/views/ouiches/listerAllOuiches.jsp";
 
-  @Inject private OuicheService ouicheService;
-  
-  @Inject 
-	private IngredientService ingredientService;	
-  
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-	  
-	  
-	
-	    
-	  
-    req.setAttribute("listePizzas", this.ouicheService.findAll());
-    RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_OUICHES);
-    dispatcher.forward(req, resp);
-  }
-  
-  
-  @Override
+	@Inject private OuicheService ouicheService;
+
+	@Inject
+	private IngredientService ingredientService;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+					throws ServletException, IOException {
+
+
+
+
+
+		req.setAttribute("listePizzas", this.ouicheService.findAll());
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_OUICHES);
+		dispatcher.forward(req, resp);
+	}
+
+
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
-		
-		
-		Pizza editerPizza = ouicheService.findById(id);
-		
-		editerPizza.setActif(!editerPizza.getActif());
-		
-		ouicheService.update(id,editerPizza);
+
+
+		Pizza editerPizza = this.ouicheService.findById(id);
+
+		editerPizza.setArchive(!editerPizza.getArchive());
+
+		this.ouicheService.update(id,editerPizza);
 
 		response.sendRedirect(request.getContextPath() + "/historiqueOuiches/list");
 
 	}
-  
+
 
 }

@@ -37,15 +37,15 @@ public class ListerRecenteOuicheController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
-		Pizza editerPizza = ouicheService.findById(id);
+		Pizza editerPizza = this.ouicheService.findById(id);
 
-		editerPizza.setActif(!editerPizza.getActif());
+		editerPizza.setArchive(!editerPizza.getArchive());
 
-		ouicheService.update(id, editerPizza);
+		this.ouicheService.update(id, editerPizza);
 
 		response.sendRedirect(request.getContextPath() + "/ouiches/list");
 

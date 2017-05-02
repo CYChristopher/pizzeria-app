@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<h1>Historique des pizzas</h1>
-			<a class="btn btn-primary" href="../pizzas/list">Retour</a> <br>
+			<a class="btn btn-primary" href="../pizzas/liste">Retour</a> <br>
 			<c:if test="${msg != null}">
 				<div class="alert alert-danger" role="alert">${msg}</div>
 			</c:if>
@@ -39,14 +39,14 @@
 									<br>
 								</div>
 								<div class="col-md-6">
-									<c:if test="${!pizza.actif}">
+									<c:if test="${pizza.archive}">
 										<form method="POST">
 											<input type="hidden" name="id" value="${pizza.id}"> 
 											<input type="hidden" name="action" value="supprimer">
 											<button type="submit" class="btn btn-danger">Désarchiver</button>
 										</form>
 									</c:if>
-									<c:if test="${pizza.actif}">
+									<c:if test="${!pizza.archive}">
 										<form method="POST">
 											<input type="hidden" name="id" value="${pizza.id}"> 
 											<input type="hidden" name="action" value="supprimer">

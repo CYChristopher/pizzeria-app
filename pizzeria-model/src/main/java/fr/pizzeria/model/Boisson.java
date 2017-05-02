@@ -15,6 +15,7 @@ public class Boisson {
 	private String nom;
 	private Double prix;
 	private String urlImage;
+	private Boolean archive;
 
 	public Boisson() {
 	}
@@ -37,7 +38,7 @@ public class Boisson {
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -45,7 +46,7 @@ public class Boisson {
 	}
 
 	public String getCode() {
-		return code;
+		return this.code;
 	}
 
 	public void setCode(String code) {
@@ -53,7 +54,7 @@ public class Boisson {
 	}
 
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
@@ -61,7 +62,7 @@ public class Boisson {
 	}
 
 	public Double getPrix() {
-		return prix;
+		return this.prix;
 	}
 
 	public void setPrix(Double prix) {
@@ -69,11 +70,19 @@ public class Boisson {
 	}
 
 	public String getUrlImage() {
-		return urlImage;
+		return this.urlImage;
 	}
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
+	}
+
+	public Boolean getArchive() {
+		return this.archive;
+	}
+
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
 	}
 
 }
