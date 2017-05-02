@@ -1,5 +1,6 @@
 package fr.pizzeria.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,12 @@ public class CommandeComplete {
 		this.commandesPizza = commandesPizza;
 	}
 
+	public void setDateCommande(LocalDateTime date) {
+		commande.setDateCommande(date);
+	}
 
+	public void setStatutCommande(StatutCommande statut) {
+		commande.setStatut(statut);
+	}
 
 }

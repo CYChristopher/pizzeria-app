@@ -1,10 +1,20 @@
 package fr.pizzeria.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 public class Pizza {
@@ -18,30 +28,47 @@ public class Pizza {
 	@Enumerated(EnumType.STRING)
 	private CategoriePizza categorie;
 	private String urlImage;
+	private LocalDateTime versionPizza;
+	private Boolean actif;
 
+	@Enumerated(EnumType.STRING)
+	private TypePizza typePizza;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Ingredient> listeIngredients;
 
 	public Pizza() {
 	}
 
-	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza cat) {
-		this();
+	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie, TypePizza typePizza,
+			LocalDateTime versionPizza, Boolean actif, List<Ingredient> listeIngredients) {
+
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
-		this.categorie = cat;
+		this.categorie = categorie;
+		this.typePizza = typePizza;
+		this.versionPizza = versionPizza;
+		this.actif = actif;
+		this.listeIngredients = listeIngredients;
 	}
 
-	public Pizza(Integer id, String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage) {
+	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage,
+			LocalDateTime versionPizza, Boolean actif, TypePizza typePizza, List<Ingredient> listeIngredients) {
+		super();
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
 		this.categorie = categorie;
 		this.urlImage = urlImage;
-		this.id = id;
+		this.versionPizza = versionPizza;
+		this.actif = actif;
+		this.typePizza = typePizza;
+		this.listeIngredients = listeIngredients;
 	}
 
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
@@ -49,7 +76,7 @@ public class Pizza {
 	}
 
 	public String getCode() {
-		return this.code;
+		return code;
 	}
 
 	public void setCode(String code) {
@@ -57,7 +84,7 @@ public class Pizza {
 	}
 
 	public String getNom() {
-		return this.nom;
+		return nom;
 	}
 
 	public void setNom(String nom) {
@@ -65,16 +92,15 @@ public class Pizza {
 	}
 
 	public BigDecimal getPrix() {
-		return this.prix;
+		return prix;
 	}
-
 
 	public void setPrix(BigDecimal prix) {
 		this.prix = prix;
 	}
 
 	public CategoriePizza getCategorie() {
-		return this.categorie;
+		return categorie;
 	}
 
 	public void setCategorie(CategoriePizza categorie) {
@@ -82,17 +108,48 @@ public class Pizza {
 	}
 
 	public String getUrlImage() {
-		return this.urlImage;
+		return urlImage;
 	}
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
 
+	public LocalDateTime getVersionPizza() {
+		return versionPizza;
+	}
+
+	public void setVersionPizza(LocalDateTime versionPizza) {
+		this.versionPizza = versionPizza;
+	}
+
+	public Boolean getActif() {
+		return actif;
+	}
+
+	public void setActif(Boolean actif) {
+		this.actif = actif;
+	}
+
+	public List<Ingredient> getListeIngredients() {
+		return listeIngredients;
+	}
+
+	public void setListeIngredients(List<Ingredient> listeIngredients) {
+		this.listeIngredients = listeIngredients;
+	}
+
+	public TypePizza getTypePizza() {
+		return typePizza;
+	}
+
+	public void setTypePizza(TypePizza typePizza) {
+		this.typePizza = typePizza;
+	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(this.code).toHashCode();
+		return new HashCodeBuilder(17, 37).append(code).toHashCode();
 	}
 
 	@Override
@@ -103,11 +160,11 @@ public class Pizza {
 		if (obj == this) {
 			return true;
 		}
-		if (obj.getClass() != this.getClass()) {
+		if (obj.getClass() != getClass()) {
 			return false;
 		}
 		Pizza rhs = (Pizza) obj;
-		return new EqualsBuilder().append(this.code, rhs.code).isEquals();
+		return new EqualsBuilder().append(code, rhs.code).isEquals();
 	}
 
 }

@@ -1,9 +1,10 @@
 export class PizzaService{
 	
-	constructor($http, localStorageService, $q){
+	constructor($http, localStorageService, $q, API_URL){
 		this.localStorageService = localStorageService
 		this.$http=$http
 		this.$q=$q
+		this.API_URL = API_URL;
 	}
 	
 	getPizzas(){

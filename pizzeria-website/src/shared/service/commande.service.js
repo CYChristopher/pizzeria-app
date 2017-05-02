@@ -18,11 +18,15 @@ export class CommandeService{
 			let pizzas=this.localStorageService.get('pizzas','localStorage')
 			let panier = this.localStorageService.get('panier','localStorage')
 			
+
+			if(utilisateur !== '')
+			{
+		
+			
+
+
 			let commandeComplete={
 				'commande':{
-					'dateCommande':Date.now(),
-					'numeroCommande':'CMD'+utilisateur.id+Math.floor(Date.now()/60),
-					'statut':'NON_TRAITE',
 					'type':type,
 					'client':utilisateur
 				},
@@ -39,10 +43,15 @@ export class CommandeService{
 				}
 				)
 			})
-			
+			this.localStorageService.removeItem("panier");
 			
 			console.log(commandeComplete)
-			this.$http.post(`${this.API_URL}/commandes`,commandeComplete).then(r=>r.data)	
+			this.$http.post(`${this.API_URL}/commandes`,commandeComplete).then(r=>r.data)
+			}
+			else
+			{
+				alert('Vous avez été deconnecté pour une raison mystérieuse. Veuillez vous reloguer')
+			}	
 		})		
 	}	
 } 
