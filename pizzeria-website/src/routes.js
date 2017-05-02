@@ -12,10 +12,6 @@ export function routes($routeProvider) {
     .when('/connexion', {
             template: '<connexion></connexion>',
     })
-    
-    .when('/commande/:id?', {
-            template: '<commande-component></commande-component>',
-    })
 
     .when('/pizzas', {
         template: '<liste-pizzas></liste-pizzas>'
