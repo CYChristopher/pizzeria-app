@@ -54,7 +54,7 @@ public class NouvelleCommandeController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-					throws ServletException, IOException {
+			throws ServletException, IOException {
 
 		String[] pizzaCommandeId = request.getParameterValues("pizzaCommandeId");
 		String statut = request.getParameter("statut");
@@ -73,21 +73,23 @@ public class NouvelleCommandeController extends HttpServlet {
 			for (String idPizza : pizzaCommandeId) {
 				listePizza.add(this.pizzaService.findById(Integer.parseInt(idPizza)));
 			}
+
+			Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
+
+			List<CommandePizza> commandesPizza = new ArrayList<>();
+			for (Pizza pizza : listePizza) {
+				commandesPizza.add(new CommandePizza(pizza, commande, 1));
+			}
+
+			CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
+
+			this.commandeService.create(commandeComplete);
+
+			response.sendRedirect(request.getContextPath() + "/commandes/list");
+		} else {
+			request.setAttribute("msg", "Aucun produit commandé");
+			doGet(request, response);
 		}
-
-
-		Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
-
-		List<CommandePizza> commandesPizza = new ArrayList<>();
-		for (Pizza pizza : listePizza) {
-			commandesPizza.add(new CommandePizza(pizza, commande, 1));
-		}
-
-		CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
-
-		this.commandeService.create(commandeComplete);
-
-		response.sendRedirect(request.getContextPath() + "/commandes/list");
 
 	}
 
