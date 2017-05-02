@@ -6,7 +6,7 @@ class controller {
     }
     $onInit() {
         this.pizzas = this.PizzaService.getPizzas().then(pizzas =>
-            this.pizzas = pizzas
+           this.pizzas = pizzas
         )
     }
 

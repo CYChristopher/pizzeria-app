@@ -19,7 +19,9 @@ public class PizzaResource {
 
   @RequestMapping(method = RequestMethod.GET)
   public List<Pizza> listAllPizzas() {
-    return pizzaDao.findAll();
+	  
+	
+    return pizzaDao.findPizzaActual();
   }
 
 }
