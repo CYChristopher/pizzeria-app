@@ -71,14 +71,17 @@ public class NouvelleCommandeController extends HttpServlet {
 			for (String idPizza : pizzaCommandeId) {
 				listePizza.add(pizzaService.findById(Integer.parseInt(idPizza)));
 			}
+
+			Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client,
+					listePizza);
+
+			commandeService.create(commande);
+
+			response.sendRedirect(request.getContextPath() + "/commandes/list");
+		} else {
+			request.setAttribute("msg", "Aucun produit commandé");
+			doGet(request, response);
 		}
-
-		Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client,
-				listePizza);
-
-		commandeService.create(commande);
-
-		response.sendRedirect(request.getContextPath() + "/commandes/list");
 
 	}
 
