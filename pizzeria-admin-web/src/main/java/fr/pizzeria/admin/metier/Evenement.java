@@ -9,7 +9,7 @@ public class Evenement {
 	}
 
 	public enum Type {
-		PIZZA, COMMANDE,OUICHE
+		PIZZA, COMMANDE, OUICHE
 	}
 
 	private LocalDateTime date;
@@ -17,6 +17,26 @@ public class Evenement {
 	private Action action;
 
 	private Type type;
+
+	private Integer id;
+
+	private String nom;
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Type getType() {
 		return type;

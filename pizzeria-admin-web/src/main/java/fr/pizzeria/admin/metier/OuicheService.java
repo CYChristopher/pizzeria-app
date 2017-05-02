@@ -25,8 +25,7 @@ public class OuicheService {
 
 	public List<Pizza> findAll() {
 		return em.createQuery("select p from Pizza p where p.typePizza=:typeP", Pizza.class)
-				.setParameter("typeP", TypePizza.OUICHE)
-				.getResultList();
+				.setParameter("typeP", TypePizza.OUICHE).getResultList();
 	}
 
 	public void update(Integer id, Pizza pizza) {
@@ -52,9 +51,10 @@ public class OuicheService {
 		ev.setDate(LocalDateTime.now());
 		ev.setAction(Action.SAVE);
 		ev.setType(Type.OUICHE);
-		event.fire(ev);
 		em.persist(pizza);
-
+		ev.setId(pizza.getId());
+		ev.setNom(pizza.getNom());
+		event.fire(ev);
 	}
 
 	public Pizza findById(Integer id) {
@@ -67,9 +67,7 @@ public class OuicheService {
 	// Trouve les versions de pizza actifs, renvoit cette liste
 	public List<Pizza> findNewestPizzaByName() {
 		return em.createQuery("select piz from Pizza piz where piz.actif=:val and piz.typePizza=:typeP", Pizza.class)
-				.setParameter("val", true)
-				.setParameter("typeP", TypePizza.OUICHE)
-				.getResultList();
+				.setParameter("val", true).setParameter("typeP", TypePizza.OUICHE).getResultList();
 
 	}
 
