@@ -24,7 +24,7 @@ public class Commande {
 	@ManyToOne
 	private Client client;
 
-	@OneToMany(mappedBy = "id.commande", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "id.commande", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<CommandePizza> commandesPizzas = new ArrayList<>();
 
 	public Commande() {
