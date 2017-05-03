@@ -28,6 +28,12 @@
 			for="prix">Prix : </label> <input style="border-color:${erreur[2]}"
 			step="0.01" class="form-control" id="prix" name="prix" type="number"
 			placeholder="prix" value="${prix}">
+			
+		<div class="form-group">
+			<label for="urlImage">Image :</label>
+			<input id="image" name="urlImage"
+				class="form-control" type="text" placeholder="Lien vers image" value="${editPizza.urlImage}" required>
+		</div>
 
 		<div class="form-group">
 			<label for="categorie">Categorie : </label> <select id="categorie"
@@ -58,7 +64,7 @@
 
 
 		<input class="btn btn-success" type="submit" value="Valider">
-		<a href=<c:url value='/pizzas/list'/>><button type="button"
+		<a href=<c:url value='/pizzas/liste'/>><button type="button"
 				class="btn btn-primary">Retour</button></a>
 	</form>
 </div>

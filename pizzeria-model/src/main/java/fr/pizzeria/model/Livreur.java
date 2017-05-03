@@ -7,31 +7,32 @@ import javax.persistence.Id;
 
 @Entity
 public class Livreur {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nom;
 	private String prenom;
+
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 	public String getPrenom() {
-		return prenom;
+		return this.prenom;
 	}
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	
-	
+
+
 
 }

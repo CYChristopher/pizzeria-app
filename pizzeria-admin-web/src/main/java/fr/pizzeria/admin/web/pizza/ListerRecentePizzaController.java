@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.pizza;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -10,26 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.Pizza;
 
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/pizzas/list")
+@WebServlet("/pizzas/liste")
 public class ListerRecentePizzaController extends HttpServlet {
 
 	private static final String VUE_LISTER_PIZZAS = "/WEB-INF/views/pizzas/listerPizzas.jsp";
-
+	
 	@Inject
 	private PizzaService pizzaService;
 
-	@Inject
-	private IngredientService ingredientService;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		req.setAttribute("listePizzas", this.pizzaService.findNewestPizzaByName());
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_PIZZAS);
 		dispatcher.forward(req, resp);
@@ -37,17 +35,17 @@ public class ListerRecentePizzaController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
-		Pizza editerPizza = pizzaService.findById(id);
+		Pizza editerPizza = this.pizzaService.findById(id);
 
-		editerPizza.setActif(!editerPizza.getActif());
+		editerPizza.setArchive(!editerPizza.getArchive());
 
-		pizzaService.update(id, editerPizza);
+		this.pizzaService.update(id, editerPizza);
 
-		response.sendRedirect(request.getContextPath() + "/pizzas/list");
+		response.sendRedirect(request.getContextPath() + "/pizzas/liste");
 
 	}
 

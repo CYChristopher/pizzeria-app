@@ -4,17 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Commande {
@@ -25,34 +15,40 @@ public class Commande {
 	private String numeroCommande;
 	@Enumerated(EnumType.STRING)
 	private StatutCommande statut;
-	private LocalDateTime dateCommande;
 	private String adresse;
+	@Enumerated(EnumType.STRING)
+	private TypeCommande type;
+	private LocalDateTime dateCommande;
 	@ManyToOne
 	private Livreur livreur;
 	@ManyToOne
 	private Client client;
-	@ManyToMany(fetch = FetchType.EAGER) // permet de demander à JPA d'aller
-											// charger les pizzas en
-											// profondeurs.
-	@JoinTable(name = "commande_pizza", joinColumns = @JoinColumn(name = "commande_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "pizza_id", referencedColumnName = "id"))
-	private List<Pizza> pizzas = new ArrayList<>();
+
+	@OneToMany(mappedBy = "id.commande", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<CommandePizza> commandesPizzas = new ArrayList<>();
 
 	public Commande() {
 	}
 
-	public Commande(String numeroCommande, StatutCommande statut, String adresse, Livreur livreur, Client client,
-			List<Pizza> pizzas) {
-		this.numeroCommande = numeroCommande;
+	public Commande(String numCommande, StatutCommande statut, String adresse, Livreur livreur, Client client) {
+		this.numeroCommande = numCommande;
 		this.statut = statut;
-		this.dateCommande = LocalDateTime.now();
 		this.adresse = adresse;
 		this.livreur = livreur;
 		this.client = client;
-		this.pizzas = pizzas;
+	}
+
+	public Commande(String numCommande, StatutCommande statut, Client client, List<CommandePizza> commandePizzas) {
+		this.numeroCommande = numCommande;
+		this.statut = statut;
+		this.adresse = this.adresse;
+		this.livreur = this.livreur;
+		this.client = client;
+		this.commandesPizzas = commandePizzas;
 	}
 
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -60,7 +56,7 @@ public class Commande {
 	}
 
 	public String getNumeroCommande() {
-		return numeroCommande;
+		return this.numeroCommande;
 	}
 
 	public void setNumeroCommande(String numeroCommande) {
@@ -68,7 +64,7 @@ public class Commande {
 	}
 
 	public StatutCommande getStatut() {
-		return statut;
+		return this.statut;
 	}
 
 	public void setStatut(StatutCommande statut) {
@@ -76,23 +72,15 @@ public class Commande {
 	}
 
 	public LocalDateTime getDateCommande() {
-		return dateCommande;
+		return this.dateCommande;
 	}
 
 	public void setDateCommande(LocalDateTime dateCommande) {
 		this.dateCommande = dateCommande;
 	}
 
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-
 	public Livreur getLivreur() {
-		return livreur;
+		return this.livreur;
 	}
 
 	public void setLivreur(Livreur livreur) {
@@ -100,28 +88,40 @@ public class Commande {
 	}
 
 	public Client getClient() {
-		return client;
+		return this.client;
 	}
 
 	public void setClient(Client client) {
 		this.client = client;
 	}
 
-	public List<Pizza> getPizzas() {
-		return new ArrayList<>(pizzas);
+	public List<CommandePizza> getCommandesPizzas() {
+		return this.commandesPizzas;
 	}
 
-	public void addPizza(Pizza pizza) {
-		pizzas.add(pizza);
-	}
-
-	public void setPizzas(List<Pizza> pizzas) {
-		this.pizzas = pizzas;
+	public void setCommandesPizzas(List<CommandePizza> commandesPizzas) {
+		this.commandesPizzas = commandesPizzas;
 	}
 
 	@Override
 	public String toString() {
-		return "Commande [id=" + id + ", numeroCommande=" + numeroCommande + "]";
+		return "Commande [id=" + this.id + ", numeroCommande=" + this.numeroCommande + "]";
+	}
+
+	public TypeCommande getType() {
+		return this.type;
+	}
+
+	public void setType(TypeCommande type) {
+		this.type = type;
+	}
+
+	public String getAdresse() {
+		return this.adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 }

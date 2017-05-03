@@ -1,0 +1,38 @@
+<div class="inscription">
+    <h1 class="titre-inscription">Devenez client !</h1><br>
+    <form name="formInscription" novalidate ng-submit="$ctrl.validerForm(formInscription)">
+        <div name="divEmail" class="form-group col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <label for="emailClient">Email : </label>
+            <input id="emailClient" name="emailClient" ng-model="$ctrl.client.email" ng-blur="$ctrl.emailExiste(formInscription)"  required type="email" placeholder="Votre email" class="form-control">
+            <p class="text-danger" role="alert" ng-if="formInscription.emailClient.$error.required 
+            && formInscription.emailClient.$touched">Veuillez rentrer un email !</p>
+            <p class="text-danger" ng-if="formInscription.emailClient.$error.email 
+            && formInscription.emailClient.$touched">Votre email est invalide !</p>
+            <p class="text-danger" ng-if="formInscription.emailClient.$error.email_existant 
+            && formInscription.emailClient.$touched")>L'email est déjà enregistré !</p>
+        </div>
+
+        <div name="divMdp" class="form-group col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <label for="mdpClient">Mot de passe : </label>
+            <input id="mdpClient" name="mdpClient" ng-model="$ctrl.client.motDePasse" required type="password" placeholder="Votre mot de passe" class="form-control">
+            <p class="text-danger" ng-if="formInscription.mdpClient.$error.required 
+            && formInscription.mdpClient.$touched">Veuillez rentrer un mot de passe !</p>
+
+            <label for="confMdpClient">Confirmation du mot de passe : </label>
+            <input id="confMdpClient" name="confMdpClient" ng-model="$ctrl.confMdp" required type="password" placeholder="Confirmez votre mot de passe"
+                class="form-control">
+            <p class="text-danger" ng-if="$ctrl.client.motDePasse !== $ctrl.confMdp && formInscription.mdpClient.$touched && formInscription.confMdpClient.$touched">Les mots de passe ne sont pas identiques !</p>
+        </div>
+
+        <div name="divNom" class="form-group col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <label for="nomClient">Nom : </label>
+            <input id="nomClient" name="nomClient" ng-model="$ctrl.client.nom" type="text" placeholder="Votre nom" class="form-control">
+        </div>
+
+        <div name="divPrenom" class="form-group col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <label for="prenomClient">Prenom : </label>
+            <input id="prenomClient" name="prenomClient" ng-model="$ctrl.client.prenom" type="text" placeholder="Votre prenom" class="form-control"><br>
+            <button ng-disabled="formInscription.$invalid || $ctrl.client.motDePasse !== $ctrl.confMdp" type="submit" class="btn inscriptionBtn">Créer un compte</button>
+        </div>
+    </form>
+</div>

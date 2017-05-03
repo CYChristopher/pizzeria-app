@@ -17,7 +17,7 @@ public class Ingredient {
 	private String nom;
 	private Integer quantite;
 	private Double prix;
-	private Boolean archive;
+	private Boolean archive = false;
 	
 	public Ingredient(){
 		this.archive = false;

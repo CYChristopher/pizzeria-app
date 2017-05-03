@@ -1,7 +1,6 @@
 package fr.pizzeria.admin.web.boisson;
 
 import java.io.IOException;
-
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,10 +15,10 @@ import fr.pizzeria.model.Boisson;
 /**
  * Contrôleur de la page Liste des boissons.
  */
-@WebServlet("/boisson/nouvelle")
+@WebServlet("/boissons/nouvelle")
 public class NouvelleBoissonController extends HttpServlet {
 
-	private static final String VUE_SAVE_BOISSON = "/WEB-INF/views/boisson/nouvelleBoisson.jsp";
+	private static final String VUE_SAVE_BOISSON = "/WEB-INF/views/boissons/nouvelleBoisson.jsp";
 
 	@Inject
 	private BoissonService boissonService;
@@ -33,19 +32,20 @@ public class NouvelleBoissonController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		if (!request.getParameter("code").isEmpty() && !request.getParameter("nom").isEmpty()
-				&& !request.getParameter("prix").isEmpty()) {
+						&& !request.getParameter("prix").isEmpty()) {
 			String code = request.getParameter("code");
 			String nom = request.getParameter("nom");
 			String prix = request.getParameter("prix");
+			String urlImage = request.getParameter("urlImage") ;
 
-			Boisson dessert = new Boisson(code, nom, Double.valueOf(prix), "");
+			Boisson boisson = new Boisson(code, nom, Double.valueOf(prix), urlImage, false);
 
-			boissonService.saveNew(dessert);
+			this.boissonService.saveNew(boisson);
 
-			response.sendRedirect(request.getContextPath() + "/boissons/list");
+			response.sendRedirect(request.getContextPath() + "/boissons/liste");
 
 		} else {
 			String erreur[] = { "", "", "" };
@@ -69,7 +69,7 @@ public class NouvelleBoissonController extends HttpServlet {
 
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("msg", "Veuillez remplir les champs en rouge, sinon ...");
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}
