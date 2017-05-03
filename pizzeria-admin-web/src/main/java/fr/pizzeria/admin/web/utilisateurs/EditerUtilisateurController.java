@@ -56,11 +56,16 @@ public class EditerUtilisateurController extends HttpServlet {
 		Integer oldId = Integer.parseInt(request.getParameter("oldId"));
 		String stringDate = request.getParameter("dateCreation");
 
-		LocalDateTime dateCreation = LocalDateTime.parse(stringDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+		LocalDateTime dateCreation = LocalDateTime.parse(stringDate,
+				DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 
 		Utilisateur utilisateur = utilisateursService.find(oldId);
-		Utilisateur utili = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
 
+		Utilisateur utili = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
+		// si pas de mot passe reprend le précedent hash
+		if (motDePasse.isEmpty()) {
+			utili.setHash(utilisateur.getMotDePasse());
+		}
 		if (utilisateur.getEmail().equals(email)) // check if the email is the
 													// same
 		{

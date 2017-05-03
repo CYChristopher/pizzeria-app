@@ -38,7 +38,7 @@
 									<div class="form-group">
 										<label for="InputPrix">Mot de passe
 										</label>
-										<input class="form-control" type='password' name='motDePasse' required></div>
+										<input class="form-control" type='password' name='motDePasse'></div>
 										<div class="form-group">
 											<label for="InputPrix">Adresse
 											</label>
