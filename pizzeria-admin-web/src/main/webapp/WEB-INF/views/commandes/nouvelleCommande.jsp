@@ -65,19 +65,23 @@
 				    <tr>
 						<th>Nom de la pizza</th>
 						<th>Commande</th>
+						<th> Prix Unitaire </th>
 				   </tr>
 				</thead>
 					<tbody>
+					<c:set var="total" value="${0}" />
 					<c:forEach var="piz" items="${listePizza}" varStatus="status">
 						<tr>
 							<td><label>${piz.nom}</label> </td>
 							<!-- <td><input class="form-control" name="test" type="number"></td> Un jour on pourra commander plusieurs fois la même pizza, mais c'est pour la v2 -->
 							<td> <input type="checkbox" name="pizzaCommandeId" value="${piz.id}"></td>
+							<td> ${piz.prix} </td>
 						</tr>
 					</c:forEach>
 					</tbody>
 				</table>
 		</div>
+	
 		
 
 		<input class="btn btn-success" type="submit" value="Valider">

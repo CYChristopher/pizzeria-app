@@ -13,6 +13,9 @@
 		<div class="col-md-9">
 
 			<h1>Edition</h1>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
 
 			<form method="post">
 
@@ -74,8 +77,7 @@
 									<td><label>${piz.nom}</label></td>
 									<!-- <td><input class="form-control" name="test" type="number"></td> Un jour on pourra commander plusieurs fois la même pizza, mais c'est pour la v2 -->
 									<td><input type="checkbox" name="pizzaCommandeId"
-										value="${piz.id}"
-										<c:if test="${commande.pizzas.contains(piz)}">checked</c:if>></td>
+										value="${piz.id}"></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -84,8 +86,7 @@
 
 				<input class="btn btn-success" type="submit" value="Valider">
 				<a href=<c:url value='/commandes/liste'/>><button type="button"
-						class="btn btn-primary">Retour</button></a> 
-				<a href=<c:url value=''/>>
+						class="btn btn-primary">Retour</button></a> <a href=<c:url value=''/>>
 					<button type="button" class="btn btn-primary">Reset</button>
 				</a>
 			</form>
