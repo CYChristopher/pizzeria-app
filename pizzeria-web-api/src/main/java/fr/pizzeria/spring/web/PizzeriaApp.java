@@ -36,12 +36,6 @@ public class PizzeriaApp {
 		};
 	}
 
-	@Bean
-	@PostConstruct
-	public JeuxDonnees jeuxDonnees(){
-		return new JeuxDonnees();
-	}
-
 	/**
 	 * Démarrage de l'application Web.
 	 *

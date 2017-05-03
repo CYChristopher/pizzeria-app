@@ -6,6 +6,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,7 +61,8 @@ public class JeuxDonnees {
 	private List<Livreur> livreurs = new ArrayList<>();
 	private List<Commande> commandes = new ArrayList<>();
 	
-	public JeuxDonnees(){
+	@PostConstruct
+	public void init(){
 		generateClients();
 		generateBoissons();
 		generateIngredients();
