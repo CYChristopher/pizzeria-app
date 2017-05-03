@@ -17,7 +17,7 @@
 				<div class="alert alert-danger" role="alert">${msg}</div>
 			</c:if>
 			<a class="btn btn-primary" href="./ajouter">Nouveau Dessert</a>
-			<a class="btn btn-primary" href="../historiqueDesserts/list">Historique Desserts</a>
+			<a class="btn btn-primary" href="../historiqueDesserts/liste">Historique Desserts</a>
 			<br>
 				<table class="table">
 					<thead>
@@ -44,7 +44,7 @@
 									<form method="POST">
 										<input type="hidden" name="code" value="${dessert.code}">
 										<input type="hidden" name="action" value="supprimer">
-										<button type="submit" class="btn btn-success">Archiver</button>
+										<button type="submit" class="btn btn-danger">Archiver</button>
 									</form>
 								</td>
 							</tr>

@@ -37,6 +37,7 @@
 						commande existe déjà ! Choisissez un autre numéro !</div>
 				</c:if>
 
+
 				<div class="form-group">
 					<label>Statut :</label> <select class="form-control" name="statut"
 						required>
@@ -109,6 +110,7 @@
 							<tr>
 								<th>Nom de la pizza</th>
 								<th>Commande</th>
+								<th> Prix Unitaire </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -126,6 +128,7 @@
 													value="${piz.key.id}">
 											</c:otherwise>
 										</c:choose></td>
+									<td> ${piz.key.prix} </td>
 								</tr>
 							</c:forEach>
 						</tbody>
