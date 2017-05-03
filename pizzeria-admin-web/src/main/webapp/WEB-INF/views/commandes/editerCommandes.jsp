@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param value="Editer Commandes" name="title" />
+	<jsp:param value="Edition Commande" name="title" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />

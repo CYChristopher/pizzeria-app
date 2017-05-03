@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param value="Lister Commandes" name="title" />
+	<jsp:param value="Liste Commandes" name="title" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
@@ -66,7 +66,7 @@
 			
 			
 			<td>
-			<a href="<c:url value="/commandes/edit?id=${cmd.id}"/>" class="btn btn-primary">Editer</a>
+			<a href="<c:url value="/commandes/edit?id=${cmd.id}"/>" class="btn btn-warning">Editer</a>
 			<br>
 				<form method="POST"
 					action="<c:url value='/commandes/supprimer?id=${cmd.id}'/>">

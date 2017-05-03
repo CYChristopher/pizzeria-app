@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Pizza" />
+	<jsp:param name="title" value="Edition Pizza" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
@@ -11,7 +11,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-9">
-			<h1>Editer Pizza ${editPizza.code}</h1>
+			<h1>Editer Pizza ${editPizza.nom}</h1>
 
 
 			<c:if test="${msg != null}">

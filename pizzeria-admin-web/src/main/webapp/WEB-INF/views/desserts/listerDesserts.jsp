@@ -39,8 +39,6 @@
 								<td>${ dessert.prix } €</td>
 								<td>
 									<a href="<c:url value=" ./editer?id=${dessert.id}"/>" class="btn btn-warning">Editer</a>
-								</td>
-								<td>
 									<form method="POST">
 										<input type="hidden" name="code" value="${dessert.code}">
 										<input type="hidden" name="action" value="supprimer">
