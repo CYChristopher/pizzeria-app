@@ -63,8 +63,11 @@
 						<h2>Ingredients Sélectionné</h2>
 						<div id="ingredientSelectione" class='list-group'>
 							<c:forEach var="current" items="${editPizza.listeIngredients}">
-								<input id='${current.id}' class="list-group-item"
-									name="ingredientSelectione" value='${current.nom}'>
+								<li id='${current.id}' data-toggle="tooltip"
+									title="Ajouter un ingrédient à la pizza"
+									style="cursor: pointer;" 
+									class="list-group-item"
+									>${current.nom}</li>
 							</c:forEach>
 						</div>
 					</div>
@@ -72,7 +75,10 @@
 						<h2>Liste des ingredients</h2>
 						<ul id="ingredients" class='list-group'>
 							<c:forEach var="current" items="${listeIngredients}">
-								<li id='${current.id}' class="list-group-item">${current.nom}</li>
+								<li id='${current.id}'data-toggle="tooltip"
+									title="Ajouter un ingrédient à la pizza"
+									style="cursor: pointer;" 
+								class="list-group-item">${current.nom}</li>
 							</c:forEach>
 						</ul>
 					</div>
