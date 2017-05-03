@@ -55,6 +55,13 @@ public class JeuxDonnees {
 	}
 	
 	private void generateBoissons(){
+		Boisson b1 = new Boisson("FAN", "Fanta Orange", Double.valueOf(9.0), "http://www.mazalv.com/wp-content/uploads/2016/11/fanta-1.png");
+		Boisson b2 = new Boisson("COCA", "Coca-Pepsi", Double.valueOf(2.5), "http://www.boulangerie-laboulange.fr/1-thickbox_default/boisson-coca-cola.jpg");
+		Boisson b3 = new Boisson("PIM", "Pimento - gingembre", Double.valueOf(8.30), "https://img3.bibamagazine.fr/var/bibamagazine/storage/images/style-de-vie/pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-monopr-56518/426552-1-fre-FR/Pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-Monoprix_width1024.jpg");
+		Boisson b4 = new Boisson("ACT", "Actimel ++", Double.valueOf(0.50), "http://www.avisdemamans.com/images/produit/actimelmodif.jpg");
+	}
+	
+	private void generateDesserts(){
 		
 	}
 	
