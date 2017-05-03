@@ -58,41 +58,45 @@ public class NouvelleCommandeController extends HttpServlet {
 
 		String idClient = request.getParameter("client");
 		String idLivreur = request.getParameter("livreur");
-		
-		if (commandeService.findByNum(numCommande).isEmpty()) {
 
+		if (pizzaCommandeId == null) {
+			request.setAttribute("numero", numCommande);
+			request.setAttribute("statut", statut);
+			request.setAttribute("adresse", adresse);
+			request.setAttribute("idClient", idClient);
+			request.setAttribute("idLivreur", idLivreur);
+			request.setAttribute("msg", "Aucun produit commandé");
+			montrerPageNouvelleCommande(request, response, true, null);
+		} else if (commandeService.findByNum(numCommande).isEmpty()) {
 			Livreur livreur = this.livreurService.find(Integer.parseInt(idLivreur));
 			Client client = this.clientService.getById(Integer.parseInt(idClient));
 
 			List<Pizza> listePizza = new ArrayList<>();
-
-			if (pizzaCommandeId != null) {
-				for (String idPizza : pizzaCommandeId) {
-					listePizza.add(this.pizzaService.findById(Integer.parseInt(idPizza)));
-				}
-
-				Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
-
-				List<CommandePizza> commandesPizza = new ArrayList<>();
-				for (Pizza pizza : listePizza) {
-					commandesPizza.add(new CommandePizza(pizza, commande, 1));
-				}
-
-				CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
-
-				this.commandeService.create(commandeComplete);
-
-				response.sendRedirect(request.getContextPath() + "/commandes/liste");
-			} else {
-
-				request.setAttribute("statut", statut);
-				request.setAttribute("adresse", adresse);
-				request.setAttribute("idClient", idClient);
-				request.setAttribute("idLivreur", idLivreur);
-				request.setAttribute("msg", "Aucun produit commandé");
-				montrerPageNouvelleCommande(request, response, false, Arrays.asList(pizzaCommandeId));
+			for (String idPizza : pizzaCommandeId) {
+				listePizza.add(this.pizzaService.findById(Integer.parseInt(idPizza)));
 			}
+
+			Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
+
+			List<CommandePizza> commandesPizza = new ArrayList<>();
+			for (Pizza pizza : listePizza) {
+				commandesPizza.add(new CommandePizza(pizza, commande, 1));
+			}
+
+			CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
+
+			this.commandeService.create(commandeComplete);
+			
+			response.sendRedirect(request.getContextPath() + "/commandes/liste");
+		} else {
+			request.setAttribute("numero", numCommande);
+			request.setAttribute("statut", statut);
+			request.setAttribute("adresse", adresse);
+			request.setAttribute("idClient", idClient);
+			request.setAttribute("idLivreur", idLivreur);
+			montrerPageNouvelleCommande(request, response, false, Arrays.asList(pizzaCommandeId));
 		}
+
 	}
 
 	private void montrerPageNouvelleCommande(HttpServletRequest req, HttpServletResponse resp, boolean numOk,
