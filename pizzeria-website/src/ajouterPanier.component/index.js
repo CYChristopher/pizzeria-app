@@ -1,25 +1,13 @@
 import template from './ajouterPanier.html';
 
 class controller {
-  constructor( localStorageService ) {
+  constructor( localStorageService, PanierService ) {
     this.StockageService = localStorageService;
+    this.ps = PanierService;
   }
+
   ajouterAuStockageLocal() {
-    let contenuStockage = this.StockageService.get( 'panier', 'localStorage' );
-    if ( contenuStockage === null ) {
-      contenuStockage = [];
-    }
-    let index = contenuStockage.findIndex( panierItem => this.item.id ===
-      parseInt( panierItem.id ) );
-    if ( index >= 0 ) {
-      contenuStockage[ index ].quantite++;
-    } else {
-      contenuStockage.push( {
-        id: `${this.item.id}`,
-        quantite: 1
-      } );
-    }
-    this.StockageService.set( 'panier', contenuStockage, 'localStorage' );
+    this.ps.ajouterAuStockageLocal( this.item );
   }
 }
 

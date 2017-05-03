@@ -4,11 +4,10 @@ import ngRoute from 'angular-route'
 /* beautify preserve:start */
 import { routes } from './routes'
 import { LocalStorageModule } from 'angular-local-storage'
-
 import { PizzaService } from './shared/service/pizza.service'
 import { CommandeService } from './shared/service/commande.service'
 import { ClientService } from './shared/service/client.service'
-
+import { PanierService } from './shared/service/panier.service.js'
 import { HomeComponent } from './home.component'
 import { PizzaComponent } from './pizza.component'
 import { ListePizzasComponent } from './listePizzas.component'
@@ -35,6 +34,7 @@ angular.module( 'pizzeria', [ ngRoute, 'LocalStorageModule' ] )
     } ] )
   .service( 'PizzaService', PizzaService )
   .service( 'ClientService', ClientService )
+  .service( 'PanierService', PanierService )
   .component( 'pizza', PizzaComponent )
   .component( 'listePizzas', ListePizzasComponent )
   .component( 'home', HomeComponent )
