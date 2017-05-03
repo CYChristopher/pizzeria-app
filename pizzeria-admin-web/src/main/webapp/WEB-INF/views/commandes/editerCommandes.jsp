@@ -17,7 +17,7 @@
 			<form method="post">
 
 				<div class="form-group">
-					<label>Numero de Commande :</label> <input class="form-control"
+					<label>Numéro de Commande :</label> <input class="form-control"
 						name="numCommande" type="text" value="${commande.numeroCommande}"
 						required>
 				</div>
@@ -83,9 +83,8 @@
 				</div>
 
 				<input class="btn btn-success" type="submit" value="Valider">
-				<a href=<c:url value='/commandes/list'/>><button type="button"
-						class="btn btn-primary">Retour</button></a> 
-				<a href=<c:url value=''/>>
+				<a href=<c:url value='/commandes/liste'/>><button type="button"
+						class="btn btn-primary">Retour</button></a> <a href=<c:url value=''/>>
 					<button type="button" class="btn btn-primary">Reset</button>
 				</a>
 			</form>
