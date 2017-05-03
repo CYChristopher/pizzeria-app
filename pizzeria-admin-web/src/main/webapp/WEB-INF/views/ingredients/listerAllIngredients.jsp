@@ -20,11 +20,9 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
 						<th>Nom</th>
 						<th>Quantité</th>
 						<th>Prix</th>
-						<th>Archivé</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -32,14 +30,9 @@
 				<tbody>
 					<c:forEach var="ingredient" items="${listeIngredients}">
 						<tr>
-							<td>${ingredient.id}</td>
 							<td>${ ingredient.nom }</td>
 							<td>${ ingredient.quantite }</td>
 							<td>${ ingredient.prix } €</td>
-							<td>
-								<c:if test="${ingredient.archive == true}">Oui</c:if>
-								<c:if test="${ingredient.archive == false}">Non</c:if>
-							</td>
 							<td>		
 								<c:if test="${ingredient.archive}">						
 									<form method="POST">

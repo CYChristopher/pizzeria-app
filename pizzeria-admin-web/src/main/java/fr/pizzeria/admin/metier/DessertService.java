@@ -18,6 +18,8 @@ public class DessertService {
 	@PersistenceContext
 	private EntityManager em;
 
+	private TypedQuery<Dessert> query;
+
 	public List<Dessert> findAll() {
 		return this.em.createQuery("select d from Dessert d", Dessert.class).getResultList();
 	}
@@ -56,7 +58,7 @@ public class DessertService {
 				this.em.merge(dessert);
 			}
 		} catch (Exception e) {
-			throw new StockageException("Erreur à la suppression d'un ingredient", e);
+			throw new StockageException("Erreur à la suppression d'un dessert", e);
 		}
 	}
 
@@ -71,6 +73,19 @@ public class DessertService {
 		return this.em.createQuery("select des from Dessert des where des.code=:codP", Dessert.class)
 						.setParameter("codP", code).getSingleResult();
 
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Dessert> findAllAvailable() throws StockageException {
+		try {
+			this.query = this.em.createQuery("select d from Dessert d where d.archive=:archive", Dessert.class);
+			this.query.setParameter("archive", Boolean.FALSE);
+
+			List<Dessert> dessert = this.query.getResultList();
+			return dessert;
+		} catch (Exception e) {
+			throw new StockageException("Erreur de récupération des desserts", e);
+		}
 	}
 
 }

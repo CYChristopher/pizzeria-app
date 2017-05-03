@@ -15,7 +15,7 @@ import fr.pizzeria.admin.metier.BoissonService;
 import fr.pizzeria.model.Boisson;
 
 /**
- * Contrôleur de la page Liste des ingredients.
+ * Contrôleur de la page Liste des boissons.
  */
 @WebServlet("/historiqueBoissons/liste")
 public class ListerHistoriqueBoissonController extends HttpServlet {
