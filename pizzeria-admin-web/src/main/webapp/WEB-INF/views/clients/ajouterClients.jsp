@@ -55,7 +55,9 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-default">Ajouter</button>
+				<button type="submit" class="btn btn-success">Ajouter</button>
+				<a href=<c:url value='/clients/list'/>><button type="button"
+					class="btn btn-primary">Retour</button></a>
 			</div>
 		</div>
 	</form>

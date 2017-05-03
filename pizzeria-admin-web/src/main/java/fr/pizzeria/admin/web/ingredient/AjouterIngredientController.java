@@ -41,7 +41,7 @@ public class AjouterIngredientController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		if (!req.getParameter("nom").isEmpty() && !req.getParameter("quantite").isEmpty()
-				&& !req.getParameter("prix").isEmpty()) {
+						&& !req.getParameter("prix").isEmpty()) {
 
 			LOG.log(Level.INFO, "-------!!!-------  nom :" + req.getParameter("nom"));
 			LOG.log(Level.INFO, "-------!!!-------  quantite :" + req.getParameter("quantite"));
@@ -50,11 +50,11 @@ public class AjouterIngredientController extends HttpServlet {
 			try {
 
 				Ingredient i = new Ingredient(req.getParameter("nom").toString(),
-						Integer.valueOf(req.getParameter("quantite").toString()),
-						Double.valueOf(req.getParameter("prix").toString()));
+								Integer.valueOf(req.getParameter("quantite").toString()),
+								Double.valueOf(req.getParameter("prix").toString()), false);
 
 				LOG.log(Level.INFO, "-------!!!------- Ajout ingrédient :" + i.toString());
-				ingredientService.save(i);
+				this.ingredientService.save(i);
 
 			} catch (StockageException e) {
 				LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
@@ -85,7 +85,7 @@ public class AjouterIngredientController extends HttpServlet {
 
 			req.setAttribute("erreur", erreur);
 			req.setAttribute("msg", "Veuillez saisir les champs en rouge : ");
-			doGet(req, resp);
+			this.doGet(req, resp);
 		}
 	}
 }
