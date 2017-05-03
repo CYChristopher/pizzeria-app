@@ -41,6 +41,7 @@
                 <p class="text-danger" ng-if="formMAJ.emailClient.$error.email 
                     && formMAJ.emailClient.$touched">Votre email est invalide !</p>
                 <p class="text-danger" role="alert" ng-if="formMAJ.emailClient.$error.required">Veuillez rentrer un email !</p> 
+                <p class="text-danger" role="alert" ng-if="formMAJ.emailClient.$error.email_existant">Email déjà existant</p>
                 
                 </td>
             </tr>
@@ -52,12 +53,15 @@
                 <td>
                      <input id="currentMdpClient" name="currentMdpClient" ng-blur="!$ctrl.testMdpUtilisateur(formMAJ)" ng-model="$ctrl.currentMdp" type="password" class="form-control">
                      <p class="text-danger" role="alert" ng-if="formMAJ.currentMdpClient.$error.mdp_faux"> Mot de passe incorrect </p>
+                     <p class="text-danger" role="alert" ng-if="formMAJ.currentMdpClient.$error.mdp_vide"> Saisie incorrect: que des espaces </p>
+                     <p class="text-danger" role="alert" ng-if="formMAJ.currentMdpClient.$error.mdp_aucune_saisie && !formMAJ.mdpClient.$error.mdpMod_aucune_saisie"> Veuillez saisir votre mot de passe </p>
                 </td>
             </tr>
             <tr>
                 <td> Nouveau mot de passe: </td> 
                 <td>
-                     <input id="mdpClient" name="mdpClient" ng-model="$ctrl.newMdp" type="password" class="form-control">  
+                     <input id="mdpClient" name="mdpClient" ng-model="$ctrl.newMdp" ng-blur="!$ctrl.testNouveauMdpUtilisateur(formMAJ)" type="password" class="form-control">  
+                     <p class="text-danger" role="alert" ng-if="formMAJ.mdpClient.$error.mdpMod_vide"> Saisie incorrect: que des espaces </p>
                 </td>          
             </tr>
              <tr>
@@ -72,8 +76,9 @@
         </tbody>
         <tfoot>
             <button  ng-if="$ctrl.modif" 
-            ng-disabled="formMAJ.$invalid || $ctrl.newMdp !== $ctrl.newMdp2 || formMAJ.currentMdpClient.$error.mdp_faux" 
-            type="submit" class="btn bouton" ng-click="$ctrl.soumissionFormulaire()"> Modifier Informations </button>
+            ng-disabled="$ctrl.newMdp !== $ctrl.newMdp2 || formMAJ.currentMdpClient.$error.mdp_faux   || formMAJ.currentMdpClient.$error.mdp_vide 
+            || formMAJ.mdpClient.$error.mdpMod_vide || formMAJ.emailClient.$error.email_existant" 
+            type="submit" class="btn bouton" ng-click="$ctrl.soumissionFormulaire(formMAJ)"> Valider Modifications </button>
         </tfoot>
         
     </table>

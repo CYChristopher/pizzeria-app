@@ -43,17 +43,20 @@ public class ClientRessource {
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
 	public void modifierClient(@PathVariable("id") Integer id, @RequestBody Client newClient) {
 
-		Client oldClient = this.clientDao.findById(id) ;
-		newClient.setId(oldClient.getId()) ;
-		if(newClient.getMotDePasse() == "") {
-			newClient.setMotDePasse(oldClient.getMotDePasse()) ;
-		}else{
-			//Hash du mot de passe
-			newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));			
-		}
-	
-		clientDao.save(newClient);
+		Client oldClient = this.clientDao.findById(id);
+		newClient.setId(oldClient.getId());
+		
 
+			if ("".equals(newClient.getMotDePasse().trim())) {
+				newClient.setMotDePasse(oldClient.getMotDePasse());
+			} else {
+
+				// Hash du mot de passe
+				newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));
+			}
+		
+
+		clientDao.save(newClient);
 
 	}
 
@@ -63,22 +66,19 @@ public class ClientRessource {
 		return reponse != null ? reponse.getId() : -1;
 	}
 
-	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
-	public boolean loginClientExiste(@PathVariable("email") String email) {
+	@RequestMapping(value = "/email", method = RequestMethod.GET)
+	public boolean loginClientExiste(@RequestParam("value") String email) {
+
 		Client reponse = clientDao.findByEmail(email);
 		return reponse != null ? true : false;
 	}
 
-	
-	@RequestMapping(value = "/verifPwd",method = RequestMethod.GET)
+	@RequestMapping(value = "/verifPwd", method = RequestMethod.GET)
 	public boolean testMdpClient(@RequestParam("id") Integer id, @RequestParam("motDePasse") String motDePasse) {
-		
-		
+
 		Client client = clientDao.findById(id);
-	
-		// e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 <=> motDePasse="" sans cryptage
+
 		return (client.getMotDePasse().equals(motDePasse));
 	}
-	
 
 }
