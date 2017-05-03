@@ -16,6 +16,6 @@ public interface IIngredientRepository extends JpaRepository<Ingredient, Integer
 	
 	@Modifying
 	@Transactional
-	@Query("select i from Ingredient i where i.archive='false';")
+	@Query("select i from Ingredient i where i.archive=false")
 	List<Ingredient> findAll();
 }

@@ -130,6 +130,7 @@ public class JeuxDonnees {
 				"https://www.dominos.fr/ManagedAssets/FR/product/PORI/FR_PORI_fr_hero_541.png?v334099666", LocalDateTime.now(), true, TypePizza.PIZZA,  ingredients));
 		
 		pizzaDao.save(pizzas);
+		pizzaDao.flush();
 	}
 	
 	private void generateLivreurs(){
