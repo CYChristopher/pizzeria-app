@@ -55,7 +55,7 @@ public class Pizza {
 	}
 
 	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage,
-			LocalDateTime versionPizza, Boolean actif, TypePizza typePizza, List<Ingredient> listeIngredients) {
+					LocalDateTime versionPizza, Boolean archive, TypePizza typePizza, List<Ingredient> listeIngredients) {
 		super();
 		this.code = code;
 		this.nom = nom;
@@ -63,11 +63,11 @@ public class Pizza {
 		this.categorie = categorie;
 		this.urlImage = urlImage;
 		this.versionPizza = versionPizza;
-		this.actif = actif;
+		this.archive = archive;
 		this.typePizza = typePizza;
 		this.listeIngredients = listeIngredients;
 	}
-	
+
 	public Integer getId() {
 		return this.id;
 	}
