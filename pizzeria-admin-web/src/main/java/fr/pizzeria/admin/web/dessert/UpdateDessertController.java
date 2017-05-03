@@ -37,7 +37,7 @@ public class UpdateDessertController extends HttpServlet {
 
 		this.id = Integer.parseInt(request.getParameter("id"));
 
-		request.setAttribute("editDessert", dessertService.find(this.id));
+		request.setAttribute("editDessert", this.dessertService.find(this.id));
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_DESSERT);
 
@@ -49,7 +49,7 @@ public class UpdateDessertController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Dessert oldDessert = dessertService.find(this.id);
+		Dessert oldDessert = this.dessertService.find(this.id);
 
 		String newcode;
 		String ref;
@@ -61,9 +61,11 @@ public class UpdateDessertController extends HttpServlet {
 				: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
 		String urlImage = request.getParameter("urlImage").isEmpty() ? oldDessert.getUrlImage() : request.getParameter("urlImage");
 
-		Dessert dessert = new Dessert(newcode, ref, prix, urlImage);
+		oldDessert.setArchive(true);
+		this.dessertService.update(this.id, oldDessert);
 		
-		dessertService.update(this.id, dessert);
+		Dessert dessert = new Dessert(newcode, ref, prix, urlImage);
+		this.dessertService.save(dessert);
 
 		response.sendRedirect(request.getContextPath() + URL_LISTE);
 

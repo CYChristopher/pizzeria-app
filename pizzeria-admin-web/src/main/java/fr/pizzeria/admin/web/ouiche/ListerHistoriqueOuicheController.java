@@ -18,7 +18,7 @@ import fr.pizzeria.model.Pizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/historiqueOuiches/list")
+@WebServlet("/historiqueOuiches/liste")
 public class ListerHistoriqueOuicheController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(ListerHistoriqueOuicheController.class.getName());

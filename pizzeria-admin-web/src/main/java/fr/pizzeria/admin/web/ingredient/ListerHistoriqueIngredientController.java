@@ -42,8 +42,6 @@ public class ListerHistoriqueIngredientController extends HttpServlet {
 
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
-
-
 		Ingredient editerIngredient = this.ingredientService.findById(id);
 
 		editerIngredient.setArchive(!editerIngredient.getArchive());
