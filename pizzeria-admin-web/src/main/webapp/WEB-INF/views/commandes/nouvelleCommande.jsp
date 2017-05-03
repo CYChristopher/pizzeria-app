@@ -17,9 +17,9 @@
 			<form method="post">
 
 				<div class="form-group">
-					<label>Numero de Commande :</label>
+					<label>Numéro de Commande :</label>
 					<c:choose>
-						<c:when test="${numero == null }">
+						<c:when test="${numero == null}">
 							<input class="form-control" name="numCommande" type="text"
 								required>
 						</c:when>
@@ -30,8 +30,8 @@
 					</c:choose>
 				</div>
 				<c:if test="${!numOk}">
-					<div class="alert alert-danger" role="alert">Ce numero de
-						commande existe déjà ! Choisissez un autre numero !</div>
+					<div class="alert alert-danger" role="alert">Ce numéro de
+						commande existe déjà ! Choisissez un autre numéro !</div>
 				</c:if>
 
 				<div class="form-group">

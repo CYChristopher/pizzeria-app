@@ -17,7 +17,7 @@
 	<form method="post">
 
 		<div class="form-group">
-			<label>Numero de Commande :</label> 
+			<label>Numéro de Commande :</label> 
 			<input class="form-control" name="numCommande" type="text" value="${commande.numeroCommande}" required>
 		</div>
 
