@@ -1,13 +1,7 @@
 package fr.pizzeria.spring.web;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -17,13 +11,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import fr.pizzeria.model.CategoriePizza;
-import fr.pizzeria.model.Ingredient;
-import fr.pizzeria.model.Pizza;
-import fr.pizzeria.model.TypePizza;
-import fr.pizzeria.spring.web.repository.IIngredientRepository;
-import fr.pizzeria.spring.web.repository.IPizzaRepository;
 
 /**
  * Application PizzeriaApp démarré via Spring Boot.
