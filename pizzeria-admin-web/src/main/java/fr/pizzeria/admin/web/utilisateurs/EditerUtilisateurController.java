@@ -15,12 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import fr.pizzeria.admin.metier.UtilisateursService;
 import fr.pizzeria.model.Utilisateur;
 
-@WebServlet("/utilisateurs/edit")
+@WebServlet("/utilisateurs/editer")
 public class EditerUtilisateurController extends HttpServlet {
+
+	private static final String VUE_EDITER = "/WEB-INF/views/utilisateurs/editerUtilisateur.jsp";
+	private static final String URL_LISTE = "/utilisateurs/liste";
 
 	@EJB
 	private UtilisateursService utilisateursService;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -32,14 +36,14 @@ public class EditerUtilisateurController extends HttpServlet {
 
 			request.setAttribute("utilisateur", utilisateur);
 
-			RequestDispatcher dispatcher = this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/utilisateurs/editerUtilisateur.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDITER);
 			dispatcher.forward(request, response);
 
 		}
 
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -57,20 +61,19 @@ public class EditerUtilisateurController extends HttpServlet {
 		Utilisateur utilisateur = utilisateursService.find(oldId);
 		Utilisateur utili = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
 
-		
 		if (utilisateur.getEmail().equals(email)) // check if the email is the
 													// same
 		{
 
 			utilisateursService.update(oldId, utili);
-			response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
+			response.sendRedirect(request.getContextPath() + URL_LISTE);
 
 		} else // check if the new one is already exist
 		{
 
 			if (utilisateursService.findByEmail(email) == null) {
 				utilisateursService.update(oldId, utili);
-				response.sendRedirect(request.getContextPath() + "/utilisateurs/list");
+				response.sendRedirect(request.getContextPath() + URL_LISTE);
 			} else {
 				request.setAttribute("msg", "Email modifié: nouveau déjà existant");
 				doGet(request, response);

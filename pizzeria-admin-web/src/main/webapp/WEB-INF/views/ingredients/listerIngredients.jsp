@@ -3,55 +3,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/layout/entete.jsp">
-	<jsp:param name="title" value="Lister Ingredienst" />
+	<jsp:param name="title" value="Lister Ingredients"/>
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
 
-<div class="jumbotron">
-
-	<div class="container">
-	
-		<h1>Liste des ingredients</h1>
-		<a class="btn btn-primary" href="<c:url value="/ingredient/add"/>">Nouvelle ingredient</a>
-		<br>
-		<c:if test="${msg != null}">
-			<div class="alert alert-danger" role="alert">${msg}</div>
-		</c:if>
-	
-		<table class="table">
-		
-			<thead>
-				<tr>
-					<td>Nom</td>
-					<td>Quantité</td>
-					<td>Prix</td>
-				</tr>
-			</thead>
-			
-			<tbody>
-			
-				<c:forEach var="ingedient" items="${listeIngredients}">
-				<tr>
-					<td><b>${ ingedient.nom }</b></td>
-					<td>${ ingedient.quantite }</td>
-					<td>${ ingedient.prix } €</td>
-					<td>
-						<a href="<c:url value="/ingredient/edit?id=${ingedient.id}"/>" class="btn btn-primary">Editer</a>
-					</td>
-					<td>
-						<form method="POST">
-							<input type="hidden" name="id" value="${ingedient.id}">
-							<input type="hidden" name="action" value="supprimer">
-							<button type="submit" class="btn btn-danger">Supprimer</button>
-						</form>
-					</td>
-				</tr>
-				</c:forEach>
-				
-			</tbody>
-			
-		</table>
-	</div>
-</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+			<h1>Liste des ingredients</h1>
+			<a class="btn btn-primary" href="<c:url value=" ./ajouter"/>">Nouvel ingredient</a>
+			<a class="btn btn-primary" href="../historiqueIngredients/liste">Historique Ingrédients</a>
+			<br>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Quantité</th>
+						<th>Prix</th>
+						<th>Archivé</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="ingredient" items="${listeIngredients}">
+						<tr>
+							<td>${ ingredient.nom }</td>
+							<td>${ ingredient.quantite }</td>
+							<td>${ ingredient.prix } €</td>
+							<td>
+								<c:if test="${ingredient.archive == true}">Oui</c:if>
+								<c:if test="${ingredient.archive == false}">Non</c:if>
+							</td>
+							<td>
+								<a href="<c:url value=" ./editer?id=${ingredient.id}"/>" class="btn btn-warning">Editer</a>
+							</td>
+							<td>								
+								<form method="POST">
+									<input type="hidden" name="id" value="${ingredient.id}">
+									<input type="hidden" name="action" value="supprimer">
+									<button type="submit" class="btn btn-danger">Archiver</button>
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 <jsp:include page="../layout/footer.jsp"/>

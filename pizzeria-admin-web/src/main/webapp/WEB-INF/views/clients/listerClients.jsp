@@ -27,7 +27,6 @@
 				<th>Prénom</th>
 				<th>Adresse</th>
 				<th>Email</th>
-				<th>Hash du mot de passe</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -40,7 +39,6 @@
 					<td>${client.prenom}</td>
 					<td>${client.adresse}</td>
 					<td>${client.email}</td>
-					<td>${client.motDePasse}</td>
 					<td><a href="<c:url value="/clients/edit?id=${client.id}"/>"
 						class="btn btn-warning">Editer</a></td>
 					<td>

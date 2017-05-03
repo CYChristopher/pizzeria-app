@@ -9,25 +9,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.pizzeria.admin.metier.UtilisateursService;
 
-@WebServlet("/utilisateurs/list")
+@WebServlet("/utilisateurs/liste")
 public class ListerUtilisateurController extends HttpServlet {
 
-	private static final String VUE_LISTER_UTILISATEURS = "/WEB-INF/views/utilisateurs/listerUtilisateurs.jsp";
+	private static final String VUE_LISTER = "/WEB-INF/views/utilisateurs/listerUtilisateurs.jsp";
 
 	@EJB
 	private UtilisateursService utilisateursService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
-		
-
+		HttpSession session = req.getSession();
 		req.setAttribute("listeUtilisateurs", this.utilisateursService.findAll());
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_UTILISATEURS);
+		req.setAttribute("utilisateurCourant", session.getAttribute("utilisateur"));
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER);
 		dispatcher.forward(req, resp);
 	}
 

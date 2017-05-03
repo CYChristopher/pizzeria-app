@@ -17,10 +17,11 @@ public class SupprimerCommandeController extends HttpServlet {
 	@Inject
 	private CommandeService commandeService;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		commandeService.delete(Integer.valueOf(request.getParameter("id")));
-		response.sendRedirect(request.getContextPath() + "/commandes/list");
+					throws ServletException, IOException {
+		this.commandeService.delete(Integer.valueOf(request.getParameter("id")));
+		response.sendRedirect(request.getContextPath() + "/commandes/liste");
 	}
 
 }

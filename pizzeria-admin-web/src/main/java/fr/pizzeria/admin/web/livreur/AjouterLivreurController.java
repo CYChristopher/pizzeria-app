@@ -1,7 +1,6 @@
 package fr.pizzeria.admin.web.livreur;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -17,19 +16,18 @@ import fr.pizzeria.model.Livreur;
 /**
  * Contrôleur de la page Ajouter un livreur.
  */
-@WebServlet("/livreurs/new")
+@WebServlet("/livreurs/ajouter")
 public class AjouterLivreurController extends HttpServlet {
 
-	private static final Logger LOG = Logger.getLogger(AjouterLivreurController.class.getName());
-
-	private static final String VUE_AJOUTER_LIVREUR = "/WEB-INF/views/livreurs/ajouterLivreur.jsp";
+	private static final String VUE_AJOUTER = "/WEB-INF/views/livreurs/ajouterLivreur.jsp";
+	private static final String URL_LISTE = "/livreurs/liste";
 
 	@Inject
 	private LivreurService livreurService;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_AJOUTER_LIVREUR);
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_AJOUTER);
 		dispatcher.forward(req, resp);
 	}
 
@@ -39,12 +37,14 @@ public class AjouterLivreurController extends HttpServlet {
 		if (!req.getParameter("nom").isEmpty() && !req.getParameter("prenom").isEmpty()) {
 			System.out.println("------------------" + req.getParameter("prenom"));
 			System.out.println("------------------" + req.getParameter("nom"));
-			livreur.setNom((String) req.getParameter("nom"));
-			livreur.setPrenom((String) req.getParameter("prenom"));
+			livreur.setNom(req.getParameter("nom"));
+			livreur.setPrenom(req.getParameter("prenom"));
 			this.livreurService.save(livreur);
-			resp.sendRedirect(req.getContextPath() + "/livreurs/list");
+			resp.sendRedirect(req.getContextPath() + URL_LISTE);
 		} else {
 			req.setAttribute("msg", "Veuillez remplir les champs !");
+			req.setAttribute("nom", req.getParameter("nom"));
+			req.setAttribute("prenom", req.getParameter("prenom"));
 			doGet(req, resp);
 		}
 	}

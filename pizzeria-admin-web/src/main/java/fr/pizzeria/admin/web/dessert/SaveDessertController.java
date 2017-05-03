@@ -18,12 +18,13 @@ import fr.pizzeria.model.Dessert;
 /**
  * Contrôleur de la page Liste des desserts.
  */
-@WebServlet("/desserts/new")
+@WebServlet("/desserts/ajouter")
 public class SaveDessertController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(SaveDessertController.class.getName());
 
 	private static final String VUE_SAVE_DESSERT = "/WEB-INF/views/desserts/saveDesserts.jsp";
+	private static final String URL_LISTE = "/desserts/liste";
 
 	@Inject
 	private DessertService dessertService;
@@ -37,19 +38,20 @@ public class SaveDessertController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
-				&& !request.getParameter("prix").isEmpty()) {
+						&& !request.getParameter("prix").isEmpty()) {
 			String newcode = request.getParameter("newcode");
 			String ref = request.getParameter("ref");
 			String prix = request.getParameter("prix");
+			String urlImage = request.getParameter("urlImage") ;
 
-			Dessert dessert = new Dessert(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)));
+			Dessert dessert = new Dessert(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)), urlImage, false);
 
-			dessertService.save(dessert);
+			this.dessertService.save(dessert);
 
-			response.sendRedirect(request.getContextPath() + "/desserts/list");
+			response.sendRedirect(request.getContextPath() + URL_LISTE);
 
 		} else {
 			String erreur[] = { "", "", "" };
@@ -73,7 +75,7 @@ public class SaveDessertController extends HttpServlet {
 
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}

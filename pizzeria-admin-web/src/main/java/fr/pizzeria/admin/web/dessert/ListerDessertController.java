@@ -16,12 +16,13 @@ import fr.pizzeria.admin.metier.DessertService;
 /**
  * Contrôleur de la page Liste des desserts.
  */
-@WebServlet("/desserts/list")
+@WebServlet("/desserts/liste")
 public class ListerDessertController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(ListerDessertController.class.getName());
 
 	private static final String VUE_LISTER_DESSERTS = "/WEB-INF/views/desserts/listerDesserts.jsp";
+	private static final String URL_LISTE = "/desserts/liste";
 
 	@Inject
 	private DessertService dessertService;
@@ -35,13 +36,13 @@ public class ListerDessertController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		String code = request.getParameter("code");
 
-		dessertService.delete(code);
+		this.dessertService.delete(code);
 
-		response.sendRedirect(request.getContextPath() + "/desserts/list");
+		response.sendRedirect(request.getContextPath() + URL_LISTE);
 
 	}
 

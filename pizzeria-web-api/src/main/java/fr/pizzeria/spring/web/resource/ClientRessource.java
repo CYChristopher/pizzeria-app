@@ -14,7 +14,7 @@ import fr.pizzeria.spring.web.repository.IClientRepository;
 
 /**
  * Ressource Client
- * 
+ *
  * @author ETY 12
  *
  */
@@ -24,7 +24,6 @@ public class ClientRessource {
 
 	@Autowired
 	private IClientRepository clientDao;
-
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Client getClient(@PathVariable("id") Integer id) {
@@ -35,13 +34,13 @@ public class ClientRessource {
 	public void ajouterClient(@RequestBody Client client) {
 		//Hash du mot de passe
 		client.setMotDePasse(DigestUtils.sha256Hex(client.getMotDePasse()));
-		clientDao.save(client);
+		this.clientDao.save(client);
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
 	public void modifierClient(@PathVariable("id") Integer id, @RequestBody Client newClient) {
 		
-		Client oldClient = clientDao.findById(id) ;
+		Client oldClient = this.clientDao.findById(id) ;
 		newClient.setId(oldClient.getId()) ;
 		if(newClient.getMotDePasse() == "") {
 			newClient.setMotDePasse(oldClient.getMotDePasse()) ;
@@ -50,14 +49,13 @@ public class ClientRessource {
 			newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));			
 		}
 	
-		
 		clientDao.save(newClient);
-	}
 
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public Integer recupererClient(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse) {
-		Client reponse = clientDao.findByEmailAndMotDePasse(email, motDePasse);
+		Client reponse = this.clientDao.findByEmailAndMotDePasse(email, motDePasse);
 		return reponse != null ? reponse.getId() : -1;
 	}
 	

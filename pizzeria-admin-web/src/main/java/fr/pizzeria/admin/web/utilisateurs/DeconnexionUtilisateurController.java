@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/logout")
 public class DeconnexionUtilisateurController extends HttpServlet {
 	
-	private static final String VUE_LOGIN = "/login";
+	private static final String URL_LOGIN = "/login";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		response.sendRedirect(request.getContextPath()+VUE_LOGIN);
+		response.sendRedirect(request.getContextPath()+URL_LOGIN);
 	}
 
 }

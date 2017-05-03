@@ -25,7 +25,7 @@ public class ForgotPasswordUtilisateurController extends HttpServlet {
 
 	private static final String CHAR_LIST = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 	private static final String VUE_PASSWORD = "/WEB-INF/views/utilisateurs/forgotPassword.jsp";
-	private static final String VUE_LOGIN = "/utilisateurs/login";
+	private static final String URL_LOGIN = "/utilisateurs/login";
 
 	@Inject
 	private UtilisateursService utilisateurService;
@@ -76,7 +76,7 @@ public class ForgotPasswordUtilisateurController extends HttpServlet {
 				message.setSubject("Réinitialisation du mot de passe");
 				message.setText("Votre mot de passe temporaire est le suivant: " + mdp.toString() + "\n"
 						+ "Veuillez vous connecter et le changer au plus vite en allant sur le lien ci-dessous.\n"
-						+ request.getContextPath() + VUE_LOGIN);
+						+ request.getContextPath() + URL_LOGIN);
 				Transport transport = session.getTransport("smtp");
 				transport.connect(host, user, password);
 				transport.sendMessage(message, message.getAllRecipients());
@@ -87,7 +87,7 @@ public class ForgotPasswordUtilisateurController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			response.sendRedirect(request.getContextPath() + VUE_LOGIN);
+			response.sendRedirect(request.getContextPath() + URL_LOGIN);
 		}
 
 	}
