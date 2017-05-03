@@ -38,6 +38,16 @@ public class Dessert {
 		this.urlImage = urlImage;
 		this.id = id;
 	}
+	
+	
+
+	public Dessert(String code, String nom, BigDecimal prix, String urlImage) {
+		super();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.urlImage = urlImage;
+	}
 
 	public Integer getId() {
 		return id;

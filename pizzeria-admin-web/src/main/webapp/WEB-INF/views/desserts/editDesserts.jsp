@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Editer Dessert ${editDessert.code} " />
+	<jsp:param name="title" value="Editer Dessert ${editDessert.code} "/>
 </jsp:include>
 
-<jsp:include page="../layout/navbar.jsp" />
+<jsp:include page="../layout/navbar.jsp"/>
 
 <div class="container">
 	<div class="row">
@@ -37,6 +37,13 @@
 						value="${editDessert.prix}" required>
 				</div>
 
+				<div class="form-group">
+					<label for="image"> Image :</label> <input id="urlImage"
+						name="urlImage" class="form-control" type="text"
+						placeholder="Lien vers image" value="${editDessert.urlImage}"
+						required>
+				</div>
+
 				<br>
 				<button class="btn btn-success" type="submit">Valider</button>
 
@@ -50,4 +57,4 @@
 
 		</div>
 
-		<jsp:include page="../layout/footer.jsp" />
+						<jsp:include page="../layout/footer.jsp"/>
