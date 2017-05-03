@@ -45,3 +45,14 @@ angular.module( 'pizzeria', [ ngRoute, 'LocalStorageModule' ] )
   .component( 'navbar', NavbarComponent )
   .component( 'monCompte', MonCompteComponent )
   .component( 'panierIndicateur', PanierIndicateurComponent )
+  
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceworker.js', { scope: '/' }).then(function(reg) {
+    // registration worked
+    console.log('Registration succeeded. Scope is ' + reg.scope);
+    setInterval(function(){ reg.update(); }, 3000);
+  }).catch(function(error) {
+    // registration failed
+    console.log('Registration failed with ' + error);
+  });
+}
