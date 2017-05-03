@@ -14,6 +14,16 @@ class controller {
         this.confMdp = '';
     }
 
+    emailExiste($form) {
+        let email = $form.emailClient.$viewValue;
+        if(email != ""){
+            this.ClientService.emailExiste(email).then(resp => {
+                $form.emailClient.$setValidity("email_existant", !resp);
+                console.log($form.emailClient.$error);
+            });
+        }
+    }
+
     validerForm(userForm) {
         if (userForm.$valid) {
             this.ClientService.saveClient(this.client)
