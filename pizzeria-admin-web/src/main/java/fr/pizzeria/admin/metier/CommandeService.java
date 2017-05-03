@@ -17,6 +17,7 @@ import fr.pizzeria.admin.metier.Evenement.Action;
 import fr.pizzeria.admin.metier.Evenement.Type;
 import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.CommandeComplete;
+import fr.pizzeria.model.CommandePizza;
 
 @Stateless
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
@@ -56,7 +57,11 @@ public class CommandeService {
 		ev.setAction(Action.SAVE);
 		ev.setType(Type.COMMANDE);
 		ev.setNom(commandeComplete.getCommande().getNumeroCommande());
-		this.em.persist(commandeComplete);
+		Commande com = commandeComplete.getCommande();
+		this.em.persist(com);
+		for (CommandePizza cmdP : commandeComplete.getCommandesPizza()) {
+			this.em.persist(cmdP);
+		}
 		ev.setId(commandeComplete.getCommande().getId());
 		this.event.fire(ev);
 	}

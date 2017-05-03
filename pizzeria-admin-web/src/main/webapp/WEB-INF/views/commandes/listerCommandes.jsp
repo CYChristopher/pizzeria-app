@@ -39,8 +39,8 @@
 			<td>${cmd.client.nom} ${cmd.client.prenom}</td>
 			
 			<td>
-			<c:forEach var="piz" items="${cmd.pizzas}">
-				${piz.nom}<br>
+			<c:forEach var="piz" items="${cmd.commandesPizzas}">
+				${piz.quantite}<br>
 
 			</c:forEach>
 			
