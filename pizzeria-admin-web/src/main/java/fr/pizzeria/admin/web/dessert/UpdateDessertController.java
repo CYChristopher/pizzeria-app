@@ -62,14 +62,10 @@ public class UpdateDessertController extends HttpServlet {
 		String urlImage = request.getParameter("urlImage").isEmpty() ? oldDessert.getUrlImage() : request.getParameter("urlImage");
 
 		oldDessert.setArchive(true);
-		dessertService.update(this.id, oldDessert);
+		this.dessertService.update(this.id, oldDessert);
 		
-<<<<<<< HEAD
 		Dessert dessert = new Dessert(newcode, ref, prix, urlImage);
-		dessertService.save(dessert);
-=======
-		this.dessertService.update(this.id, dessert);
->>>>>>> refs/remotes/origin/BUG007-ArchivageDonneesSupprimees
+		this.dessertService.save(dessert);
 
 		response.sendRedirect(request.getContextPath() + URL_LISTE);
 
