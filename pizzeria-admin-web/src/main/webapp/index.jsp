@@ -6,9 +6,7 @@
 	<jsp:param name="title" value="Accueil" />
 </jsp:include>
 
-
 <jsp:include page="/WEB-INF/views/layout/navbar.jsp" />
-
 <div class="container">
 	<!-- Main component for a primary marketing message or call to action -->
 	<div class="row">
@@ -23,11 +21,10 @@
 								&raquo;</a>
 						</p>
 					</c:if>
-
 				</div>
 			</div>
 
 		</div>
-
+		<!-- /container -->
 
 		<jsp:include page="WEB-INF/views/layout/footer.jsp" />

@@ -1,6 +1,5 @@
 package fr.pizzeria.spring.web.repository;
 
-
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,17 +10,18 @@ import org.springframework.data.jpa.repository.Query;
 
 import fr.pizzeria.model.Pizza;
 
+public interface IPizzaRepository extends JpaRepository<Pizza, Integer> {
 
-public interface IPizzaRepository extends JpaRepository<Pizza,Integer> {
+	Pizza findByCode(String code);
 
-    Pizza findByCode(String code);
-    
-   
-    @Query("select pizza from Pizza pizza where pizza.typePizza='PIZZA' and pizza.actif=true")
-    List<Pizza> findPizzaActual();
-    
-    
-    @Query("select pizza from Pizza pizza where pizza.typePizza='OUICHE' and pizza.actif=true")
-    List<Pizza> findOuicheActual();
-    
+	@Modifying
+	@Transactional
+	@Query("select pizza from Pizza pizza where pizza.typePizza='PIZZA' and pizza.archive=false")
+	List<Pizza> findPizzaActual();
+
+	@Modifying
+	@Transactional
+	@Query("select pizza from Pizza pizza where pizza.typePizza='OUICHE' and pizza.archive=false")
+	List<Pizza> findOuicheActual();
+
 }

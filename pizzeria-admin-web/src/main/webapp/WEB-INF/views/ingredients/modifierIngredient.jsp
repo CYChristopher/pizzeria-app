@@ -21,18 +21,21 @@
 			<form method="post">
 
 				<label for="nom">Nom :</label>
-				<input style="border-color:${ erreur [0] }" class="form-control" id="nom" name="nom" type="text" placeholder=" ex : tomate..." value="${ editIngredient.nom }">
+				<input style="border-color:${ erreur [0] }" class="form-control" id="nom" name="nom" type="text" placeholder=" ex : tomate..." value="${ editIngredient.nom }" required>
 
 					<label for="quantite">Quantité :</label>
-					<input style="border-color:${ erreur [1] }" class="form-control" id="quantite" name="quantite" type="number" min="1" placeholder="ex : 3" value="${ editIngredient.quantite }">
+					<input class="form-control" id="quantite" name="quantite" type="number" min="1" value="${ editIngredient.quantite }" disabled>
 
 						<label for="prix">Prix :</label>
-						<input style="border-color:${ erreur [2] }" class="form-control" id="prix" name="prix" type="number" step="0.01" min="0.01" placeholder="ex : 0,35" value="${ editIngredient.prix }">
+						<input style="border-color:${ erreur [2] }" class="form-control" id="prix" name="prix" type="number" step="0.01" min="0.01" placeholder="ex : 0,35" value="${ editIngredient.prix }" required>
 							<br>
 								<button class="btn btn-success" type="submit">Valider</button>
 
 								<a href=<c:url value='./liste'/>>
 									<button type="button" class="btn btn-primary">Retour</button>
+								</a>
+								<a href=<c:url value=''/>>
+									<button type="button" class="btn btn-primary">Reset</button>
 								</a>
 							</form>
 

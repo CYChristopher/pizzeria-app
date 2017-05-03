@@ -1,12 +1,12 @@
 export function routes($routeProvider) {
     $routeProvider
 
-        .when('/', {
+    .when('/', {
         template: '<home></home>'
     })
 
     .when('/inscription', {
-        template: '<inscription-component></inscription-component>',
+            template: '<inscription></inscription>',
     })
     
     .when('/connexion', {
@@ -17,6 +17,10 @@ export function routes($routeProvider) {
         template: '<liste-pizzas></liste-pizzas>'
     })
 
+    .when('/commande', {
+        template: '<commande></commande>'
+    })
+
     .when('/panier', {
         template: '<panier></panier>'
     })
@@ -24,7 +28,6 @@ export function routes($routeProvider) {
     .when('/compte', {
         template: '<mon-compte></mon-compte>'
     })
-
 
     .otherwise({
         redirectTo: '/'

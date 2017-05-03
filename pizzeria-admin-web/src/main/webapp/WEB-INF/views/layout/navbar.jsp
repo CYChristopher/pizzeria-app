@@ -20,23 +20,22 @@
       <a class="navbar-brand"
          href=<c:url value='/.'/>>Pizzeria Administration</a>
     </div>
-
 	<c:if test="${sessionScope.utilisateur != null}">
 	    <div id="navbar"
 	         class="navbar-collapse collapse">
 	      <ul class="nav navbar-nav">
 	        <li><a href="<c:url value='/utilisateurs/liste'/>">Utilisateurs</a></li>
-	        <li><a href=<c:url value='/pizzas/list'/>>Pizzas</a></li>
-	         <li><a href=<c:url value='/ouiches/list'/>>Ouiches</a></li>
-	        <li><a href="#">Menus</a></li>
+	        <li><a href=<c:url value='/pizzas/liste'/>>Pizzas</a></li>
+	        <li><a href=<c:url value='/ouiches/liste'/>>Ouiches</a></li>
+	        <!-- <li><a href="#">Menus</a></li> -->
 	        <li><a href=<c:url value='/desserts/liste'/>>Desserts</a></li>
-	        <li><a href=<c:url value='/commandes/list'/>>Commandes</a></li>
-	        <li><a href=<c:url value='/boissons/list'/>>Boissons</a></li>
-	        <li><a href=<c:url value='/clients/list'/>>Clients</a></li>
+	        <li><a href=<c:url value='/commandes/liste'/>>Commandes</a></li>
+	        <li><a href=<c:url value='/boissons/liste'/>>Boissons</a></li>
+	        <li><a href=<c:url value='/clients/liste'/>>Clients</a></li>
 	        <li><a href=<c:url value='/livreurs/liste'/>>Livreurs</a></li>
 	        <li><a href=<c:url value='/ingredients/liste'/>>Ingrédients</a></li>
-	        <li><a href="#">Statistiques</a></li>
-	        <li><a href="#">Promotions</a></li>
+	        <!-- <li><a href="#">Statistiques</a></li>
+	        <li><a href="#">Promotions</a></li> -->
 	      </ul>
 	
 	      <!--/.nav-collapse -->

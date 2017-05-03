@@ -30,6 +30,12 @@
 			placeholder="prix" value="${prix}">
 
 		<div class="form-group">
+			<label for="urlImage">Image :</label>
+			<input id="image" name="urlImage"
+				class="form-control" type="text" placeholder="Lien vers image" value="${editPizza.urlImage}" required>
+		</div>
+		
+		<div class="form-group">
 			<label for="categorie">Categorie : </label> <select id="categorie"
 				class="form-control" name="categorie">
 
@@ -58,7 +64,7 @@
 
 
 		<input class="btn btn-success" type="submit" value="Valider">
-		<a href=<c:url value='/ouiches/list'/>><button type="button"
+		<a href=<c:url value='/ouiches/liste'/>><button type="button"
 				class="btn btn-primary">Retour</button></a>
 	</form>
 </div>
