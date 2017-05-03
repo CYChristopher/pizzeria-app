@@ -29,6 +29,7 @@ public class JeuxDonnees {
 	
 	@Autowired
 	private IPizzaRepository pizzaDao;
+
 	
 	private List<Client> clients = new ArrayList<>();
 	private List<Pizza> pizzas = new ArrayList<>();
@@ -71,6 +72,8 @@ public class JeuxDonnees {
 		ingredients.add(new Ingredient("Eclipserie", 250, 1.0));
 		ingredients.add(new Ingredient("Chauve-sourizo", 50, 1.5));
 		ingredients.add(new Ingredient("Anti-ananas", 150, 2.0));
+		
+		
 	}
 	
 	private void generatePizzas(){
@@ -94,6 +97,8 @@ public class JeuxDonnees {
 				"https://www.dominos.fr/ManagedAssets/FR/product/PREI/FR_PREI_fr_hero_541.png?v-1935795394", LocalDateTime.now(), false, TypePizza.PIZZA,  ingredients));
 		pizzas.add(new Pizza("ORI", "Orientale", BigDecimal.valueOf(16.80), CategoriePizza.VIANDE,
 				"https://www.dominos.fr/ManagedAssets/FR/product/PORI/FR_PORI_fr_hero_541.png?v334099666", LocalDateTime.now(), true, TypePizza.PIZZA,  ingredients));
+		
+		pizzaDao.save(pizzas);
 	}
 	
 	private void generateLivreurs(){
