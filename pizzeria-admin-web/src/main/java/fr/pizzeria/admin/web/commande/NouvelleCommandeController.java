@@ -54,7 +54,7 @@ public class NouvelleCommandeController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		String[] pizzaCommandeId = request.getParameterValues("pizzaCommandeId");
 		String statut = request.getParameter("statut");
@@ -88,7 +88,7 @@ public class NouvelleCommandeController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/commandes/list");
 		} else {
 			request.setAttribute("msg", "Aucun produit commandé");
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}

@@ -17,7 +17,7 @@ import fr.pizzeria.model.Pizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/pizzas/list")
+@WebServlet("/pizzas/liste")
 public class ListerRecentePizzaController extends HttpServlet {
 
 	private static final String VUE_LISTER_PIZZAS = "/WEB-INF/views/pizzas/listerPizzas.jsp";
@@ -35,17 +35,17 @@ public class ListerRecentePizzaController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
-		Pizza editerPizza = pizzaService.findById(id);
+		Pizza editerPizza = this.pizzaService.findById(id);
 
-		editerPizza.setActif(!editerPizza.getActif());
+		editerPizza.setArchive(!editerPizza.getArchive());
 
-		pizzaService.update(id, editerPizza);
+		this.pizzaService.update(id, editerPizza);
 
-		response.sendRedirect(request.getContextPath() + "/pizzas/list");
+		response.sendRedirect(request.getContextPath() + "/pizzas/liste");
 
 	}
 
