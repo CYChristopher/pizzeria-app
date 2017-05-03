@@ -1,14 +1,15 @@
-<div class="panel">
-	<div class="panel-heading">
-		<h1>Liste des pizzas</h1>	
-	</div>
-	<div class="panel-body">
-		<div class="list-group">	
-			<div  class="list-group-item clearfix"  ng-repeat="pizza in $ctrl.pizzas">		
-				<pizza pizza="pizza"></pizza>	
-				<ajouter-panier item="pizza"></ajouter-panier>				
-			</div>
-		</div>
+<h1>Liste des pizzas</h1>
+<ul class="nav nav-pills">
+	<!-- TODO Mettre la class 'active' sur les li -->
+	<li role="presentation"><a ng-click="$ctrl.setCategorie()" href="#">Toutes</a></li>
+	<li role="presentation"><a ng-click="$ctrl.setCategorie('VIANDE')" href="#">Viande</a></li>
+	<li role="presentation"><a ng-click="$ctrl.setCategorie('SANS_VIANDE')" href="#">Sans viande</a></li>
+	<li role="presentation"><a ng-click="$ctrl.setCategorie('POISSON')" href="#">Poisson</a></li>
+</ul>
+<br>
+<div class="row">
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="pizza in $ctrl.pizzasCat" style="margin-bottom: 15px;">
+		<pizza pizza="pizza"></pizza>
+		<ajouter-panier item="pizza"></ajouter-panier>
 	</div>
 </div>
-
