@@ -21,7 +21,6 @@
 			<form method="post">
 
 				<input type='hidden' name='oldId' value='${utilisateur.id}'>
-
 				<input type='hidden' name='dateCreation'
 					value='${utilisateur.dateCreation}'>
 
