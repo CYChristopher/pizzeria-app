@@ -85,7 +85,7 @@ public class NouvelleCommandeController extends HttpServlet {
 
 			this.commandeService.create(commandeComplete);
 
-			response.sendRedirect(request.getContextPath() + "/commandes/list");
+			response.sendRedirect(request.getContextPath() + "/commandes/liste");
 		} else {
 			request.setAttribute("msg", "Aucun produit commandé");
 			this.doGet(request, response);
