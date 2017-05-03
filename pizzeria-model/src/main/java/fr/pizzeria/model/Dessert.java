@@ -40,6 +40,16 @@ public class Dessert {
 		this.id = id;
 	}
 
+
+
+	public Dessert(String code, String nom, BigDecimal prix, String urlImage) {
+		super();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.urlImage = urlImage;
+	}
+
 	public Dessert(String code, String nom, BigDecimal prix, boolean archive) {
 		this();
 		this.code = code;
@@ -47,6 +57,15 @@ public class Dessert {
 		this.prix = prix;
 		this.archive = archive;
 
+	}
+
+	public Dessert(String code, String nom, BigDecimal prix, String urlImage, boolean archive) {
+		super();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.urlImage = urlImage;
+		this.archive = archive;
 	}
 
 	public Integer getId() {

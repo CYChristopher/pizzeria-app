@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.ouiche;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +22,7 @@ import fr.pizzeria.model.Pizza;
 public class ListerRecenteOuicheController extends HttpServlet {
 
 	private static final String VUE_LISTER_OUICHES = "/WEB-INF/views/ouiches/listerOuiches.jsp";
-
+	
 	@Inject
 	private OuicheService ouicheService;
 
@@ -30,7 +31,7 @@ public class ListerRecenteOuicheController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("listePizzas", this.ouicheService.findNewestPizzaByName());
+	    req.setAttribute("listePizzas", this.ouicheService.findNewestPizzaByName());	    
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_OUICHES);
 		dispatcher.forward(req, resp);
 	}

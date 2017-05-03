@@ -1,7 +1,6 @@
 package fr.pizzeria.admin.web.boisson;
 
 import java.io.IOException;
-
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,8 +39,9 @@ public class NouvelleBoissonController extends HttpServlet {
 			String code = request.getParameter("code");
 			String nom = request.getParameter("nom");
 			String prix = request.getParameter("prix");
+			String urlImage = request.getParameter("urlImage") ;
 
-			Boisson boisson = new Boisson(code, nom, Double.valueOf(prix), "", false);
+			Boisson boisson = new Boisson(code, nom, Double.valueOf(prix), urlImage, false);
 
 			this.boissonService.saveNew(boisson);
 

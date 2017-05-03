@@ -13,7 +13,7 @@
 		<div class="col-md-9">	
 			<h1>Liste des ouiches</h1>
 			<a class="btn btn-primary" href="../ouiches/new">Nouvelle Ouiche</a> 
-			<a class="btn btn-primary" href="../historiqueOuiches/liste">Historique Ouiches</a>
+			<a class="btn btn-primary" href="../historiqueOuiches/list">Historique Ouiches</a>
 			<br>
 			<c:if test="${msg != null}">
 				<div class="alert alert-danger" role="alert">${msg}</div>
@@ -27,7 +27,7 @@
 				<c:forEach var="pizza" items="${listePizzas}">		
 					<tr>
 						<td>
-							<img src="${pizza.urlImage}">
+							<img src="${pizza.urlImage}" width="250px" height="200px" alt="${pizza.nom}" title="${pizza.nom}">
 						</td>
 						<td>
 							<div class="row">

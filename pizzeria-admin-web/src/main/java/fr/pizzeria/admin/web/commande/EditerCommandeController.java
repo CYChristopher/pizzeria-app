@@ -18,6 +18,8 @@ import fr.pizzeria.admin.metier.LivreurService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Commande;
+import fr.pizzeria.model.CommandeComplete;
+import fr.pizzeria.model.CommandePizza;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.StatutCommande;
@@ -75,12 +77,18 @@ public class EditerCommandeController extends HttpServlet {
 			}
 		}
 
-		Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client,
-						listePizza);
+		Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
 
-		this.commandeService.update(this.id, commande);
+		List<CommandePizza> commandesPizza = new ArrayList<>();
+		for(Pizza pizza : listePizza){
+			commandesPizza.add(new CommandePizza(pizza, commande, 1));
+		}
 
-		response.sendRedirect(request.getContextPath() + "/commandes/liste");
+		CommandeComplete commandeComplete= new CommandeComplete(commande,commandesPizza);
+
+		this.commandeService.update(this.id, commandeComplete);
+
+		response.sendRedirect(request.getContextPath() + "/commandes/list");
 
 	}
 

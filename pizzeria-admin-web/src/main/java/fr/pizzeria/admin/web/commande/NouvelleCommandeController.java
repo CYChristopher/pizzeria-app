@@ -19,6 +19,8 @@ import fr.pizzeria.admin.metier.LivreurService;
 import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.model.Client;
 import fr.pizzeria.model.Commande;
+import fr.pizzeria.model.CommandeComplete;
+import fr.pizzeria.model.CommandePizza;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.model.StatutCommande;
@@ -71,14 +73,23 @@ public class NouvelleCommandeController extends HttpServlet {
 			for (String idPizza : pizzaCommandeId) {
 				listePizza.add(this.pizzaService.findById(Integer.parseInt(idPizza)));
 			}
+
+			Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
+
+			List<CommandePizza> commandesPizza = new ArrayList<>();
+			for (Pizza pizza : listePizza) {
+				commandesPizza.add(new CommandePizza(pizza, commande, 1));
+			}
+
+			CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
+
+			this.commandeService.create(commandeComplete);
+
+			response.sendRedirect(request.getContextPath() + "/commandes/list");
+		} else {
+			request.setAttribute("msg", "Aucun produit commandé");
+			this.doGet(request, response);
 		}
-
-		Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client,
-						listePizza);
-
-		this.commandeService.create(commande);
-
-		response.sendRedirect(request.getContextPath() + "/commandes/liste");
 
 	}
 

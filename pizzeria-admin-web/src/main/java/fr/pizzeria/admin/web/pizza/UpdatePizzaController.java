@@ -33,6 +33,7 @@ public class UpdatePizzaController extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(UpdatePizzaController.class.getName());
 
 	private static final String VUE_EDIT_PIZZA = "/WEB-INF/views/pizzas/editPizza.jsp";
+
 	private Integer id;
 
 	@Inject
@@ -72,6 +73,7 @@ public class UpdatePizzaController extends HttpServlet {
 		String ref;
 		BigDecimal prix;
 		String categorie;
+		String urlImage;
 
 		// getParameterValues envoie NullPointerException si la liste des
 		// ingredients selectionnées est vide
@@ -82,8 +84,9 @@ public class UpdatePizzaController extends HttpServlet {
 			ref = request.getParameter("ref").isEmpty() ? oldPizza.getNom() : request.getParameter("ref");
 			prix = request.getParameter("prix").isEmpty() ? oldPizza.getPrix()
 							: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
-			categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getNom()
+			categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getCategorie().toString()
 							: request.getParameter("categorie");
+			urlImage = request.getParameter("urlImage").isEmpty() ? oldPizza.getUrlImage() : request.getParameter("urlImage");
 
 			String[] ingredients = request.getParameterValues("ingredientSelectione");
 			List<Ingredient> listIngredient = new ArrayList<>();
@@ -92,8 +95,9 @@ public class UpdatePizzaController extends HttpServlet {
 				listIngredient.add(this.ingredientService.findByName(ing));
 			}
 
-			Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie), TypePizza.PIZZA, LocalDateTime.now(), false,
-							listIngredient);
+			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage,
+							LocalDateTime.now(), false, TypePizza.PIZZA, listIngredient);
+
 
 			this.pizzaService.save(pizza);
 

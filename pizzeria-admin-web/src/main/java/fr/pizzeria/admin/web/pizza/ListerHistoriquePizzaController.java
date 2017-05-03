@@ -18,7 +18,7 @@ import fr.pizzeria.model.Pizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/historiquePizzas/liste")
+@WebServlet("/historiquePizzas/list")
 public class ListerHistoriquePizzaController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(ListerHistoriquePizzaController.class.getName());
@@ -31,13 +31,7 @@ public class ListerHistoriquePizzaController extends HttpServlet {
 	private IngredientService ingredientService;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-					throws ServletException, IOException {
-
-
-
-
-
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setAttribute("listePizzas", this.pizzaService.findAll());
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_PIZZAS);
 		dispatcher.forward(req, resp);

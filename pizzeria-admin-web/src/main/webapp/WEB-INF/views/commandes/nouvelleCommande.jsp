@@ -13,6 +13,9 @@
 		<div class="col-md-9">
 
 	<h1>Ajout de commande</h1>
+	<c:if test="${msg != null}">
+		<div class="alert alert-danger" role="alert">${msg}</div>
+	</c:if>
 
 	<form method="post">
 

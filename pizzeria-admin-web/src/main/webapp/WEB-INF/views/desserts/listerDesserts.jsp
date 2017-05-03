@@ -17,11 +17,12 @@
 				<div class="alert alert-danger" role="alert">${msg}</div>
 			</c:if>
 			<a class="btn btn-primary" href="./ajouter">Nouveau Dessert</a>
-			<a class="btn btn-primary" href="../historiqueDesserts/liste">Historique Desserts</a>
+			<a class="btn btn-primary" href="../historiqueDesserts/list">Historique Desserts</a>
 			<br>
 				<table class="table">
 					<thead>
 						<tr>
+							<th>Image</th>
 							<th>Code</th>
 							<th>Nom</th>
 							<th>Prix</th>
@@ -32,6 +33,7 @@
 					<tbody>
 						<c:forEach var="dessert" items="${listeDesserts}">
 							<tr>
+								<td><img src="${ dessert.urlImage }" width="250px" height="200px" alt="${dessert.nom}" title="${dessert.nom}"></td>
 								<td>${ dessert.code }</td>
 								<td>${ dessert.nom }</td>
 								<td>${ dessert.prix } €</td>

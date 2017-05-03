@@ -54,6 +54,20 @@ public class Pizza {
 		this.listeIngredients = listeIngredients;
 	}
 
+	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage,
+					LocalDateTime versionPizza, Boolean archive, TypePizza typePizza, List<Ingredient> listeIngredients) {
+		super();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.categorie = categorie;
+		this.urlImage = urlImage;
+		this.versionPizza = versionPizza;
+		this.archive = archive;
+		this.typePizza = typePizza;
+		this.listeIngredients = listeIngredients;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

@@ -62,11 +62,12 @@ public class SavePizzaController extends HttpServlet {
 		try {
 
 			if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
-							&& !request.getParameter("prix").isEmpty()) {
+							&& !request.getParameter("prix").isEmpty() && !request.getParameter("urlImage").isEmpty()) {
 				String newcode = request.getParameter("newcode");
 				String ref = request.getParameter("ref");
 				String prix = request.getParameter("prix");
 				String categorie = request.getParameter("categorie");
+				String urlImage = request.getParameter("urlImage");
 				String[] ingredients = request.getParameterValues("ingredientSelectione");
 
 				List<Ingredient> listIngredient = new ArrayList<>();
@@ -76,14 +77,14 @@ public class SavePizzaController extends HttpServlet {
 				}
 
 				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-								CategoriePizza.valueOf(categorie), TypePizza.PIZZA, LocalDateTime.now(), false, listIngredient);
-
+								CategoriePizza.valueOf(categorie),  urlImage,
+								LocalDateTime.now(), false, TypePizza.PIZZA, listIngredient);
 				this.pizzaService.save(pizza);
 
 				response.sendRedirect(request.getContextPath() + "/pizzas/liste");
 
 			} else {
-				String erreur[] = { "", "", "" };
+				String[] erreur = { "", "", "", "" };
 				if (request.getParameter("newcode").isEmpty()) {
 					erreur[0] = "red";
 				} else {
@@ -109,6 +110,9 @@ public class SavePizzaController extends HttpServlet {
 
 		} catch (NullPointerException e) {
 			request.setAttribute("msg", "Liste des ingredients vide");
+			request.setAttribute("newcode", request.getParameter("newcode"));
+			request.setAttribute("ref", request.getParameter("ref"));
+			request.setAttribute("prix", request.getParameter("prix"));
 			this.doGet(request, response);
 		}
 
