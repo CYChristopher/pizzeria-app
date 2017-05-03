@@ -46,8 +46,9 @@ public class EditerBoissonController extends HttpServlet {
 		String code = request.getParameter("code").isEmpty() ? (oldBoisson.getCode()) : request.getParameter("code");
 		Double prix = request.getParameter("prix").isEmpty() ? oldBoisson.getPrix()
 				: Double.valueOf(request.getParameter("prix"));
+		String urlImage = request.getParameter("urlImage").isEmpty() ? oldBoisson.getUrlImage() : request.getParameter("urlImage");
 
-		Boisson boisson = new Boisson(code, nom, prix, "");
+		Boisson boisson = new Boisson(code, nom, prix, urlImage);
 
 		boissonService.update(this.id, boisson);
 

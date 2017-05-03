@@ -20,11 +20,11 @@
 				<form method="post">
 					<div class="form-group">
 						<label for="nom">Nom</label>
-						<input type="text" class="form-control" id="nom" name="nom" placeholder="Nom"></div>
+						<input type="text" class="form-control" id="nom" name="nom" value="${nom}" placeholder="Nom"></div>
 
 						<div class="form-group">
 							<label for="prenom">Prenom</label>
-							<input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom"></div>
+							<input type="text"" class="form-control" id="prenom" name="prenom" value="${prenom}" placeholder="Prenom"></div>
 
 							<br>
 								<button class="btn btn-success" type="submit">Valider</button>

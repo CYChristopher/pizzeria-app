@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.ouiche;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -24,6 +25,7 @@ public class ListerHistoriqueOuicheController extends HttpServlet {
   private static final Logger LOG = Logger.getLogger(ListerHistoriqueOuicheController.class.getName());
 
   private static final String VUE_LISTER_OUICHES = "/WEB-INF/views/ouiches/listerAllOuiches.jsp";
+  
 
   @Inject private OuicheService ouicheService;
   
@@ -33,11 +35,6 @@ public class ListerHistoriqueOuicheController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-	  
-	  
-	
-	    
-	  
     req.setAttribute("listePizzas", this.ouicheService.findAll());
     RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_OUICHES);
     dispatcher.forward(req, resp);

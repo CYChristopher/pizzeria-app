@@ -45,8 +45,9 @@ public class SaveDessertController extends HttpServlet {
 			String newcode = request.getParameter("newcode");
 			String ref = request.getParameter("ref");
 			String prix = request.getParameter("prix");
+			String urlImage = request.getParameter("urlImage") ;
 
-			Dessert dessert = new Dessert(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)));
+			Dessert dessert = new Dessert(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)), urlImage);
 
 			dessertService.save(dessert);
 

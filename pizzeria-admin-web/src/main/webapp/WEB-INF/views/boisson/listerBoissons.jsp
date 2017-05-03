@@ -14,14 +14,13 @@
 		<div class="col-md-9">
 
 		<h1>Liste des Boissons</h1>
-		<a class="btn btn-primary" href=<c:url value="/boisson/nouvelle"/>>Nouvelle
+		<a class="btn btn-primary" href=<c:url value="/boissons/nouvelle"/>>Nouvelle
 			Boisson</a> <br>
 
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Image</th>
-					<th>Id</th>
 					<th>Code</th>
 					<th>Nom</th>
 					<th>Prix</th>
@@ -32,15 +31,14 @@
 
 			<c:forEach var="boisson" items="${listeBoissons}">
 				<tr>
-					<td><img src="${boisson.urlImage}"></td>
-					<td>${boisson.id}</td>
+					<td><img src="${boisson.urlImage}" width="250px" height="200px" alt="${boisson.nom}" title="${boisson.nom}"></td>
 					<td>${boisson.code}</td>
 					<td>${boisson.nom}</td>
 					<td>${boisson.prix} €</td>
 					<td><a href="<c:url value="/boissons/edit?id=${boisson.id}"/>"
 						class="btn btn-primary">Editer</a></td>
 					<td><form
-							action="<c:url value='/boisson/supprimer?id=${boisson.id}'></c:url>"
+							action="<c:url value='/boissons/supprimer?id=${boisson.id}'></c:url>"
 							method="post">
 							<input class='btn btn-danger' type='submit' value='Supprimer'>
 						</form></td>

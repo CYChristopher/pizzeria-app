@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.boisson;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -12,11 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.BoissonService;
 import fr.pizzeria.model.Boisson;
+import fr.pizzeria.model.Dessert;
 
 /**
  * Contrôleur de la page Liste des boissons.
  */
-@WebServlet("/boisson/nouvelle")
+@WebServlet("/boissons/nouvelle")
 public class NouvelleBoissonController extends HttpServlet {
 
 	private static final String VUE_SAVE_BOISSON = "/WEB-INF/views/boisson/nouvelleBoisson.jsp";
@@ -40,8 +42,9 @@ public class NouvelleBoissonController extends HttpServlet {
 			String code = request.getParameter("code");
 			String nom = request.getParameter("nom");
 			String prix = request.getParameter("prix");
+			String urlImage = request.getParameter("urlImage") ;
 
-			Boisson dessert = new Boisson(code, nom, Double.valueOf(prix), "");
+			Boisson dessert = new Boisson(code, nom, Double.valueOf(prix), urlImage);
 
 			boissonService.saveNew(dessert);
 

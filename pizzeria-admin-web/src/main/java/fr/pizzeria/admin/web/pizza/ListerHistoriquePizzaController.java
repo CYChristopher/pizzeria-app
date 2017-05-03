@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.pizza;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -24,7 +25,7 @@ public class ListerHistoriquePizzaController extends HttpServlet {
   private static final Logger LOG = Logger.getLogger(ListerHistoriquePizzaController.class.getName());
 
   private static final String VUE_LISTER_PIZZAS = "/WEB-INF/views/pizzas/listerAllPizzas.jsp";
-
+  
   @Inject private PizzaService pizzaService;
   
   @Inject 
@@ -33,11 +34,6 @@ public class ListerHistoriquePizzaController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-	  
-	  
-	
-	    
-	  
     req.setAttribute("listePizzas", this.pizzaService.findAll());
     RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_PIZZAS);
     dispatcher.forward(req, resp);
