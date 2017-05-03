@@ -45,13 +45,19 @@ public class ClientRessource {
 
 		Client oldClient = this.clientDao.findById(id);
 		newClient.setId(oldClient.getId());
-		if (newClient.getMotDePasse() == "") {
-			newClient.setMotDePasse(oldClient.getMotDePasse());
-		}
+		
 
-		// Hash du mot de passe
-		newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));
-		this.clientDao.save(newClient);
+			if ("".equals(newClient.getMotDePasse().trim())) {
+				newClient.setMotDePasse(oldClient.getMotDePasse());
+			} else {
+
+				// Hash du mot de passe
+				newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));
+			}
+		
+
+		clientDao.save(newClient);
+
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -60,9 +66,21 @@ public class ClientRessource {
 		return reponse != null ? reponse.getId() : -1;
 	}
 
+	
 	@RequestMapping(value = "/email", method = RequestMethod.GET)
 	public boolean loginClientExiste(@RequestParam("value") String email) {
+
+
 		Client reponse = clientDao.findByEmail(email);
 		return reponse != null;
 	}
+
+	@RequestMapping(value = "/verifPwd", method = RequestMethod.GET)
+	public boolean testMdpClient(@RequestParam("id") Integer id, @RequestParam("motDePasse") String motDePasse) {
+
+		Client client = clientDao.findById(id);
+
+		return (client.getMotDePasse().equals(motDePasse));
+	}
+
 }

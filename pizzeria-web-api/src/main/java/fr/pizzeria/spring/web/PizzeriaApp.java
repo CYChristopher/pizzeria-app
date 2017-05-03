@@ -33,7 +33,7 @@ public class PizzeriaApp {
 			}
 		};
 	}
-	
+
 	/**
 	 * Démarrage de l'application Web.
 	 *

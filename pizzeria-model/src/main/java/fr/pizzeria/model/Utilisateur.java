@@ -158,6 +158,12 @@ public class Utilisateur {
 		this.motDePasse = hashSha1(motDePasse, dateCreation.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 	}
 
+	// Permet de directement inserer le hash (pour qu'edition ne force pas à
+	// réecrire le mdp)
+	public void setHash(String hash) {
+		this.motDePasse = hash;
+	}
+
 	public String getAdresse() {
 		return adresse;
 	}
