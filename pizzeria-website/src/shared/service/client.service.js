@@ -32,13 +32,20 @@ export class ClientService {
 
     // récupération du client connecté
     getConnectedClient() {
-        let id = parseInt(this.localStorageService.get('utilisateur', "sessionStorage"));
-        return this.getClient(id);
+        let utilisateur = this.localStorageService.get('utilisateur', "sessionStorage");
+
+
+        if(!utilisateur)
+            return null
+        return this.getClient(parseInt(utilisateur.id));
     }
 
 
     verifierUtilisateur(email, motDePasse) {
         return this.$http.get(`${this.API_URL}/clients?email=${email}&motDePasse=${sha256(motDePasse)}`)
-            .then(resp => resp.data);
+            .then(resp => {
+                this.localStorageService.set("token", resp.headers().token, "sessionStorage");
+                return resp.data
+            });
     }
 }

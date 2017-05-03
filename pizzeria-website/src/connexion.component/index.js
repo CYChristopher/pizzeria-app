@@ -1,4 +1,4 @@
-import template from './connexion.html'
+import template from "./connexion.html";
 
 class controller {
     constructor($location, $http, API_URL, localStorageService, ClientService) {
@@ -10,25 +10,32 @@ class controller {
     }
 
     connexion() {
-        this.clientService.verifierUtilisateur(this.email, this.motDePasse).then(resp => {
-            if (resp === -1) {
-                alert('ERREUR : Utilisateur non reconnu');
-            }
-            else {
-                this.stockageService.set('utilisateur', resp, 'sessionStorage');
-                let pagePrecedente = this.stockageService.get('pageRedirectionConnexion');
+        this.clientService
+            .verifierUtilisateur(this.email, this.motDePasse)
+            .then(resp => {
+                console.log(resp);
+                
+                this.stockageService.set("utilisateur", resp, "sessionStorage");
+                let pagePrecedente = this.stockageService.get(
+                    "pageRedirectionConnexion"
+                );
                 if (!pagePrecedente) {
-                    this.$location.path('/');
-                }
-                else {
+                    this.$location.path("/");
+                } else {
                     this.$location.path(pagePrecedente);
                 }
-            }
-        })
+            })
+            .catch(resp => {
+                console.log(resp);
+
+                alert("ERREUR : " + resp.data.message);
+            });
     }
+
+
 }
 
 export const ConnexionComponent = {
     template,
     controller
-}
+};

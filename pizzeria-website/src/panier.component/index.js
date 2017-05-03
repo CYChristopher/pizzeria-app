@@ -59,6 +59,8 @@ class controller {
 
     passerCommande() {
         let utilisateur = this.localStorageService.get('utilisateur', 'sessionStorage');
+
+
         if (utilisateur) {
             console.log('hello')
             this.$location.path('/commande')

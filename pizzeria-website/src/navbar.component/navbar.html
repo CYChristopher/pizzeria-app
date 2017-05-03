@@ -38,7 +38,7 @@
                     <a href="/inscription" class="login">Inscription</a>
                 </li>
 
-                <li style="background: gold" ng-if="$ctrl.getConnectedClient()">
+                <li style="background: gold" ng-if="$ctrl.getConnectedClient()" ng-click="$ctrl.deconnexion()">
                     <a href="" class="login">Déconnexion</a>
                 </li>
             </ul>

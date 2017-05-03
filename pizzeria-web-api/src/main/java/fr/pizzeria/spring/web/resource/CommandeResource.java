@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,12 +29,14 @@ public class CommandeResource {
 	@Autowired
 	private ICommandePizzaRepository commandePizzaDao;
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Commande> listAllCommandes() {
 		List<Commande> list = this.commandeDao.findAll();
 		return list;
 	}
 
+	@PreAuthorize("hasRole('ROLE_USER')")
 	@RequestMapping(method = RequestMethod.POST)
 	public void ajouterCommande(@RequestBody CommandeComplete commandeComplete) {
 		commandeComplete.setDateCommande(LocalDateTime.now());
