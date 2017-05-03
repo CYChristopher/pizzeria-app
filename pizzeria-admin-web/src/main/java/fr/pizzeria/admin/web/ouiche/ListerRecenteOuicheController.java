@@ -18,7 +18,7 @@ import fr.pizzeria.model.Pizza;
 /**
  * Contrôleur de la page Liste des pizzas.
  */
-@WebServlet("/ouiches/list")
+@WebServlet("/ouiches/liste")
 public class ListerRecenteOuicheController extends HttpServlet {
 
 	private static final String VUE_LISTER_OUICHES = "/WEB-INF/views/ouiches/listerOuiches.jsp";
@@ -38,17 +38,17 @@ public class ListerRecenteOuicheController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		Integer id = Integer.valueOf(request.getParameter("id"));
 
-		Pizza editerPizza = ouicheService.findById(id);
+		Pizza editerPizza = this.ouicheService.findById(id);
 
-		editerPizza.setActif(!editerPizza.getActif());
+		editerPizza.setArchive(!editerPizza.getArchive());
 
-		ouicheService.update(id, editerPizza);
+		this.ouicheService.update(id, editerPizza);
 
-		response.sendRedirect(request.getContextPath() + "/ouiches/list");
+		response.sendRedirect(request.getContextPath() + "/ouiches/liste");
 
 	}
 

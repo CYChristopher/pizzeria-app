@@ -30,36 +30,32 @@ public class Pizza {
 	private CategoriePizza categorie;
 	private String urlImage;
 	private LocalDateTime versionPizza;
-	private Boolean actif;
-	
-	@Enumerated(EnumType.STRING)	
+	private Boolean archive;
+
+	@Enumerated(EnumType.STRING)
 	private TypePizza typePizza;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Ingredient> listeIngredients;
 
-	
-
 	public Pizza() {
 	}
-	
-	
 
 	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie,TypePizza typePizza, LocalDateTime versionPizza,
-			Boolean actif, List<Ingredient> listeIngredients) {
-		
+					Boolean archive, List<Ingredient> listeIngredients) {
+
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
 		this.categorie = categorie;
 		this.typePizza=typePizza;
 		this.versionPizza = versionPizza;
-		this.actif = actif;
+		this.archive = archive;
 		this.listeIngredients = listeIngredients;
 	}
 
 	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie, String urlImage,
-			LocalDateTime versionPizza, Boolean actif, TypePizza typePizza, List<Ingredient> listeIngredients) {
+					LocalDateTime versionPizza, Boolean archive, TypePizza typePizza, List<Ingredient> listeIngredients) {
 		super();
 		this.code = code;
 		this.nom = nom;
@@ -67,13 +63,13 @@ public class Pizza {
 		this.categorie = categorie;
 		this.urlImage = urlImage;
 		this.versionPizza = versionPizza;
-		this.actif = actif;
+		this.archive = archive;
 		this.typePizza = typePizza;
 		this.listeIngredients = listeIngredients;
 	}
-	
+
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Integer id) {
@@ -81,7 +77,7 @@ public class Pizza {
 	}
 
 	public String getCode() {
-		return code;
+		return this.code;
 	}
 
 	public void setCode(String code) {
@@ -89,7 +85,7 @@ public class Pizza {
 	}
 
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
@@ -97,7 +93,7 @@ public class Pizza {
 	}
 
 	public BigDecimal getPrix() {
-		return prix;
+		return this.prix;
 	}
 
 	public void setPrix(BigDecimal prix) {
@@ -105,7 +101,7 @@ public class Pizza {
 	}
 
 	public CategoriePizza getCategorie() {
-		return categorie;
+		return this.categorie;
 	}
 
 	public void setCategorie(CategoriePizza categorie) {
@@ -113,7 +109,7 @@ public class Pizza {
 	}
 
 	public String getUrlImage() {
-		return urlImage;
+		return this.urlImage;
 	}
 
 	public void setUrlImage(String urlImage) {
@@ -121,47 +117,40 @@ public class Pizza {
 	}
 
 	public LocalDateTime getVersionPizza() {
-		return versionPizza;
+		return this.versionPizza;
 	}
 
 	public void setVersionPizza(LocalDateTime versionPizza) {
 		this.versionPizza = versionPizza;
 	}
 
-	public Boolean getActif() {
-		return actif;
+	public Boolean getArchive() {
+		return this.archive;
 	}
 
-	public void setActif(Boolean actif) {
-		this.actif = actif;
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
 	}
-	
+
 	public List<Ingredient> getListeIngredients() {
-		return listeIngredients;
+		return this.listeIngredients;
 	}
 
 	public void setListeIngredients(List<Ingredient> listeIngredients) {
 		this.listeIngredients = listeIngredients;
 	}
 
-	
-
-
 	public TypePizza getTypePizza() {
-		return typePizza;
+		return this.typePizza;
 	}
-
-
 
 	public void setTypePizza(TypePizza typePizza) {
 		this.typePizza = typePizza;
 	}
 
-
-
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(code).toHashCode();
+		return new HashCodeBuilder(17, 37).append(this.code).toHashCode();
 	}
 
 	@Override
@@ -172,12 +161,11 @@ public class Pizza {
 		if (obj == this) {
 			return true;
 		}
-		if (obj.getClass() != getClass()) {
+		if (obj.getClass() != this.getClass()) {
 			return false;
 		}
 		Pizza rhs = (Pizza) obj;
-		return new EqualsBuilder().append(code, rhs.code).isEquals();
+		return new EqualsBuilder().append(this.code, rhs.code).isEquals();
 	}
 
-	
 }

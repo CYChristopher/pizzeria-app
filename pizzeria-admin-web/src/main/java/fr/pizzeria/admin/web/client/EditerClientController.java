@@ -16,17 +16,19 @@ import fr.pizzeria.model.Client;
 public class EditerClientController extends HttpServlet {
 
 	private static final String VUE_EDITER_CLIENTS = "/WEB-INF/views/clients/editerClients.jsp";
-	private static final String VUE_LISTER_CLIENTS = "/clients/list";
-	
+	private static final String VUE_LISTER_CLIENTS = "/clients/liste";
+
 	@Inject
 	private ClientService clientService;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Client client = clientService.getById(Integer.valueOf(request.getParameter("id")));
+		Client client = this.clientService.getById(Integer.valueOf(request.getParameter("id")));
 		request.setAttribute("client", client);
 		this.getServletContext().getRequestDispatcher(VUE_EDITER_CLIENTS).forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer id = Integer.valueOf(request.getParameter("id"));
 		String nom = request.getParameter("nom").trim();
@@ -35,7 +37,7 @@ public class EditerClientController extends HttpServlet {
 		String motDePasse = request.getParameter("motDePasse");
 		String adresse = request.getParameter("adresse").trim();
 		Client client = new Client(nom, prenom, email, motDePasse, adresse);
-		clientService.update(id, client);
+		this.clientService.update(id, client);
 		response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
 	}
 

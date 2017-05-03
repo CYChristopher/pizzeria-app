@@ -16,7 +16,7 @@ import fr.pizzeria.model.Boisson;
 @WebServlet("/boissons/edit")
 public class EditerBoissonController extends HttpServlet {
 
-	private static final String VUE_EDIT_BOISSON = "/WEB-INF/views/boisson/editerBoisson.jsp";
+	private static final String VUE_EDIT_BOISSON = "/WEB-INF/views/boissons/editerBoisson.jsp";
 	private Integer id;
 
 	@Inject
@@ -24,11 +24,11 @@ public class EditerBoissonController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		this.id = Integer.parseInt(request.getParameter("id"));
 
-		request.setAttribute("boisson", boissonService.find(this.id));
+		request.setAttribute("boisson", this.boissonService.find(this.id));
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_BOISSON);
 
@@ -38,9 +38,9 @@ public class EditerBoissonController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
-		Boisson oldBoisson = boissonService.find(this.id);
+		Boisson oldBoisson = this.boissonService.find(this.id);
 
 		String nom = request.getParameter("nom").isEmpty() ? oldBoisson.getNom() : request.getParameter("nom");
 		String code = request.getParameter("code").isEmpty() ? (oldBoisson.getCode()) : request.getParameter("code");
@@ -50,9 +50,9 @@ public class EditerBoissonController extends HttpServlet {
 
 		Boisson boisson = new Boisson(code, nom, prix, urlImage);
 
-		boissonService.update(this.id, boisson);
+		this.boissonService.update(this.id, boisson);
 
-		response.sendRedirect(request.getContextPath() + "/boissons/list");
+		response.sendRedirect(request.getContextPath() + "/boissons/liste");
 
 	}
 

@@ -16,24 +16,26 @@ import fr.pizzeria.model.Client;
 public class AjouterClientController extends HttpServlet {
 
 	private static final String VUE_AJOUTER_CLIENTS = "/WEB-INF/views/clients/ajouterClients.jsp";
-	private static final String VUE_LISTER_CLIENTS = "/clients/list";
+	private static final String VUE_LISTER_CLIENTS = "/clients/liste";
 
 	@Inject
 	private ClientService clientService;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher(VUE_AJOUTER_CLIENTS).forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 		String nom = request.getParameter("nom").trim();
 		String prenom = request.getParameter("prenom").trim();
 		String email = request.getParameter("email").trim();
 		String motDePasse = request.getParameter("motDePasse");
 		String adresse = request.getParameter("adresse").trim();
-		clientService.save(new Client(nom, prenom, email, motDePasse, adresse));
+		this.clientService.save(new Client(nom, prenom, email, motDePasse, adresse));
 		response.sendRedirect(request.getContextPath()+VUE_LISTER_CLIENTS);
 	}
 
