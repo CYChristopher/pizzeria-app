@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import fr.pizzeria.model.Boisson;
 import fr.pizzeria.model.CategoriePizza;
@@ -29,6 +30,7 @@ import fr.pizzeria.spring.web.repository.IIngredientRepository;
 import fr.pizzeria.spring.web.repository.ILivreurReposiroty;
 import fr.pizzeria.spring.web.repository.IPizzaRepository;
 
+@Component
 public class JeuxDonnees {
 	
 	@Autowired
@@ -51,7 +53,6 @@ public class JeuxDonnees {
 	
 	@Autowired
 	private ICommandeRepository commandeDao;
-
 	
 	private List<Client> clients = new ArrayList<>();
 	private List<Boisson> boissons = new ArrayList<>();
@@ -84,7 +85,7 @@ public class JeuxDonnees {
 	private void generateBoissons(){
 		boissons.add(new Boisson("FAN", "Fanta Orange", Double.valueOf(9.0), "http://www.mazalv.com/wp-content/uploads/2016/11/fanta-1.png", false));
 		boissons.add(new Boisson("COCA", "Coca-Pepsi", Double.valueOf(2.5), "http://www.boulangerie-laboulange.fr/1-thickbox_default/boisson-coca-cola.jpg", false));
-		boissons.add(new Boisson("PIM", "Pimento - gingembre", Double.valueOf(8.30), "https://img3.bibamagazine.fr/var/bibamagazine/storage/images/style-de-vie/pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-monopr-56518/426552-1-fre-FR/Pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-Monoprix_width1024.jpg", false));
+		boissons.add(new Boisson("MRB", "Moriba - gingembre", Double.valueOf(8.30), "http://www.moriba.fr/174-thickbox_default/boisson-au-gingembre.jpg", false));
 		boissons.add(new Boisson("ACT", "Actimel ++", Double.valueOf(0.50), "http://www.avisdemamans.com/images/produit/actimelmodif.jpg", false));
 		boissonDao.save(boissons);
 	}
@@ -130,7 +131,6 @@ public class JeuxDonnees {
 				"https://www.dominos.fr/ManagedAssets/FR/product/PORI/FR_PORI_fr_hero_541.png?v334099666", LocalDateTime.now(), true, TypePizza.PIZZA,  ingredients));
 		
 		pizzaDao.save(pizzas);
-		pizzaDao.flush();
 	}
 	
 	private void generateLivreurs(){
@@ -160,7 +160,7 @@ public class JeuxDonnees {
 		Commande c2 = new Commande();
 		c2.setNumeroCommande("KLP456");
 		c2.setStatut(StatutCommande.EN_PREPARATION);
-		c2.setDateCommande(LocalDateTime.of(2016, Month.AUGUST, 24, 18, 38));
+		c2.setDateCommande(LocalDateTime.of(2017, Month.APRIL, 18, 18, 38));
 		c2.setLivreur(livreurs.get(1));
 		commandes.add(c2);
 		
@@ -168,7 +168,7 @@ public class JeuxDonnees {
 		c3.setNumeroCommande("JTS469");
 		c3.setStatut(StatutCommande.NON_TRAITE);
 		c3.setDateCommande(LocalDateTime.now());
-		c3.setLivreur(livreurs.get(3));
+		c3.setLivreur(livreurs.get(2));
 		commandes.add(c3);
 		
 		commandeDao.save(commandes);

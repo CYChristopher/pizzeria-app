@@ -41,7 +41,6 @@ public class PizzeriaApp {
 	 *            argument du programme
 	 */
 	public static void main(String[] args) {
-
 		SpringApplication.run(PizzeriaApp.class);
 	}
 }
