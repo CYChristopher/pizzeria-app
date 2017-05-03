@@ -45,7 +45,7 @@ public class NouvelleCommandeController extends HttpServlet {
 		req.setAttribute("statusPossible", EnumSet.allOf(StatutCommande.class));
 
 		req.setAttribute("listeLivreur", this.livreurService.findAll());
-		req.setAttribute("listePizza", this.pizzaService.findAll());
+		req.setAttribute("listePizza", this.pizzaService.findNewestPizzaByName());
 		req.setAttribute("listeClient", this.clientService.findAll());
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_SAVE_BOISSON);
