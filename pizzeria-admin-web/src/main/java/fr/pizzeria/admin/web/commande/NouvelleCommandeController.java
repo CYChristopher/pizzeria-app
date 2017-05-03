@@ -107,7 +107,7 @@ public class NouvelleCommandeController extends HttpServlet {
 		req.setAttribute("numOk", numOk);
 
 		Map<Pizza, Boolean> mapPizzas = new HashMap<>();
-		pizzaService.findAll().forEach(pizza -> {
+		pizzaService.findNewestPizzaByName().forEach(pizza -> {
 			if (pizzaCommandeId != null && pizzaCommandeId.contains(pizza.getId().toString())) {
 				mapPizzas.put(pizza, true);
 			} else {

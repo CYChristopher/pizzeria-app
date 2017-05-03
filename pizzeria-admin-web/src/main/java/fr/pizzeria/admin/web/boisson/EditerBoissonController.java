@@ -47,10 +47,12 @@ public class EditerBoissonController extends HttpServlet {
 		Double prix = request.getParameter("prix").isEmpty() ? oldBoisson.getPrix()
 				: Double.valueOf(request.getParameter("prix"));
 		String urlImage = request.getParameter("urlImage").isEmpty() ? oldBoisson.getUrlImage() : request.getParameter("urlImage");
-
+		
+		oldBoisson.setArchive(true);
+		this.boissonService.update(this.id, oldBoisson);
+		
 		Boisson boisson = new Boisson(code, nom, prix, urlImage);
-
-		this.boissonService.update(this.id, boisson);
+		this.boissonService.saveNew(boisson);
 
 		response.sendRedirect(request.getContextPath() + "/boissons/liste");
 

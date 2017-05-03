@@ -43,7 +43,7 @@ export class ClientService {
     }
 
     emailExiste(email) {
-        return this.$http.get(`${this.API_URL}/clients/email/${email}`)
+        return this.$http.get(`${this.API_URL}/clients/email?value=${email}`)
             .then(resp => resp.data);
     }
 }

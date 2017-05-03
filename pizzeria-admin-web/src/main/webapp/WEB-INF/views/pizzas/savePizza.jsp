@@ -74,5 +74,4 @@
 
 		<script type="text/javascript"
 			src='<c:url value="/static/JS/gestionIngredient.js"/>'></script>
-
 		<jsp:include page="../layout/footer.jsp" />
