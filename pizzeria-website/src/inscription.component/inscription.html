@@ -3,11 +3,13 @@
     <form name="formInscription" novalidate ng-submit="$ctrl.validerForm(formInscription)">
         <div name="divEmail" class="form-group col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <label for="emailClient">Email : </label>
-            <input id="emailClient" name="emailClient" ng-model="$ctrl.client.email" required type="email" placeholder="Votre email" class="form-control">
+            <input id="emailClient" name="emailClient" ng-model="$ctrl.client.email" ng-blur="$ctrl.emailExiste(formInscription)"  required type="email" placeholder="Votre email" class="form-control">
             <p class="text-danger" role="alert" ng-if="formInscription.emailClient.$error.required 
             && formInscription.emailClient.$touched">Veuillez rentrer un email !</p>
             <p class="text-danger" ng-if="formInscription.emailClient.$error.email 
             && formInscription.emailClient.$touched">Votre email est invalide !</p>
+            <p class="text-danger" ng-if="formInscription.emailClient.$error.email_existant 
+            && formInscription.emailClient.$touched")>L'email est déjà enregistré !</p>
         </div>
 
         <div name="divMdp" class="form-group col-lg-8 col-md-8 col-sm-12 col-xs-12">
