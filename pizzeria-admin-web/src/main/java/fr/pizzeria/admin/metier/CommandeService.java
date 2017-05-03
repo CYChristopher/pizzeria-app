@@ -73,7 +73,8 @@ public class CommandeService {
 		ev.setAction(Action.UPDATE);
 		ev.setType(Type.COMMANDE);
 		cmdCmp.getCommande().setId(this.find(id).getId());
-		this.em.merge(cmdCmp);
+		Commande com = cmdCmp.getCommande();
+		this.em.merge(com);
 		ev.setNom(cmdCmp.getCommande().getNumeroCommande());
 		ev.setId(cmdCmp.getCommande().getId());
 		this.event.fire(ev);
