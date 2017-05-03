@@ -56,4 +56,10 @@ public class ClientRessource {
 		Client reponse = this.clientDao.findByEmailAndMotDePasse(email, motDePasse);
 		return reponse != null ? reponse.getId() : -1;
 	}
+	
+	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+	public boolean loginClientExiste(@PathVariable("email") String email) {
+		Client reponse = clientDao.findByEmail(email);
+		return reponse != null ? true : false;
+	}
 }
