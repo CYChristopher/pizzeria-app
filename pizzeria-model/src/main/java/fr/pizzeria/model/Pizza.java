@@ -19,6 +19,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 @Entity
 public class Pizza {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -30,24 +31,28 @@ public class Pizza {
 	private String urlImage;
 	private LocalDateTime versionPizza;
 	private Boolean actif;
-
-	@Enumerated(EnumType.STRING)
+	
+	@Enumerated(EnumType.STRING)	
 	private TypePizza typePizza;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Ingredient> listeIngredients;
 
+	
+
 	public Pizza() {
 	}
+	
+	
 
-	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie, TypePizza typePizza,
-			LocalDateTime versionPizza, Boolean actif, List<Ingredient> listeIngredients) {
-
+	public Pizza(String code, String nom, BigDecimal prix, CategoriePizza categorie,TypePizza typePizza, LocalDateTime versionPizza,
+			Boolean actif, List<Ingredient> listeIngredients) {
+		
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
 		this.categorie = categorie;
-		this.typePizza = typePizza;
+		this.typePizza=typePizza;
 		this.versionPizza = versionPizza;
 		this.actif = actif;
 		this.listeIngredients = listeIngredients;
@@ -66,7 +71,7 @@ public class Pizza {
 		this.typePizza = typePizza;
 		this.listeIngredients = listeIngredients;
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -130,7 +135,7 @@ public class Pizza {
 	public void setActif(Boolean actif) {
 		this.actif = actif;
 	}
-
+	
 	public List<Ingredient> getListeIngredients() {
 		return listeIngredients;
 	}
@@ -139,13 +144,20 @@ public class Pizza {
 		this.listeIngredients = listeIngredients;
 	}
 
+	
+
+
 	public TypePizza getTypePizza() {
 		return typePizza;
 	}
 
+
+
 	public void setTypePizza(TypePizza typePizza) {
 		this.typePizza = typePizza;
 	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -167,4 +179,5 @@ public class Pizza {
 		return new EqualsBuilder().append(code, rhs.code).isEquals();
 	}
 
+	
 }

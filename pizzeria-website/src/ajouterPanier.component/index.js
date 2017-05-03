@@ -1,7 +1,6 @@
 import template from './ajouterPanier.html';
 
 class controller {
-
   constructor( localStorageService, PanierService ) {
     this.StockageService = localStorageService;
     this.ps = PanierService;
@@ -10,7 +9,6 @@ class controller {
   ajouterAuStockageLocal() {
     this.ps.ajouterAuStockageLocal( this.item );
   }
-
 }
 
 export const AjouterPanierComponent = {

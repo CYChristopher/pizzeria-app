@@ -34,7 +34,10 @@ angular.module( 'pizzeria', [ ngRoute, 'LocalStorageModule' ] )
     } ] )
   .service( 'PizzaService', PizzaService )
   .service( 'ClientService', ClientService )
+<<<<<<< HEAD
   .service( 'PanierService', PanierService )
+=======
+>>>>>>> refs/remotes/origin/develop
   .component( 'pizza', PizzaComponent )
   .component( 'listePizzas', ListePizzasComponent )
   .component( 'home', HomeComponent )

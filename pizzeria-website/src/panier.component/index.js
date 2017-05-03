@@ -6,7 +6,6 @@ class controller {
     this.localStorageService = localStorageService;
     this.ps = PanierService;
     this.panier = this.localStorageService.get( 'panier', 'localStorage' );
-
     this.$location = $location
   }
 
