@@ -34,8 +34,8 @@
 	        <li><a href=<c:url value='/clients/liste'/>>Clients</a></li>
 	        <li><a href=<c:url value='/livreurs/liste'/>>Livreurs</a></li>
 	        <li><a href=<c:url value='/ingredients/liste'/>>Ingrédients</a></li>
-	        <!-- <li><a href="#">Statistiques</a></li>
-	        <li><a href="#">Promotions</a></li> -->
+	        <li><a href=<c:url value='/technique'/>>Statistiques</a></li>
+	        <!-- <li><a href="#">Promotions</a></li> -->
 	      </ul>
 	
 	      <!--/.nav-collapse -->
