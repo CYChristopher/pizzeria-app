@@ -19,7 +19,7 @@
 		<!-- Table -->
 		<table class="table table-striped">
 			<tr><th>Ingrédients</th></tr>
-			<tr ng-repeat="ingredient in $ctrl.pizza.listeIngredients"><td>ingredient</td></tr>
+			<tr ng-repeat="ingredient in $ctrl.pizza.listeIngredients"><td>{{ingredient.nom}}</td></tr>
 		</table>
 		<div class="modal-footer">
 			<ajouter-panier item="$ctrl.pizza"></ajouter-panier>
