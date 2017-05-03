@@ -79,10 +79,10 @@ public class JeuxDonnees {
 	}
 	
 	private void generateBoissons(){
-		boissons.add(new Boisson("FAN", "Fanta Orange", Double.valueOf(9.0), "http://www.mazalv.com/wp-content/uploads/2016/11/fanta-1.png"));
-		boissons.add(new Boisson("COCA", "Coca-Pepsi", Double.valueOf(2.5), "http://www.boulangerie-laboulange.fr/1-thickbox_default/boisson-coca-cola.jpg"));
-		boissons.add(new Boisson("PIM", "Pimento - gingembre", Double.valueOf(8.30), "https://img3.bibamagazine.fr/var/bibamagazine/storage/images/style-de-vie/pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-monopr-56518/426552-1-fre-FR/Pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-Monoprix_width1024.jpg"));
-		boissons.add(new Boisson("ACT", "Actimel ++", Double.valueOf(0.50), "http://www.avisdemamans.com/images/produit/actimelmodif.jpg"));
+		boissons.add(new Boisson("FAN", "Fanta Orange", Double.valueOf(9.0), "http://www.mazalv.com/wp-content/uploads/2016/11/fanta-1.png", false));
+		boissons.add(new Boisson("COCA", "Coca-Pepsi", Double.valueOf(2.5), "http://www.boulangerie-laboulange.fr/1-thickbox_default/boisson-coca-cola.jpg", false));
+		boissons.add(new Boisson("PIM", "Pimento - gingembre", Double.valueOf(8.30), "https://img3.bibamagazine.fr/var/bibamagazine/storage/images/style-de-vie/pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-monopr-56518/426552-1-fre-FR/Pimento-la-nouvelle-boisson-au-gingembre-et-au-piment-qui-debarque-chez-Monoprix_width1024.jpg", false));
+		boissons.add(new Boisson("ACT", "Actimel ++", Double.valueOf(0.50), "http://www.avisdemamans.com/images/produit/actimelmodif.jpg", false));
 		boissonDao.save(boissons);
 	}
 
@@ -96,10 +96,10 @@ public class JeuxDonnees {
 	}
 	
 	private void generateDesserts(){
-		desserts.add(new Dessert("CUP", "Cupcake", BigDecimal.valueOf(3.20), "http://static.750g.com/images/auto-427/669506a50d29be25f628fb3baa2eb043/cupcake-tout-chocolat.jpg"));
-		desserts.add(new Dessert("FLA", "Flan", BigDecimal.valueOf(1.20), "http://regimea.com/wp-content/uploads/2014/10/Le-flan-fait-il-grossir-ou-maigrir--702x336.jpg"));
-		desserts.add(new Dessert("MAC", "Macaron", BigDecimal.valueOf(8.40), "http://cloudfront.danasbakery.com/media/catalog/product/cache/1/small_image/600x420/9df78eab33525d08d6e5fb8d27136e95/0/1/01-redvel.jpg"));
-		desserts.add(new Dessert("POM", "Pom'potes", BigDecimal.valueOf(0.20), "http://sourdoreille.net/2016/wp-content/uploads/2013/06/pompote.jpg"));
+		desserts.add(new Dessert("CUP", "Cupcake", BigDecimal.valueOf(3.20), "http://static.750g.com/images/auto-427/669506a50d29be25f628fb3baa2eb043/cupcake-tout-chocolat.jpg", false));
+		desserts.add(new Dessert("FLA", "Flan", BigDecimal.valueOf(1.20), "http://regimea.com/wp-content/uploads/2014/10/Le-flan-fait-il-grossir-ou-maigrir--702x336.jpg", false));
+		desserts.add(new Dessert("MAC", "Macaron", BigDecimal.valueOf(8.40), "http://cloudfront.danasbakery.com/media/catalog/product/cache/1/small_image/600x420/9df78eab33525d08d6e5fb8d27136e95/0/1/01-redvel.jpg", false));
+		desserts.add(new Dessert("POM", "Pom'potes", BigDecimal.valueOf(0.20), "http://sourdoreille.net/2016/wp-content/uploads/2013/06/pompote.jpg", false));
 		dessertDao.save(desserts);
 	}
 	
