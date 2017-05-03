@@ -43,11 +43,11 @@ public class CommandeService {
 
 		return this.em.createQuery(FIND_BY_ID, Commande.class).setParameter("id", id).getSingleResult();
 	}
-	
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public List<Commande> findByNum(String num) {
 
-		return em.createQuery(FIND_BY_NUM, Commande.class).setParameter("numeroCommande", num).getResultList();
+		return this.em.createQuery(FIND_BY_NUM, Commande.class).setParameter("numeroCommande", num).getResultList();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -72,11 +72,15 @@ public class CommandeService {
 		ev.setDate(LocalDateTime.now());
 		ev.setAction(Action.UPDATE);
 		ev.setType(Type.COMMANDE);
-		cmdCmp.getCommande().setId(this.find(id).getId());
 		Commande com = cmdCmp.getCommande();
+		com.setId(this.find(id).getId());
+		ev.setNom(com.getNumeroCommande());
+		ev.setId(com.getId());
+		for (CommandePizza cmdP : cmdCmp.getCommandesPizza()) {
+			this.em.merge(cmdP);
+			com.getCommandesPizzas().add(cmdP);
+		}
 		this.em.merge(com);
-		ev.setNom(cmdCmp.getCommande().getNumeroCommande());
-		ev.setId(cmdCmp.getCommande().getId());
 		this.event.fire(ev);
 	}
 
