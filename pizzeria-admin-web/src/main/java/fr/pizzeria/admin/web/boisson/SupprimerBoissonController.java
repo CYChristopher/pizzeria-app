@@ -11,19 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.BoissonService;
 
-@WebServlet("/boisson/supprimer")
+@WebServlet("/boissons/supprimer")
 public class SupprimerBoissonController extends HttpServlet {
 
 	@EJB
 	private BoissonService boissonService;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		Integer id = Integer.parseInt(request.getParameter("id"));
 
-		boissonService.delete(id);
+		this.boissonService.delete(id);
 
-		response.sendRedirect(request.getContextPath() + "/boissons/list");
+		response.sendRedirect(request.getContextPath() + "/boissons/liste");
 	}
 }

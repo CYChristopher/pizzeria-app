@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-md-9">
 
-			<h1>Ajout d'un client</h1>
+			<h1>Editer le client ${client.nom}</h1>
 			<form class="form-horizontal" method="POST"
 				action="<c:url value='/clients/edit?id=${client.id}'/>">
 				<div class="form-group">
@@ -58,9 +58,11 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Editer</button>
+						<button type="submit" class="btn btn-success">Editer</button>
+						<a href=<c:url value='/clients/list'/>><button type="button"
+							class="btn btn-primary">Retour</button></a>
 						<a href=<c:url value=''/>>
-							<button type="button" class="btn btn-default">Reset</button>
+							<button type="button" class="btn btn-primary">Reset</button>
 						</a>
 					</div>
 				</div>
