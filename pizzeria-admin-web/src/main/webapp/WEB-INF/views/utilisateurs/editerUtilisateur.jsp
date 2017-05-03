@@ -38,7 +38,7 @@
 				</div>
 				<div class="form-group">
 					<label for="InputPrix">Mot de passe </label> <input
-						class="form-control" type='password' name='motDePasse'>
+						class="form-control" placeholder="••••••••" type='password' name='motDePasse'>
 				</div>
 				<div class="form-group">
 					<label for="InputPrix">Confimation du mot de passe </label> <input
