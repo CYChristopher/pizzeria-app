@@ -43,7 +43,7 @@ public class UpdateOuicheController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		this.id = Integer.valueOf(request.getParameter("id"));
 
@@ -54,7 +54,7 @@ public class UpdateOuicheController extends HttpServlet {
 		}
 
 		request.setAttribute("listeIngredients", this.ingredientService.findAll());
-		request.setAttribute("editPizza", ouicheService.findById(this.id));
+		request.setAttribute("editPizza", this.ouicheService.findById(this.id));
 		request.setAttribute("categoriePizza", setCategorie);
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_OUICHES);
@@ -65,9 +65,9 @@ public class UpdateOuicheController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
-		Pizza oldPizza = ouicheService.findById(this.id);
+		Pizza oldPizza = this.ouicheService.findById(this.id);
 		String newcode;
 		String ref;
 		BigDecimal prix;
@@ -80,31 +80,31 @@ public class UpdateOuicheController extends HttpServlet {
 		try {
 
 			newcode = request.getParameter("newcode").isEmpty() ? (oldPizza.getCode())
-					: request.getParameter("newcode");
+							: request.getParameter("newcode");
 			ref = request.getParameter("ref").isEmpty() ? oldPizza.getNom() : request.getParameter("ref");
 			prix = request.getParameter("prix").isEmpty() ? oldPizza.getPrix()
-					: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
+							: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
 			categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getNom()
-					: request.getParameter("categorie");
+							: request.getParameter("categorie");
 			urlImage = request.getParameter("urlImage").isEmpty() ? oldPizza.getUrlImage() : request.getParameter("urlImage");
 
 			String[] ingredients = request.getParameterValues("ingredientSelectione");
 			List<Ingredient> listIngredient = new ArrayList<>();
 
 			for (String ing : ingredients) {
-				listIngredient.add(ingredientService.findByName(ing));
+				listIngredient.add(this.ingredientService.findByName(ing));
 			}
 
-			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage, 
-					 LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient);
+			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage,
+							LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient);
 
-			ouicheService.save(pizza);
+			this.ouicheService.save(pizza);
 
-			response.sendRedirect(request.getContextPath() + "/ouiches/list");
+			response.sendRedirect(request.getContextPath() + "/ouiches/liste");
 
 		} catch (NullPointerException e) {
 			request.setAttribute("msg", "Liste des ingredients vide");
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}

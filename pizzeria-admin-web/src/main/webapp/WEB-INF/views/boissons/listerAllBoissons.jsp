@@ -34,7 +34,7 @@
 						<td>${boisson.prix} €</td>
 						<td></td>
 						<td> 
-							<c:if test="${boisson.archive}">						
+							<c:if test="${boisson.archive}" width="250px" height="200px" alt="${boisson.nom}" title="${boisson.nom}">						
 								<form method="POST">
 									<input type="hidden" name="id" value="${boisson.id}">
 									<input type="hidden" name="action" value="supprimer">
