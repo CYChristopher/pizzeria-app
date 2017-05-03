@@ -13,7 +13,7 @@
 		<div class="col-md-9">
 		<h1>Liste des Boissons</h1>
 		<a class="btn btn-primary" href="<c:url value="/boissons/nouvelle"/>">Nouvelle Boisson</a> 
-		<a class="btn btn-primary" href="../historiqueBoissons/list">Historique Boissons</a>
+		<a class="btn btn-primary" href="../historiqueBoissons/liste">Historique Boissons</a>
 		<br>
 		<table class="table">
 			<thead>
