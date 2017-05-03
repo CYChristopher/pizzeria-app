@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-md-9">
 
-			<h1>Ajout d'un client</h1>
+			<h1>Editer le client ${client.nom}</h1>
 			<form class="form-horizontal" method="POST"
 				action="<c:url value='/clients/edit?id=${client.id}'/>">
 				<div class="form-group">
