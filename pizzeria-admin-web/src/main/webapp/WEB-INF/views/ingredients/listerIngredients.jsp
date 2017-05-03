@@ -46,7 +46,7 @@
 								<form method="POST">
 									<input type="hidden" name="id" value="${ingredient.id}">
 									<input type="hidden" name="action" value="supprimer">
-									<button type="submit" class="btn btn-success">Archiver</button>
+									<button type="submit" class="btn btn-danger">Archiver</button>
 								</form>
 							</td>
 						</tr>

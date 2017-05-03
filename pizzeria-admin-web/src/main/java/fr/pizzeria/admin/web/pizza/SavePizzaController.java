@@ -76,7 +76,7 @@ public class SavePizzaController extends HttpServlet {
 				}
 
 				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-								CategoriePizza.valueOf(categorie),TypePizza.PIZZA, LocalDateTime.now(), true, listIngredient);
+								CategoriePizza.valueOf(categorie), TypePizza.PIZZA, LocalDateTime.now(), false, listIngredient);
 
 				this.pizzaService.save(pizza);
 

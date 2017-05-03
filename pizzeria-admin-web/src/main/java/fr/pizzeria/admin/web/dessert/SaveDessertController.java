@@ -38,17 +38,17 @@ public class SaveDessertController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
-				&& !request.getParameter("prix").isEmpty()) {
+						&& !request.getParameter("prix").isEmpty()) {
 			String newcode = request.getParameter("newcode");
 			String ref = request.getParameter("ref");
 			String prix = request.getParameter("prix");
 
-			Dessert dessert = new Dessert(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)));
+			Dessert dessert = new Dessert(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)), false);
 
-			dessertService.save(dessert);
+			this.dessertService.save(dessert);
 
 			response.sendRedirect(request.getContextPath() + URL_LISTE);
 
@@ -74,7 +74,7 @@ public class SaveDessertController extends HttpServlet {
 
 			request.setAttribute("erreur", erreur);
 			request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}

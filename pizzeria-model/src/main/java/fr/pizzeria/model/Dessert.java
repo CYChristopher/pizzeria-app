@@ -40,6 +40,15 @@ public class Dessert {
 		this.id = id;
 	}
 
+	public Dessert(String code, String nom, BigDecimal prix, boolean archive) {
+		this();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.archive = archive;
+
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

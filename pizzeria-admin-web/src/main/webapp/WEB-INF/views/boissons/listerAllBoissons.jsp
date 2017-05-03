@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<h1>Liste des Boissons</h1>
-			<a class="btn btn-primary" href="<c:url value="/boisson/nouvelle"/>">Nouvelle Boisson</a> 
+			<a class="btn btn-primary" href="../boissons/liste">Retour</a>
 			<br>
 			<table class="table">
 				<thead>
@@ -32,22 +32,20 @@
 						<td>${boisson.code}</td>
 						<td>${boisson.nom}</td>
 						<td>${boisson.prix} €</td>
-						<td>
-							<a href="<c:url value="/boissons/edit?id=${boisson.id}"/>" class="btn btn-primary">Editer</a>
-						</td>
+						<td></td>
 						<td> 
 							<c:if test="${boisson.archive}">						
 								<form method="POST">
 									<input type="hidden" name="id" value="${boisson.id}">
 									<input type="hidden" name="action" value="supprimer">
-									<button type="submit" class="btn btn-danger">Désarchiver</button>
+									<button type="submit" class="btn btn-success">Désarchiver</button>
 								</form>
 							</c:if>	
 							<c:if test="${!boisson.archive}">						
 								<form method="POST">
 									<input type="hidden" name="id" value="${boisson.id}">
 									<input type="hidden" name="action" value="supprimer">
-									<button type="submit" class="btn btn-success">Archiver</button>
+									<button type="submit" class="btn btn-danger">Archiver</button>
 								</form>
 							</c:if>
 						</td>

@@ -49,7 +49,7 @@
 										<form method="POST">
 											<input type="hidden" name="code" value="${dessert.code}">
 											<input type="hidden" name="action" value="supprimer">
-											<button type="submit" class="btn btn-success">Archiver</button>
+											<button type="submit" class="btn btn-danger">Archiver</button>
 										</form>
 									</c:if>
 								</td>

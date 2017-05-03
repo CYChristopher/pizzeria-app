@@ -92,7 +92,7 @@ public class UpdatePizzaController extends HttpServlet {
 				listIngredient.add(this.ingredientService.findByName(ing));
 			}
 
-			Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie),TypePizza.PIZZA, LocalDateTime.now(), true,
+			Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie), TypePizza.PIZZA, LocalDateTime.now(), false,
 							listIngredient);
 
 			this.pizzaService.save(pizza);

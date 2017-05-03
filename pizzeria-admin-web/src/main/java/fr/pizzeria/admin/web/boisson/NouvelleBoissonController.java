@@ -16,10 +16,10 @@ import fr.pizzeria.model.Boisson;
 /**
  * Contrôleur de la page Liste des boissons.
  */
-@WebServlet("/boisson/nouvelle")
+@WebServlet("/boissons/nouvelle")
 public class NouvelleBoissonController extends HttpServlet {
 
-	private static final String VUE_SAVE_BOISSON = "/WEB-INF/views/boisson/nouvelleBoisson.jsp";
+	private static final String VUE_SAVE_BOISSON = "/WEB-INF/views/boissons/nouvelleBoisson.jsp";
 
 	@Inject
 	private BoissonService boissonService;
@@ -41,9 +41,9 @@ public class NouvelleBoissonController extends HttpServlet {
 			String nom = request.getParameter("nom");
 			String prix = request.getParameter("prix");
 
-			Boisson dessert = new Boisson(code, nom, Double.valueOf(prix), "");
+			Boisson boisson = new Boisson(code, nom, Double.valueOf(prix), "", false);
 
-			this.boissonService.saveNew(dessert);
+			this.boissonService.saveNew(boisson);
 
 			response.sendRedirect(request.getContextPath() + "/boissons/liste");
 

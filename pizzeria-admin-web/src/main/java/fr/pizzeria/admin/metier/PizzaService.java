@@ -4,11 +4,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.pizzeria.admin.exception.StockageException;
 import fr.pizzeria.admin.metier.Evenement.Action;
 import fr.pizzeria.admin.metier.Evenement.Type;
 import fr.pizzeria.model.Pizza;
@@ -38,13 +41,17 @@ public class PizzaService {
 
 	}
 
-	public void delete(String code) {
-
-		Pizza pizzaDel = this.em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class)
-						.setParameter("codP", code).getSingleResult();
-
-		this.em.remove(pizzaDel);
-
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void delete(String code) throws StockageException {
+		try {
+			Pizza Pizza = this.findByCode(code);
+			if (Pizza != null) {
+				Pizza.setArchive(true);
+				this.em.merge(Pizza);
+			}
+		} catch (Exception e) {
+			throw new StockageException("Erreur à la suppression d'un ingredient", e);
+		}
 	}
 
 	public void save(Pizza pizza) {
@@ -61,7 +68,13 @@ public class PizzaService {
 
 	public Pizza findById(Integer id) {
 
-		return this.em.createQuery("select piz from Pizza piz where piz.id=:codP", Pizza.class).setParameter("codP", id)
+		return this.em.createQuery("select piz from Pizza piz where piz.id=:idP", Pizza.class).setParameter("idP", id).getSingleResult();
+
+	}
+
+	public Pizza findByCode(String code) {
+
+		return this.em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class).setParameter("codP", code)
 						.getSingleResult();
 
 	}

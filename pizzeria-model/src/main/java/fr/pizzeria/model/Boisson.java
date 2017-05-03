@@ -37,6 +37,15 @@ public class Boisson {
 		this.urlImage = urlImage;
 	}
 
+	public Boisson(String code, String nom, Double prix, String urlImage, Boolean archive) {
+		super();
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.urlImage = urlImage;
+		this.archive = archive;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

@@ -17,6 +17,7 @@
 				<div class="alert alert-danger" role="alert">${msg}</div>
 			</c:if>
 			<a class="btn btn-primary" href="./ajouter">Nouveau Dessert</a>
+			<a class="btn btn-primary" href="../historiqueDesserts/liste">Historique Desserts</a>
 			<br>
 				<table class="table">
 					<thead>

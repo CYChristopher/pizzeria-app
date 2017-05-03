@@ -16,7 +16,7 @@ import fr.pizzeria.model.Boisson;
 @WebServlet("/boissons/edit")
 public class EditerBoissonController extends HttpServlet {
 
-	private static final String VUE_EDIT_BOISSON = "/WEB-INF/views/boisson/editerBoisson.jsp";
+	private static final String VUE_EDIT_BOISSON = "/WEB-INF/views/boissons/editerBoisson.jsp";
 	private Integer id;
 
 	@Inject

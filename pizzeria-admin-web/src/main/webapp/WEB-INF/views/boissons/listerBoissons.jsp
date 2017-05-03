@@ -7,13 +7,13 @@
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
-
 	
 <div class="container">
 	<div class="row">
 		<div class="col-md-9">
 		<h1>Liste des Boissons</h1>
-		<a class="btn btn-primary" href="<c:url value="/boisson/nouvelle"/>">Nouvelle Boisson</a> 
+		<a class="btn btn-primary" href="<c:url value="/boissons/nouvelle"/>">Nouvelle Boisson</a> 
+		<a class="btn btn-primary" href="../historiqueBoissons/liste">Historique Boissons</a>
 		<br>
 		<table class="table">
 			<thead>
@@ -33,7 +33,7 @@
 					<td>${boisson.nom}</td>
 					<td>${boisson.prix} €</td>
 					<td>
-						<a href="<c:url value="/boissons/edit?id=${boisson.id}"/>" class="btn btn-primary">Editer</a>
+						<a href="<c:url value="/boissons/edit?id=${boisson.id}"/>" class="btn btn-warning">Editer</a>
 					</td>
 					<td>								
 						<form method="POST">

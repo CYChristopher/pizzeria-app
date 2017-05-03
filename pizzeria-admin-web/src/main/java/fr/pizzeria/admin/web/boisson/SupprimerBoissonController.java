@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.BoissonService;
 
-@WebServlet("/boisson/supprimer")
+@WebServlet("/boissons/supprimer")
 public class SupprimerBoissonController extends HttpServlet {
 
 	@EJB

@@ -22,7 +22,7 @@ public class ListerHistoriqueIngredientController extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(ListerHistoriqueIngredientController.class.getName());
 
-	private static final String VUE_LISTER_INGREDIENTS = "/WEB-INF/views/pizzas/listerAllIngredients.jsp";
+	private static final String VUE_LISTER_INGREDIENTS = "/WEB-INF/views/ingredients/listerAllIngredients.jsp";
 
 	@Inject
 	private IngredientService ingredientService;
