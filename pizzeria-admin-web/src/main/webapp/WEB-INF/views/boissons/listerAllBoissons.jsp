@@ -28,13 +28,15 @@
 				</thead>
 				<c:forEach var="boisson" items="${listeBoissons}">
 					<tr>
-						<td><img src="${boisson.urlImage}"></td>
+						<td>
+						<img src="${boisson.urlImage}" width="250px" height="200px" alt="${boisson.nom}" title="${boisson.nom}">
+						</td>
 						<td>${boisson.code}</td>
 						<td>${boisson.nom}</td>
 						<td>${boisson.prix} €</td>
 						<td></td>
 						<td> 
-							<c:if test="${boisson.archive}" width="250px" height="200px" alt="${boisson.nom}" title="${boisson.nom}">						
+							<c:if test="${boisson.archive}">						
 								<form method="POST">
 									<input type="hidden" name="id" value="${boisson.id}">
 									<input type="hidden" name="action" value="supprimer">

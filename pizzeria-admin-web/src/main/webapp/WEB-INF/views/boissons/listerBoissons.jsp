@@ -28,7 +28,9 @@
 			</thead>
 			<c:forEach var="boisson" items="${listeBoissons}">
 				<tr>
-					<td><img src="${boisson.urlImage}" width="250px" height="200px" alt="${boisson.nom}" title="${boisson.nom}"></td>
+					<td>
+						<img src="${boisson.urlImage}" width="250px" height="200px" alt="${boisson.nom}" title="${boisson.nom}">
+					</td>
 					<td>${boisson.code}</td>
 					<td>${boisson.nom}</td>
 					<td>${boisson.prix} €</td>
