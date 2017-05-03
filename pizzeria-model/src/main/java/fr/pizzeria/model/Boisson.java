@@ -15,7 +15,7 @@ public class Boisson {
 	private String nom;
 	private Double prix;
 	private String urlImage;
-	private Boolean archive;
+	private Boolean archive = false;
 
 	public Boisson() {
 	}

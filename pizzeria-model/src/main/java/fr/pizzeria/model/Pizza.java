@@ -30,7 +30,7 @@ public class Pizza {
 	private CategoriePizza categorie;
 	private String urlImage;
 	private LocalDateTime versionPizza;
-	private Boolean archive;
+	private Boolean archive = false;
 
 	@Enumerated(EnumType.STRING)
 	private TypePizza typePizza;

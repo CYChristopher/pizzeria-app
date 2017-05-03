@@ -24,6 +24,7 @@ import fr.pizzeria.model.CommandePizza;
 public class CommandeService {
 
 	private static final String FIND_BY_ID = "select c from Commande c where c.id=:id";
+	private static final String FIND_BY_NUM = "select c from Commande c where c.numeroCommande=:numeroCommande";
 
 	@PersistenceContext(unitName = "pizzeria-admin-web")
 	private EntityManager em;
@@ -41,6 +42,12 @@ public class CommandeService {
 	public Commande find(Integer id) {
 
 		return this.em.createQuery(FIND_BY_ID, Commande.class).setParameter("id", id).getSingleResult();
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Commande> findByNum(String num) {
+
+		return em.createQuery(FIND_BY_NUM, Commande.class).setParameter("numeroCommande", num).getResultList();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

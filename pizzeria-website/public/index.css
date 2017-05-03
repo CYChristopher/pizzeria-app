@@ -127,3 +127,7 @@ span.clickable-span{
     visibility: visible;
 }
 /* Fin CSS du panier */
+
+/* Pizzas */
+.weel-pizza {cursor:pointer;}
+.weel-pizza img {max-height: 100px;width:auto;}

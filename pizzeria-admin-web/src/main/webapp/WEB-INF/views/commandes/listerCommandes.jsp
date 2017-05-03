@@ -18,7 +18,7 @@
 <table class="table">
   <thead>
     <tr>
-			<th>Numero</th>
+			<th>Numéro</th>
      		<th>Statut</th>
 			<th>Date</th>
 			<th>Adresse</th>
