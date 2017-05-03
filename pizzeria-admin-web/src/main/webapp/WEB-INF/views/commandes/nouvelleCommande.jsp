@@ -13,6 +13,9 @@
 		<div class="col-md-9">
 
 			<h1>Ajout de commande</h1>
+			<c:if test="${msg != null}">
+				<div class="alert alert-danger" role="alert">${msg}</div>
+			</c:if>
 
 			<form method="post">
 
@@ -24,8 +27,8 @@
 								required>
 						</c:when>
 						<c:otherwise>
-						<input class="form-control" value="${numero }" name="numCommande" type="text"
-								required>
+							<input class="form-control" value="${numero }" name="numCommande"
+								type="text" required>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -47,7 +50,6 @@
 								</c:when>
 							</c:choose>
 						</c:forEach>
-
 					</select>
 				</div>
 
@@ -132,7 +134,7 @@
 
 
 				<input class="btn btn-success" type="submit" value="Valider">
-				<a href=<c:url value='/commandes/list'/>><button type="button"
+				<a href=<c:url value='/commandes/liste'/>><button type="button"
 						class="btn btn-primary">Retour</button></a>
 			</form>
 

@@ -32,8 +32,7 @@
 		<spring.security.version>4.1.0.RELEASE</spring.security.version>
 		<slf4j.version>1.7.21</slf4j.version>
 	</properties>
-
-
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -178,7 +177,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<pluginManagement>
 			<plugins>

@@ -20,6 +20,7 @@ public class PizzeriaApp {
 
 	/**
 	 * Activation de CORS pour tous les domaines.
+	 * 
 	 * @return Configurateur Spring MVC.
 	 */
 	@Bean
@@ -27,7 +28,8 @@ public class PizzeriaApp {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*").allowedMethods(HttpMethod.PUT.name(), HttpMethod.DELETE.name(), HttpMethod.POST.name(), HttpMethod.GET.name());
+				registry.addMapping("/**").allowedOrigins("*").allowedMethods(HttpMethod.PUT.name(),
+						HttpMethod.DELETE.name(), HttpMethod.POST.name(), HttpMethod.GET.name());
 			}
 		};
 	}
@@ -35,9 +37,11 @@ public class PizzeriaApp {
 	/**
 	 * Démarrage de l'application Web.
 	 *
-	 * @param args argument du programme
+	 * @param args
+	 *            argument du programme
 	 */
 	public static void main(String[] args) {
+
 		SpringApplication.run(PizzeriaApp.class);
 	}
 }

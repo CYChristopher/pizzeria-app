@@ -59,9 +59,10 @@ public class UpdateDessertController extends HttpServlet {
 		ref = request.getParameter("ref").isEmpty() ? oldDessert.getNom() : request.getParameter("ref");
 		prix = request.getParameter("prix").isEmpty() ? oldDessert.getPrix()
 				: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
+		String urlImage = request.getParameter("urlImage").isEmpty() ? oldDessert.getUrlImage() : request.getParameter("urlImage");
 
-		Dessert dessert = new Dessert(newcode, ref, prix);
-
+		Dessert dessert = new Dessert(newcode, ref, prix, urlImage);
+		
 		dessertService.update(this.id, dessert);
 
 		response.sendRedirect(request.getContextPath() + URL_LISTE);

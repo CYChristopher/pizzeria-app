@@ -30,6 +30,12 @@
 			placeholder="prix" value="${prix}">
 
 		<div class="form-group">
+			<label for="urlImage">Image :</label>
+			<input id="image" name="urlImage"
+				class="form-control" type="text" placeholder="Lien vers image" value="${editPizza.urlImage}" required>
+		</div>
+		
+		<div class="form-group">
 			<label for="categorie">Categorie : </label> <select id="categorie"
 				class="form-control" name="categorie">
 
