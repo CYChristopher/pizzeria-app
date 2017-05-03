@@ -58,12 +58,10 @@ public class ModifierIngredientController extends HttpServlet {
 			old = ingredientService.findById(this.id);
 
 			String nom = req.getParameter("nom").isEmpty() ? old.getNom() : req.getParameter("nom").toString();
-			Integer quantite = req.getParameter("quantite").isEmpty() ? old.getQuantite()
-					: Integer.valueOf(req.getParameter("quantite").toString());
 			Double prix = req.getParameter("prix").isEmpty() ? old.getPrix()
 					: Double.valueOf(req.getParameter("prix").toString());
 
-			Ingredient ingredient = new Ingredient(nom, quantite, prix);
+			Ingredient ingredient = new Ingredient(nom, old.getQuantite(), prix);
 
 			ingredientService.update(this.id, ingredient);
 
