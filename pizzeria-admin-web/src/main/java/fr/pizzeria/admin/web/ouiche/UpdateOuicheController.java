@@ -95,9 +95,11 @@ public class UpdateOuicheController extends HttpServlet {
 				listIngredient.add(ingredientService.findByName(ing));
 			}
 
+			oldPizza.setArchive(true);
+			ouicheService.update(this.id, oldPizza);
+			
 			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage, 
-					 LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient);
-
+					 LocalDateTime.now(), false, TypePizza.OUICHE, listIngredient);
 			ouicheService.save(pizza);
 
 			response.sendRedirect(request.getContextPath() + "/ouiches/list");

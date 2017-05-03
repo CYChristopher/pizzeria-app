@@ -63,9 +63,11 @@ public class ModifierIngredientController extends HttpServlet {
 			Double prix = req.getParameter("prix").isEmpty() ? old.getPrix()
 					: Double.valueOf(req.getParameter("prix").toString());
 
+			old.setArchive(true);
+			ingredientService.update(this.id, old);
+			
 			Ingredient ingredient = new Ingredient(nom, quantite, prix);
-
-			ingredientService.update(this.id, ingredient);
+			ingredientService.save(ingredient);
 
 		} catch (StockageException e) {
 			LOG.log(Level.WARNING, "-------!!!------- exception levée : " + e.getMessage() + " => " + e.getCause());
