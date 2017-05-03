@@ -17,12 +17,14 @@ import fr.pizzeria.admin.metier.Evenement.Action;
 import fr.pizzeria.admin.metier.Evenement.Type;
 import fr.pizzeria.model.Commande;
 import fr.pizzeria.model.CommandeComplete;
+import fr.pizzeria.model.CommandePizza;
 
 @Stateless
 @TransactionManagement(value = TransactionManagementType.CONTAINER)
 public class CommandeService {
 
 	private static final String FIND_BY_ID = "select c from Commande c where c.id=:id";
+	private static final String FIND_BY_NUM = "select c from Commande c where c.numeroCommande=:numeroCommande";
 
 	@PersistenceContext(unitName = "pizzeria-admin-web")
 	private EntityManager em;
@@ -41,6 +43,12 @@ public class CommandeService {
 
 		return this.em.createQuery(FIND_BY_ID, Commande.class).setParameter("id", id).getSingleResult();
 	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Commande> findByNum(String num) {
+
+		return em.createQuery(FIND_BY_NUM, Commande.class).setParameter("numeroCommande", num).getResultList();
+	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void create(CommandeComplete commandeComplete) {
@@ -49,7 +57,11 @@ public class CommandeService {
 		ev.setAction(Action.SAVE);
 		ev.setType(Type.COMMANDE);
 		ev.setNom(commandeComplete.getCommande().getNumeroCommande());
-		this.em.persist(commandeComplete);
+		Commande com = commandeComplete.getCommande();
+		this.em.persist(com);
+		for (CommandePizza cmdP : commandeComplete.getCommandesPizza()) {
+			this.em.persist(cmdP);
+		}
 		ev.setId(commandeComplete.getCommande().getId());
 		this.event.fire(ev);
 	}
