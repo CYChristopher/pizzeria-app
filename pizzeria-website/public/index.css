@@ -28,6 +28,11 @@
     border: 1px solid lightgrey;
 }
 
+.jumbotron{
+  background: orangered;
+  color: white;
+}
+
 span.icon-bar {
     background-color: white;
 }

@@ -5,15 +5,14 @@ export class PizzaService {
     this.$http = $http
     this.$q = $q
     this.API_URL = API_URL;
+    this.lssPizzas = this.localStorageService.get( 'pizzas' );
   }
 
   getPizzas() {
-    if ( !this.localStorageService.get( 'pizzas' ) ) {
-      this.$http.get( `${this.API_URL}/pizzas` )
-        .then( r => this.localStorageService.set( 'pizzas', r.data,
-          'localStorage' ) )
-    }
-    return this.$q.resolve( this.localStorageService.get( 'pizzas',
-      'localStorage' ) )
+    return ( !this.lssPizzas ? this.$http.get( `${this.API_URL}/pizzas` )
+      .then( r => {
+        this.localStorageService.set( 'pizzas', r.data )
+        return r.data;
+      } ) : this.$q.resolve( this.lssPizzas ) )
   }
 }
