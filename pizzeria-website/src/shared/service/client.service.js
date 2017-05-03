@@ -41,4 +41,18 @@ export class ClientService {
         return this.$http.get(`${this.API_URL}/clients?email=${email}&motDePasse=${sha256(motDePasse)}`)
             .then(resp => resp.data);
     }
+
+    emailExiste(email) {
+        return this.$http.get(`${this.API_URL}/clients/email/${email}`)
+            .then(resp => resp.data);
+    }
+
+    testMdpUtilisateur(id, motDePasse) {        
+        
+        return this.$http.get(`${this.API_URL}/clients/verifPwd?id=${id}&motDePasse=${sha256(motDePasse)}`)
+            .then(resp => resp.data)
+           ;
+    }
+
+
 }

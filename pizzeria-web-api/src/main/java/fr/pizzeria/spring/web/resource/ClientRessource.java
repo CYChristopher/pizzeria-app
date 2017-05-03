@@ -1,7 +1,5 @@
 package fr.pizzeria.spring.web.resource;
 
-import java.util.List;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,10 +45,12 @@ public class ClientRessource {
 		newClient.setId(oldClient.getId()) ;
 		if(newClient.getMotDePasse() == "") {
 			newClient.setMotDePasse(oldClient.getMotDePasse()) ;
+		}else{
+			//Hash du mot de passe
+			newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));			
 		}
 	
-		//Hash du mot de passe
-		newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));
+		
 		clientDao.save(newClient);
 	}
 
@@ -60,4 +60,22 @@ public class ClientRessource {
 		Client reponse = clientDao.findByEmailAndMotDePasse(email, motDePasse);
 		return reponse != null ? reponse.getId() : -1;
 	}
+	
+	
+	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+	public boolean loginClientExiste(@PathVariable("email") String email) {
+		Client reponse = clientDao.findByEmail(email);
+		return reponse != null ? true : false;
+	}
+	
+	@RequestMapping(value = "/verifPwd",method = RequestMethod.GET)
+	public boolean testMdpClient(@RequestParam("id") Integer id, @RequestParam("motDePasse") String motDePasse) {
+		
+		
+		Client client = clientDao.findById(id);
+	
+		// e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 <=> motDePasse="" sans cryptage
+		return (client.getMotDePasse().equals(motDePasse));
+	}
+	
 }
