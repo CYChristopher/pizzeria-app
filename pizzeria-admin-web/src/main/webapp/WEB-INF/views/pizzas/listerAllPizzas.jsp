@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-md-9">
 			<h1>Historique des pizzas</h1>
-			<a class="btn btn-primary" href="../pizzas/list">Retour</a> <br>
+			<a class="btn btn-primary" href="../pizzas/liste">Retour</a> <br>
 			<c:if test="${msg != null}">
 				<div class="alert alert-danger" role="alert">${msg}</div>
 			</c:if>

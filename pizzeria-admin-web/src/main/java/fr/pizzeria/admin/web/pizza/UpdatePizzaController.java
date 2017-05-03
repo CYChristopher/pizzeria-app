@@ -95,10 +95,11 @@ public class UpdatePizzaController extends HttpServlet {
 				listIngredient.add(this.ingredientService.findByName(ing));
 			}
 
+			oldPizza.setArchive(true);
+			this.pizzaService.update(this.id, oldPizza);
+			
 			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage,
 							LocalDateTime.now(), false, TypePizza.PIZZA, listIngredient);
-
-
 			this.pizzaService.save(pizza);
 
 			response.sendRedirect(request.getContextPath() + "/pizzas/liste");

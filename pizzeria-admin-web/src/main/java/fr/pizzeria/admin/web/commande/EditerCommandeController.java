@@ -48,7 +48,7 @@ public class EditerCommandeController extends HttpServlet {
 		req.setAttribute("statusPossible", EnumSet.allOf(StatutCommande.class));
 
 		req.setAttribute("listeLivreur", this.livreurService.findAll());
-		req.setAttribute("listePizza", this.pizzaService.findAll());
+		req.setAttribute("listePizza", this.pizzaService.findNewestPizzaByName());
 		req.setAttribute("listeClient", this.clientService.findAll());
 
 		this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDES).forward(req, resp);
@@ -75,20 +75,23 @@ public class EditerCommandeController extends HttpServlet {
 			for (String idPizza : pizzaCommandeId) {
 				listePizza.add(this.pizzaService.findById(Integer.parseInt(idPizza)));
 			}
+
+			Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
+
+			List<CommandePizza> commandesPizza = new ArrayList<>();
+			for (Pizza pizza : listePizza) {
+				commandesPizza.add(new CommandePizza(pizza, commande, 1));
+			}
+
+			CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
+
+			this.commandeService.update(this.id, commandeComplete);
+
+			response.sendRedirect(request.getContextPath() + "/commandes/liste");
+		} else {
+			request.setAttribute("msg", "Aucun produit commandé");
+			this.doGet(request, response);
 		}
-
-		Commande commande = new Commande(numCommande, StatutCommande.valueOf(statut), adresse, livreur, client);
-
-		List<CommandePizza> commandesPizza = new ArrayList<>();
-		for(Pizza pizza : listePizza){
-			commandesPizza.add(new CommandePizza(pizza, commande, 1));
-		}
-
-		CommandeComplete commandeComplete= new CommandeComplete(commande,commandesPizza);
-
-		this.commandeService.update(this.id, commandeComplete);
-
-		response.sendRedirect(request.getContextPath() + "/commandes/liste");
 
 	}
 

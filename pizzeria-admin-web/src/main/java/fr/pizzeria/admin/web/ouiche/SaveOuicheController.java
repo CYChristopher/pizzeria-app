@@ -57,12 +57,12 @@ public class SaveOuicheController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		try {
 
 			if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
-					&& !request.getParameter("prix").isEmpty()) {
+							&& !request.getParameter("prix").isEmpty()) {
 				String newcode = request.getParameter("newcode");
 				String ref = request.getParameter("ref");
 				String prix = request.getParameter("prix");
@@ -73,16 +73,16 @@ public class SaveOuicheController extends HttpServlet {
 				List<Ingredient> listIngredient = new ArrayList<>();
 
 				for (String ing : ingredients) {
-					listIngredient.add(ingredientService.findByName(ing));
+					listIngredient.add(this.ingredientService.findByName(ing));
 				}
 
 				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-						CategoriePizza.valueOf(categorie),  urlImage, 
-						 LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient);
-				
-				ouicheService.save(pizza);
+								CategoriePizza.valueOf(categorie),  urlImage,
+								LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient);
 
-				response.sendRedirect(request.getContextPath() + "/ouiches/list");
+				this.ouicheService.save(pizza);
+
+				response.sendRedirect(request.getContextPath() + "/ouiches/liste");
 
 			} else {
 				String erreur[] = { "", "", "", "" };
@@ -103,10 +103,10 @@ public class SaveOuicheController extends HttpServlet {
 				} else {
 					request.setAttribute("prix", request.getParameter("prix"));
 				}
-		
+
 				request.setAttribute("erreur", erreur);
 				request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
-				doGet(request, response);
+				this.doGet(request, response);
 			}
 
 		} catch (NullPointerException e) {
@@ -114,7 +114,7 @@ public class SaveOuicheController extends HttpServlet {
 			request.setAttribute("newcode", request.getParameter("newcode"));
 			request.setAttribute("ref", request.getParameter("ref"));
 			request.setAttribute("prix", request.getParameter("prix"));
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}

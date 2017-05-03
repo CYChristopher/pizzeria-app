@@ -2,6 +2,8 @@ package fr.pizzeria.admin.web.listener;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebListener;
 
 import fr.pizzeria.admin.metier.BoissonService;
 import fr.pizzeria.admin.metier.ClientService;
+import fr.pizzeria.admin.metier.CommandeService;
 import fr.pizzeria.admin.metier.DessertService;
 import fr.pizzeria.admin.metier.IngredientService;
 import fr.pizzeria.admin.metier.LivreurService;
@@ -19,10 +22,14 @@ import fr.pizzeria.admin.metier.UtilisateursService;
 import fr.pizzeria.model.Boisson;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Commande;
+import fr.pizzeria.model.CommandeComplete;
+import fr.pizzeria.model.CommandePizza;
 import fr.pizzeria.model.Dessert;
 import fr.pizzeria.model.Ingredient;
 import fr.pizzeria.model.Livreur;
 import fr.pizzeria.model.Pizza;
+import fr.pizzeria.model.StatutCommande;
 import fr.pizzeria.model.TypePizza;
 import fr.pizzeria.model.Utilisateur;
 
@@ -39,6 +46,8 @@ public class DonneesListener implements ServletContextListener {
 	private BoissonService boissonService;
 	@Inject
 	private DessertService dessertService;
+	@Inject
+	private CommandeService commandeService ;
 	@Inject
 	private IngredientService is;
 	@Inject
@@ -89,6 +98,17 @@ public class DonneesListener implements ServletContextListener {
 		/* Dessert */
 		Dessert dessert1 = new Dessert("COO", "Cookie", new BigDecimal(2), false);
 		this.dessertService.save(dessert1);
+		
+		/* Commande */
+		
+		Commande commande1 = new Commande("1", StatutCommande.LIVRE, "35 avenue du petit bateau 64852 Une Certaine Ville", livreur1, client1) ;
+		List<CommandePizza> commandePizzas = new ArrayList<>() ;
+		commandePizzas.add(new CommandePizza(this.ps.findById(1), commande1, 3)) ;
+		commandePizzas.add(new CommandePizza(this.ps.findById(2), commande1, 2)) ;
+		CommandeComplete commandeComplete1= new CommandeComplete(commande1, commandePizzas) ;
+
+		this.commandeService.create(commandeComplete1);
+		
 	}
 
 	@Override

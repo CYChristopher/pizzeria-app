@@ -20,7 +20,7 @@ public class Dessert {
 	private String nom;
 	private BigDecimal prix;
 	private String urlImage;
-	private Boolean archive;
+	private Boolean archive = false;
 
 	public Dessert() {
 	}

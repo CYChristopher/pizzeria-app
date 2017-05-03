@@ -66,11 +66,13 @@ public class ClientRessource {
 		return reponse != null ? reponse.getId() : -1;
 	}
 
+	
 	@RequestMapping(value = "/email", method = RequestMethod.GET)
 	public boolean loginClientExiste(@RequestParam("value") String email) {
 
+
 		Client reponse = clientDao.findByEmail(email);
-		return reponse != null ? true : false;
+		return reponse != null;
 	}
 
 	@RequestMapping(value = "/verifPwd", method = RequestMethod.GET)

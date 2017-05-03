@@ -43,7 +43,6 @@ export class ClientService {
     }
 
     emailExiste(email) {
-
        
         return this.$http.get(`${this.API_URL}/clients/email?value=${email}`)
             .then(resp => resp.data)
@@ -55,6 +54,7 @@ export class ClientService {
         return this.$http.get(`${this.API_URL}/clients/verifPwd?id=${id}&motDePasse=${sha256(motDePasse)}`)
             .then(resp => resp.data)
            ;
+
     }
 
 
