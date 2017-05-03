@@ -1,5 +1,7 @@
 package fr.pizzeria.spring.web.resource;
 
+import java.time.LocalDateTime;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +26,7 @@ public class ClientRessource {
 
 	@Autowired
 	private IClientRepository clientDao;
-	
+
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	public Client getClient(@PathVariable("id") Integer id) {
 		return this.clientDao.findById(id);
@@ -32,21 +34,22 @@ public class ClientRessource {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public void ajouterClient(@RequestBody Client client) {
-		//Hash du mot de passe
+		// Hash du mot de passe
 		client.setMotDePasse(DigestUtils.sha256Hex(client.getMotDePasse()));
+		client.setDateCreation(LocalDateTime.now());
 		this.clientDao.save(client);
 	}
-	
+
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
 	public void modifierClient(@PathVariable("id") Integer id, @RequestBody Client newClient) {
-		
-		Client oldClient = this.clientDao.findById(id) ;
-		newClient.setId(oldClient.getId()) ;
-		if(newClient.getMotDePasse() == "") {
-			newClient.setMotDePasse(oldClient.getMotDePasse()) ;
+
+		Client oldClient = this.clientDao.findById(id);
+		newClient.setId(oldClient.getId());
+		if (newClient.getMotDePasse() == "") {
+			newClient.setMotDePasse(oldClient.getMotDePasse());
 		}
-	
-		//Hash du mot de passe
+
+		// Hash du mot de passe
 		newClient.setMotDePasse(DigestUtils.sha256Hex(newClient.getMotDePasse()));
 		this.clientDao.save(newClient);
 	}
@@ -56,7 +59,7 @@ public class ClientRessource {
 		Client reponse = this.clientDao.findByEmailAndMotDePasse(email, motDePasse);
 		return reponse != null ? reponse.getId() : -1;
 	}
-	
+
 	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
 	public boolean loginClientExiste(@PathVariable("email") String email) {
 		Client reponse = clientDao.findByEmail(email);
