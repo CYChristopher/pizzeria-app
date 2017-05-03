@@ -94,6 +94,7 @@ img.img-panier {
     max-width:100px;
 }
 .table > tbody > tr > td.vert-align{
+    background: white;
     vertical-align: middle;
 }
 span.clickable-span{
@@ -119,10 +120,14 @@ span.clickable-span{
     border-radius: 6px;
     /* position du tooltip*/
     top: -5px;
-    left: 105%; 
+    left: 105%;
 }
 
 .tooltip-panier:hover .tooltiptext-panier {
     visibility: visible;
 }
 /* Fin CSS du panier */
+
+/* Pizzas */
+.weel-pizza {cursor:pointer;}
+.weel-pizza img {max-height: 100px;width:auto;}

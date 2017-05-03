@@ -1,6 +1,7 @@
 package fr.pizzeria.admin.web.utilisateurs;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -38,16 +39,16 @@ public class ConnexionUtilisateurController extends HttpServlet {
 		String motDePasse = request.getParameter("motDePasse");
 		Utilisateur utilisateur = utilisateurService.findByEmail(email);
 
-		// LOG.log(Level.INFO, "utilisateur != null :" + (utilisateur != null));
-		// LOG.log(Level.INFO, "utilisateur.motDePasseOk(motDePasse) :" +
-		// utilisateur.motDePasseOk(motDePasse));
-		// LOG.log(Level.INFO, "motDePasse :" + motDePasse);
-		// LOG.log(Level.INFO, "motDePasse hashé:" +
-		// utilisateur.hashSha1(motDePasse, utilisateur.getDateCreation()));
-		// LOG.log(Level.INFO, "hash en base:" + utilisateur.getMotDePasse());
-		//
-		// LOG.log(Level.INFO, "date récupéré en base avec un toString()" +
-		// utilisateur.getDateCreation());
+		 LOG.log(Level.INFO, "utilisateur != null :" + (utilisateur != null));
+		 LOG.log(Level.INFO, "utilisateur.motDePasseOk(motDePasse) :" +
+		 utilisateur.motDePasseOk(motDePasse));
+		 LOG.log(Level.INFO, "motDePasse :" + motDePasse);
+		 LOG.log(Level.INFO, "motDePasse hashé:" +
+		 utilisateur.hashSha1(motDePasse, utilisateur.getDateCreation()));
+		 LOG.log(Level.INFO, "hash en base:" + utilisateur.getMotDePasse());
+		
+		 LOG.log(Level.INFO, "date récupéré en base avec un toString()" +
+		 utilisateur.getDateCreation());
 
 		if (utilisateur != null && utilisateur.motDePasseOk(motDePasse)) {
 			HttpSession session = request.getSession();

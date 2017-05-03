@@ -36,11 +36,11 @@ public class ListerDessertController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		String code = request.getParameter("code");
 
-		dessertService.delete(code);
+		this.dessertService.delete(code);
 
 		response.sendRedirect(request.getContextPath() + URL_LISTE);
 

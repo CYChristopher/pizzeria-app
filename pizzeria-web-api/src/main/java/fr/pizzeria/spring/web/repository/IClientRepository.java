@@ -9,4 +9,6 @@ public interface IClientRepository extends JpaRepository<Client, Integer> {
 	Client findById(Integer id) ;
 
 	Client findByEmailAndMotDePasse(String email, String motDePasse);
+	
+	Client findByEmail(String email);
 }

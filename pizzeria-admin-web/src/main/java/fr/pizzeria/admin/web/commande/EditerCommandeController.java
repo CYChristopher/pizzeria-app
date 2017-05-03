@@ -88,7 +88,7 @@ public class EditerCommandeController extends HttpServlet {
 
 		this.commandeService.update(this.id, commandeComplete);
 
-		response.sendRedirect(request.getContextPath() + "/commandes/list");
+		response.sendRedirect(request.getContextPath() + "/commandes/liste");
 
 	}
 
