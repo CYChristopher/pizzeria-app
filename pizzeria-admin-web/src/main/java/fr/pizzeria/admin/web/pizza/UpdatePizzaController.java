@@ -33,7 +33,7 @@ public class UpdatePizzaController extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(UpdatePizzaController.class.getName());
 
 	private static final String VUE_EDIT_PIZZA = "/WEB-INF/views/pizzas/editPizza.jsp";
-	
+
 	private Integer id;
 
 	@Inject
@@ -44,7 +44,7 @@ public class UpdatePizzaController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		this.id = Integer.valueOf(request.getParameter("id"));
 
@@ -55,7 +55,7 @@ public class UpdatePizzaController extends HttpServlet {
 		}
 
 		request.setAttribute("listeIngredients", this.ingredientService.findAll());
-		request.setAttribute("editPizza", pizzaService.findById(this.id));
+		request.setAttribute("editPizza", this.pizzaService.findById(this.id));
 		request.setAttribute("categoriePizza", setCategorie);
 
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_EDIT_PIZZA);
@@ -66,9 +66,9 @@ public class UpdatePizzaController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
-		Pizza oldPizza = pizzaService.findById(this.id);
+		Pizza oldPizza = this.pizzaService.findById(this.id);
 		String newcode;
 		String ref;
 		BigDecimal prix;
@@ -80,32 +80,32 @@ public class UpdatePizzaController extends HttpServlet {
 		try {
 
 			newcode = request.getParameter("newcode").isEmpty() ? (oldPizza.getCode())
-					: request.getParameter("newcode");
+							: request.getParameter("newcode");
 			ref = request.getParameter("ref").isEmpty() ? oldPizza.getNom() : request.getParameter("ref");
 			prix = request.getParameter("prix").isEmpty() ? oldPizza.getPrix()
-					: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
+							: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
 			categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getCategorie().toString()
-					: request.getParameter("categorie");
+							: request.getParameter("categorie");
 			urlImage = request.getParameter("urlImage").isEmpty() ? oldPizza.getUrlImage() : request.getParameter("urlImage");
 
 			String[] ingredients = request.getParameterValues("ingredientSelectione");
 			List<Ingredient> listIngredient = new ArrayList<>();
 
 			for (String ing : ingredients) {
-				listIngredient.add(ingredientService.findByName(ing));
+				listIngredient.add(this.ingredientService.findByName(ing));
 			}
 
-			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage, 
-					 LocalDateTime.now(), true, TypePizza.PIZZA, listIngredient);
+			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage,
+							LocalDateTime.now(), false, TypePizza.PIZZA, listIngredient);
 
 
-			pizzaService.save(pizza);
+			this.pizzaService.save(pizza);
 
-			response.sendRedirect(request.getContextPath() + "/pizzas/list");
+			response.sendRedirect(request.getContextPath() + "/pizzas/liste");
 
 		} catch (NullPointerException e) {
 			request.setAttribute("msg", "Liste des ingredients vide");
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}

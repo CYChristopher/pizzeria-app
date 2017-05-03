@@ -35,7 +35,6 @@
 					<label>Adresse :</label> <input class="form-control" name="adresse"
 						type="text" value="${commande.adresse}" required>
 				</div>
-
 				<div class="form-group">
 					<label>Livreur :</label> <select class="form-control"
 						name="livreur" required>

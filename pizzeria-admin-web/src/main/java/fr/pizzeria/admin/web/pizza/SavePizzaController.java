@@ -57,12 +57,12 @@ public class SavePizzaController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		try {
 
 			if (!request.getParameter("newcode").isEmpty() && !request.getParameter("ref").isEmpty()
-					&& !request.getParameter("prix").isEmpty() && !request.getParameter("urlImage").isEmpty()) {
+							&& !request.getParameter("prix").isEmpty() && !request.getParameter("urlImage").isEmpty()) {
 				String newcode = request.getParameter("newcode");
 				String ref = request.getParameter("ref");
 				String prix = request.getParameter("prix");
@@ -73,16 +73,15 @@ public class SavePizzaController extends HttpServlet {
 				List<Ingredient> listIngredient = new ArrayList<>();
 
 				for (String ing : ingredients) {
-					listIngredient.add(ingredientService.findByName(ing));
+					listIngredient.add(this.ingredientService.findByName(ing));
 				}
 
 				Pizza pizza = new Pizza(newcode, ref, BigDecimal.valueOf(Double.valueOf(prix)),
-						CategoriePizza.valueOf(categorie),  urlImage, 
-						 LocalDateTime.now(), true, TypePizza.PIZZA, listIngredient);
+								CategoriePizza.valueOf(categorie),  urlImage,
+								LocalDateTime.now(), false, TypePizza.PIZZA, listIngredient);
+				this.pizzaService.save(pizza);
 
-				pizzaService.save(pizza);
-
-				response.sendRedirect(request.getContextPath() + "/pizzas/list");
+				response.sendRedirect(request.getContextPath() + "/pizzas/liste");
 
 			} else {
 				String[] erreur = { "", "", "", "" };
@@ -103,10 +102,10 @@ public class SavePizzaController extends HttpServlet {
 				} else {
 					request.setAttribute("prix", request.getParameter("prix"));
 				}
-				
+
 				request.setAttribute("erreur", erreur);
 				request.setAttribute("msg", "Veuillez saisir les champs en rouge:");
-				doGet(request, response);
+				this.doGet(request, response);
 			}
 
 		} catch (NullPointerException e) {
@@ -114,7 +113,7 @@ public class SavePizzaController extends HttpServlet {
 			request.setAttribute("newcode", request.getParameter("newcode"));
 			request.setAttribute("ref", request.getParameter("ref"));
 			request.setAttribute("prix", request.getParameter("prix"));
-			doGet(request, response);
+			this.doGet(request, response);
 		}
 
 	}
