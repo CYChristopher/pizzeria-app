@@ -1,6 +1,7 @@
 import template from './ajouterPanier.html';
 
 class controller {
+
   constructor( localStorageService, PanierService ) {
     this.StockageService = localStorageService;
     this.ps = PanierService;

@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Editer Dessert ${editDessert.code} "/>
+	<jsp:param name="title" value="Editer Dessert ${editDessert.code} " />
 </jsp:include>
 
-<jsp:include page="../layout/navbar.jsp"/>
+<jsp:include page="../layout/navbar.jsp" />
 
 <div class="container">
 	<div class="row">
@@ -21,26 +21,33 @@
 			<form method="post">
 
 				<div class="form-group">
-					<label for="newcode">Code :</label>
-					<input id="newcode" class="form-control" name="newcode" type="text" value="${editDessert.code}"></div>
+					<label for="newcode">Code :</label> <input id="newcode"
+						class="form-control" name="newcode" type="text"
+						value="${editDessert.code}" required>
+				</div>
 
-					<div class="form-group">
-						<label for="ref">Nom :</label>
-						<input id="ref" name="ref" class="form-control" type="text" value="${editDessert.nom}"></div>
+				<div class="form-group">
+					<label for="ref">Nom :</label> <input id="ref" name="ref"
+						class="form-control" type="text" value="${editDessert.nom}" required>
+				</div>
 
-						<div class="form-group">
-							<label for="prix">Prix :
-							</label>
-							<input step="0.01" id="number" name="prix" class="form-control" type="number" value="${editDessert.prix}"></div>
+				<div class="form-group">
+					<label for="prix">Prix : </label> <input step="0.01" id="number"
+						name="prix" class="form-control" type="number"
+						value="${editDessert.prix}" required>
+				</div>
 
-							<br>
-								<button class="btn btn-success" type="submit">Valider</button>
+				<br>
+				<button class="btn btn-success" type="submit">Valider</button>
 
-								<a href='./liste'>
-									<button type="button" class="btn btn-primary">Retour</button>
-								</a>
-							</form>
+				<a href='./liste'>
+					<button type="button" class="btn btn-primary">Retour</button>
+				</a> 
+				<a href=<c:url value=''/>>
+					<button type="button" class="btn btn-primary">Reset</button>
+				</a>
+			</form>
 
-						</div>
+		</div>
 
-						<jsp:include page="../layout/footer.jsp"/>
+		<jsp:include page="../layout/footer.jsp" />

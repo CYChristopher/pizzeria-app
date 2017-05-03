@@ -43,6 +43,8 @@ public class AjouterLivreurController extends HttpServlet {
 			resp.sendRedirect(req.getContextPath() + URL_LISTE);
 		} else {
 			req.setAttribute("msg", "Veuillez remplir les champs !");
+			req.setAttribute("nom", req.getParameter("nom"));
+			req.setAttribute("prenom", req.getParameter("prenom"));
 			doGet(req, resp);
 		}
 	}
