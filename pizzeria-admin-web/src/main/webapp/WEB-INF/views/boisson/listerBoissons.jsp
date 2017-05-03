@@ -14,7 +14,7 @@
 		<div class="col-md-9">
 
 		<h1>Liste des Boissons</h1>
-		<a class="btn btn-primary" href=<c:url value="/boisson/nouvelle"/>>Nouvelle
+		<a class="btn btn-primary" href=<c:url value="/boissons/nouvelle"/>>Nouvelle
 			Boisson</a> <br>
 
 		<table class="table">
@@ -38,7 +38,7 @@
 					<td><a href="<c:url value="/boissons/edit?id=${boisson.id}"/>"
 						class="btn btn-primary">Editer</a></td>
 					<td><form
-							action="<c:url value='/boisson/supprimer?id=${boisson.id}'></c:url>"
+							action="<c:url value='/boissons/supprimer?id=${boisson.id}'></c:url>"
 							method="post">
 							<input class='btn btn-danger' type='submit' value='Supprimer'>
 						</form></td>

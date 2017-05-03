@@ -18,7 +18,7 @@ import fr.pizzeria.model.Dessert;
 /**
  * Contrôleur de la page Liste des boissons.
  */
-@WebServlet("/boisson/nouvelle")
+@WebServlet("/boissons/nouvelle")
 public class NouvelleBoissonController extends HttpServlet {
 
 	private static final String VUE_SAVE_BOISSON = "/WEB-INF/views/boisson/nouvelleBoisson.jsp";
