@@ -34,7 +34,7 @@
 				<tbody>
 					<c:forEach var="dessert" items="${listeDesserts}">
 						<tr>
-							<td><img src="${ dessert.urlImage }" width="250px" height="200px"></td>
+							<td><img src="${ dessert.urlImage }" width="250px" height="200px" alt="${dessert.nom}" title="${dessert.nom}"></td>
 							<td>${ dessert.code }</td>
 							<td>${ dessert.nom }</td>
 							<td>${ dessert.prix }€</td>
