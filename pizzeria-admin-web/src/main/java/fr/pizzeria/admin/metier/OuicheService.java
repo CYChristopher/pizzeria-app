@@ -24,25 +24,25 @@ public class OuicheService {
 	private Event<Evenement> event;
 
 	public List<Pizza> findAll() {
-		return em.createQuery("select p from Pizza p where p.typePizza=:typeP", Pizza.class)
-				.setParameter("typeP", TypePizza.OUICHE).getResultList();
+		return this.em.createQuery("select p from Pizza p where p.typePizza=:typeP", Pizza.class)
+						.setParameter("typeP", TypePizza.OUICHE).getResultList();
 	}
 
 	public void update(Integer id, Pizza pizza) {
 
-		Pizza pizzaMod = em.createQuery("select piz from Pizza piz where piz.id=:idP", Pizza.class)
-				.setParameter("idP", id).getSingleResult();
+		Pizza pizzaMod = this.em.createQuery("select piz from Pizza piz where piz.id=:idP", Pizza.class)
+						.setParameter("idP", id).getSingleResult();
 		pizza.setId(pizzaMod.getId());
-		em.merge(pizza);
+		this.em.merge(pizza);
 
 	}
 
 	public void delete(String code) {
 
-		Pizza pizzaDel = em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class)
-				.setParameter("codP", code).getSingleResult();
+		Pizza pizzaDel = this.em.createQuery("select piz from Pizza piz where piz.code=:codP", Pizza.class)
+						.setParameter("codP", code).getSingleResult();
 
-		em.remove(pizzaDel);
+		this.em.remove(pizzaDel);
 
 	}
 
@@ -51,23 +51,22 @@ public class OuicheService {
 		ev.setDate(LocalDateTime.now());
 		ev.setAction(Action.SAVE);
 		ev.setType(Type.OUICHE);
-		em.persist(pizza);
+		this.em.persist(pizza);
 		ev.setId(pizza.getId());
 		ev.setNom(pizza.getNom());
-		event.fire(ev);
+		this.event.fire(ev);
 	}
 
 	public Pizza findById(Integer id) {
 
-		return em.createQuery("select piz from Pizza piz where piz.id=:codP", Pizza.class).setParameter("codP", id)
-				.getSingleResult();
+		return this.em.createQuery("select piz from Pizza piz where piz.id=:codP", Pizza.class).setParameter("codP", id)
+						.getSingleResult();
 
 	}
 
 	// Trouve les versions de pizza actifs, renvoit cette liste
 	public List<Pizza> findNewestPizzaByName() {
-		return em.createQuery("select piz from Pizza piz where piz.actif=:val and piz.typePizza=:typeP", Pizza.class)
-				.setParameter("val", true).setParameter("typeP", TypePizza.OUICHE).getResultList();
+		return this.em.createQuery("select piz from Pizza piz where piz.archive=:val and piz.typePizza=:typeP", Pizza.class).setParameter("val", false).setParameter("typeP", TypePizza.OUICHE).getResultList();
 
 	}
 

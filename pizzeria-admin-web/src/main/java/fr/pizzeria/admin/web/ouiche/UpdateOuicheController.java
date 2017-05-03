@@ -72,6 +72,8 @@ public class UpdateOuicheController extends HttpServlet {
 		String ref;
 		BigDecimal prix;
 		String categorie;
+		String urlImage;
+
 
 		// getParameterValues envoie NullPointerException si la liste des
 		// ingredients selectionnées est vide
@@ -84,6 +86,7 @@ public class UpdateOuicheController extends HttpServlet {
 					: BigDecimal.valueOf(Double.valueOf(request.getParameter("prix")));
 			categorie = request.getParameter("categorie").isEmpty() ? oldPizza.getNom()
 					: request.getParameter("categorie");
+			urlImage = request.getParameter("urlImage").isEmpty() ? oldPizza.getUrlImage() : request.getParameter("urlImage");
 
 			String[] ingredients = request.getParameterValues("ingredientSelectione");
 			List<Ingredient> listIngredient = new ArrayList<>();
@@ -92,8 +95,8 @@ public class UpdateOuicheController extends HttpServlet {
 				listIngredient.add(ingredientService.findByName(ing));
 			}
 
-			Pizza pizza = new Pizza(newcode, ref, prix, CategoriePizza.valueOf(categorie),TypePizza.OUICHE, LocalDateTime.now(), true,
-					listIngredient);
+			Pizza pizza = new Pizza(newcode, ref, prix,	CategoriePizza.valueOf(categorie),  urlImage, 
+					 LocalDateTime.now(), true, TypePizza.OUICHE, listIngredient);
 
 			ouicheService.save(pizza);
 

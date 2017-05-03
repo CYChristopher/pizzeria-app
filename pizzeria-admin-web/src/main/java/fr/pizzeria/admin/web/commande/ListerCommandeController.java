@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.pizzeria.admin.metier.CommandeService;
 
-@WebServlet("/commandes/list")
+@WebServlet("/commandes/liste")
 public class ListerCommandeController extends HttpServlet {
 
 	private static final String VUE_LISTER_COMMANDES = "/WEB-INF/views/commandes/listerCommandes.jsp";
