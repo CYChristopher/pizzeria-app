@@ -62,7 +62,7 @@ public class JeuxDonnees {
 	private List<Livreur> livreurs = new ArrayList<>();
 	private List<Commande> commandes = new ArrayList<>();
 	
-	@PostConstruct
+	/*@PostConstruct
 	public void init(){
 		generateClients();
 		generateBoissons();
@@ -71,7 +71,7 @@ public class JeuxDonnees {
 		generatePizzas();
 		generateLivreurs();
 		generateCommandes();
-	}
+	}*/
 	
 	private void generateClients(){
 		clients.add(new Client("Nantes", "Gerard", "f.g@gmail.com", DigestUtils.sha256Hex("password147"), "Rue de la paix"));
