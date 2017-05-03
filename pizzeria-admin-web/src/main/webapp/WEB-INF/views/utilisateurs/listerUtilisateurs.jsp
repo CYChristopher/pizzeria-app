@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Pizza" />
+	<jsp:param name="title" value="Liste utilisateurs" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
@@ -40,8 +40,7 @@
 					<td>${utilisateur.adresse}</td>
 					<td><a
 						href=<c:url value='./editer?id=${utilisateur.id}'></c:url>><button
-								class='btn btn-warning'>Editer</button></a></td>
-					<td>
+								class='btn btn-warning'>Editer</button></a>
 						<c:if test="${utilisateur.id != utilisateurCourant.id}">
 							<form action="<c:url value='./supprimer?id=${utilisateur.id}'></c:url>"
 							method="post">

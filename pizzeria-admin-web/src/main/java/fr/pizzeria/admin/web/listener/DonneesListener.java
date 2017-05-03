@@ -72,12 +72,12 @@ public class DonneesListener implements ServletContextListener {
 		this.is.save(new Ingredient("Anti-ananas", 150, 2.0, false));
 
 		/* Pizza */
-		this.ps.save(new Pizza("PEP", "Peperoni", BigDecimal.valueOf(12.50), CategoriePizza.VIANDE, TypePizza.PIZZA,
-						LocalDateTime.now(), false, this.is.findAll()));
-		this.ps.save(new Pizza("REI", "Reine", BigDecimal.valueOf(11.00), CategoriePizza.VIANDE, TypePizza.PIZZA,
-						LocalDateTime.now(), false, this.is.findAll()));
-		this.os.save(new Pizza("4FR", "4 Fromages", BigDecimal.valueOf(12.00), CategoriePizza.SANS_VIANDE, TypePizza.OUICHE,
-						LocalDateTime.now(), false, this.is.findAll()));
+		this.ps.save(new Pizza("PEP", "Peperoni", BigDecimal.valueOf(12.50), CategoriePizza.VIANDE, "http://www.cicis.com/media/1243/pizza_adven_zestypepperoni.png", 
+						LocalDateTime.now(), false, TypePizza.PIZZA, this.is.findAll()));
+		this.ps.save(new Pizza("REI", "Reine", BigDecimal.valueOf(11.00), CategoriePizza.VIANDE, "http://www.macommune.info/sites/v2.macommune.info/files/imagecache/grid_36_ovl/pizza_reine.jpeg", 
+						LocalDateTime.now(), false, TypePizza.PIZZA, this.is.findAll()));
+		this.os.save(new Pizza("4FR", "4 Fromages", BigDecimal.valueOf(12.00), CategoriePizza.SANS_VIANDE, "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTecVgX76oYqXu4n6humUi2Wo6RtI3APmC3mVhrsaYeekU5rpMHMA",
+						LocalDateTime.now(), false, TypePizza.OUICHE, this.is.findAll()));
 
 		/* Client */
 		Client client1 = new Client("A", "Nicolas", "a@orange.fr", "aaaaaa", "DTA Ingenierie");
@@ -92,11 +92,11 @@ public class DonneesListener implements ServletContextListener {
 		this.livreurService.save(livreur1);
 
 		/* Boisson */
-		Boisson boisson1 = new Boisson("PEP", "Pepsi", 1.5, null, false);
+		Boisson boisson1 = new Boisson("PEP", "Pepsi", 1.5, "http://icons.iconarchive.com/icons/michael/coke-pepsi/128/Pepsi-Can-icon.png", false);
 		this.boissonService.saveNew(boisson1);
 
 		/* Dessert */
-		Dessert dessert1 = new Dessert("COO", "Cookie", new BigDecimal(2), false);
+		Dessert dessert1 = new Dessert("COO", "Cookie", new BigDecimal(2), "http://1.bp.blogspot.com/-1Yrw5R9auMI/Vjui-JcFpOI/AAAAAAAAkms/ovJCNgnt4iI/s1600/Capture%2Bd%25E2%2580%2599e%25CC%2581cran%2B2015-11-05%2Ba%25CC%2580%2B19.41.21.png", false);
 		this.dessertService.save(dessert1);
 		
 		/* Commande */

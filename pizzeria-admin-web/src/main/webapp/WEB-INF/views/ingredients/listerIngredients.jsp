@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/layout/entete.jsp">
-	<jsp:param name="title" value="Lister Ingredients"/>
+	<jsp:param name="title" value="Liste Ingredients"/>
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
@@ -40,9 +40,7 @@
 								<c:if test="${ingredient.archive == false}">Non</c:if>
 							</td>
 							<td>
-								<a href="<c:url value=" ./editer?id=${ingredient.id}"/>" class="btn btn-warning">Editer</a>
-							</td>
-							<td>								
+								<a href="<c:url value=" ./editer?id=${ingredient.id}"/>" class="btn btn-warning">Editer</a>							
 								<form method="POST">
 									<input type="hidden" name="id" value="${ingredient.id}">
 									<input type="hidden" name="action" value="supprimer">

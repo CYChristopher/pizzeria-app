@@ -1,10 +1,13 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <h1> Bienvenue à la pizzeria de DTA ! </h1>
-    <h2> Commande sur place, à emporter ou livraison à domicile ! </h2> <br><br>
-    <h1> Nos 3 dernières pizzas :</h1>
+  <div class="jumbotron">
+    <h1>Bienvenue à la pizzeria de DTA</h1>
+    <p>Commandez sur place, à emporter ou faîtes-vous livrer à domicile !</p>
+  </div>
+  <h2> Nos 3 dernières pizzas :</h2>
 </div>
 
-<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="pizza in $ctrl.pizzas|limitTo:3 track by $index">
-    <pizza pizza="pizza"></pizza>
-    <ajouter-panier item="pizza"></ajouter-panier>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
+     ng-repeat="pizza in $ctrl.pizzas |limitTo:3 track by $index">
+  <pizza pizza="pizza"></pizza>
+  <ajouter-panier item="pizza"></ajouter-panier>
 </div>

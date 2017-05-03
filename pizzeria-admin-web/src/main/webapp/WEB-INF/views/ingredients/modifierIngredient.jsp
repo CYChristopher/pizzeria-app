@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="/WEB-INF/views/layout/entete.jsp">
-	<jsp:param name="title" value="Ajout Ingredient"/>
+	<jsp:param name="title" value="Edition Ingredient"/>
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
