@@ -41,6 +41,10 @@
 						class="form-control" type='password' name='motDePasse'>
 				</div>
 				<div class="form-group">
+					<label for="InputPrix">Confimation du mot de passe </label> <input
+						class="form-control" type='password' name='validationMotDePasse'>
+				</div>
+				<div class="form-group">
 					<label for="InputPrix">Adresse </label> <input class="form-control"
 						name='adresse' value='${utilisateur.adresse}' required>
 				</div>

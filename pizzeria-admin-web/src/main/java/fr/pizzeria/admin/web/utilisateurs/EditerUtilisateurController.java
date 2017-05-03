@@ -51,7 +51,18 @@ public class EditerUtilisateurController extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String motDePasse = request.getParameter("motDePasse");
+		String validationMotDePasse = request.getParameter("validationMotDePasse");
 		String adresse = request.getParameter("adresse");
+
+		if (!motDePasse.equals(validationMotDePasse)) {
+			request.setAttribute("nom", nom);
+			request.setAttribute("prenom", prenom);
+			request.setAttribute("email", email);
+			request.setAttribute("motDePasse", motDePasse);
+			request.setAttribute("adresse", adresse);
+			request.setAttribute("msg", "Confirmation du mot de passe incorrecte");
+			doGet(request, response);
+		}
 
 		Integer oldId = Integer.parseInt(request.getParameter("oldId"));
 		String stringDate = request.getParameter("dateCreation");
@@ -61,23 +72,23 @@ public class EditerUtilisateurController extends HttpServlet {
 
 		Utilisateur utilisateur = utilisateursService.find(oldId);
 
-		Utilisateur utili = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
+		Utilisateur nouvelUtilisateur = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
 		// si pas de mot passe reprend le précedent hash
 		if (motDePasse.isEmpty()) {
-			utili.setHash(utilisateur.getMotDePasse());
+			nouvelUtilisateur.setHash(utilisateur.getMotDePasse());
 		}
 		if (utilisateur.getEmail().equals(email)) // check if the email is the
 													// same
 		{
 
-			utilisateursService.update(oldId, utili);
+			utilisateursService.update(oldId, nouvelUtilisateur);
 			response.sendRedirect(request.getContextPath() + URL_LISTE);
 
 		} else // check if the new one is already exist
 		{
 
 			if (utilisateursService.findByEmail(email) == null) {
-				utilisateursService.update(oldId, utili);
+				utilisateursService.update(oldId, nouvelUtilisateur);
 				response.sendRedirect(request.getContextPath() + URL_LISTE);
 			} else {
 				request.setAttribute("msg", "Email modifié: nouveau déjà existant");
