@@ -16,12 +16,12 @@ public interface IPizzaRepository extends JpaRepository<Pizza, Integer> {
 
 	@Modifying
 	@Transactional
-	@Query("select pizza from Pizza pizza where pizza.typePizza='PIZZA' and pizza.actif=true")
+	@Query("select pizza from Pizza pizza where pizza.typePizza='PIZZA' and pizza.archive=false")
 	List<Pizza> findPizzaActual();
 
 	@Modifying
 	@Transactional
-	@Query("select pizza from Pizza pizza where pizza.typePizza='OUICHE' and pizza.actif=true")
+	@Query("select pizza from Pizza pizza where pizza.typePizza='OUICHE' and pizza.archive=false")
 	List<Pizza> findOuicheActual();
 
 }

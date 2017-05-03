@@ -37,6 +37,13 @@
 						value="${editPizza.prix}" required>
 				</div>
 
+				<div class="form-group">
+					<label for="image"> Image :</label> <input id="urlImage"
+						name="urlImage" class="form-control" type="text"
+						placeholder="Lien vers image" value="${editPizza.urlImage}"
+						required>
+				</div>
+
 
 				<div class="form-group">
 
@@ -60,38 +67,30 @@
 
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Ingredients Sélectionné</h2>
+						<h2 style="text-align: center;">Ingredients Sélectionnés</h2>
 						<div id="ingredientSelectione" class='list-group'>
 							<c:forEach var="current" items="${editPizza.listeIngredients}">
 								<li id='${current.id}' data-toggle="tooltip"
-									title="Ajouter un ingrédient à la pizza"
-									style="cursor: pointer;" 
-									class="list-group-item"
-									>${current.nom}</li>
+									title="Supprimer un ingrédient de la pizza"
+									style="cursor: pointer;" class="list-group-item">${current.nom}</li>
 							</c:forEach>
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<h2>Liste des ingredients</h2>
+						<h2 style="text-align: center;">Liste des ingredients</h2>
 						<ul id="ingredients" class='list-group'>
 							<c:forEach var="current" items="${listeIngredients}">
-								<li id='${current.id}'data-toggle="tooltip"
+								<li id='${current.id}' data-toggle="tooltip"
 									title="Ajouter un ingrédient à la pizza"
-									style="cursor: pointer;" 
-								class="list-group-item">${current.nom}</li>
+									style="cursor: pointer;" class="list-group-item">${current.nom}</li>
 							</c:forEach>
 						</ul>
 					</div>
 				</div>
 
-
-
-
-
 				<input class="btn btn-success" type="submit" value="Valider">
-				<a href=<c:url value='/pizzas/list'/>><button type="button"
-						class="btn btn-primary">Retour</button></a> 
-				<a href=<c:url value=''/>>
+				<a href=<c:url value='/pizzas/liste'/>><button type="button"
+						class="btn btn-primary">Retour</button></a> <a href=<c:url value=''/>>
 					<button type="button" class="btn btn-primary">Reset</button>
 				</a>
 			</form>
