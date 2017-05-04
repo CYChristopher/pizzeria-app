@@ -17,7 +17,7 @@ class controller {
                 
                 this.stockageService.set("utilisateur", resp, "localStorage");
                 let pagePrecedente = this.stockageService.get(
-                    "pageRedirectionConnexion"
+                    "pageRedirectionConnexion","sessionStorage"
                 );
                 if (!pagePrecedente) {
                     this.$location.path("/");
