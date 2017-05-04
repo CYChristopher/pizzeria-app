@@ -1,6 +1,8 @@
 export class CommandeService {
-	constructor($http, API_URL, localStorageService, ClientService, $q) {
+	constructor($http, API_URL, localStorageService, ClientService, $q, $location, PanierService) {
+		this.PanierService = PanierService;
 		this.localStorageService = localStorageService;
+		this.$location = $location;
 		this.ClientService = ClientService;
 		this.$http = $http;
 		this.$q = $q;
@@ -65,6 +67,8 @@ export class CommandeService {
 					this.$http
 						.post(`${this.API_URL}/commandes`, commandeComplete)
 						.then(r => r.data);
+					this.PanierService.panier = '';
+					this.$location.path('/');
 				} else {
 					alert(
 						"Vous avez été deconnecté pour une raison mystérieuse. Veuillez vous reloguer"

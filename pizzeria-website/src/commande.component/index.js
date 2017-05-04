@@ -1,8 +1,9 @@
 import template from './commande.html';
 
 class controller{
-	constructor(CommandeService){
+	constructor(CommandeService, AlertService ){
 		this.CommandeService=CommandeService
+		this.AlertService = AlertService
 	}
 	$onInit(){		
 		this.CommandeService.getCommandes().then(commandes=>{
@@ -17,6 +18,7 @@ class controller{
 	
 	setCommande(){
 		this.CommandeService.setCommande(this.commandeType)
+		this.AlertService.addAlert("Commande passée", "success")
 	}
 	
 }
