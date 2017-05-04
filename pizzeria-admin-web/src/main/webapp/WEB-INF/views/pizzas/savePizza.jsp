@@ -50,7 +50,7 @@
 
 					<div class="col-sm-6">
 						<h2 style="text-align: center;">Ingredients sélectionnés</h2>
-						<div id="ingredientSelectione" class='list-group'></div>
+						<div id="ingredientSelectione" name="ingredientSelectione" class='list-group'></div>
 					</div>
 					<div class="col-sm-6">
 						<h2 style="text-align: center;">Liste des ingredients</h2>

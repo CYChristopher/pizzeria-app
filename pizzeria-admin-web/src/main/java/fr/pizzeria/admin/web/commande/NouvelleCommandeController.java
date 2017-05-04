@@ -7,6 +7,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -44,14 +45,14 @@ public class NouvelleCommandeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		montrerPageNouvelleCommande(req, resp, true, null);
+		this.montrerPageNouvelleCommande(req, resp, true, null);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String numCommande = request.getParameter("numCommande");
+		String numCommande = UUID.randomUUID().toString();
 		String[] pizzaCommandeId = request.getParameterValues("pizzaCommandeId");
 		String statut = request.getParameter("statut");
 		String idClient = request.getParameter("client");
@@ -78,8 +79,7 @@ public class NouvelleCommandeController extends HttpServlet {
 				if (!idLivreur.equals("noLiv")) {
 					livreur = this.livreurService.find(Integer.parseInt(idLivreur));
 				}
-				
-				
+
 				Client client = this.clientService.getById(Integer.parseInt(idClient));
 
 				if (client.getAdresse().isEmpty() && livraison.equals("LIV")) {
@@ -96,7 +96,7 @@ public class NouvelleCommandeController extends HttpServlet {
 					if (livraison.equals("LIV")) {
 						adresse = client.getAdresse();
 					} else {
-						livreur = null ;
+						livreur = null;
 					}
 
 					List<Pizza> listePizza = new ArrayList<>();
@@ -131,12 +131,12 @@ public class NouvelleCommandeController extends HttpServlet {
 	private void montrerPageNouvelleCommande(HttpServletRequest req, HttpServletResponse resp, boolean numOk,
 			List<String> pizzaCommandeId) throws ServletException, IOException {
 		req.setAttribute("statusPossible", EnumSet.allOf(StatutCommande.class));
-		req.setAttribute("listeLivreur", livreurService.findAll());
-		req.setAttribute("listeClient", clientService.findAll());
+		req.setAttribute("listeLivreur", this.livreurService.findAll());
+		req.setAttribute("listeClient", this.clientService.findAll());
 		req.setAttribute("numOk", numOk);
 
 		Map<Pizza, Boolean> mapPizzas = new HashMap<>();
-		pizzaService.findNewestPizzaByName().forEach(pizza -> {
+		this.pizzaService.findNewestPizzaByName().forEach(pizza -> {
 			if (pizzaCommandeId != null && pizzaCommandeId.contains(pizza.getId().toString())) {
 				mapPizzas.put(pizza, true);
 			} else {

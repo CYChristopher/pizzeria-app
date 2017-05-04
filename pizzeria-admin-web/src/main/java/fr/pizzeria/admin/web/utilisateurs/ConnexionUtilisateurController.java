@@ -36,18 +36,7 @@ public class ConnexionUtilisateurController extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email").trim();
 		String motDePasse = request.getParameter("motDePasse");
-		Utilisateur utilisateur = utilisateurService.findByEmail(email);
-
-		// LOG.log(Level.INFO, "utilisateur != null :" + (utilisateur != null));
-		// LOG.log(Level.INFO, "utilisateur.motDePasseOk(motDePasse) :" +
-		// utilisateur.motDePasseOk(motDePasse));
-		// LOG.log(Level.INFO, "motDePasse :" + motDePasse);
-		// LOG.log(Level.INFO, "motDePasse hashé:" +
-		// utilisateur.hashSha1(motDePasse, utilisateur.getDateCreation()));
-		// LOG.log(Level.INFO, "hash en base:" + utilisateur.getMotDePasse());
-		//
-		// LOG.log(Level.INFO, "date récupéré en base avec un toString()" +
-		// utilisateur.getDateCreation());
+		Utilisateur utilisateur = this.utilisateurService.findByEmail(email);
 
 		if (utilisateur != null && utilisateur.motDePasseOk(motDePasse)) {
 			HttpSession session = request.getSession();

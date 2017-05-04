@@ -18,26 +18,7 @@
 			</c:if>
 
 			<form method="post">
-
-				<div class="form-group">
-					<label>Numéro de Commande :</label>
-					<c:choose>
-						<c:when test="${numero == null}">
-							<input class="form-control" name="numCommande" type="text"
-								required>
-						</c:when>
-						<c:otherwise>
-							<input class="form-control" value="${numero }" name="numCommande"
-								type="text" required>
-						</c:otherwise>
-					</c:choose>
-				</div>
-				<c:if test="${!numOk}">
-					<div class="alert alert-danger" role="alert">Ce numéro de
-						commande existe déjà ! Choisissez un autre numéro !</div>
-				</c:if>
-
-
+			
 				<div class="form-group">
 					<label>Statut :</label> <select class="form-control" name="statut"
 						required>
@@ -145,7 +126,7 @@
 
 
 				<input class="btn btn-success" type="submit" value="Valider">
-				<a href=<c:url value='/commandes/liste'/>><button type="button"
+				<a href=<c:url value='/commandesNonLivrees/liste'/>><button type="button"
 						class="btn btn-primary">Retour</button></a>
 			</form>
 

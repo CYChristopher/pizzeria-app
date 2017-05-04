@@ -51,12 +51,13 @@
              class="login">Inscription</a>
         </li>
 
-        <li style="background: gold"
-            ng-if="$ctrl.getConnectedClient()">
-          <a href=""
-             class="login">Déconnexion</a>
-        </li>
-      </ul>
+                <li style="background: gold" ng-if="$ctrl.getConnectedClient()" ng-click="$ctrl.deconnexion()">
+                    <a href="" class="login">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+
+
     </div>
   </div>
 </nav>

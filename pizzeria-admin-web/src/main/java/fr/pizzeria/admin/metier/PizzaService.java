@@ -85,4 +85,9 @@ public class PizzaService {
 
 	}
 
+	public List<Pizza> findTopFivePizzas() {
+		return this.em.createQuery("select piz from Pizza piz where id in (select cmd_p.id.pizza.id from fr.pizzeria.model.CommandePizza cmd_p group by cmd_p.id.pizza.id order by sum(cmd_p.quantite) desc)", Pizza.class).setMaxResults(5).getResultList();
+
+	}
+	
 }

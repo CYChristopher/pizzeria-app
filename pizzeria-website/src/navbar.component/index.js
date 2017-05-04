@@ -1,27 +1,43 @@
 import template from "./navbar.html";
 
 class controller {
-  constructor( localStorageService, $location, ClientService ) {
-    this.ClientService = ClientService;
-    this.stockageService = localStorageService;
-    this.$location = $location;
+    constructor(localStorageService, $location, ClientService, $http) {
+        this.ClientService = ClientService;
+        this.stockageService = localStorageService;
+        this.$location = $location;
+        this.$http = $http;
+    }
 
-  }
+    getConnectedClient() {
+        let utilisateur = this.stockageService.get(
+            "utilisateur",
+            "localStorage"
+        );
 
-  getConnectedClient() {
-    return parseInt( this.stockageService.get( 'utilisateur',
-      'sessionStorage' ) );
-  }
+        if (!utilisateur) return null;
 
-  connecter() {
-    this.stockageService.set( 'pageRedirectionConnexion', this.$location.path(),
-      'sessionStorage' );
-    this.$location.path( '/connexion' );
-  }
+        return parseInt(utilisateur.id);
+    }
+
+    connecter() {
+        this.stockageService.set(
+            "pageRedirectionConnexion",
+            this.$location.path(),
+            "sessionStorage"
+        );
+        this.$location.path("/connexion");
+    }
+
+    deconnexion() {
+        this.stockageService.remove("utilisateur", "localStorage");
+        this.stockageService.remove("token", "localStorage");
+        this.$http.defaults.headers.common = {};
+        this.$location.path("/");
+    }
 }
 
 export const NavbarComponent = {
-  bindings: {},
-  controller,
-  template
-}
+    bindings: {},
+    controller,
+    template
+};

@@ -29,13 +29,13 @@
 	        <li><a href=<c:url value='/ouiches/liste'/>>Ouiches</a></li>
 	        <!-- <li><a href="#">Menus</a></li> -->
 	        <li><a href=<c:url value='/desserts/liste'/>>Desserts</a></li>
-	        <li><a href=<c:url value='/commandes/liste'/>>Commandes</a></li>
+	        <li><a href=<c:url value='/commandesNonLivrees/liste'/>>Commandes</a></li>
 	        <li><a href=<c:url value='/boissons/liste'/>>Boissons</a></li>
 	        <li><a href=<c:url value='/clients/liste'/>>Clients</a></li>
 	        <li><a href=<c:url value='/livreurs/liste'/>>Livreurs</a></li>
 	        <li><a href=<c:url value='/ingredients/liste'/>>Ingrédients</a></li>
-	        <!-- <li><a href="#">Statistiques</a></li>
-	        <li><a href="#">Promotions</a></li> -->
+	        <li><a href=<c:url value='/technique'/>>Statistiques</a></li>
+	        <!-- <li><a href="#">Promotions</a></li> -->
 	      </ul>
 	
 	      <!--/.nav-collapse -->

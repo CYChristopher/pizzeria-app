@@ -87,7 +87,7 @@ public class EditerCommandeController extends HttpServlet {
 
 			this.commandeService.update(this.id, commandeComplete);
 
-			response.sendRedirect(request.getContextPath() + "/commandes/liste");
+			response.sendRedirect(request.getContextPath() + "/commandesNonLivrees/liste");
 		} else {
 			request.setAttribute("msg", "Aucun produit commandé");
 			this.doGet(request, response);
