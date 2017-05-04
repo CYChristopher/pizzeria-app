@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Pizza" />
+	<jsp:param name="title" value="Mdp oublié" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />

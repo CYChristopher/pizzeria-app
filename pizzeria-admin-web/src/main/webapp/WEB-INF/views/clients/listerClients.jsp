@@ -40,8 +40,7 @@
 					<td>${client.adresse}</td>
 					<td>${client.email}</td>
 					<td><a href="<c:url value="/clients/edit?id=${client.id}"/>"
-						class="btn btn-warning">Editer</a></td>
-					<td>
+						class="btn btn-warning">Editer</a>
 						<form method="POST"
 							action="<c:url value='/clients/delete?id=${client.id}'/>">
 							<button type="submit" class="btn btn-danger">Supprimer</button>

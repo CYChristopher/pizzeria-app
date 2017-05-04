@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Pizza" />
+	<jsp:param name="title" value="Edition Pizza" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
@@ -11,7 +11,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-9">
-			<h1>Editer Pizza ${editPizza.code}</h1>
+			<h1>Editer Pizza ${editPizza.nom}</h1>
 
 
 			<c:if test="${msg != null}">
@@ -70,9 +70,11 @@
 						<h2 style="text-align: center;">Ingredients Sélectionnés</h2>
 						<div id="ingredientSelectione" class='list-group'>
 							<c:forEach var="current" items="${editPizza.listeIngredients}">
-								<li id='${current.id}' data-toggle="tooltip"
+									<input id='${current.id}' data-toggle="tooltip"
 									title="Supprimer un ingrédient de la pizza"
-									style="cursor: pointer;" class="list-group-item">${current.nom}</li>
+									style="cursor: pointer; width: 100%;" 
+									class="list-group-item" 
+									name="ingredientSelectione" value="${current.nom}"/>
 							</c:forEach>
 						</div>
 					</div>

@@ -35,9 +35,7 @@
 					<td>${boisson.nom}</td>
 					<td>${boisson.prix} €</td>
 					<td>
-						<a href="<c:url value="/boissons/edit?id=${boisson.id}"/>" class="btn btn-warning">Editer</a>
-					</td>
-					<td>								
+						<a href="<c:url value="/boissons/edit?id=${boisson.id}"/>" class="btn btn-warning">Editer</a>								
 						<form method="POST">
 							<input type="hidden" name="id" value="${boisson.id}">
 							<input type="hidden" name="action" value="supprimer">

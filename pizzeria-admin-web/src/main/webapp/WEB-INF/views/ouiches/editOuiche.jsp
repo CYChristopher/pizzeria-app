@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Ouiches" />
+	<jsp:param name="title" value="Edition Ouiches" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
@@ -11,7 +11,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-9">
-	<h1>Editer Ouiche ${editPizza.code}</h1>
+	<h1>Editer Ouiche ${editPizza.nom}</h1>
 
 
 	<c:if test="${msg != null}">
@@ -88,7 +88,7 @@
 
 
 				<input class="btn btn-success" type="submit" value="Valider">
-				<a href=<c:url value='/ouiches/list'/>><button type="button"
+				<a href=<c:url value='/ouiches/liste'/>><button type="button"
 						class="btn btn-primary">Retour</button></a> 
 				<a href=<c:url value=''/>>
 					<button type="button" class="btn btn-primary">Reset</button>

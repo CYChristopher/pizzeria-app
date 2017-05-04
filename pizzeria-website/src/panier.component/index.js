@@ -1,4 +1,4 @@
-import template from './panier.html';
+import template from "./panier.html";
 
 class controller {
 
@@ -15,7 +15,7 @@ class controller {
 
   passerCommande() {
     let utilisateur = this.localStorageService.get( 'utilisateur',
-      'sessionStorage' );
+      'localStorage' );
     if ( utilisateur ) {
       console.log( 'hello' )
       this.$location.path( '/commande' )
@@ -28,7 +28,7 @@ class controller {
 }
 
 export const PanierComponent = {
-  bindings: {},
-  template,
-  controller
-}
+    bindings: {},
+    template,
+    controller
+};

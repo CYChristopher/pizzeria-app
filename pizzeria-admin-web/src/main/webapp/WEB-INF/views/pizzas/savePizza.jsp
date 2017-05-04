@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Pizza" />
+	<jsp:param name="title" value="Enregistrer Pizza" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
@@ -50,7 +50,7 @@
 
 					<div class="col-sm-6">
 						<h2 style="text-align: center;">Ingredients sélectionnés</h2>
-						<div id="ingredientSelectione" class='list-group'></div>
+						<div id="ingredientSelectione" name="ingredientSelectione" class='list-group'></div>
 					</div>
 					<div class="col-sm-6">
 						<h2 style="text-align: center;">Liste des ingredients</h2>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Pizza" />
+	<jsp:param name="title" value="Edition Utilisateur" />
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp" />
@@ -38,7 +38,11 @@
 				</div>
 				<div class="form-group">
 					<label for="InputPrix">Mot de passe </label> <input
-						class="form-control" type='password' name='motDePasse' required>
+						class="form-control" placeholder="••••••••" type='password' name='motDePasse'>
+				</div>
+				<div class="form-group">
+					<label for="InputPrix">Confimation du mot de passe </label> <input
+						class="form-control" type='password' name='validationMotDePasse'>
 				</div>
 				<div class="form-group">
 					<label for="InputPrix">Adresse </label> <input class="form-control"

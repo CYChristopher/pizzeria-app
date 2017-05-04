@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col-md-9">
 
-			<h1>Editer Dessert ${editDessert.code}</h1>
+			<h1>Editer Dessert ${editDessert.nom}</h1>
 			<br>
 			<c:if test="${msg != null}">
 				<div class="alert alert-danger" role="alert">${msg}</div>

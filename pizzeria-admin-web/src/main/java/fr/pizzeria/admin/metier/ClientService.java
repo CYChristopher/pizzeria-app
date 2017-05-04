@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import fr.pizzeria.model.Client;
+import fr.pizzeria.model.Pizza;
 
 @Stateless
 public class ClientService {
@@ -62,4 +63,8 @@ public class ClientService {
 		return null;
 	}
 
+	public List<Client> findTopFiveClients(){
+		return this.em.createQuery("select cli from Client cli where id in (select cmd.client.id from Commande cmd group by cmd.client.id order by sum(cmd.client.id) desc)", Client.class).setMaxResults(5).getResultList();
+		
+	}
 }

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../layout/entete.jsp">
-	<jsp:param name="title" value="Lister Livreurs"/>
+	<jsp:param name="title" value="Liste Livreurs"/>
 </jsp:include>
 
 <jsp:include page="../layout/navbar.jsp"/>
@@ -38,8 +38,6 @@
 								<td>${livreur.prenom}</td>
 								<td>
 									<a href="<c:url value='./editer?id=${livreur.id}'/>" role="button" class="btn btn-warning">Editer</a>
-								</td>
-								<td>
 									<a href="<c:url value='./editer?id=${livreur.id}&del=true'/>" role="button" class="btn btn-danger">Supprimer</a>
 								</td>
 							</tr>

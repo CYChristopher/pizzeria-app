@@ -9,7 +9,7 @@
 		</div>
 		<table class="table table-striped table-condensed">
 			<tr>
-				<th>Object</th>
+				<th>Activité</th>
 				<th>Action</th>
 				<th>Date</th>
 			</tr>
