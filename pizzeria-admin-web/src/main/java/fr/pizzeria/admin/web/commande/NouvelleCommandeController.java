@@ -7,6 +7,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -44,14 +45,14 @@ public class NouvelleCommandeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		montrerPageNouvelleCommande(req, resp, true, null);
+		this.montrerPageNouvelleCommande(req, resp, true, null);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
-		String numCommande = request.getParameter("numCommande");
+		String numCommande = UUID.randomUUID().toString();
 		String[] pizzaCommandeId = request.getParameterValues("pizzaCommandeId");
 		String statut = request.getParameter("statut");
 		String adresse = request.getParameter("adresse");
@@ -66,8 +67,8 @@ public class NouvelleCommandeController extends HttpServlet {
 			request.setAttribute("idClient", idClient);
 			request.setAttribute("idLivreur", idLivreur);
 			request.setAttribute("msg", "Aucun produit commandé");
-			montrerPageNouvelleCommande(request, response, true, null);
-		} else if (commandeService.findByNum(numCommande).isEmpty()) {
+			this.montrerPageNouvelleCommande(request, response, true, null);
+		} else if (this.commandeService.findByNum(numCommande).isEmpty()) {
 			Livreur livreur = this.livreurService.find(Integer.parseInt(idLivreur));
 			Client client = this.clientService.getById(Integer.parseInt(idClient));
 
@@ -86,7 +87,7 @@ public class NouvelleCommandeController extends HttpServlet {
 			CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
 
 			this.commandeService.create(commandeComplete);
-			
+
 			response.sendRedirect(request.getContextPath() + "/commandes/liste");
 		} else {
 			request.setAttribute("numero", numCommande);
@@ -94,20 +95,20 @@ public class NouvelleCommandeController extends HttpServlet {
 			request.setAttribute("adresse", adresse);
 			request.setAttribute("idClient", idClient);
 			request.setAttribute("idLivreur", idLivreur);
-			montrerPageNouvelleCommande(request, response, false, Arrays.asList(pizzaCommandeId));
+			this.montrerPageNouvelleCommande(request, response, false, Arrays.asList(pizzaCommandeId));
 		}
 
 	}
 
 	private void montrerPageNouvelleCommande(HttpServletRequest req, HttpServletResponse resp, boolean numOk,
-			List<String> pizzaCommandeId) throws ServletException, IOException {
+					List<String> pizzaCommandeId) throws ServletException, IOException {
 		req.setAttribute("statusPossible", EnumSet.allOf(StatutCommande.class));
-		req.setAttribute("listeLivreur", livreurService.findAll());
-		req.setAttribute("listeClient", clientService.findAll());
+		req.setAttribute("listeLivreur", this.livreurService.findAll());
+		req.setAttribute("listeClient", this.clientService.findAll());
 		req.setAttribute("numOk", numOk);
 
 		Map<Pizza, Boolean> mapPizzas = new HashMap<>();
-		pizzaService.findNewestPizzaByName().forEach(pizza -> {
+		this.pizzaService.findNewestPizzaByName().forEach(pizza -> {
 			if (pizzaCommandeId != null && pizzaCommandeId.contains(pizza.getId().toString())) {
 				mapPizzas.put(pizza, true);
 			} else {
