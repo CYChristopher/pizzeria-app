@@ -27,7 +27,7 @@ export class PanierService {
       .reduce( ( accumulateur, item ) => {
         return accumulateur + ( this.getPizzabyId( item.id )
           .prix * item.quantite );
-      }, 0 );
+      }, 0 ).toFixed(2);
   }
 
   getQuantiteTotale() {
