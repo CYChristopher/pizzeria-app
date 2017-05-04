@@ -50,7 +50,7 @@
 			<label for="adresse" class="col-sm-2 control-label">Adresse</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="adresse" id="adresse"
-					placeholder="Adresse" required>
+					placeholder="Adresse">
 			</div>
 		</div>
 		<div class="form-group">

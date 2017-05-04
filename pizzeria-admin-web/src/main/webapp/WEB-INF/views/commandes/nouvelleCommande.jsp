@@ -54,36 +54,44 @@
 					</select>
 				</div>
 
-				<div class="form-group">
-					<c:choose>
-						<c:when test="${adresse == null}">
-							<label>Adresse :</label>
-							<input class="form-control" name="adresse" type="text" required>
-						</c:when>
-						<c:otherwise>
-							<label>Adresse :</label>
-							<input class="form-control" name="adresse" type="text"
-								value="${adresse }" required>
-						</c:otherwise>
-					</c:choose>
-				</div>
+
 
 				<div class="form-group">
-					<label>Livreur :</label> <select class="form-control"
-						name="livreur" required>
+					<label class="control-label" for="radios"> Type de commande
+						: </label>
+					<div class="radio-inline">
+						<label for="radios-0"> <input type="radio"
+							name="typeCommande" id="radios-0" value="LIV" checked="checked">
+							Livraison
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label for="radios-1"> <input type="radio"
+							name="typeCommande" id="radios-1" value="EMP"> A emporter
+						</label>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label>Livreur : (obligatoire pour livraison)</label> <select
+						class="form-control" name="livreur">
 						<c:forEach var="liv" items="${listeLivreur}">
 							<c:choose>
 								<c:when test="${idLivreur == null || liv.id != idLivreur }">
 									<option value="${liv.id}">${liv.nom}${liv.prenom}</option>
 								</c:when>
 								<c:when test="${idLivreur != null && liv.id == idLivreur }">
-									<option selected="selected" value="${liv.id}">${liv.nom}
-										${liv.prenom}</option>
+									<option value="${liv.id}">${liv.nom}${liv.prenom}</option>
 								</c:when>
 							</c:choose>
 						</c:forEach>
+						<option selected value="noLiv"></option>
 					</select>
 				</div>
+
+
+
 
 				<div class="form-group">
 					<label>Client :</label> <select class="form-control" name="client"
@@ -110,7 +118,7 @@
 							<tr>
 								<th>Nom de la pizza</th>
 								<th>Commande</th>
-								<th> Prix Unitaire </th>
+								<th>Prix Unitaire</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -128,7 +136,7 @@
 													value="${piz.key.id}">
 											</c:otherwise>
 										</c:choose></td>
-									<td> ${piz.key.prix} </td>
+									<td>${piz.key.prix}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

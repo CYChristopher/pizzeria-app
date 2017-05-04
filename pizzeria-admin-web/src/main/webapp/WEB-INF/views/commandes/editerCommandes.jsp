@@ -34,20 +34,56 @@
 					</select>
 				</div>
 
+
 				<div class="form-group">
-					<label>Adresse :</label> <input class="form-control" name="adresse"
-						type="text" value="${commande.adresse}" required>
+					<label class="col-md-4 control-label" for="radios"> Type de
+						commande : </label>
+					<div class="col-md-4">
+						<div class="radio-inline">
+							<label for="radios-0"> <input type="radio" name="radios"
+								id="radios-0" value="LIV" checked="checked"> Livraison
+							</label>
+						</div>
+						<div class="radio-inline">
+							<label for="radios-1"> <input type="radio" name="radios"
+								id="radios-1" value="EMP"> A emporter
+							</label>
+						</div>
+					</div>
 				</div>
+
+
 				<div class="form-group">
-					<label>Livreur :</label> <select class="form-control"
-						name="livreur" required>
+					<c:choose>
+						<c:when test="${adresse == null}">
+							<label>Adresse : (obligatoire pour livraison)</label>
+							<input class="form-control" name="adresse" type="text">
+						</c:when>
+						<c:otherwise>
+							<label>Adresse :</label>
+							<input class="form-control" name="adresse" type="text"
+								value="${adresse }">
+						</c:otherwise>
+					</c:choose>
+				</div>
+
+				<div class="form-group">
+					<label>Livreur : (obligatoire pour livraison)</label> <select
+						class="form-control" name="livreur">
 						<c:forEach var="liv" items="${listeLivreur}">
-							<option value="${liv.id}"
-								<c:if test="${commande.livreur.id == liv.id}">selected</c:if>>${liv.nom}
-								${liv.prenom}</option>
+							<c:choose>
+								<c:when test="${idLivreur == null || liv.id != idLivreur }">
+									<option value="${liv.id}">${liv.nom}${liv.prenom}</option>
+								</c:when>
+								<c:when test="${idLivreur != null && liv.id == idLivreur }">
+									<option value="${liv.id}">${liv.nom}${liv.prenom}</option>
+								</c:when>
+							</c:choose>
 						</c:forEach>
+						<option selected="selected" value="noLiv"></option>
 					</select>
 				</div>
+
 
 				<div class="form-group">
 					<label>Client :</label> <select class="form-control" name="client"
