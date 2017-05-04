@@ -3,7 +3,9 @@ package fr.pizzeria.admin.web.commande;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -43,12 +45,22 @@ public class EditerCommandeController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		this.id = Integer.parseInt(req.getParameter("id"));
-		req.setAttribute("commande", this.commandeService.find(this.id));
+		Commande commande = this.commandeService.find(this.id);
+		List<Pizza> pizzas = this.pizzaService.findNewestPizzaByName();
+		List<CommandePizza> commandePizzas = commande.getCommandesPizzas();
 
+		req.setAttribute("commande", commande);
 		req.setAttribute("statusPossible", EnumSet.allOf(StatutCommande.class));
-
 		req.setAttribute("listeLivreur", this.livreurService.findAll());
-		req.setAttribute("listePizza", this.pizzaService.findNewestPizzaByName());
+		req.setAttribute("listePizza", pizzas);
+		Map<Integer, Boolean> pizzasDansCommande = new HashMap<>();
+		for (Pizza pizza : pizzas) {
+			for (CommandePizza cmdP : commandePizzas) {
+				if (pizza.getId() == cmdP.getId().getPizza().getId())
+					pizzasDansCommande.put(pizza.getId(), true);
+			}
+		}
+		req.setAttribute("pizzasDansCommande", pizzasDansCommande);
 		req.setAttribute("listeClient", this.clientService.findAll());
 
 		this.getServletContext().getRequestDispatcher(VUE_EDITER_COMMANDES).forward(req, resp);
