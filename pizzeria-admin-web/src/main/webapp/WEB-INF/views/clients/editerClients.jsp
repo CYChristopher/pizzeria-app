@@ -58,7 +58,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-success">Editer</button>
-						<a href=<c:url value='/clients/list'/>><button type="button"
+						<a href=<c:url value='/clients/liste'/>><button type="button"
 							class="btn btn-primary">Retour</button></a>
 						<a href=<c:url value=''/>>
 							<button type="button" class="btn btn-primary">Reset</button>
