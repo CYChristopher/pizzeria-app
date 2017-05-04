@@ -35,7 +35,7 @@ public class JwtService {
 
 	public String tokenFor(Client client) throws IOException, URISyntaxException {
 		byte[] secretKey = secretKeyProvider.getKey();
-		Date expiration = Date.from(ZonedDateTime.now().toInstant());
+		Date expiration = Date.from(ZonedDateTime.now().plusHours(10).toInstant());
 		return Jwts.builder().setSubject(client.getId().toString()).setExpiration(expiration).setIssuer(ISSUER)
 				.signWith(SignatureAlgorithm.HS512, secretKey).compact();
 	}
