@@ -2,6 +2,7 @@ package fr.pizzeria.spring.web.resource;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -41,6 +42,7 @@ public class CommandeResource {
 	public void ajouterCommande(@RequestBody CommandeComplete commandeComplete) {
 		commandeComplete.setDateCommande(LocalDateTime.now());
 		commandeComplete.setStatutCommande(StatutCommande.NON_TRAITE);
+		commandeComplete.getCommande().setNumeroCommande(UUID.randomUUID().toString());
 
 		this.commandeDao.save(commandeComplete.getCommande());
 		for (CommandePizza cp : commandeComplete.getCommandesPizza()) {

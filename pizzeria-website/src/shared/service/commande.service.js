@@ -10,11 +10,11 @@ export class CommandeService {
 	getCommandes() {
 		let utilisateur = this.localStorageService.get(
 			"utilisateur",
-			"sessionStorage"
+			"localStorage"
 		);
 
 		if (utilisateur) {
-			let token = this.localStorageService.get("token", "sessionStorage");
+			let token = this.localStorageService.get("token", "localStorage");
 			this.$http.defaults.headers.common.Authorization =
 				"Bearer " + token;
 		}
@@ -24,10 +24,10 @@ export class CommandeService {
 	setCommande(type) {
 		let utilisateur = this.localStorageService.get(
 			"utilisateur",
-			"sessionStorage"
+			"localStorage"
 		);
 		if (utilisateur) {
-			let token = this.localStorageService.get("token", "sessionStorage");
+			let token = this.localStorageService.get("token", "localStorage");
 			this.$http.defaults.headers.common.Authorization =
 				"Bearer " + token;
 

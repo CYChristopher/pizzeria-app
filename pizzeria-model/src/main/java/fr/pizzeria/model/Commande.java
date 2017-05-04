@@ -4,15 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Commande {
@@ -23,6 +15,7 @@ public class Commande {
 	private String numeroCommande;
 	@Enumerated(EnumType.STRING)
 	private StatutCommande statut;
+	private String adresse;
 	@Enumerated(EnumType.STRING)
 	private TypeCommande type;
 	private LocalDateTime dateCommande;
@@ -31,8 +24,28 @@ public class Commande {
 	@ManyToOne
 	private Client client;
 
-	@OneToMany(mappedBy = "id.commande", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "id.commande", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<CommandePizza> commandesPizzas = new ArrayList<>();
+
+	public Commande() {
+	}
+
+	public Commande(String numCommande, StatutCommande statut, String adresse, Livreur livreur, Client client) {
+		this.numeroCommande = numCommande;
+		this.statut = statut;
+		this.adresse = adresse;
+		this.livreur = livreur;
+		this.client = client;
+	}
+
+	public Commande(String numCommande, StatutCommande statut, Client client, List<CommandePizza> commandePizzas) {
+		this.numeroCommande = numCommande;
+		this.statut = statut;
+		this.adresse = this.adresse;
+		this.livreur = this.livreur;
+		this.client = client;
+		this.commandesPizzas = commandePizzas;
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -59,7 +72,7 @@ public class Commande {
 	}
 
 	public LocalDateTime getDateCommande() {
-		return dateCommande;
+		return this.dateCommande;
 	}
 
 	public void setDateCommande(LocalDateTime dateCommande) {
@@ -101,6 +114,14 @@ public class Commande {
 
 	public void setType(TypeCommande type) {
 		this.type = type;
+	}
+
+	public String getAdresse() {
+		return this.adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 }

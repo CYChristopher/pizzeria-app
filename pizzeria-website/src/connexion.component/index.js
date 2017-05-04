@@ -15,7 +15,7 @@ class controller {
             .then(resp => {
                 console.log(resp);
                 
-                this.stockageService.set("utilisateur", resp, "sessionStorage");
+                this.stockageService.set("utilisateur", resp, "localStorage");
                 let pagePrecedente = this.stockageService.get(
                     "pageRedirectionConnexion"
                 );

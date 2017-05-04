@@ -1,19 +1,13 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <h1> Bienvenue à la pizzeria de DTA ! </h1>
-    <h2> Commande sur place, à emporter ou livraison à domicile ! </h2> <br><br>
-    <h1> Nos dernières pizzas :</h1>
+  <div class="jumbotron">
+    <h1>Bienvenue à la pizzeria de DTA</h1>
+    <p>Commandez sur place, à emporter ou faîtes-vous livrer à domicile !</p>
+  </div>
+  <h2> Nos 3 dernières pizzas :</h2>
 </div>
 
-<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" ng-repeat="pizza in $ctrl.last3 track by $index">
-    <div class="thumbnail">
-        <a href="/pizzas" class="link tooltip-link" data-toggle="tooltip" data-original-title="Pizza 4 fromages">
-            <img class="derniere-pizza" ng-src="{{pizza.urlImage}}" alt="{{pizza.nom}}" title="{{pizza.nom}}">
-        </a>
-        <div class="caption">
-            <h3> {{ pizza.nom }} </h3>
-            <p> {{ pizza.prix }} &euro;
-                <ajouter-panier item="pizza" class="btn pull-right"></ajouter-panier>
-            </p>
-        </div>
-    </div>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"
+     ng-repeat="pizza in $ctrl.pizzas |limitTo:3 track by $index">
+  <pizza pizza="pizza"></pizza>
+  <ajouter-panier item="pizza"></ajouter-panier>
 </div>

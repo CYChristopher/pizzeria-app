@@ -2,65 +2,69 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Pizzeria Site Web</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  <meta charset="UTF-8">
+
+  <title>Pizzeria Site Web</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+
         crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
-    <script src="/app.bundle.js"></script>
-    <base href="/">
-    <link rel="stylesheet" href="index.css">
 
-    <script>
-        function clientConnecte() {
-            //TODO récupérer utilisateur dans cache pour pouvoir afficher le bouton "mon compte"
-            // return true quand user sinon false
-        }
-    </script>
-
+  <base href="/">
+  <link rel="stylesheet"
+        href="index.css">
 </head>
 
-<body ng-app="pizzeria" class="container-fluid">
+<body ng-app="pizzeria"
+      class="container-fluid">
 
+  <div class="container">
+    <navbar> </navbar>
 
-    <div class="container">
-        <navbar> </navbar>
-
-
-        <div class="row">
-            <div ng-view></div>
-        </div>
-
-
-        <br><br><br>
-        <div class="row footer">
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                <img src="./img/pizza.png">
-            </div>
-
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                <h3> DTA Pizzeria </h3>
-                <a href="/">Accueil</a> ·
-                <a href="/pizzas">Carte des pizzas</a>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <h3> Coordonnées </h3>
-                <p><span>Rue Edith Piaf, Immeuble Euptoyou</span> 44800 Saint-Herblain</p>
-                <p>tel : 02 40 99 99 99</p>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <p class="footer-a-propos">
-                    <h3>À propos</h3>
-                    Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-                </p>
-            </div>
-        </div>
+    <div class="row">
+      <div ng-view></div>
     </div>
 
+    <br>
+
+    <div class="row footer">
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+        <img src="./img/pizza.png">
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+        <h3> DTA Pizzeria </h3>
+        <a href="/">Accueil</a> ·
+        <a href="/pizzas">Carte des pizzas</a>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <h3> Coordonnées </h3>
+        <p>Rue Edith Piaf, Immeuble Euptoyou <br> 44800 Saint-Herblain</p>
+        <p>tel : 02 40 99 99 99</p>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <p class="footer-a-propos">
+          <h3>À propos</h3>
+
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+function clientConnecte() {
+  //TODO récupérer utilisateur dans cache pour pouvoir afficher le bouton "mon compte"
+  // return true quand user sinon false
+}
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <script src="/app.bundle.js"></script>
 </body>
 
 </html>

@@ -40,12 +40,18 @@ public class NouvelUtilisateurController extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String motDePasse = request.getParameter("motDePasse");
+		String validationMotDePasse = request.getParameter("validationMotDePasse");
 		String adresse = request.getParameter("adresse");
 
 		LocalDateTime dateCreation = LocalDateTime.now();
 		Utilisateur utilisateur = new Utilisateur(nom, prenom, email, motDePasse, adresse, dateCreation);
 
-		if (utilisateursService.findByEmail(email) == null) {
+		if (!motDePasse.equals(validationMotDePasse)) {
+			request.setAttribute("donnees", utilisateur);
+			request.setAttribute("msg", "Confirmation du mot de passe incorrecte");
+			doGet(request, response);
+
+		} else if (utilisateursService.findByEmail(email) == null) {
 
 			utilisateursService.saveNew(utilisateur);
 			response.sendRedirect(request.getContextPath() + URL_LISTE);

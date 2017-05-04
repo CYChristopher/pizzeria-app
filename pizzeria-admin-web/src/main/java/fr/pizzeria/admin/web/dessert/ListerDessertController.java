@@ -29,18 +29,18 @@ public class ListerDessertController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("listeDesserts", this.dessertService.findAll());
+		req.setAttribute("listeDesserts", this.dessertService.findAllAvailable());
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(VUE_LISTER_DESSERTS);
 		dispatcher.forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+					throws ServletException, IOException {
 
 		String code = request.getParameter("code");
 
-		dessertService.delete(code);
+		this.dessertService.delete(code);
 
 		response.sendRedirect(request.getContextPath() + URL_LISTE);
 

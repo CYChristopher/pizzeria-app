@@ -32,7 +32,7 @@ export class ClientService {
 
     // récupération du client connecté
     getConnectedClient() {
-        let utilisateur = this.localStorageService.get('utilisateur', "sessionStorage");
+        let utilisateur = this.localStorageService.get('utilisateur', "localStorage");
 
 
         if(!utilisateur)
@@ -44,8 +44,26 @@ export class ClientService {
     verifierUtilisateur(email, motDePasse) {
         return this.$http.get(`${this.API_URL}/clients?email=${email}&motDePasse=${sha256(motDePasse)}`)
             .then(resp => {
-                this.localStorageService.set("token", resp.headers().token, "sessionStorage");
+                this.localStorageService.set("token", resp.headers().token, "localStorage");
                 return resp.data
             });
     }
+
+    emailExiste(email) {
+       
+        return this.$http.get(`${this.API_URL}/clients/email?value=${email}`)
+            .then(resp => resp.data)
+            ;
+    }
+
+    testMdpUtilisateur(id, motDePasse) {        
+        
+        return this.$http.get(`${this.API_URL}/clients/verifPwd?id=${id}&motDePasse=${sha256(motDePasse)}`)
+            .then(resp => resp.data)
+           ;
+
+    }
+
+
+
 }
