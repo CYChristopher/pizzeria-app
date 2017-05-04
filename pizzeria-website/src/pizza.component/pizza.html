@@ -1,10 +1,10 @@
 <div class="well well-lg weel-pizza"
      data-toggle="modal"
      data-target="#myModal{{$ctrl.pizza.id}}">
-	<img class="img-responsive center-block"
-	     src="{{$ctrl.pizza.urlImage}}">
-	<h2>{{$ctrl.pizza.nom}}</h2>
-	<p>{{$ctrl.pizza.prix}} &euro;</p>
+  <img class="img-responsive center-block"
+       ng-src="{{$ctrl.pizza.urlImage}}">
+  <h2>{{$ctrl.pizza.nom}}</h2>
+  <p>{{$ctrl.pizza.prix}} &euro;</p>
 </div>
 <!-- Modal -->
 <div class="modal fade"
@@ -12,34 +12,34 @@
      tabindex="-1"
      role="dialog"
      aria-labelledby="myModalLabel">
-	<div class="modal-dialog"
-	     role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button"
-				        class="close"
-				        data-dismiss="modal"
-				        aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title"
-				    id="myModalLabel">{{$ctrl.pizza.nom}}</h4>
-			</div>
+  <div class="modal-dialog"
+       role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"
+            id="myModalLabel">{{$ctrl.pizza.nom}}</h4>
+      </div>
 
-			<div class="modal-body">
-				<img class="img-responsive"
-				     src="{{$ctrl.pizza.urlImage}}"> {{$ctrl.pizza.prix}} &euro;</div>
+      <div class="modal-body">
+        <img class="img-responsive"
+             ng-src="{{$ctrl.pizza.urlImage}}"> {{$ctrl.pizza.prix}} &euro;</div>
 
-			<!-- Table -->
-			<table class="table table-striped">
-				<tr>
-					<th>Ingrédients</th>
-				</tr>
-				<tr ng-repeat="ingredient in $ctrl.pizza.listeIngredients">
-					<td>{{ingredient.nom}}</td>
-				</tr>
-			</table>
-			<div class="modal-footer">
-				<ajouter-panier item="$ctrl.pizza"></ajouter-panier>
-			</div>
-		</div>
-	</div>
+      <!-- Table -->
+      <table class="table table-striped">
+        <tr>
+          <th>Ingrédients</th>
+        </tr>
+        <tr ng-repeat="ingredient in $ctrl.pizza.listeIngredients">
+          <td>{{ingredient.nom}}</td>
+        </tr>
+      </table>
+      <div class="modal-footer">
+        <ajouter-panier item="$ctrl.pizza"></ajouter-panier>
+      </div>
+    </div>
+  </div>
 </div>

@@ -20,12 +20,6 @@
 			<form method="post">
 
 				<div class="form-group">
-					<label>Numéro de Commande :</label> <input class="form-control"
-						name="numCommande" type="text" value="${commande.numeroCommande}"
-						required>
-				</div>
-
-				<div class="form-group">
 					<label>Statut :</label> <select class="form-control" name="statut"
 						required>
 						<c:forEach var="status" items="${statusPossible}">
@@ -85,7 +79,7 @@
 				</div>
 
 				<input class="btn btn-success" type="submit" value="Valider">
-				<a href=<c:url value='/commandes/liste'/>><button type="button"
+				<a href=<c:url value='/commandesNonLivrees/liste'/>><button type="button"
 						class="btn btn-primary">Retour</button></a> <a href=<c:url value=''/>>
 					<button type="button" class="btn btn-primary">Reset</button>
 				</a>
