@@ -20,12 +20,6 @@
 			<form method="post">
 
 				<div class="form-group">
-					<label>Numéro de Commande :</label> <input class="form-control"
-						name="numCommande" type="text" value="${commande.numeroCommande}"
-						required>
-				</div>
-
-				<div class="form-group">
 					<label>Statut :</label> <select class="form-control" name="statut"
 						required>
 						<c:forEach var="status" items="${statusPossible}">
