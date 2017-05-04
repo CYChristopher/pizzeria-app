@@ -2,8 +2,7 @@ package fr.pizzeria.spring.security;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class JwtService {
 
 	public String tokenFor(Client client) throws IOException, URISyntaxException {
 		byte[] secretKey = secretKeyProvider.getKey();
-		Date expiration = Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC));
+		Date expiration = Date.from(ZonedDateTime.now().toInstant());
 		return Jwts.builder().setSubject(client.getId().toString()).setExpiration(expiration).setIssuer(ISSUER)
 				.signWith(SignatureAlgorithm.HS512, secretKey).compact();
 	}
