@@ -24,7 +24,7 @@
 				<input style="border-color:${ erreur [0] }" class="form-control" id="nom" name="nom" type="text" placeholder=" ex : tomate..." value="${ editIngredient.nom }" required>
 
 					<label for="quantite">Quantité :</label>
-					<input class="form-control" id="quantite" name="quantite" type="number" min="1" value="${ editIngredient.quantite }" disabled>
+					<input class="form-control" id="quantite" name="quantite" type="number" min="1" value="${ editIngredient.quantite }" readonly>
 
 						<label for="prix">Prix :</label>
 						<input style="border-color:${ erreur [2] }" class="form-control" id="prix" name="prix" type="number" step="0.01" min="0.01" placeholder="ex : 0,35" value="${ editIngredient.prix }" required>
