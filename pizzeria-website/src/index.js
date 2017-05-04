@@ -19,9 +19,10 @@ import { PanierComponent } from './panier.component'
 import { NavbarComponent } from './navbar.component'
 import { MonCompteComponent } from './monCompte.component'
 import { PanierIndicateurComponent } from './panierIndicateur.component'
+import { AlertModule } from './alert';
 /* beautify preserve:end */
 
-angular.module( 'pizzeria', [ ngRoute, 'LocalStorageModule' ] )
+angular.module( 'pizzeria', [ ngRoute, 'LocalStorageModule', AlertModule ] )
   .value( 'API_URL', BACKEND_API_URL )
   .config( routes )
   .config( function ( $routeProvider, $locationProvider ) {
