@@ -87,8 +87,8 @@ public class NouvelleCommandeController extends HttpServlet {
 			CommandeComplete commandeComplete = new CommandeComplete(commande, commandesPizza);
 
 			this.commandeService.create(commandeComplete);
-
-			response.sendRedirect(request.getContextPath() + "/commandes/liste");
+			
+			response.sendRedirect(request.getContextPath() + "/commandesNonLivrees/liste");
 		} else {
 			request.setAttribute("numero", numCommande);
 			request.setAttribute("statut", statut);

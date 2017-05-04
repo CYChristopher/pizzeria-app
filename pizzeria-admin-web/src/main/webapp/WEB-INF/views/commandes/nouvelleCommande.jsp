@@ -118,7 +118,7 @@
 
 
 				<input class="btn btn-success" type="submit" value="Valider">
-				<a href=<c:url value='/commandes/liste'/>><button type="button"
+				<a href=<c:url value='/commandesNonLivrees/liste'/>><button type="button"
 						class="btn btn-primary">Retour</button></a>
 			</form>
 
