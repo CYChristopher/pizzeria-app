@@ -68,10 +68,12 @@
 						<tbody>
 							<c:forEach var="piz" items="${listePizza}" varStatus="status">
 								<tr>
-									<td><label>${piz.nom}</label></td>
-									<!-- <td><input class="form-control" name="test" type="number"></td> Un jour on pourra commander plusieurs fois la même pizza, mais c'est pour la v2 -->
-									<td><input type="checkbox" name="pizzaCommandeId"
-										value="${piz.id}"></td>
+									<td>
+										<label>${piz.nom}</label>
+									</td>									
+									<td>
+										<input type="checkbox" name="pizzaCommandeId" value="${piz.id}" <c:if test="${pizzaDansCommande[piz.id]==true}">checked</c:if>>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
