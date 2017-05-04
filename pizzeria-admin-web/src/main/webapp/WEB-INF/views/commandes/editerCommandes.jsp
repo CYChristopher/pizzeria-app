@@ -72,7 +72,7 @@
 										<label>${piz.nom}</label>
 									</td>									
 									<td>
-										<input type="checkbox" name="pizzaCommandeId" value="${piz.id}" <c:if test="${pizzaDansCommande[piz.id]==true}">checked</c:if>>
+										<input type="checkbox" name="pizzaCommandeId" value="${piz.id}" <c:if test="${pizzasDansCommande[piz.id]=='true'}">checked</c:if>>
 									</td>
 								</tr>
 							</c:forEach>
