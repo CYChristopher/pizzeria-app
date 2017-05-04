@@ -39,6 +39,12 @@ public class CommandeService {
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public List<Commande> findAllNonLivrees() {
+
+		return this.em.createQuery("select c from Commande c where c.statut <> 'LIVRE'", Commande.class).getResultList();
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public Commande find(Integer id) {
 
 		return this.em.createQuery(FIND_BY_ID, Commande.class).setParameter("id", id).getSingleResult();

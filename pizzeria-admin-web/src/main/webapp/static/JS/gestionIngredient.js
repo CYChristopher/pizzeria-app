@@ -6,11 +6,11 @@ let eventIngredientSelectione = document.getElementById('ingredientSelectione').
 let h = document.createElement.bind(document);
 let ingredients = [];
 //Si on edite une pizza on récupère la liste des ingrédients déjà présents
-let ingredientPresents = ingredientSelectione.getElementsByTagName("LI");
+let ingredientPresents = ingredientSelectione.getElementsByTagName("INPUT");
 //Et on les ajoute au tableau des ingrédients sélectionnés
 if(ingredientPresents.length > 0){
 	for(i = 0; i < ingredientPresents.length; i++){
-		ingredients.push(ingredientPresents[i].innerText);
+		ingredients.push(ingredientPresents[i].value);
 	};
 }
 let isInList = false;
@@ -34,17 +34,18 @@ function addIngredient(a){
 		//Si ce n'est pas un doublon
 		if(!isInList){
 			div.style.display = 'none';
-			let li = h('li');
-		    li.className = 'list-group-item';
-		    li.innerText = a.target.innerHTML;
+			let input = h('input');
+		    input.className = 'list-group-item';
+		    input.value = a.target.innerHTML;
 		    //On l'ajoute au tableau des ingrédients sélectionnés
 		    ingredients.push(a.target.innerHTML);
-		    li.setAttribute('name','ingredientSelectione');
-		    li.dataToggle = 'tooltip';
-		    li.title = 'Supprimer un ingrédient';
-		    li.style.cursor = 'pointer';
+		    input.setAttribute('name','ingredientSelectione');
+		    input.dataToggle = 'tooltip';
+		    input.title = 'Supprimer un ingrédient';
+		    input.style.cursor = 'pointer';
+		    input.style.width = '100%';
 		    //Puis on l'ajoute à la pizza
-		    ingredientSelectione.appendChild(li);
+		    ingredientSelectione.appendChild(input);
 		}
 		//Si c'est un doublon on avertit l'utilisateur
 		else {

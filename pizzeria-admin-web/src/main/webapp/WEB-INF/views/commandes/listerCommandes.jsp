@@ -12,8 +12,8 @@
 	<div class="row">
 		<div class="col-md-9">
 
-<h1> Commandes</h1>
-<a class="btn btn-primary" href="nouvelle">Nouvelle Commande</a>
+<h1> Toutes les commandes</h1>
+<a class="btn btn-primary" href="../commandesNonLivrees/liste">Retour</a>
 
 <table class="table">
   <thead>
@@ -27,7 +27,6 @@
 			<th>Prix total</th>
 			<th>Pizzas</th>
 			<th>Quantité</th>
-			<th></th>
     </tr>
   </thead>
   <tbody>
@@ -62,16 +61,6 @@
 				${commandesPizzas.quantite}
 				<br>
 			</c:forEach>
-			</td>
-			
-			
-			<td>
-			<a href="<c:url value="/commandes/edit?id=${cmd.id}"/>" class="btn btn-warning">Editer</a>
-			<br>
-				<form method="POST"
-					action="<c:url value='/commandes/supprimer?id=${cmd.id}'/>">
-					<button type="submit" class="btn btn-danger">Supprimer</button>
-				</form>
 			</td>
 		</tr>
 		</c:forEach>
